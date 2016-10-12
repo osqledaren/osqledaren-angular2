@@ -43,6 +43,12 @@ gulp.task('copyjs', function () {
 
 	gulp.src(appDefaults.nodeModulesDir + 'tether/dist/js/tether.min.js')
 		.pipe(gulp.dest(appDefaults.jsDir));
+
+	gulp.src(appDefaults.nodeModulesDir + 'isotope-layout/dist/isotope.pkgd.min.js')
+		.pipe(gulp.dest(appDefaults.jsDir));
+
+	gulp.src(appDefaults.nodeModulesDir + 'imagesloaded/imagesloaded.pkgd.min.js')
+		.pipe(gulp.dest(appDefaults.jsDir));
 });
 
 gulp.task('serve', function () {

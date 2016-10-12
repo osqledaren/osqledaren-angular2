@@ -1,0 +1,28 @@
+$grid-element-height: 230px;
+$grid-element-height-big: 460px; 
+
+.container {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.col-xs, .col-xs-12, .col-sm-6 {
+	background: lightblue;
+	border: 1px solid #222 !important;
+	height: $grid-element-height;
+}
+
+.article-grid-sizer,
+.article-grid-item {
+	width: 33%;
+}
+.article-grid-item {
+	border: 1px solid blue;
+	background: rgba(155,155,155,0.3);
+	height: $grid-element-height;
+}
+
+.article-grid-item.big {
+	width: 66%;
+	height: $grid-element-height-big;
+}
