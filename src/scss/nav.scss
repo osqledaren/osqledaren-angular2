@@ -1,6 +1,7 @@
-$ol_orange: orange;
-$header_padding: 20px;
+$ol_orange: #f05022;
+$header_padding: 10px;
 $submenu_color: black;
+$logo_maxwidth: 40px;
 
 .navbar {
     padding: 0;
@@ -12,13 +13,25 @@ $submenu_color: black;
     }
 
     .navdiv {
+        display: flex;
+        align-items: center;
+
+        background-color: $ol_orange;
+        padding: $header_padding;
+        
         border-radius: 0 !important;
         
         font-family: "Proxima Nova Semibold", sans-serif;
 
-        background-color: $ol_orange;
-        padding: $header_padding;
+        .submenu-button {
+            margin-left: auto;
+        }
 
+        .navbar-brand {
+            img {
+                max-width: $logo_maxwidth;
+            }
+        }
     }
 
     #exCollapsingNavbar {
