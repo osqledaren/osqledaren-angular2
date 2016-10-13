@@ -1,20 +1,25 @@
 .navbar {
     padding: 0;
     margin: 0;
-}
-
-.navdiv {
-    border-radius: 0 !important;
-    
-    font-family: "Proxima Nova Semibold", sans-serif;
-
-    background-color: $ol_orange;
-    padding: $header_padding;
 
     a {
         color: white !important;
         text-transform: uppercase;
     }
 
-}
+    .navdiv {
+        border-radius: 0 !important;
+        
+        font-family: "Proxima Nova Semibold", sans-serif;
 
+        background-color: $ol_orange;
+        padding: $header_padding;
+
+    }
+
+    #exCollapsingNavbar {
+        div {
+            background-color: $submenu_color !important;
+        }
+    }
+}
