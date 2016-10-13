@@ -4,13 +4,12 @@
 }
 
 .navdiv {
-    padding: 10px;
-
     border-radius: 0 !important;
     
     font-family: "Proxima Nova Semibold", sans-serif;
 
-    background-color: orange; // TODO
+    background-color: $ol_orange;
+    padding: $header_padding;
 
     a {
         color: white !important;
