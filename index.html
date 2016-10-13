@@ -11,8 +11,9 @@
     </head>
     <body>
         <nav class="navbar">
+        <div class="navdiv">
         <a class="navbar-brand" href="#">OL</a>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav hidden-sm-down">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Tidningen<span class="sr-only">(current)</span></a>
                 </li>
@@ -25,18 +26,34 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Annonsera</a>
                 </li>
-                <li class="nav-item pull-xs-right">
+            </ul>
+            <ul class="nav navbar">
+                <li class="nav-item pull-xs-right toggle-button">
                     <a class="nav-link" data-toggle="collapse" data-target="#exCollapsingNavbar" href="#">
                         Mer
                     </a>
                 </li>
             </ul>
-        </nav>
+        </div>
         <div class="collapse" id="exCollapsingNavbar">
             <div class="bg-inverse p-a-1">
-                <h4>Surprise!</h4>
+                <ul class="hidden-sm-up">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Tidningen<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Podcast</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Play</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Annonsera</a>
+                    </li>
+                </ul>
             </div>
         </div>
+        </nav>
         <p>Hello world! This is HTML5 Boilerplate.</p>
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/tether.min.js"></script>
