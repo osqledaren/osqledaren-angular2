@@ -16,13 +16,36 @@ $grid-element-height-big: 460px;
 .article-grid-item {
 	width: 33%;
 }
+
 .article-grid-item {
 	border: 1px solid blue;
 	background: rgba(155,155,155,0.3);
-	height: $grid-element-height;
+
+	.article-grid-item-content {
+		position: relative;
+    	width: 100%;
+   		padding-top: 66.66%; /* 3:2 Aspect Ratio */
+	}
+
+	.article-grid-item-content.top { 
+		background: lightblue;
+	}
+
+	.article-grid-item-header,
+	.article-grid-item-text {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.article-grid-item-content img { 
+		max-width: 100%;
+
+	}
 }
 
 .article-grid-item.big {
 	width: 66%;
-	height: $grid-element-height-big;
 }
