@@ -1,8 +1,3 @@
-$ol_orange: #f05022;
-$header_padding: 10px 25px;
-$submenu_color: dark-grey;
-$logo_maxwidth: 40px;
-
 .navbar {
     padding: 0;
     margin: 0;
@@ -12,12 +7,12 @@ $logo_maxwidth: 40px;
         text-transform: uppercase;
     }
 
-    .navdiv {
+    .navbar-container {
         display: flex;
         align-items: center;
 
-        background-color: $ol_orange;
-        padding: $header_padding;
+        background-color: $ol-orange;
+        padding: $header-padding;
         
         border-radius: 0 !important;
         
@@ -29,14 +24,14 @@ $logo_maxwidth: 40px;
 
         .navbar-brand {
             img {
-                max-width: $logo_maxwidth;
+                max-width: $logo-max-width;
             }
         }
     }
 
-    #exCollapsingNavbar {
+    #main-nav-collapsible {
         div {
-            background-color: $submenu_color !important;
+            background-color: $gray-dark !important;
         }
     }
 }

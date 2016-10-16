@@ -1,6 +1,14 @@
+/*
+
+Osqledaren Stylesheet
+Authors: Ah-Zau-Marang, Emma Brännström, Simone Perrone, Thomas Vakili, Tedy Warsitha
+
+*/
 @import "variables";
 @import "bootstrap-flex";
+@import "mixins";
+@import "fonts";
 @import "article-grid";
-@import "nav";
+@import "header";
 @import "footer";
 @import "article";

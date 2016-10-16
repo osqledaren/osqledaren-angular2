@@ -1,34 +1,3 @@
-@mixin circle($width) {
-	border-radius: 50%;
-	width: $width;
-	height: $width;
-}
-
-@mixin displayAuthor($imgWidth, $border, $space) {
-	width: 49%;
-	box-sizing: border-box;
-	display: inline-block;
-
-	img {
-		@include circle($imgWidth);
-		cursor: pointer;
-	}
-
-	div {
-		display:inline-block;
-		border-left: $border solid gray;
-		vertical-align: middle;
-		margin-left: $space;
-    	padding-left: $space;
-    	font-size: 0.8em;
-    	/* font-family: "Proxima Nova"; */
-	}
-
-	div>span {
-		display:block;
-	}
-}
-
 #authorDisplay_up {
 	width: $fullwidth * 0.4;
 

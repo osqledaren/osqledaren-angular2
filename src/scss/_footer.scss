@@ -1,84 +1,52 @@
-html {
-    position: relative;
-    min-height: 100%;
-}
+footer#site-footer {
 
-body {
-	margin-bottom: $footer-height;
-}
+	.row > div:not(:last-child) {
 
-.footer {
+		@include media-breakpoint-down(xs){
+			margin-bottom: $grid-gutter-width;
+		}
+	}
+
+	background: black;
+	height: auto;
 	width: 100%;
-	background-color: #000;
-	height: $footer-height;
-	position: absolute;
-	bottom: 0;
-	padding: 25px 0px;
-	color: #fff;
+	padding: $grid-gutter-width 0;
+
+	* {
+		color: white;
+	}
+
+	a {
+		color: white;
+	}
+
+	ul {
+		list-style:none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.ol {
+		display: flex;
+
+		.footer-logo {
+			height: 50px;
+			width: auto;
+			padding-right: $grid-gutter-width;
+			margin: 0 $grid-gutter-width 0 0;
+			border-right: 2px solid white;
+		}
+		margin-bottom: $grid-gutter-width;
+	}
+
+	.icons {
+		margin-bottom: $grid-gutter-width;
+		img {
+			height: 25px;
+			margin: 0 $grid-gutter-width/2 0 0;
+			&:not(:first-child){
+				margin: 0 $grid-gutter-width/2;
+			}
+		}
+	}
 }
-
-.content {
-	witdh: 100%;
-	height: 100%;
-	margin: 0px 200px;
-	display: flex;
-}
-
-.right-content {
-	width: 50%;
-	height: 100%;	
-	display:flex;
-	padding: 0 0 0 50px;
-}
-
-.right-content a {
-	color: #fff;
-	font-size: 10pt;
-}
-
-.right-content p {
-	font-size: 7pt;
-	margin: 5px 0px;
-}
-
-.right-content li {
-	margin: 0 0 5px 0;
-}
-
-
-.left-content {
-	width: 50%;
-	height: 100%;
-	padding: 0 0 0 50px;
-}
-
-.left-content .ol img {
-	height: 50px;
-	margin: 5px 0;
-}
-
-.left-content .icons img {
-	height: 25px;
-	margin: 30px 35px 0 10px;
-}
-
-.left-content .ol {
-	display: flex;
-}
-
-.left-content .icons {
-	display: flex;
-}
-
-.left-content .ol #line {
-	background-color: #fff;
-	width: 2px;
-	height: 50px;
-	margin: 5px 20px 0;
-}
-
-.left-content .ol p{
-	margin: 15px 0;
-	font-size: 14pt;
-}
-

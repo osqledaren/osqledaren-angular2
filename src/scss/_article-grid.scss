@@ -1,19 +1,10 @@
-$article-content-text-padding: 10px;
-
-
-body { background: #ddd; }
-
-.container {
-	width: 95%;
-}
-
 
 .article-grid-sizer,
 .article-grid-item {
-	width: 33%;
+	width: 33.33%;
 }
 .article-grid-item.big {
-	width: 66%;
+	width: 66.66%;
 }
 
 .article-grid-item {
@@ -54,7 +45,6 @@ body { background: #ddd; }
 
 	h3.article-title {
 		font-weight: bold;
-		font-size: 1.6em;
 	}
 	time.article-date {
 		position: absolute;
