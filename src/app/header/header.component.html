@@ -1,0 +1,22 @@
+<nav id="top-nav" class="top-nav navbar hidden-xs-down">
+	<ul class="nav navbar-nav pull-xs-right">
+		<li *ngFor="let item of secondaryMenu;" class="nav-item">
+			<a id="nav-link-{{item.name | lowercase}}" class="nav-link" href="{{item.url}}">{{item.name}}</a>
+		</li>
+	</ul>
+</nav>
+
+<nav id="main-nav" class="main-nav navbar">
+	<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#main-nav-collapsible"
+					aria-controls="main-nav-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+		&#9776;
+	</button>
+	<a class="navbar-brand" href="#">Navbar</a>
+	<div class="collapse navbar-toggleable-xs pull-sm-right" id="main-nav-collapsible">
+		<ul class="nav navbar-nav">
+			<li *ngFor="let item of mainMenu;" class="nav-item">
+				<a id="nav-link-{{item.name | lowercase}}" class="nav-link" href="{{item.url}}">{{item.name}}</a>
+			</li>
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,8 @@
+.top-nav, .main-nav {
+	a {
+		color: $body-color;
+		&:hover {
+			color: $gray;
+		}
+	}
+}
