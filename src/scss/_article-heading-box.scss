@@ -1,0 +1,56 @@
+//Retrieve the data for a symbol from variable $ol-symbols
+@function getSymbolData($symbolName){
+	@each $symbol in $ol-symbols {
+		@if nth($symbol, 1) == $symbolName {
+			@return $symbol;
+		}
+	}
+}
+
+//Style the article heading box
+#article-heading-box {
+	color: white;
+	max-width: $article-content-width + 25% ;
+	background-color: $ol-color;
+	padding: 1.5% 4% 1%;
+	margin-top: -60px !important;
+	margin: inherit;
+	z-index: 1;
+
+	h1 {
+		font-weight: bold;
+	}
+
+	p {
+		font-weight: normal;
+	}
+}
+
+//Style the list of the social media symbols
+ul.social-medias {
+	text-align:center;
+	padding-left: 0px !important;
+	margin:25px 0 0px !important;
+
+	li {
+		display:inline;
+		list-style-type: none;
+		margin:0 1em;
+
+		a {
+			background-image: url('../images/OL-symbols.png');
+			display:inline-block;
+		}
+	}
+
+	//Display the social media symbols as the background image of "a" tags in "li" element
+	@each $symbol in "Twitter", "Facebook", "Twitter2", "Pinterest" {
+		$symbolData: getSymbolData($symbolName: $symbol);
+
+		a[data-name="#{$symbol}"] {
+			width: nth($symbolData, 4);
+			height: nth($symbolData, 5);
+			background-position: #{nth($symbolData, 2)}px #{nth($symbolData, 3)}px;
+		}
+	}
+}

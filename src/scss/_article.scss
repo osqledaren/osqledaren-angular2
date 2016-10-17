@@ -1,1 +1,19 @@
+$article-content-width: $fullwidth * 0.45;
+
 @import "byline";
+@import "article-heading-box";
+
+//Set the width of article content and align the content to center
+#article-content {
+	width: $article-content-width;
+	/* border: 1px dashed gray; */
+	margin: auto;
+}
+
+//Set the size of and display the article image
+.article-image {
+	width: 100%;
+	height: 400px;
+	background-image: url("http://osqledaren.se/wp-content/uploads/2016/09/EntreFUgle-1140x570.jpg");
+	background-size: 100% 100%;
+}

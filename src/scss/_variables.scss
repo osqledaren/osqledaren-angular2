@@ -1,1 +1,10 @@
 $fullwidth : 100%;
+$ol-color: #f05022;
+
+//Informations of symbols in the image "OL-symbols.png", where the elements are name, x-axis, y-axis, width, height.
+$ol-symbols: (
+	("Twitter", 0, -8, 12px, 30px),
+	("Facebook", -13, -8, 12px, 30px),
+	("Twitter2", -25, -8, 30px, 30px),
+	("Pinterest", -55, -8, 25px, 30px),
+);
