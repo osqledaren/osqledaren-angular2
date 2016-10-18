@@ -13,11 +13,9 @@
 		@include displayAuthor($imgWidth:50px, $border:0px, $space:2px);
 	}
 }
-$article-content-width: $fullwidth * 0.45;
 
 //Set the width of article content and align the content to center
 #article-content {
-	width: $article-content-width;
 	/* border: 1px dashed gray; */
 	margin: auto;
 }
