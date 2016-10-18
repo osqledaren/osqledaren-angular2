@@ -7,7 +7,6 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {SearchComponent} from './search/search.component';
 import {NavigationService} from './navigation.service';
-import {NewsArticleService} from "./news-article.service";
 
 @NgModule({
 	declarations: [
@@ -20,7 +19,7 @@ import {NewsArticleService} from "./news-article.service";
 		FormsModule,
 		HttpModule
 	],
-	providers: [NavigationService, NewsArticleService],
+	providers: [NavigationService],
 	bootstrap: [HeaderComponent, FooterComponent]
 })
 export class AppModule {

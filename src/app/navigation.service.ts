@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Menu, MenuItem} from './menu';
+import {Menu, MenuList} from './menu';
 import {Menus} from './menus';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class NavigationService {
 		return Menus;
 	}
 
-	public getNav(name: string): MenuItem[]{
+	public getNav(name: string): MenuList{
 		return Menus[name];
 	}
 

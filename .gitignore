@@ -2,8 +2,7 @@
 ###################
 node_modules
 *.idea
-assets/css
-assets/js
+dist
 
 # Compiled source #
 ###################

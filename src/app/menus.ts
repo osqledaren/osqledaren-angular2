@@ -1,4 +1,4 @@
-import {Menu, MenuItem} from './menu';
+import {Menu, MenuList, MenuItem} from './menu';
 
 /**
  * Assigns constant menus for the application.
@@ -7,41 +7,41 @@ import {Menu, MenuItem} from './menu';
  */
 export const Menus: Menu = <Menu>{
 	// Main navigation
-	'main-nav': <MenuItem[]>[
-		{
-			'name': 'Nytt',
-			'url': '#'
+	'main-nav': <MenuList>{
+		'nytt': <MenuItem>{
+			name: 'Nytt',
+			url: '#'
 		},
-		{
-			'name': 'Play',
-			'url': '#'
+		'play': <MenuItem>{
+			name: 'Play',
+			url: '#'
 		},
-		{
-			'name': 'Pod',
-			'url': '#'
-		},
-	],
-	// Secondary navigation
-	'secondary-nav': <MenuItem[]>[
-		{
-			'name': 'Annonsering',
-			'url': '#'
-		},
-		{
-			'name': 'Fysiska nummer',
-			'url': '#'
-		},
-		{
-			'name': 'Legacy',
-			'url': '#'
-		},
-		{
-			'name': 'Redaktionen',
-			'url': '#'
-		},
-		{
-			'name': 'Kontakt',
-			'url': '#'
+		'podcast': <MenuItem>{
+			name: 'Podcast',
+			url: '#'
 		}
-	]
+	},
+	// Secondary navigation
+	'secondary-nav': <MenuList>{
+		'annonsering': <MenuItem>{
+			name: 'Annonsering',
+			url: '#'
+		},
+		'fysiska-nummer': <MenuItem>{
+			name: 'Fysiska nummer',
+			url: '#'
+		},
+		'legacy': <MenuItem>{
+			name: 'Legacy',
+			url: '#'
+		},
+		'redaktionen': <MenuItem>{
+			name: 'Redaktionen',
+			url: '#'
+		},
+		'kontakt': <MenuItem>{
+			name: 'Kontakt',
+			url: '#'
+		}
+	}
 };

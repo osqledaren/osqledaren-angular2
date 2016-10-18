@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem} from '../menu';
+import {MenuList} from '../menu';
 import {NavigationService} from '../navigation.service';
 
 @Component({
@@ -9,8 +9,8 @@ import {NavigationService} from '../navigation.service';
 })
 export class HeaderComponent implements OnInit {
 
-	public mainMenu: MenuItem[];
-	public secondaryMenu: MenuItem[];
+	public mainMenu: MenuList;
+	public secondaryMenu: MenuList;
 
 	constructor(private navigation: NavigationService) {
 		this.mainMenu = navigation.getNav('main-nav');
