@@ -1,14 +1,10 @@
 #authorDisplay_up {
-	width: $fullwidth * 0.4;
-
 	.author_text, .author_foto{
 		@include displayAuthor($imgWidth:70px, $border:1px, $space:5px);
 	}
 }
 
-#authorDisplay_down {
-	width: $fullwidth * 0.4;
-	
+#authorDisplay_down {	
 	.author_text, .author_foto{
 		@include displayAuthor($imgWidth:50px, $border:0px, $space:2px);
 	}
@@ -18,6 +14,11 @@
 #article-content {
 	/* border: 1px dashed gray; */
 	margin: auto;
+
+	.content{
+		margin: auto;
+		width: 80%;
+	}
 }
 
 //Set the size of and display the article image
