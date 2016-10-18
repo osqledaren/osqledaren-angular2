@@ -1,31 +1,53 @@
-<nav id="top-nav" class="top-nav navbar hidden-xs-down">
-	<ul class="nav navbar-nav">
-		<li class="nav-item active"><a class="nav-link" href="#">Om oss</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">Annonsering</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">Fysiska nummer</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
-	</ul>
-</nav>
-
-<nav id="top-nav" class="top-nav navbar hidden-xs-down">
-	<ul class="nav navbar-nav">
-		<li *ngFor="let t of mainMenu;" class="nav-item"></li>
-	</ul>
-</nav>
-
-<nav id="main-nav" class="main-nav navbar">
-	<a class="navbar-brand" href="#">Navbar</a>
-	<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#main-nav-collapsible"
-					aria-controls="main-nav-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-		&#9776;
-	</button>
-	<div class="collapse navbar-toggleable-xs" id="main-nav-collapsible">
-		<ul class="nav navbar-nav">
-			<li class="nav-item active"><a class="nav-link" href="#">Nytt <span class="sr-only">(current)</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Kategori 1</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Kategori 2</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Podcasts</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Play</a></li>
-		</ul>
-	</div>
-</nav>
+<header id="site-header">
+	<nav class="navbar">
+		<div class="navbar-container">
+			<a class="navbar-brand" href="#">
+				<img src="assets/img/temp_logo.png">
+			</a>
+			<ul class="nav navbar-nav hidden-sm-down">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Tidningen<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Podcast</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Play</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Annonsera</a>
+				</li>
+			</ul>
+			<ul class="nav navbar submenu-button">
+				<li class="nav-item pull-xs-right toggle-button">
+					<a class="nav-link" data-toggle="collapse" data-target="#main-nav-collapsible" href="#">
+						Mer
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="collapse" id="main-nav-collapsible">
+			<div class="bg-inverse p-a-1">
+				<ul class="nav navbar hidden-md-up">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Tidningen<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Podcast</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Play</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Annonsera</a>
+					</li>
+				</ul>
+				<ul class="nav navbar">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Om oss</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>

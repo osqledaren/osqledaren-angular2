@@ -1,0 +1,54 @@
+@import "./src/utility";
+
+footer#site-footer {
+
+	.row > div:not(:last-child) {
+
+		@include media-breakpoint-down(xs) {
+			margin-bottom: $grid-gutter-width;
+		}
+	}
+
+	background: black;
+	height: auto;
+	width: 100%;
+	padding: $grid-gutter-width 0;
+
+	* {
+		color: white;
+	}
+
+	a {
+		color: white;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.ol {
+		display: flex;
+
+		.footer-logo {
+			height: 50px;
+			width: auto;
+			padding-right: $grid-gutter-width;
+			margin: 0 $grid-gutter-width 0 0;
+			border-right: 2px solid white;
+		}
+		margin-bottom: $grid-gutter-width;
+	}
+
+	.icons {
+		margin-bottom: $grid-gutter-width;
+		img {
+			height: 25px;
+			margin: 0 $grid-gutter-width/2 0 0;
+			&:not(:first-child) {
+				margin: 0 $grid-gutter-width/2;
+			}
+		}
+	}
+}

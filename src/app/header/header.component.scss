@@ -1,0 +1,39 @@
+@import "./src/utility";
+
+.navbar {
+	padding: 0;
+	margin: 0;
+
+	a {
+		color: white !important;
+		text-transform: uppercase;
+	}
+
+	.navbar-container {
+		display: flex;
+		align-items: center;
+
+		background-color: $ol-orange;
+		padding: $header-padding;
+
+		border-radius: 0 !important;
+
+		font-family: "Proxima Nova Semibold", sans-serif;
+
+		.submenu-button {
+			margin-left: auto;
+		}
+
+		.navbar-brand {
+			img {
+				max-width: $logo-max-width;
+			}
+		}
+	}
+
+	#main-nav-collapsible {
+		div {
+			background-color: $gray-dark !important;
+		}
+	}
+}
