@@ -20,13 +20,13 @@
 			</ul>
 			<ul class="nav navbar submenu-button">
 				<li class="nav-item pull-xs-right toggle-button">
-					<a class="nav-link" data-toggle="collapse" data-target="#main-nav-collapsible" href="#">
+					<a class="nav-link" (click)="isCollapsed = !isCollapsed" href="#">
 						Mer
 					</a>
 				</li>
 			</ul>
 		</div>
-		<div class="collapse" id="main-nav-collapsible">
+		<div id="main-nav-collapsible" [ngbCollapse]="isCollapsed">
 			<div class="bg-inverse p-a-1">
 				<ul class="nav navbar hidden-md-up">
 					<li class="nav-item active">
