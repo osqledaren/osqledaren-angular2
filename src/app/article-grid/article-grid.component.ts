@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {NewsArticleService} from "../news-article.service";
 import {Article} from "../article";
 
@@ -6,7 +6,8 @@ import {Article} from "../article";
   selector: 'app-article-grid',
   templateUrl: './article-grid.component.html',
   styleUrls: ['./article-grid.component.scss'],
-  providers: [NewsArticleService]
+  providers: [NewsArticleService],
+	encapsulation: ViewEncapsulation.None
 })
 export class ArticleGridComponent implements OnInit {
 

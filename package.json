@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~2.0.0",
     "@angular/router": "~3.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.8",
+    "angular2-masonry": "^0.3.0",
     "bootstrap": "^4.0.0-alpha.4",
     "core-js": "^2.4.1",
     "osqledaren-web1617-prototype": "git://github.com/osqledaren/web1617.git#Prototype",

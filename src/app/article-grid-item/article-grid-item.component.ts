@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
-  selector: 'app-article-grid-item',
+  selector: 'div.article-grid-item',
   templateUrl: 'article-grid-item.component.html',
-  styleUrls: ['article-grid-item.component.scss']
+  styleUrls: ['../article-grid/article-grid.component.scss']
 })
 export class ArticleGridItemComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
