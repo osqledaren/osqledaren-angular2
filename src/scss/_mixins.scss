@@ -1,9 +1,11 @@
+//Generate a circle element with the size of the parameter $width
 @mixin circle($width) {
 	border-radius: 50%;
 	width: $width;
 	height: $width;
 }
 
+//Style the image of an author into a circleform and display the author's name and role/email on the right side.
 @mixin displayAuthor($imgWidth, $border, $space) {
 	width: 49%;
 	box-sizing: border-box;
@@ -15,16 +17,15 @@
 	}
 
 	div {
-		display: inline-block;
+		display:inline-block;
 		border-left: $border solid gray;
 		vertical-align: middle;
 		margin-left: $space;
-		padding-left: $space;
-		font-size: 0.8em;
-		/* font-family: "Proxima Nova"; */
+    	padding-left: $space;
+    	font-size: $font-size-root;
 	}
 
-	div > span {
-		display: block;
+	div>span {
+		display:block;
 	}
 }

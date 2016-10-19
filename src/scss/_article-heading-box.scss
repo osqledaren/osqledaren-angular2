@@ -23,33 +23,59 @@
 	p {
 		font-weight: normal;
 	}
-}
 
-//Style the list of the social media symbols
-ul.social-medias {
-	text-align:center;
-	padding-left: 0px !important;
-	margin:25px 0 0px !important;
+	//Style the list of the social media symbols
+	ul.social-medias {
+		text-align:center;
+		padding-left: 0px !important;
+		margin:25px 0 0px !important;
 
-	li {
-		display:inline;
-		list-style-type: none;
-		margin:0 1em;
+		li {
+			display:inline;
+			list-style-type: none;
+			margin:0 1em;
 
-		a {
-			background-image: url('../images/OL-symbols.png');
-			display:inline-block;
+			a {
+				background-image: url('../images/OL-symbols.png');
+				display:inline-block;
+			}
+		}
+
+		//Display the social media symbols as the background image of "a" tags in "li" element
+		@each $symbol in "Twitter", "Facebook", "Twitter2", "Pinterest" {
+			$symbolData: getSymbolData($symbolName: $symbol);
+
+			a[data-name="#{$symbol}"] {
+				width: nth($symbolData, 4);
+				height: nth($symbolData, 5);
+				background-position: #{nth($symbolData, 2)}px #{nth($symbolData, 3)}px;
+			}
 		}
 	}
+}
 
-	//Display the social media symbols as the background image of "a" tags in "li" element
-	@each $symbol in "Twitter", "Facebook", "Twitter2", "Pinterest" {
-		$symbolData: getSymbolData($symbolName: $symbol);
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+	#article-heading-box {
+		h1 {
+			font-size: $font-size-h3;
+		}
 
-		a[data-name="#{$symbol}"] {
-			width: nth($symbolData, 4);
-			height: nth($symbolData, 5);
-			background-position: #{nth($symbolData, 2)}px #{nth($symbolData, 3)}px;
+		p {
+			font-size: $font-size-h6;
+		}
+	}
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+	#article-heading-box {
+		h1 {
+			font-size: $font-size-h2;
+		}
+
+		p {
+			font-size: $font-size-h6 + 0.12rem;
 		}
 	}
 }

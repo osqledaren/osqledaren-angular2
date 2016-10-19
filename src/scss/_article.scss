@@ -1,9 +1,10 @@
-//Set the width of article content and align the content to center
-#article-content {
+//Style the article main container
+#article-container {
 	margin: auto;
 	font-family: $font-family-sans-serif;
 	font-size: $font-size-root;
 
+	//Style the logo and position it
 	.logo {
 		position: absolute;
 		font-size: 5em;
@@ -15,25 +16,24 @@
 
 	//Set the size of and display the article image
 	.article-image {
-		width: 100%;
-		height: 400px;
-		background-image: url("http://osqledaren.se/wp-content/uploads/2016/09/EntreFUgle-1140x570.jpg");
-		background-size: 100% 100%;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			max-height: 420px;
+			position: relative;
+    		z-index: -1;
+		}
 	}
 
+	//Style the article content
 	.content{
 		margin: auto;
 		width: 80%;
-		font-size: 1.2em;
+		font-size: $font-size-h5;
 
 		h3 {
 			font-size: $font-size-h3;
-		}
-
-		.authorDisplay_up {
-			.author_text, .author_foto{
-				@include displayAuthor($imgWidth:70px, $border:1px, $space:5px);
-			}
 		}
 
 		.date {
@@ -63,14 +63,10 @@
 			//border-top: 1px solid black;
 		}
 
-		.authorDisplay_down {	
-			.author_text, .author_foto{
-				@include displayAuthor($imgWidth:50px, $border:0px, $space:2px);
-			}
-		}
 	}
 }
 
+//Style the quote box and position it
 .quote {
 	display: inline-block;
 	width: 40%;
@@ -89,5 +85,71 @@
 		color: $ol-orange;
 		line-height: 0;
 		margin: 50px 5px 0 0;
+	}
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+	#article-container {
+		.content{
+			font-size: $font-size-h6;
+
+			h3 {
+				font-size: $font-size-h5;
+			}
+
+			.quote {
+				font-size: $font-size-h5;
+				padding: 20px 0;
+				width: 100%;
+				margin: 0;
+
+				i {
+					font-size: 3.5em;
+					margin: 0;
+				}
+			}
+
+			.article-rm-button {
+				padding: 10px 0;
+
+				img {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+	}
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+	#article-container {
+		.content{
+			font-size: $font-size-h6 + 0.12rem;
+
+			h3 {
+				font-size: $font-size-h4;
+			}
+
+			.quote {
+				font-size: $font-size-h4;
+				padding: 2px 35px 30px 0px;
+
+				i {
+					font-size: 3.5em;
+					margin: 45px 5px 0 0;
+				}
+			}
+
+			.article-rm-button {
+				padding: 13px 0;
+
+				img {
+					width: 25px;
+					height: 25px;
+				}
+			}
+		}
 	}
 }

@@ -1,3 +1,4 @@
+//Return a color of a given name
 @function getColor($name) {
 	@if $name == "facebook" {
 		@return #3b5998;
@@ -8,6 +9,7 @@
 	}
 }
 
+//Style the article share buttons
 .share-buttons {
 	padding: 5px;
 	margin: 20px 0 40px;
@@ -26,6 +28,7 @@
 	}
 }
 
+//Set background color of the share buttons
 @each $name in "facebook", "twitter", "pinterest" {
 	.button-#{$name} {
 		background-color : getColor($name);
@@ -35,6 +38,30 @@
 			img {
 				width: 13px !important;
 				margin-right: 10px;
+			}
+		}
+	}
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+	.share-buttons {
+		[class*="button-"] {
+			img {
+				width: 20px !important;
+				height: 20px !important;
+			}
+		}
+	}
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+	.share-buttons {
+		[class*="button-"] {
+			img {
+				width: 25px !important;
+				height: 25px !important;
 			}
 		}
 	}

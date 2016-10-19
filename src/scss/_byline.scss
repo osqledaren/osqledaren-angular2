@@ -1,37 +1,5 @@
-//Generate a circle element with the size of the parameter $width
-@mixin circle($width) {
-	border-radius: 50%;
-	width: $width;
-	height: $width;
-}
-
-//Style the image of an author into a circleform and display the author's name and role/email on the right side.
-@mixin displayAuthor($imgWidth, $border, $space) {
-	width: 49%;
-	box-sizing: border-box;
-	display: inline-block;
-
-	img {
-		@include circle($imgWidth);
-		cursor: pointer;
-	}
-
-	div {
-		display:inline-block;
-		border-left: $border solid gray;
-		vertical-align: middle;
-		margin-left: $space;
-    	padding-left: $space;
-    	font-size: 0.8em;
-    	/* font-family: "Proxima Nova"; */
-	}
-
-	div>span {
-		display:block;
-	}
-}
-
-#authorDisplay_up {
+//Style the byline box above
+.authorDisplay_up {
 	margin: inherit;
 
 	.author_text, .author_foto{
@@ -39,10 +7,45 @@
 	}
 }
 
-#authorDisplay_down {
+//Style the byline box below
+.authorDisplay_down {
 	margin: inherit;
 	
 	.author_text, .author_foto{
 		@include displayAuthor($imgWidth:50px, $border:0px, $space:2px);
+	}
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+	.authorDisplay_up {
+		img {
+			width: 53px !important;
+			height: 53px !important;
+		}
+	}
+
+	.authorDisplay_down {
+		img {
+			width: 45px !important;
+			height: 45px !important;
+		}
+	}
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+	.authorDisplay_up {
+		img {
+			width: 60px !important;
+			height: 60px !important;
+		}
+	}
+
+	.authorDisplay_down {
+		img {
+			width: 50px !important;
+			height: 50px !important;
+		}
 	}
 }
