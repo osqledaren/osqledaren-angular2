@@ -10,6 +10,7 @@
 	width: 49%;
 	box-sizing: border-box;
 	display: inline-block;
+	vertical-align: top;
 
 	img {
 		@include circle($imgWidth);
@@ -23,9 +24,11 @@
 		margin-left: $space;
     	padding-left: $space;
     	font-size: $font-size-root;
+    	max-width: 100%;
 	}
 
 	div>span {
 		display:block;
+		word-wrap: break-word;
 	}
 }
