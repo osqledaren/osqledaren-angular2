@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Article } from '../article';
 @Component({
-  selector: 'div.article-grid-item',
-  templateUrl: 'article-grid-item.component.html',
-  styleUrls: ['../article-grid/article-grid.component.scss']
+  selector: 'masonry-brick',
+  templateUrl: 'article-grid-item.component.html'
 })
+
 export class ArticleGridItemComponent implements OnInit {
+
+	@Input() article: Article;
 
   constructor() {
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {NewsArticleService} from "../news-article.service";
 import {Article} from "../article";
+import {MasonryOptions} from 'angular2-masonry/angular2-masonry';
 
 @Component({
   selector: 'app-article-grid',
@@ -11,13 +12,39 @@ import {Article} from "../article";
 })
 export class ArticleGridComponent implements OnInit {
 
-	public news: Article[];
+	public articles: Article[];
+	public masonryOptions: MasonryOptions;
 
   constructor() {
-  	this.news = new NewsArticleService().getAllNews();
+  	this.articles = new NewsArticleService().getAllNews();
+		this.masonryOptions = {
+			transitionDuration: '0.8s',
+			itemSelector: '.article-grid-item',
+			columnWidth: '.article-grid-sizer',
+			percentPosition: true
+		};
 	}
 
-	load() {
+	elementSize(urgency: number): string {
+
+		let size: string;
+
+		switch(urgency){
+			case 9:
+			case 8:
+			case 7:
+			case 6:
+				size = 'brick-large';
+				break;
+			case 5:
+				size = 'brick-medium';
+				break;
+			default:
+				size = 'brick-small';
+				break;
+		}
+
+		return size;
 	}
 
   ngOnInit() {

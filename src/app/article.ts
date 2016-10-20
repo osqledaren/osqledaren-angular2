@@ -4,5 +4,6 @@ export interface Article {
 	versioncreated: string,
 	byline: string,
 	headline: string,
-	body_text: string
+	body_text: string,
+	urgency: number
 }

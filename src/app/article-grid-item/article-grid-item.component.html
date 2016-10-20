@@ -4,9 +4,11 @@
 	</div>
 </div>
 <div class="article-grid-item-content bottom">
-	<div class="article-grid-item-text">
-		<h3 class="article-title">Lorem impsum</h3>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, voluptatibus?
-		<time class="article-date">6 okt 2016</time>
+	<div class="article-grid-item-content-inner">
+		<article>
+			<h3 class="article-title" [innerText]="article.headline"></h3>
+			<time class="article-date">6 okt 2016</time>
+			<div class="article-grid-item-text" [innerText]="article.body_text"></div>
+		</article>
 	</div>
 </div>

@@ -4,6 +4,8 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MasonryModule} from 'angular2-masonry/angular2-masonry';
+
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
@@ -28,6 +30,7 @@ import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.co
 	],
 	imports: [
 		NgbModule.forRoot(),
+		MasonryModule,
 		BrowserModule,
 		FormsModule,
 		HttpModule,

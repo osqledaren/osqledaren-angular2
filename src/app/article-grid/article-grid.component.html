@@ -1,8 +1,4 @@
-<div class="article-container">
-	<div class="article-grid-item big"></div>
-	<div class="article-grid-item"></div>
-	<div class="article-grid-item big"></div>
-	<div class="article-grid-item"></div>
-	<div class="article-grid-item"></div>
-	<div class="article-grid-item"></div>
-</div>
+<masonry [options]="masonryOptions" class="article-container">
+	<div class="article-grid-sizer"></div>
+	<masonry-brick *ngFor="let article of articles" [article]="article" [class] = "elementSize(article.urgency) + ' brick article-grid-item'"></masonry-brick>
+</masonry>

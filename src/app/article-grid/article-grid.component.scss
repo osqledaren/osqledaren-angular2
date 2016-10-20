@@ -3,12 +3,17 @@
 .article-container {
 	width: 100%;
 	position: relative;
+	overflow-x: hidden;
 }
 
 .article-grid-item-content {
 	position: relative;
 	width: 100%;
 	padding-top: 66.66%; /* 3:2 Aspect Ratio */
+
+	img {
+		transition: transform 0.2s ease-in-out;
+	}
 
 	img,
 	iframe {
@@ -25,7 +30,7 @@
 	}
 
 	.article-grid-item-header,
-	.article-grid-item-text {
+	.article-grid-item-content-inner {
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -34,7 +39,7 @@
 		overflow: hidden;
 	}
 
-	.article-grid-item-text {
+	.article-grid-item-content-inner {
 		padding: $article-content-text-padding;
 	}
 
@@ -49,29 +54,52 @@
 	}
 }
 
-.article-grid-item {
+.article-grid-item, .article-grid-sizer {
 	background: #fff;
 	width: 33.33%;
 	position: relative;
+
+	&:hover {
+		img {
+			transform: scale(1.05, 1.05);
+		}
+	}
+
 	@include clearfix;
 
 	@include media-breakpoint-down(sm) {
 		width: 50%;
 	}
 
-	&.big {
+	@include media-breakpoint-down(xs) {
 		width: 100%;
+	}
 
-		.article-grid-item-content {
-			padding-top: #{(100 + 33.33)*0.3333%};
-			float:left;
-		}
+	&.brick-large {
+		width: 66.66%;
 
-		.article-grid-item-content.top {
-			width: 66.66%;
+		@include media-breakpoint-down(sm) {
+			width: 100%;
 		}
-		.article-grid-item-content.bottom {
-			width: 33.33%;
+	}
+
+	&.brick-medium {
+
+		@include media-breakpoint-up(md) {
+
+			width: 100%;
+
+			.article-grid-item-content {
+				padding-top: #{(100 + 33.33)*0.3333%};
+				float: left;
+			}
+
+			.article-grid-item-content.top {
+				width: 66.66%;
+			}
+			.article-grid-item-content.bottom {
+				width: 33.33%;
+			}
 		}
 	}
 }

@@ -18,7 +18,7 @@
 				"global.scss"
 			],
 			"scripts": [
-
+				"../node_modules/imagesloaded/imagesloaded.pkgd.min.js"
 			],
 			"environments": {
 				"source": "environments/environment.ts",
