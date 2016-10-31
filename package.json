@@ -12,28 +12,28 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "~2.0.0",
-    "@angular/compiler": "~2.0.0",
-    "@angular/core": "~2.0.0",
-    "@angular/forms": "~2.0.0",
-    "@angular/http": "~2.0.0",
-    "@angular/platform-browser": "~2.0.0",
-    "@angular/platform-browser-dynamic": "~2.0.0",
-    "@angular/router": "~3.0.0",
+    "@angular/common": "~2.1.0",
+    "@angular/compiler": "~2.1.0",
+    "@angular/core": "~2.1.0",
+    "@angular/forms": "~2.1.0",
+    "@angular/http": "~2.1.0",
+    "@angular/platform-browser": "~2.1.0",
+    "@angular/platform-browser-dynamic": "~2.1.0",
+    "@angular/router": "~3.1.0",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.8",
     "angular2-masonry": "^0.3.0",
     "bootstrap": "^4.0.0-alpha.4",
-    "core-js": "^2.4.1",
-    "osqledaren-web1617-prototype": "git://github.com/osqledaren/web1617.git#Prototype",
-    "rxjs": "5.0.0-beta.12",
-    "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23"
+    "osqledaren-web1617-prototype": "git://github.com/osqledaren/web1617.git#Prototype"
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.17",
-    "codelyzer": "~0.0.26",
+    "angular-cli": "1.0.0-beta.19-3",
+    "codelyzer": "1.0.0-beta.1",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
@@ -44,6 +44,8 @@
     "protractor": "4.0.9",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
-    "typescript": "2.0.2"
+    "typescript": "~2.0.3",
+    "webdriver-manager": "10.2.5",
+    "portfinder": "^1.0.9"
   }
 }
