@@ -1,0 +1,39 @@
+#container-advertisement {
+	font-size: $font-size-h5;
+	
+	h1, h3{
+		color: black;
+	}
+
+	.preamble {
+		font-style: italic;
+		font-weight: bold;
+		font-size: $font-size-h6;
+	}
+
+	.contact-info{
+		margin-top: 30px;
+
+		span {
+			color: $link-color;
+			&:hover {color: $ol-orange;}
+			&:after {content:""; display:block;}
+		}
+	}
+
+	i {
+		font-size: $font-size-h2;
+		color: silver;
+		margin-right: 10px;
+    	vertical-align: middle;
+    	min-width: 30px;
+	}
+
+	p { margin-bottom: 40px; }
+
+	.content {
+		background-color: $content-bgColor;
+		padding: 30px 50px;
+	}
+
+}
