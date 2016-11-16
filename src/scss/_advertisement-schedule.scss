@@ -1,0 +1,50 @@
+.ad-schedule {
+	overflow: hidden;
+	line-height: 1.1;
+	font-size: $font-size-h6;
+	margin-top: 15px;
+
+	i {
+		font-size: $font-size-h6 !important;
+	}
+
+	>i {
+		color: #666666 !important;
+	}
+
+	b {
+		color: black;
+		display: block;
+	}
+
+	>div {
+		width: 78%;
+		margin: auto;
+		overflow: inherit;
+		border-bottom: 1px solid white;
+		padding: 30px 0 30px 15px;
+		text-align: center;
+
+		.info {
+			width: 150px;
+			display: inline-block;
+			vertical-align: top;
+			margin: 30px 100px 0 15px;
+			text-align: left;
+			>b {
+				margin-left: 5px;
+				margin-bottom: 20px;
+			}
+
+			p {
+				color: #333333 !important;
+				font-size: $font-size-h6;
+				margin-bottom: 15px !important;
+			}
+		}
+
+		.calendar {
+			display: inline-block;
+		}
+	}
+}
