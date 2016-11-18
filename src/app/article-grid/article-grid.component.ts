@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {NewsArticleService} from "../news-article.service";
-import {Article} from "../article";
+import {Article} from "../model/article";
 import {MasonryOptions} from 'angular2-masonry/src/masonry-options';
 
 @Component({

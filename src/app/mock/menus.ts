@@ -1,4 +1,4 @@
-import {Menu, MenuList, MenuItem} from './menu';
+import {Menu, MenuList, MenuItem} from '../model/menu';
 
 /**
  * Assigns constant menus for the application.

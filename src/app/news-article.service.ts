@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Article} from './article';
-import {Articles} from './articles';
+import {Articles} from './mock/articles';
+import {Article} from './model/article';
+import {WordpressService} from './wordpress.service';
 
 @Injectable()
 export class NewsArticleService {
 
-	constructor() {
-	}
+	public getAllNews(): Article[]{
 
-	public getAllNews(){
 		return Articles;
 	}
 
