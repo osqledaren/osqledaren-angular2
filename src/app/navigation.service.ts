@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Menu, MenuList} from './model/menu';
 import {Menus} from './mock/menus';
+import {Menu, MenuList} from "./model/menu";
 
 @Injectable()
 export class NavigationService {

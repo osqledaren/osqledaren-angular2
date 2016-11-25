@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuList} from '../model/menu';
-import {NavigationService} from '../navigation.service';
+import {MenuList} from "../model/menu";
+import {NavigationService} from "../navigation.service";
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss'],
-	providers: [NavigationService]
+	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
