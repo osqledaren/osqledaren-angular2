@@ -1,7 +1,3 @@
-/**
- * Contains menu components
- */
-
 export interface MenuItem{
 	name: string;
 	url: string;

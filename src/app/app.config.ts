@@ -1,9 +1,8 @@
 import {environment} from '../environments/environment';
 import {OpaqueToken} from '@angular/core';
-import {AppConfig} from './model/appconfig';
 
 // Generate configuration constant
-export const APP_DI_CONFIG: AppConfig =
+export const APP_DI_CONFIG =
     (environment.production) ? {
         wordpressEndpoint: '',
         superdeskEndpoint: '',

@@ -18,11 +18,11 @@ export class ArticleGridComponent implements OnInit {
 
     }
 
-    elementSize(urgency: number): string {
+    elementSize(priority: number): string {
 
         let size: string;
 
-        switch (urgency) {
+        switch (priority) {
             case 9:
             case 8:
             case 7:
