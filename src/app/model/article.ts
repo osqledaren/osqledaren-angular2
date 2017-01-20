@@ -1,9 +1,12 @@
 export interface Article {
+    id: number,
+    slug: string,
     uri: string,
     type: string,
     versioncreated: string,
     byline: string,
     headline: string,
-    body_text: string,
-    priority: number
+    body_html: string,
+    description_text: string,
+    urgency: number
 }

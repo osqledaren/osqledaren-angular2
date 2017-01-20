@@ -1,176 +1,24 @@
 /* Global stylesheet */
 
-@import "./node_modules/web1617/src/scss/variables";
+@import "./src/fonts";
+@import "./src/variables";
 @import "./node_modules/bootstrap/scss/bootstrap-flex";
-@import "./src/temp";
 
+body {
 
-@font-face {
-	font-family: 'Proxima Nova Condensed';
-	src: url('fonts/ProximaNovaCond-SemiboldIt.eot');
-	src: url('fonts/ProximaNovaCond-SemiboldIt.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNovaCond-SemiboldIt.woff') format('woff'),
-	url('fonts/ProximaNovaCond-SemiboldIt.ttf') format('truetype');
-	font-weight: 600;
-	font-style: italic;
+	&.article{
+		background: white;
+	}
+
 }
 
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-Black.eot');
-	src: url('fonts/ProximaNova-Black.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-Black.woff') format('woff'),
-	url('fonts/ProximaNova-Black.ttf') format('truetype');
-	font-weight: 900;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova Condensed';
-	src: url('fonts/ProximaNovaCond-Regular.eot');
-	src: url('fonts/ProximaNovaCond-Regular.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNovaCond-Regular.woff') format('woff'),
-	url('fonts/ProximaNovaCond-Regular.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova Condensed';
-	src: url('fonts/ProximaNovaCond-Semibold.eot');
-	src: url('fonts/ProximaNovaCond-Semibold.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNovaCond-Semibold.woff') format('woff'),
-	url('fonts/ProximaNovaCond-Semibold.ttf') format('truetype');
-	font-weight: 600;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-Light.eot');
-	src: url('fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-Light.woff') format('woff'),
-	url('fonts/ProximaNova-Light.ttf') format('truetype');
-	font-weight: 300;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-SemiboldIt.eot');
-	src: url('fonts/ProximaNova-SemiboldIt.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-SemiboldIt.woff') format('woff'),
-	url('fonts/ProximaNova-SemiboldIt.ttf') format('truetype');
-	font-weight: 600;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-RegularIt.eot');
-	src: url('fonts/ProximaNova-RegularIt.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-RegularIt.woff') format('woff'),
-	url('fonts/ProximaNova-RegularIt.ttf') format('truetype');
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-Extrabld.eot');
-	src: url('fonts/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-Extrabld.woff') format('woff'),
-	url('fonts/ProximaNova-Extrabld.ttf') format('truetype');
-	font-weight: 800;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova Condensed';
-	src: url('fonts/ProximaNovaCond-RegularIt.eot');
-	src: url('fonts/ProximaNovaCond-RegularIt.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNovaCond-RegularIt.woff') format('woff'),
-	url('fonts/ProximaNovaCond-RegularIt.ttf') format('truetype');
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-BoldIt.eot');
-	src: url('fonts/ProximaNova-BoldIt.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-BoldIt.woff') format('woff'),
-	url('fonts/ProximaNova-BoldIt.ttf') format('truetype');
-	font-weight: bold;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-RegularIt_1.eot');
-	src: url('fonts/ProximaNova-RegularIt_1.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-RegularIt_1.woff') format('woff'),
-	url('fonts/ProximaNova-RegularIt_1.ttf') format('truetype');
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-Bold.eot');
-	src: url('fonts/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-Bold.woff') format('woff'),
-	url('fonts/ProximaNova-Bold.ttf') format('truetype');
-	font-weight: bold;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-Regular.eot');
-	src: url('fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-Regular.woff') format('woff'),
-	url('fonts/ProximaNova-Regular.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-Semibold.eot');
-	src: url('fonts/ProximaNova-Semibold.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-Semibold.woff') format('woff'),
-	url('fonts/ProximaNova-Semibold.ttf') format('truetype');
-	font-weight: 600;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova Condensed';
-	src: url('fonts/ProximaNovaCond-Light.eot');
-	src: url('fonts/ProximaNovaCond-Light.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNovaCond-Light.woff') format('woff'),
-	url('fonts/ProximaNovaCond-Light.ttf') format('truetype');
-	font-weight: 300;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	src: url('fonts/ProximaNova-LightIt.eot');
-	src: url('fonts/ProximaNova-LightIt.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNova-LightIt.woff') format('woff'),
-	url('fonts/ProximaNova-LightIt.ttf') format('truetype');
-	font-weight: 300;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Proxima Nova Condensed';
-	src: url('fonts/ProximaNovaCond-LightIt.eot');
-	src: url('fonts/ProximaNovaCond-LightIt.eot?#iefix') format('embedded-opentype'),
-	url('fonts/ProximaNovaCond-LightIt.woff') format('woff'),
-	url('fonts/ProximaNovaCond-LightIt.ttf') format('truetype');
-	font-weight: 300;
-	font-style: italic;
+#loader {
+	line-height: 100vh;
+	text-align: center;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	left:0;
+	top:0;
+	background: white;
 }

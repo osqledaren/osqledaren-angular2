@@ -40,7 +40,7 @@
 	}
 
 	.article-grid-item-content-inner {
-		padding: $article-content-text-padding;
+		padding: $grid-gutter-width-base/2;
 	}
 
 	h3.article-title {
@@ -49,8 +49,8 @@
 
 	time.article-date {
 		position: absolute;
-		bottom: $article-content-text-padding;
-		left: $article-content-text-padding;
+		bottom: $grid-gutter-width-base/2;
+		left: $grid-gutter-width-base/2;
 	}
 }
 
@@ -67,7 +67,7 @@
 
 	@include clearfix;
 
-	@include media-breakpoint-down(sm) {
+	@include media-breakpoint-down(md) {
 		width: 50%;
 	}
 

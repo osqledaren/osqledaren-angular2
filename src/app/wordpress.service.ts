@@ -15,29 +15,45 @@ export class WordpressService extends ContentService{
         this.endpoint = config.wordpressEndpoint;
     }
 
-    public getArticle() {
+    public getArticle(id: number) {
+        return this.http.get(this.endpoint + '/posts/'+ id)
+            .map(WordpressService.extractData)
+            .catch(this.handleError);
+    }
 
+    public getArticleBySlug(slug: string){
+        return this.http.get(this.endpoint + '/posts/?slug=' + slug)
+            .map(WordpressService.extractData)
+            .catch(this.handleError);
     }
 
     public getArticles(): Observable<Article[]> {
 
         return this.http.get(this.endpoint + '/posts')
-            .map(this.extractData)
+            .map(WordpressService.extractData)
             .catch(this.handleError);
     }
 
-    private extractData(res: Response) {
+    private static htmlToPlainText(text: string): string {
+        return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
+    }
+
+    private static extractData(res: Response) {
         let body = res.json();
         let posts = <Article[]>[];
 
         for (let i in body) {
 
             posts.push(<Article>{
+                id: body[i].id,
+                slug: body[i].slug,
                 type: 'text',
                 byline: 'Osqledaren',
-                priority: 1,
+                versioncreated: body[i].date,
+                urgency: 1,
                 headline: body[i].title.rendered,
-                body_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed ut dui. Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis.'
+                body_html: body[i].content.rendered,
+                description_text: WordpressService.htmlToPlainText(body[i].excerpt.rendered)
             });
         }
 

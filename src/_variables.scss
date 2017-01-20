@@ -1,0 +1,55 @@
+/* SCSS Variables */
+
+/* # Bootstrap 4 configuration overrides */
+$enable-flex: false;
+$enable-rounded: false;
+$enable-shadows: false;
+$enable-gradients: false;
+$enable-transitions: false;
+$enable-hover-media-query: false;
+$enable-grid-classes: true;
+$enable-print-styles: true;
+
+/* Colors  */
+
+$body-bg: #f0f0f0;
+
+// Brand colors
+$ol-orange: #f05022 !default;
+
+// Bootstrap color overrides
+$brand-primary: $ol-orange;
+
+// Link Color
+$link-color: #ebb07b;
+
+// Content background color
+$content-bgColor: #e5e5e5;
+
+/* Typography */
+
+$font-family-sans-serif: "Proxima Nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$line-height-base: 1.5;
+$headings-line-height: 1.3;
+
+$font-size-lg: 1.25rem;
+$font-size-root: 14px;
+$font-size-h1: 3rem;
+$font-size-h2: 3rem;
+$font-size-h3: 1.5rem;
+$font-size-h4: 1.5rem;
+$font-size-h5: $font-size-lg;
+$font-size-h6: $font-size-lg;
+
+$headings-font-weight: 700;
+
+
+/* Sizing */
+
+$footer-height: 200px;
+$fullwidth: 100%;
+$article-content-text-padding: 10px;
+$header-padding: 10px 25px;
+$logo-max-width: 40px;
+$grid-gutter-width-base: 60px;

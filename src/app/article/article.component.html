@@ -1,3 +1,13 @@
-<p>
-  article works!
-</p>
+<div id="single-article-container" class="single-article-container container">
+    <div class="row">
+        <div class="col-xs-12">
+            <article *ngIf="article">
+                <header class="article-heading">
+                    <h1 class="article-title" [innerText]="article?.headline"></h1>
+                    <time class="article-date" [innerText]="article?.versioncreated"></time>
+                </header>
+                <div class="article-grid-item-text" [innerHTML]="article?.body_html"></div>
+            </article>
+        </div>
+    </div>
+</div>

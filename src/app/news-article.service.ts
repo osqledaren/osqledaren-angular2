@@ -1,6 +1,4 @@
 import {Injectable, Inject} from '@angular/core';
-import {Articles} from './mock/articles';
-import {Http} from "@angular/http";
 import {Article} from "./model/article";
 import {WordpressService} from "./wordpress.service";
 import {Observable} from "rxjs/Observable";
@@ -26,6 +24,15 @@ export class NewsArticleService {
 
 		return WPObservable;
 	}
+
+	public getArticleBySlug(slug: string): Observable<Article[]> {
+
+        let WPObservable = this.WP.getArticleBySlug(slug);
+
+        // this.articles = this.articles.concat(Articles);
+
+        return WPObservable;
+    }
 
 	public getArticle(){}
 

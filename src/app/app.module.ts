@@ -44,9 +44,21 @@ import {NavigationService} from "./navigation.service";
         FormsModule,
         HttpModule,
         RouterModule.forRoot([
-            {path: 'article/:id', component: ArticleComponent},
-            {path: '', component: HomeComponent},
-            {path: '**', component: PageNotFoundComponent}
+            {
+                path: 'article/:slug',
+                component: ArticleComponent,
+                data: {name: 'article'}
+            },
+            {
+                path: '',
+                component: HomeComponent,
+                data: {name: 'home'}
+            },
+            {
+                path: '**',
+                component: PageNotFoundComponent,
+                data: {name: '404'}
+            }
         ])
     ],
     providers: [

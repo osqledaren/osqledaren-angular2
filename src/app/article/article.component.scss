@@ -1,0 +1,11 @@
+@import "./src/utility";
+
+.single-article-container {
+  background:white;
+  font-size: $font-size-lg;
+  padding:$grid-gutter-width-base/2;
+}
+
+.article-heading {
+  margin: $grid-gutter-width-base 0;
+}
