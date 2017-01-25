@@ -20,21 +20,16 @@ export class NewsArticleService {
 
         let WPObservable = this.WP.getArticles();
 
-        // this.articles = this.articles.concat(Articles);
-
 		return WPObservable;
 	}
 
-	public getArticleBySlug(slug: string): Observable<Article[]> {
+	public getArticle(param: any): Observable<Article[]> {
 
-        let WPObservable = this.WP.getArticleBySlug(slug);
+        let WPObservable = this.WP.getArticle(param);
 
         // this.articles = this.articles.concat(Articles);
 
         return WPObservable;
     }
-
-	public getArticle(){}
-
 }
 

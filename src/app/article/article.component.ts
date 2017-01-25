@@ -21,7 +21,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
         this.route.params
             .map(params => params['slug']).subscribe((slug) => {
-            this.sub = this.NS.getArticleBySlug(slug).subscribe(
+            this.sub = this.NS.getArticle(slug).subscribe(
                 posts => this.article = posts[0],
                 error => errorMessage = <any> error);
         });

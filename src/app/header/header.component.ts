@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
 	public mainMenu: MenuList;
 	public secondaryMenu: MenuList;
-	public isCollapsed = true;
+	public isCollapsed: boolean = true;
 
 	constructor(private navigation: NavigationService) {
 		this.mainMenu = navigation.getNav('main-nav');

@@ -4,7 +4,7 @@ import {OpaqueToken} from '@angular/core';
 // Generate configuration constant
 export const APP_DI_CONFIG =
     (environment.production) ? {
-        wordpressEndpoint: '',
+        wordpressEndpoint: 'http://wp.osqledaren.se/wp-json/wp/v2',
         superdeskEndpoint: '',
         respondCMSEndpoint: ''
     } :

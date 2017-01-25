@@ -6,8 +6,8 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MasonryModule} from 'angular2-masonry/src/module';
+import {CollapseModule} from 'ng2-bootstrap/collapse';
 
 // Components
 import {AppComponent} from "./app.component";
@@ -38,7 +38,7 @@ import {NavigationService} from "./navigation.service";
         ArticleGridItemComponent
     ],
     imports: [
-        NgbModule.forRoot(),
+        CollapseModule.forRoot(),
         MasonryModule,
         BrowserModule,
         FormsModule,
