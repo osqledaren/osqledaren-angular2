@@ -1,5 +1,33 @@
 @import "./src/utility";
 
+.has-more-posts{
+
+	&.hidden {
+		display: none;
+	}
+
+	text-align: center;
+
+	button {
+		margin: $grid-gutter-width-base auto;
+	}
+
+	p {
+		display: none;
+		margin: $grid-gutter-width-base auto;
+	}
+
+	&.all-loaded{
+		button {
+			display: none;
+		}
+
+		p {
+			display: block;
+		}
+	}
+}
+
 .article-container {
 	width: 100%;
 	position: relative;
