@@ -18,10 +18,13 @@ export class NewsArticleService {
 
 	public getArticles(): Observable<Article[]>{
 
-        let WPObservable = this.WP.getArticles();
+       return this.WP.getArticles();
 
-		return WPObservable;
 	}
+
+	public getNextBatchOfArticles(): Observable<Article[]>{
+        return this.WP.getNextBatchOfArticles();
+    }
 
 	public getArticle(param: any): Observable<Article[]> {
 

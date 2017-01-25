@@ -2,3 +2,7 @@
 	<div class="article-grid-sizer"></div>
 	<masonry-brick *ngFor="let article of articles" [article]="article" [class] = "elementSize(article.urgency) + ' brick article-grid-item'"></masonry-brick>
 </masonry>
+<div class="has-more-posts" [class.all-loaded]="!hasMorePosts" [class.hidden]="!isInitialized">
+	<button class="btn btn-primary btn-lg" (click)="appendData()">Hämta fler nyheter</button>
+	<p>Alla nyheter har hämtats. Enjoy!</p>
+</div>

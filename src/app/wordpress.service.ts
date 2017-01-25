@@ -1,14 +1,17 @@
-import {Injectable, Inject} from '@angular/core';
-import {Response, Http} from '@angular/http';
-import {Article} from './model/article';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import {Injectable, Inject} from "@angular/core";
+import {Response, Http} from "@angular/http";
+import {Article} from "./model/article";
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/catch";
+import "rxjs/add/operator/map";
 import {ContentService} from "./model/content-service";
 import {APP_CONFIG} from "./app.config";
 
 @Injectable()
-export class WordpressService extends ContentService{
+export class WordpressService extends ContentService {
+
+    private batchCount: number = 12;
+    private offset: number = 0;
 
     constructor(protected http: Http, @Inject(APP_CONFIG) config) {
         super();
@@ -21,7 +24,7 @@ export class WordpressService extends ContentService{
      * @returns {Observable<R>}
      */
     public getArticle(param: any) {
-        switch (typeof param){
+        switch (typeof param) {
             case 'string':
                 return this.http.get(this.endpoint + '/posts/?slug=' + param)
                     .map(WordpressService.extractData)
@@ -39,9 +42,21 @@ export class WordpressService extends ContentService{
      */
     public getArticles(): Observable<Article[]> {
 
-        return this.http.get(this.endpoint + '/posts')
+        this.offset = 0;
+
+        return this.getNextBatchOfArticles();
+    }
+
+    public getNextBatchOfArticles(): Observable<Article[]> {
+
+        let request = this.http.get(this.endpoint + '/posts?per_page=' + this.batchCount + '&offset=' + this.offset*this.batchCount)
             .map(WordpressService.extractData)
             .catch(this.handleError);
+
+        this.offset++;
+
+        return request;
+
     }
 
     /**

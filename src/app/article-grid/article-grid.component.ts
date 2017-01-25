@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, OnDestroy} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, OnDestroy} from "@angular/core";
 import {Article} from "../model/article";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
 import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'app-article-grid',
@@ -17,11 +16,15 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
 
     public articles: Article[];
     public masonryOptions: MasonryOptions;
+    public hasMorePosts: boolean = true;
+    public isInitialized: boolean = false;
     private sub: any;
+    private initialBatchSize: number;
 
     constructor(private NS: NewsArticleService) {
-
+        this.articles = [];
     }
+
 
     elementSize(urgency: number): string {
 
@@ -45,35 +48,62 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
         return size;
     }
 
-    private layoutComplete(event){
+    private layoutComplete(event) {
 
-        if(!this.articleGridItems.dirty){
-            this.articleGridItems.forEach(function(item){
+        if (!this.articleGridItems.dirty) {
+            this.articleGridItems.forEach(function (item) {
                 item.truncate();
             });
         }
     }
 
-    private initializeData(){
+    private initializeData() {
         let errorMessage;
 
         this.sub = this.NS.getArticles().subscribe(
-            posts => this.articles = posts,
+            posts => {
+                this.articles = posts;
+                this.initialBatchSize = posts.length;
+                this.isInitialized = true;
+            },
             error => errorMessage = <any> error);
 
         this.masonryOptions = {
-            transitionDuration: '0.8s',
+            transitionDuration: '0.3s',
             itemSelector: '.article-grid-item',
             columnWidth: '.article-grid-sizer',
             percentPosition: true
         };
     }
 
+    private appendData() {
+        let errorMessage;
+
+        if (!this.isInitialized) return;
+
+        this.sub = this.NS.getNextBatchOfArticles().subscribe(
+            posts => {
+                if (posts.length > 0) {
+                    this.articles = this.articles.concat(posts);
+
+                    if (posts.length < this.initialBatchSize) {
+                        this.hasMorePosts = false;
+                    }
+
+                } else {
+                    this.hasMorePosts = false;
+                }
+
+                console.log(this.hasMorePosts)
+            },
+            error => errorMessage = <any> error);
+    }
+
     ngOnInit() {
         this.initializeData();
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         this.sub.unsubscribe();
     }
 }
