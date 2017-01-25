@@ -15,18 +15,28 @@ export class WordpressService extends ContentService{
         this.endpoint = config.wordpressEndpoint;
     }
 
-    public getArticle(id: number) {
-        return this.http.get(this.endpoint + '/posts/'+ id)
-            .map(WordpressService.extractData)
-            .catch(this.handleError);
+    /**
+     * Fetches posts from wordpress by slug/id
+     * @param param: any
+     * @returns {Observable<R>}
+     */
+    public getArticle(param: any) {
+        switch (typeof param){
+            case 'string':
+                return this.http.get(this.endpoint + '/posts/?slug=' + param)
+                    .map(WordpressService.extractData)
+                    .catch(this.handleError);
+            default:
+                return this.http.get(this.endpoint + '/posts/' + param)
+                    .map(WordpressService.extractData)
+                    .catch(this.handleError);
+        }
     }
 
-    public getArticleBySlug(slug: string){
-        return this.http.get(this.endpoint + '/posts/?slug=' + slug)
-            .map(WordpressService.extractData)
-            .catch(this.handleError);
-    }
-
+    /**
+     * Fetches posts from wordpress
+     * @returns {Observable<R>}
+     */
     public getArticles(): Observable<Article[]> {
 
         return this.http.get(this.endpoint + '/posts')
@@ -34,6 +44,11 @@ export class WordpressService extends ContentService{
             .catch(this.handleError);
     }
 
+    /**
+     * Strips html from text.
+     * @param text: string
+     * @returns {string}
+     */
     private static htmlToPlainText(text: string): string {
         return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
     }

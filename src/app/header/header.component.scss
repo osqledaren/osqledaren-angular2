@@ -1,39 +1,72 @@
 @import "./src/utility";
 
+.container {
+  position: static;
+}
+
+.menu-toggle {
+
+  margin-left: $grid-gutter-width-base/4;
+  float: right;
+
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    margin-left: 0;
+    left: 0;
+  }
+
+}
+
 .navbar {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 
-	a {
-		color: white !important;
-		text-transform: uppercase;
-	}
+  a {
+    color: white !important;
+    text-transform: uppercase;
+    line-height: 40px;
+    padding: 0;
+  }
 
-	.navbar-container {
-		display: flex;
-		align-items: center;
+  .navbar-container {
+    background-color: $ol-orange;
+    padding: $grid-gutter-width-base/4 0;
 
-		background-color: $ol-orange;
-		padding: $grid-gutter-width-base/4 $grid-gutter-width-base;
+    border-radius: 0 !important;
 
-		border-radius: 0 !important;
+    font-family: "Proxima Nova Semibold", sans-serif;
 
-		font-family: "Proxima Nova Semibold", sans-serif;
+    .submenu-button {
+      margin-left: auto;
+    }
 
-		.submenu-button {
-			margin-left: auto;
-		}
+    .nav {
+      display: inline-flex;
+      vertical-align: middle;
+      flex-direction: row;
 
-		.navbar-brand {
-			img {
-				max-width: $logo-max-width;
-			}
-		}
-	}
+      a {
+        padding: 0 $grid-gutter-width-base/8;
+      }
 
-	#main-nav-collapsible {
-		div {
-			background-color: $gray-dark !important;
-		}
-	}
+    }
+
+
+    .navbar-brand {
+      float: none;
+      display: inline-flex;
+      vertical-align: middle;
+      padding: 0;
+
+      img {
+        max-width: $logo-max-width;
+      }
+    }
+  }
+
+  #main-nav-collapsible {
+    div {
+      background-color: $gray-dark !important;
+    }
+  }
 }
