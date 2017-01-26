@@ -5,7 +5,9 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import {ContentService} from "./model/content-service";
+import {ArticleQueryParams} from "./model/article-query-params";
 import {APP_CONFIG} from "./app.config";
+import {isNullOrUndefined} from "util";
 
 @Injectable()
 export class WordpressService extends ContentService {
@@ -40,20 +42,26 @@ export class WordpressService extends ContentService {
      * Fetches posts from wordpress
      * @returns {Observable<R>}
      */
-    public getArticles(): Observable<Article[]> {
+    public getArticles(args?: ArticleQueryParams): Observable<Article[]> {
 
         this.offset = 0;
 
-        return this.getNextBatchOfArticles(null);
+        return this.getNextBatchOfArticles();
     }
 
-    public getNextBatchOfArticles(searchTerm: any): Observable<Article[]> {
+    public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]> {
 
         let request;
         let query: string;
 
         query = this.endpoint + '/posts?';
-        query += ((typeof(searchTerm) != null) ? query += 'filters[s] =' + searchTerm + '&' : '');
+
+        if(!isNullOrUndefined(args)){
+
+            if(!isNullOrUndefined(args.searchTerm)){ query += 'filters[s] =' + args.searchTerm + '&' }
+
+        }
+
         query += 'per_page=' + this.batchCount + '&offset=' + this.offset * this.batchCount;
 
         request = this.http.get(query);

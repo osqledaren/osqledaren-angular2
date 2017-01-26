@@ -50,6 +50,26 @@ import {NavigationService} from "./navigation.service";
                 data: {name: 'article'}
             },
             {
+                path: 'articles',
+                component: NewsArchiveComponent,
+                data: {name: 'news-archive'}
+            },
+            {
+                path: 'articles/:searchTerm',
+                component: NewsArchiveComponent,
+                data: {name: 'news-archive'}
+            },
+            {
+                path: 'articles/:year/:month/:searchTerm',
+                component: NewsArchiveComponent,
+                data: {name: 'news-archive'}
+            },
+            {
+                path: 'articles/:year/:month',
+                component: NewsArchiveComponent,
+                data: {name: 'news-archive'}
+            },
+            {
                 path: '',
                 component: NewsArchiveComponent,
                 data: {name: 'home'}
