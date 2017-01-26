@@ -17,13 +17,14 @@ export class NewsArticleService {
     }
 
 	public getArticles(): Observable<Article[]>{
+        //TODO: If using several services e.g not only wordpress, join observables into one.
 
-       return this.WP.getArticles();
+        return this.WP.getArticles();
 
 	}
 
 	public getNextBatchOfArticles(): Observable<Article[]>{
-        return this.WP.getNextBatchOfArticles();
+        return this.WP.getNextBatchOfArticles(null);
     }
 
 	public getArticle(param: any): Observable<Article[]> {

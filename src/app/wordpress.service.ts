@@ -44,18 +44,23 @@ export class WordpressService extends ContentService {
 
         this.offset = 0;
 
-        return this.getNextBatchOfArticles();
+        return this.getNextBatchOfArticles(null);
     }
 
-    public getNextBatchOfArticles(): Observable<Article[]> {
+    public getNextBatchOfArticles(searchTerm: any): Observable<Article[]> {
 
-        let request = this.http.get(this.endpoint + '/posts?per_page=' + this.batchCount + '&offset=' + this.offset*this.batchCount)
-            .map(WordpressService.extractData)
-            .catch(this.handleError);
+        let request;
+        let query: string;
+
+        query = this.endpoint + '/posts?';
+        query += ((typeof(searchTerm) != null) ? query += 'filters[s] =' + searchTerm + '&' : '');
+        query += 'per_page=' + this.batchCount + '&offset=' + this.offset * this.batchCount;
+
+        request = this.http.get(query);
 
         this.offset++;
 
-        return request;
+        return request.map(WordpressService.extractData).catch(this.handleError);
 
     }
 

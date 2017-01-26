@@ -15,7 +15,7 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {SearchComponent} from "./search/search.component";
 import {ArticleComponent} from "./article/article.component";
-import {HomeComponent} from "./home/home.component";
+import {NewsArchiveComponent} from "./news-archive/news-archive.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
@@ -32,7 +32,7 @@ import {NavigationService} from "./navigation.service";
         FooterComponent,
         SearchComponent,
         ArticleComponent,
-        HomeComponent,
+        NewsArchiveComponent,
         PageNotFoundComponent,
         ArticleGridComponent,
         ArticleGridItemComponent
@@ -51,7 +51,7 @@ import {NavigationService} from "./navigation.service";
             },
             {
                 path: '',
-                component: HomeComponent,
+                component: NewsArchiveComponent,
                 data: {name: 'home'}
             },
             {

@@ -65,11 +65,12 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
                 this.articles = posts;
                 this.initialBatchSize = posts.length;
                 this.isInitialized = true;
+                console.log(this.articles);
             },
             error => errorMessage = <any> error);
 
         this.masonryOptions = {
-            transitionDuration: '0.3s',
+            transitionDuration: '0.5s',
             itemSelector: '.article-grid-item',
             columnWidth: '.article-grid-sizer',
             percentPosition: true
@@ -93,8 +94,6 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
                 } else {
                     this.hasMorePosts = false;
                 }
-
-                console.log(this.hasMorePosts)
             },
             error => errorMessage = <any> error);
     }
