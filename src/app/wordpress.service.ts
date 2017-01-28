@@ -46,7 +46,10 @@ export class WordpressService extends ContentService {
 
         this.offset = 0;
 
+        if (!isNullOrUndefined(args)) { return this.getNextBatchOfArticles(args); }
+
         return this.getNextBatchOfArticles();
+
     }
 
     public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]> {
