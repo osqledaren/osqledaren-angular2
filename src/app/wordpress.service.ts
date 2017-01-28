@@ -23,7 +23,7 @@ export class WordpressService extends ContentService {
     /**
      * Fetches posts from wordpress by slug/id
      * @param param: any
-     * @returns {Observable<R>}
+     * @returns {Observable<Article[]>}
      */
     public getArticle(param: any) {
         switch (typeof param) {
@@ -40,7 +40,7 @@ export class WordpressService extends ContentService {
 
     /**
      * Fetches posts from wordpress
-     * @returns {Observable<R>}
+     * @returns {Observable<Article[]>}
      */
     public getArticles(args?: ArticleQueryParams): Observable<Article[]> {
 
@@ -52,23 +52,34 @@ export class WordpressService extends ContentService {
 
     }
 
+    /**
+     * Retrieves next offset of posts from wordpress
+     * @param args?: ArticleQueryParams
+     * @returns {Observable<Article[]>}
+     */
     public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]> {
 
-        let request;
+        let request: Observable<Response>;
         let query: string;
+        let queryParams: string;
 
-        query = this.endpoint + '/posts?';
+        // Add query parameters
+        if (!isNullOrUndefined(args)) {
 
-        if(!isNullOrUndefined(args)){
-
-            if(!isNullOrUndefined(args.searchTerm)){ query += 'filters[s] =' + args.searchTerm + '&' }
+            if (!isNullOrUndefined(args.searchTerm)) {
+                queryParams += 'filters[s] =' + args.searchTerm + '&'
+            }
 
         }
 
+        query = this.endpoint + '/posts?';
+        query += queryParams;
         query += 'per_page=' + this.batchCount + '&offset=' + this.offset * this.batchCount;
 
+        // Do the request
         request = this.http.get(query);
 
+        // Increment offset number
         this.offset++;
 
         return request.map(WordpressService.extractData).catch(this.handleError);
@@ -84,9 +95,14 @@ export class WordpressService extends ContentService {
         return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
     }
 
+    /**
+     * Maps a response object to an article array
+     * @param res:Response
+     * @returns {Article[]|{}}
+     */
     private static extractData(res: Response) {
-        let body = res.json();
-        let posts = <Article[]>[];
+        let body: any = res.json();
+        let posts: Article[] = <Article[]>[];
 
         for (let i in body) {
 
@@ -103,7 +119,7 @@ export class WordpressService extends ContentService {
             });
         }
 
-        return posts || {};
+        return posts;
     }
 
 

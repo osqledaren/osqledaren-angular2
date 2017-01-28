@@ -49,7 +49,6 @@
     "ts-node": "2.0.0",
     "tslint": "4.4.2",
     "typescript": "~2.1.5",
-    "webdriver-manager": "11.1.1",
-    "osqledaren-web1617-prototype": "git://github.com/osqledaren/web1617.git#Prototype"
+    "webdriver-manager": "11.1.1"
   }
 }
