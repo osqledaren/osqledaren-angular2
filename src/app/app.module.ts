@@ -25,6 +25,7 @@ import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import { AboutComponent } from './about/about.component';
+import { PrintedIssuesComponent } from './printed-issues/printed-issues.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { AboutComponent } from './about/about.component';
         PageNotFoundComponent,
         ArticleGridComponent,
         ArticleGridItemComponent,
-        AboutComponent
+        AboutComponent,
+        PrintedIssuesComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -75,6 +77,11 @@ import { AboutComponent } from './about/about.component';
                 path: 'about',
                 component: AboutComponent,
                 data: {name: 'about'}
+            },
+            {
+                path: 'printed-issues',
+                component: PrintedIssuesComponent,
+                data: {name: 'printed-issues'}
             },
             {
                 path: '',
