@@ -70,6 +70,11 @@ import {NavigationService} from "./navigation.service";
                 data: {name: 'news-archive'}
             },
             {
+                path: 'about',
+                component: AboutComponent,
+                data: {name: 'about'}
+            },
+            {
                 path: '',
                 component: NewsArchiveComponent,
                 data: {name: 'home'}
