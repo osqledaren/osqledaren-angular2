@@ -24,6 +24,7 @@ import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.co
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {NavigationService} from "./navigation.service";
         NewsArchiveComponent,
         PageNotFoundComponent,
         ArticleGridComponent,
-        ArticleGridItemComponent
+        ArticleGridItemComponent,
+        AboutComponent
     ],
     imports: [
         CollapseModule.forRoot(),
