@@ -26,7 +26,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
                 error => errorMessage = <any> error);
         });
 
-
     }
 
     ngOnInit() {

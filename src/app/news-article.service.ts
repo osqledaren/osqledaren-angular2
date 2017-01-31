@@ -5,6 +5,7 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import {ArticleQueryParams} from "./model/article-query-params";
 
 @Injectable()
 export class NewsArticleService {
@@ -16,15 +17,14 @@ export class NewsArticleService {
         this.articles = <Article[]>[];
     }
 
-	public getArticles(): Observable<Article[]>{
+	public getArticles(args?: ArticleQueryParams): Observable<Article[]>{
         //TODO: If using several services e.g not only wordpress, join observables into one.
-
-        return this.WP.getArticles();
+        return this.WP.getArticles(args);
 
 	}
 
-	public getNextBatchOfArticles(): Observable<Article[]>{
-        return this.WP.getNextBatchOfArticles(null);
+	public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]>{
+        return this.WP.getNextBatchOfArticles(args);
     }
 
 	public getArticle(param: any): Observable<Article[]> {

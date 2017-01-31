@@ -3,6 +3,8 @@ import {Article} from "../model/article";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
 import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
+import {ActivatedRoute} from "@angular/router";
+import {ArticleQueryParams} from "../model/article-query-params";
 
 @Component({
     selector: 'app-article-grid',
@@ -20,8 +22,9 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
     public isInitialized: boolean = false;
     private sub: any;
     private initialBatchSize: number;
+    private args: ArticleQueryParams;
 
-    constructor(private NS: NewsArticleService) {
+    constructor(private NS: NewsArticleService, private route: ActivatedRoute) {
         this.articles = [];
     }
 
@@ -60,21 +63,41 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
     private initializeData() {
         let errorMessage;
 
-        this.sub = this.NS.getArticles().subscribe(
-            posts => {
-                this.articles = posts;
-                this.initialBatchSize = posts.length;
-                this.isInitialized = true;
-                console.log(this.articles);
-            },
-            error => errorMessage = <any> error);
+        this.route.params.subscribe(params => {
 
-        this.masonryOptions = {
-            transitionDuration: '0.5s',
-            itemSelector: '.article-grid-item',
-            columnWidth: '.article-grid-sizer',
-            percentPosition: true
-        };
+            if(params){
+
+                this.args = <ArticleQueryParams>{};
+
+                if (params.hasOwnProperty('searchTerm')) {
+                    this.args.searchTerm = params['searchTerm'];
+                }
+                if (params.hasOwnProperty('month')) {
+                    this.args.month = params['month'];
+                }
+                if (params.hasOwnProperty('year')) {
+                    this.args.year = params['year'];
+                }
+
+            }
+
+            this.sub = this.NS.getArticles(this.args).subscribe(
+                posts => {
+
+                    this.articles = posts;
+                    this.initialBatchSize = posts.length;
+                    this.isInitialized = true;
+                },
+                error => errorMessage = <any> error);
+
+            this.masonryOptions = {
+                transitionDuration: '0.5s',
+                itemSelector: '.article-grid-item',
+                columnWidth: '.article-grid-sizer',
+                percentPosition: true
+            };
+
+        });
     }
 
     private appendData() {
@@ -82,7 +105,7 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
 
         if (!this.isInitialized) return;
 
-        this.sub = this.NS.getNextBatchOfArticles().subscribe(
+        this.sub = this.NS.getNextBatchOfArticles(this.args).subscribe(
             posts => {
                 if (posts.length > 0) {
                     this.articles = this.articles.concat(posts);

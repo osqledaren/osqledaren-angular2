@@ -43,12 +43,8 @@ export class WordpressService extends ContentService {
      * @returns {Observable<Article[]>}
      */
     public getArticles(args?: ArticleQueryParams): Observable<Article[]> {
-
         this.offset = 0;
-
-        if (!isNullOrUndefined(args)) { return this.getNextBatchOfArticles(args); }
-
-        return this.getNextBatchOfArticles();
+        return this.getNextBatchOfArticles(args);
 
     }
 
@@ -58,18 +54,20 @@ export class WordpressService extends ContentService {
      * @returns {Observable<Article[]>}
      */
     public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]> {
-
         let request: Observable<Response>;
         let query: string;
-        let queryParams: string;
+        let queryParams: string = '';
 
         // Add query parameters
         if (!isNullOrUndefined(args)) {
 
             if (!isNullOrUndefined(args.searchTerm)) {
-                queryParams += 'filters[s] =' + args.searchTerm + '&'
+                queryParams += 'search=' + args.searchTerm + '&'
             }
 
+            if (!isNullOrUndefined(args.month) && !isNullOrUndefined(args.year)) {
+                queryParams += 'after=' + args.year + '-' + args.month + '-01T00:00:00&'
+            }
         }
 
         query = this.endpoint + '/posts?';
@@ -81,6 +79,8 @@ export class WordpressService extends ContentService {
 
         // Increment offset number
         this.offset++;
+
+        console.log(query);
 
         return request.map(WordpressService.extractData).catch(this.handleError);
 

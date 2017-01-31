@@ -55,17 +55,17 @@ import {NavigationService} from "./navigation.service";
                 data: {name: 'news-archive'}
             },
             {
-                path: 'articles/:searchTerm',
+                path: 'articles/search/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive'}
             },
             {
-                path: 'articles/:year/:month/:searchTerm',
+                path: 'articles/archive/:year/:month/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive'}
             },
             {
-                path: 'articles/:year/:month',
+                path: 'articles/archive/:year/:month',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive'}
             },
