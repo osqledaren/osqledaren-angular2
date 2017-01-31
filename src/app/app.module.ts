@@ -72,7 +72,7 @@ import { AboutComponent } from './about/about.component';
                 data: {name: 'news-archive'}
             },
             {
-                path: 'about',
+                path: 'om-oss',
                 component: AboutComponent,
                 data: {name: 'about'}
             },
