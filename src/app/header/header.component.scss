@@ -1,25 +1,30 @@
 @import "./src/utility";
 
 .container {
-  position: static;
+  position: relative;
 }
 
 .menu-toggle {
 
-  margin-left: $grid-gutter-width-base/4;
-  float: right;
-
-  @include media-breakpoint-up(md) {
+  
     position: absolute;
     margin-left: 0;
-    left: 0;
-  }
+    margin-right: $grid-gutter-width-base/2;
+    right: 0;
+    
+    text-transform: uppercase;
+    color: white !important;  
+    cursor: pointer;
 
+    // below is fix for vertical center alignment
+    top: 50%;
+    margin-top: -20px; // half of the element's own size
 }
 
 .navbar {
   padding: 0;
   margin: 0;
+  
 
   a {
     color: white !important;
