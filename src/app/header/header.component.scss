@@ -51,7 +51,7 @@
       flex-direction: row;
 
       a {
-        padding: 0 $grid-gutter-width-base/8;
+        padding: 0;
       }
 
     }
@@ -74,4 +74,32 @@
       background-color: $gray-dark !important;
     }
   }
+
+  /* Animating links on hover */
+  .hidden-sm-down .nav-item {
+    position: relative;
+    margin: 0 $grid-gutter-width-base/8;
+  }
+  .hidden-sm-down .nav-item:after, .menu-toggle:after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    transition: transform 0.2s ease-in-out;
+  }
+  .hidden-sm-down .nav-item:hover:after, .menu-toggle:hover:after {
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+  }
 }
+
+
+
+
+
+
+
+
