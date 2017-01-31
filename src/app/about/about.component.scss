@@ -1,0 +1,15 @@
+$spacer-x:10px;
+
+.p-3 {
+  padding-left: ($spacer-x * 3);
+  padding-right: ($spacer-x * 3);
+}
+
+.no-pad {
+	padding-right:0;
+    padding-left:0;
+}
+
+h1, h3 {
+	margin-bottom: 20px;
+}
