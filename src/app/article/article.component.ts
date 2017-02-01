@@ -2,6 +2,8 @@ import {Component, OnInit, OnDestroy} from "@angular/core";
 import {NewsArticleService} from "../news-article.service";
 import {ActivatedRoute} from "@angular/router";
 import {Article} from "../model/article";
+import {ArchiveService} from "../archive.service";
+import {Archive} from "../model/enums";
 
 @Component({
     selector: 'app-article',
@@ -13,7 +15,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     private sub: any;
     public article: Article;
 
-    constructor(private NS: NewsArticleService, private route: ActivatedRoute) {
+    constructor(private NS: NewsArticleService, private route: ActivatedRoute, private searchService: ArchiveService) {
     }
 
     private initializeData() {
@@ -26,14 +28,15 @@ export class ArticleComponent implements OnInit, OnDestroy {
                 error => errorMessage = <any> error);
         });
 
-
     }
 
     ngOnInit() {
+        this.searchService.activate(Archive.article);
         this.initializeData();
     }
 
     ngOnDestroy() {
+        this.searchService.deactivate();
         this.sub.unsubscribe();
     }
 
