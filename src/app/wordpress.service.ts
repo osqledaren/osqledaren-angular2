@@ -79,9 +79,6 @@ export class WordpressService extends ContentService {
 
         // Increment offset number
         this.offset++;
-
-        console.log(query);
-
         return request.map(WordpressService.extractData).catch(this.handleError);
 
     }

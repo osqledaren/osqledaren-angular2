@@ -21,7 +21,7 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
     public hasMorePosts: boolean = true;
     public isInitialized: boolean = false;
     private sub: any;
-    private initialBatchSize: number;
+    private initialBatchSize: number = 12;
     private args: ArticleQueryParams;
 
     constructor(private NS: NewsArticleService, private route: ActivatedRoute) {
@@ -63,7 +63,7 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
     private initializeData() {
         let errorMessage;
 
-        this.route.params.subscribe(params => {
+        this.sub = this.route.params.subscribe(params => {
 
             if(params){
 
@@ -85,8 +85,17 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
                 posts => {
 
                     this.articles = posts;
-                    this.initialBatchSize = posts.length;
                     this.isInitialized = true;
+                    this.hasMorePosts = true;
+
+                    if (posts.length > 0) {
+                        if (posts.length < this.initialBatchSize) {
+                            this.hasMorePosts = false;
+                        }
+                    } else {
+                        this.hasMorePosts = false;
+                    }
+
                 },
                 error => errorMessage = <any> error);
 

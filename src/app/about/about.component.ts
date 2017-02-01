@@ -1,19 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from "@angular/core";
+import {SearchService} from "../search.service";
+import {Archive} from "../model/enums";
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+    constructor(private searchService: SearchService) {
+    }
 
-  send(value) {
-  	console.log(value);
-  }
+    send(value) {
+        console.log(value);
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.searchService.activate(Archive.article);
+    }
+
+    ngOnDestroy() {
+        this.searchService.deactivate();
+    }
 
 }

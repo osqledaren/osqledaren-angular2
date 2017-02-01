@@ -1,14 +1,12 @@
-import {APP_CONFIG, APP_DI_CONFIG} from './app.config';
-
+import {APP_CONFIG, APP_DI_CONFIG} from "./app.config";
 // Modules
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
-import {MasonryModule} from 'angular2-masonry/src/module';
-import {CollapseModule} from 'ng2-bootstrap/collapse';
-
+import {MasonryModule} from "angular2-masonry/src/module";
+import {CollapseModule} from "ng2-bootstrap/collapse";
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -19,12 +17,12 @@ import {NewsArchiveComponent} from "./news-archive/news-archive.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
-
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
-import { AboutComponent } from './about/about.component';
+import {AboutComponent} from "./about/about.component";
+import {SearchService} from "./search.service";
 
 @NgModule({
     declarations: [
@@ -91,6 +89,7 @@ import { AboutComponent } from './about/about.component';
     providers: [
         NavigationService,
         NewsArticleService,
+        SearchService,
         WordpressService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],

@@ -1,3 +1,4 @@
-<p>
-	search works!
-</p>
+<div *ngIf="activated" class="search-container">
+    <input type="text" [(ngModel)]="searchInput">
+    <button (click)="search()">Click me!</button>
+</div>
