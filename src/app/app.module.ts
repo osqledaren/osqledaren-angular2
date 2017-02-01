@@ -17,12 +17,14 @@ import {NewsArchiveComponent} from "./news-archive/news-archive.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
+import {AboutComponent} from "./about/about.component";
+import {PrintedIssuesComponent} from './printed-issues/printed-issues.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
-import {AboutComponent} from "./about/about.component";
 import {SearchService} from "./search.service";
+
 
 @NgModule({
     declarations: [
@@ -35,7 +37,8 @@ import {SearchService} from "./search.service";
         PageNotFoundComponent,
         ArticleGridComponent,
         ArticleGridItemComponent,
-        AboutComponent
+        AboutComponent,
+        PrintedIssuesComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -73,6 +76,11 @@ import {SearchService} from "./search.service";
                 path: 'om-oss',
                 component: AboutComponent,
                 data: {name: 'about'}
+            },
+            {
+                path: 'tidningen',
+                component: PrintedIssuesComponent,
+                data: {name: 'printed-issues'}
             },
             {
                 path: '',
