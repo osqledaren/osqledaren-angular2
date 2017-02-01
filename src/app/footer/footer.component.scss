@@ -2,13 +2,6 @@
 
 footer#site-footer {
 
-	.row > div:not(:last-child) {
-
-		@include media-breakpoint-down(xs) {
-			margin-bottom: $grid-gutter-width-base;
-		}
-	}
-
 	background: black;
 	height: auto;
 	width: 100%;
@@ -29,26 +22,43 @@ footer#site-footer {
 	}
 
 	.ol {
-		display: flex;
-
+		margin-bottom: $grid-gutter-width-base/2;
 		.footer-logo {
-			height: 50px;
+			height: 100px;
 			width: auto;
-			padding-right: $grid-gutter-width-base;
-			margin: 0 $grid-gutter-width-base 0 0;
-			border-right: 2px solid white;
+			margin: 0 $grid-gutter-width-base $grid-gutter-width-base/4 0;
 		}
-		margin-bottom: $grid-gutter-width-base;
 	}
 
-	.icons {
-		margin-bottom: $grid-gutter-width-base;
-		img {
-			height: 25px;
-			margin: 0 $grid-gutter-width-base/2 0 0;
-			&:not(:first-child) {
-				margin: 0 $grid-gutter-width-base/2;
-			}
+	.list {
+
+		float:left;
+
+		@include media-breakpoint-down(lg) {
+			max-width: 33%;
+		}
+
+		@include media-breakpoint-down(xs) {
+			max-width: none;
+			width: 100%;
+		}
+
+		> ul {
+			margin: 0 $grid-gutter-width-base $grid-gutter-width-base/2 0;
+
+		}
+
+	}
+
+	.social-media {
+		p {
+			font-size: bold;
+		}
+		float:left;
+
+		.channel {
+			margin-right: $grid-gutter-width-base/4;
 		}
 	}
+
 }

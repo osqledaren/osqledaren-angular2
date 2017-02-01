@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(){
-
+		this.sub.unsubscribe();
 	}
 
 }

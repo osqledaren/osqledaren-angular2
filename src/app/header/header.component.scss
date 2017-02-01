@@ -24,7 +24,6 @@
   a {
     color: white !important;
     text-transform: uppercase;
-    line-height: 40px;
     padding: 0;
   }
 
@@ -65,8 +64,11 @@
   }
 
   #main-nav-collapsible {
-    div {
-      background-color: $gray-dark !important;
-    }
+    background: black!important;
+    padding: $grid-gutter-width-base/2 0;
   }
+}
+
+.nav-item {
+  line-height: 40px;
 }
