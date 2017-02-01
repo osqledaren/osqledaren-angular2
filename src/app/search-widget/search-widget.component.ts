@@ -1,10 +1,10 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {SearchService} from "../search.service";
+import {ArchiveService} from "../archive.service";
 
 @Component({
 	selector: 'app-search',
-	templateUrl: './search.component.html',
-	styleUrls: ['./search.component.scss']
+	templateUrl: 'search-widget.component.html',
+	styleUrls: ['search-widget.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 	public activated: boolean;
 	private sub;
 
-	constructor(private searchService: SearchService) {
+	constructor(private searchService: ArchiveService) {
 	}
 
 	public show(){

@@ -11,7 +11,7 @@ import {CollapseModule} from "ng2-bootstrap/collapse";
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
-import {SearchComponent} from "./search/search.component";
+import {SearchComponent} from "./search-widget/search-widget.component";
 import {ArticleComponent} from "./article/article.component";
 import {NewsArchiveComponent} from "./news-archive/news-archive.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
@@ -23,7 +23,8 @@ import {PrintedIssuesComponent} from './printed-issues/printed-issues.component'
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
-import {SearchService} from "./search.service";
+import {ArchiveService} from "./archive.service";
+import { ArchiveComponent } from './archive-widget/archive-widget.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {SearchService} from "./search.service";
         ArticleGridComponent,
         ArticleGridItemComponent,
         AboutComponent,
-        PrintedIssuesComponent
+        PrintedIssuesComponent,
+        ArchiveComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -55,22 +57,22 @@ import {SearchService} from "./search.service";
             {
                 path: 'articles',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive'}
+                data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/search/:searchTerm',
+                path: 'articles/search-widget/:searchTerm',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive'}
+                data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive/:year/:month/:searchTerm',
+                path: 'articles/archive-widget/:year/:month/:searchTerm',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive'}
+                data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive/:year/:month',
+                path: 'articles/archive-widget/:year/:month',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive'}
+                data: {name: 'news-archive-widget'}
             },
             {
                 path: 'om-oss',
@@ -97,7 +99,7 @@ import {SearchService} from "./search.service";
     providers: [
         NavigationService,
         NewsArticleService,
-        SearchService,
+        ArchiveService,
         WordpressService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],

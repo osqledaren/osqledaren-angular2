@@ -3,19 +3,26 @@ import {Archive} from "./model/enums";
 import {ArticleQueryParams} from "./model/article-query-params";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
+import {ArchiveDistribution} from "./model/archive-distribution";
 @Injectable()
-export class SearchService {
+export class ArchiveService {
 
     private archive: Archive;
     public activated: Subject<boolean> = new Subject();
+    public archiveDistribution: Subject<ArchiveDistribution> = new Subject();
 
     constructor(private router: Router) {
         this.archive = null;
     }
 
+    private getArchiveDistribution(): ArchiveDistribution{
+        return null;
+    }
+
     public activate(archive: Archive) {
         this.archive = archive;
         this.activated.next(true);
+        this.archiveDistribution.next(this.getArchiveDistribution());
     }
 
     public deactivate() {

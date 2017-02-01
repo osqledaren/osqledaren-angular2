@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {SearchService} from "../search.service";
+import {ArchiveService} from "../archive.service";
 import {Archive} from "../model/enums";
 
 @Component({
@@ -9,7 +9,7 @@ import {Archive} from "../model/enums";
 })
 export class AboutComponent implements OnInit, OnDestroy {
 
-    constructor(private searchService: SearchService) {
+    constructor(private searchService: ArchiveService) {
     }
 
     send(value) {

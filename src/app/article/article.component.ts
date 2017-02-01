@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy} from "@angular/core";
 import {NewsArticleService} from "../news-article.service";
 import {ActivatedRoute} from "@angular/router";
 import {Article} from "../model/article";
-import {SearchService} from "../search.service";
+import {ArchiveService} from "../archive.service";
 import {Archive} from "../model/enums";
 
 @Component({
@@ -15,7 +15,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     private sub: any;
     public article: Article;
 
-    constructor(private NS: NewsArticleService, private route: ActivatedRoute, private searchService: SearchService) {
+    constructor(private NS: NewsArticleService, private route: ActivatedRoute, private searchService: ArchiveService) {
     }
 
     private initializeData() {
