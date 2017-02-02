@@ -1,7 +1,9 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
-<div id="loader" *ngIf="loading">
-    <!-- show something fancy here, here with Angular 2 Material's loading bar or circle -->
-    OL Laddar
+
+<div class="spinner" *ngIf="loading">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
 </div>
