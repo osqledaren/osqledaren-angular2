@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ArchiveService} from "../archive.service";
+import {Archive} from "../model/enums";
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-news-archive',
   templateUrl: 'news-archive.component.html',
   styleUrls: ['news-archive.component.scss'],
 })
-export class NewsArchiveComponent implements OnInit {
+export class NewsArchiveComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(private searchService: ArchiveService) { }
 
   ngOnInit() {
+    this.searchService.activate(Archive.article);
+  }
+
+  ngOnDestroy() {
+    this.searchService.deactivate();
   }
 
 }

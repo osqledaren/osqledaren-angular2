@@ -1,0 +1,19 @@
+@import './src/utility';
+
+h2 {
+	padding: $grid-gutter-width-base/2 0px;
+	margin-bottom: 0;
+}
+
+.print-grid-container {
+	width: 100%;
+
+	.print-grid-item {
+		width: 25%;
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+}

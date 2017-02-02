@@ -7,7 +7,7 @@
 	<div class="article-grid-item-content-inner">
 		<article>
 			<h3 class="article-title"><a title="{{article.headline}}" routerLink="/article/{{article.slug}}" [innerText]="article.headline"></a></h3>
-			<time class="article-date" [innerText]="article.versioncreated"></time>
+			<time class="article-date" [innerText]="'Publicerad: ' +(article.versioncreated | date: 'y-MM-dd')"></time>
 			<div class="article-grid-item-text" [innerText]="article.description_text"></div>
 		</article>
 	</div>
