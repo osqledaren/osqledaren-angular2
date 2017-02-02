@@ -25,6 +25,7 @@ import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import { AboutComponent } from './about/about.component';
+import { HeaderSubmenuComponent } from './header-submenu/header-submenu.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { AboutComponent } from './about/about.component';
         PageNotFoundComponent,
         ArticleGridComponent,
         ArticleGridItemComponent,
-        AboutComponent
+        AboutComponent,
+        HeaderSubmenuComponent
     ],
     imports: [
         CollapseModule.forRoot(),
