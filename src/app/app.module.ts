@@ -60,17 +60,17 @@ import { ArchiveComponent } from './archive-widget/archive-widget.component';
                 data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/search-widget/:searchTerm',
+                path: 'articles/search/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive-widget/:year/:month/:searchTerm',
+                path: 'articles/archive/:year/:month/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive-widget/:year/:month',
+                path: 'articles/archive/:year/:month',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive-widget'}
             },
