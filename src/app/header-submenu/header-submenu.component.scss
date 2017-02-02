@@ -1,8 +1,19 @@
 #main-nav-collapsible {
 	overflow: hidden;
 	transition: all 0.2s ease-in-out;
-}
 
-.nav-subcontainer {
-	
+	.container {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+
+	a {
+	    color: white !important;
+	    text-transform: uppercase;
+	    padding: 15px 0;
+	  }
+
+	.navbar {
+		padding: 0;
+	}
 }

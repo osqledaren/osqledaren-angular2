@@ -20,7 +20,6 @@ import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
 import {PrintedIssuesComponent} from './printed-issues/printed-issues.component';
-
 import { ArchiveComponent } from './archive-widget/archive-widget.component';
 // Services
 import {WordpressService} from "./wordpress.service";
