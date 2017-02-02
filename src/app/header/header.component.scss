@@ -1,7 +1,20 @@
 @import "./src/utility";
 
+#site-header {
+  position: relative;
+  height: $header-height;
+  z-index: 10;
+}
+
 .container {
   position: relative;
+}
+.container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
 }
 
 .menu-toggle {
@@ -16,7 +29,7 @@
     color: white !important;  
     cursor: pointer;
 
-    // below is fix for vertical center alignment
+    // fix for vertical center alignment
     top: 50%;
     margin-top: -20px; // half of the element's own size
 }
@@ -69,10 +82,8 @@
     }
   }
 
-  #main-nav-collapsible {
-    div {
-      background-color: $gray-dark !important;
-    }
+  #main-nav-collapsible > div {
+    background-color: $gray-dark !important;
   }
 
   /* Animating links on hover */
