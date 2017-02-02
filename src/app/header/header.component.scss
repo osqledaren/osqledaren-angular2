@@ -96,7 +96,7 @@
     height: 2px;
     background: white;
     position: absolute;
-    bottom: 7px;
+    bottom: -2px;
     left: 0;
     transition: transform 0.2s ease-in-out;
   }
@@ -104,6 +104,36 @@
     width: 100%;
     transition: all 0.2s ease-in-out;
   }
+}
+
+.nav-subcontainer {
+  .container {
+    padding-top: 0px;
+    padding-bottom: 15px;
+  }
+
+  a {
+      color: white !important;
+      text-transform: uppercase;
+      padding: 15px 0;
+    }
+
+  .navbar {
+    padding: 0;
+  }
+}
+
+#main-nav-collapsible {
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.2s ease-in-out;
+  transition: max-height .8s cubic-bezier(0, 1, 0, 1) -.1s;
+  transition-delay: 0s;
+}
+#main-nav-collapsible.submenu-open  {
+  max-height: 9999px;
+  transition-timing-function: cubic-bezier(0.5, 0, 1, 0); 
+  transition-delay: 0s;
 }
 
 

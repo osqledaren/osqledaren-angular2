@@ -2,7 +2,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="container">
-                <a class="btn-link btn menu-toggle nav-link" (click)="isCollapsed = !isCollapsed; this.child.notifyMe()">
+                <a class="btn-link btn menu-toggle nav-link" (click)="isCollapsed = !isCollapsed">
                     Mer
                 </a>
                 <a class="navbar-brand" routerLink="/">
@@ -21,7 +21,31 @@
                 </ul>
             </div>
         </div>
-        <app-header-submenu [isCollapsed]="isCollapsed"></app-header-submenu>
+        <div id="main-nav-collapsible" [ngClass]="{'submenu-open': !isCollapsed}">
+            <div class="bg-inverse nav-subcontainer p-a-1">
+                <div class="container">
+                    <ul class="nav navbar hidden-md-up">
+                        <li class="nav-item active">
+                            <a class="nav-link" routerLink="#">Tidningen<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="#">Podcast</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="#">Play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="#">Annonsera</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/about">Om oss</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
     </nav>
 </header>

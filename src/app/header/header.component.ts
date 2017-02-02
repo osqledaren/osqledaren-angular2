@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuList} from "../model/menu";
 import {NavigationService} from "../navigation.service";
-import {HeaderSubmenuComponent} from "../header-submenu/header-submenu.component";
 
 @Component({
 	selector: 'app-header',
@@ -9,8 +8,6 @@ import {HeaderSubmenuComponent} from "../header-submenu/header-submenu.component
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-	@ViewChild(HeaderSubmenuComponent)
-	private child: HeaderSubmenuComponent;
 
 	public mainMenu: MenuList;
 	public secondaryMenu: MenuList;
@@ -22,7 +19,6 @@ export class HeaderComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		//this.child.notifyMe();
 	}
 
 }

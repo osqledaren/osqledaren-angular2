@@ -10,7 +10,6 @@ import {CollapseModule} from "ng2-bootstrap/collapse";
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
-import { HeaderSubmenuComponent } from './header-submenu/header-submenu.component';
 import {FooterComponent} from "./footer/footer.component";
 import {SearchComponent} from "./search-widget/search-widget.component";
 import {ArticleComponent} from "./article/article.component";
@@ -32,7 +31,6 @@ import {ArchiveService} from "./archive.service";
     declarations: [
         AppComponent,
         HeaderComponent,
-        HeaderSubmenuComponent,
         FooterComponent,
         SearchComponent,
         ArticleComponent,
