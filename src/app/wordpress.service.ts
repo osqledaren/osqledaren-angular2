@@ -62,7 +62,7 @@ export class WordpressService extends ContentService {
         if (!isNullOrUndefined(args)) {
 
             if (!isNullOrUndefined(args.searchTerm)) {
-                queryParams += 'search-widget=' + args.searchTerm + '&'
+                queryParams += 'search=' + args.searchTerm + '&'
             }
 
             if (!isNullOrUndefined(args.month) && !isNullOrUndefined(args.year)) {

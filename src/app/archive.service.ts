@@ -22,7 +22,7 @@ export class ArchiveService {
     public activate(archive: Archive) {
         this.archive = archive;
         this.activated.next(true);
-        this.archiveDistribution.next(this.getArchiveDistribution());
+        //this.archiveDistribution.next(this.getArchiveDistribution());
     }
 
     public deactivate() {

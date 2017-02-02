@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 	public activated: boolean;
 	private sub;
 
-	constructor(private searchService: ArchiveService) {
+	constructor(private archiveService: ArchiveService) {
 	}
 
 	public show(){
@@ -33,11 +33,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 	}
 
 	public search(){
-		this.searchService.search(this.searchInput);
+		this.archiveService.search(this.searchInput);
 	}
 
 	ngOnInit() {
-		this.sub = this.searchService.activated.subscribe(
+		this.sub = this.archiveService.activated.subscribe(
 			(activated) => this.activated = activated
 		);
 	}
