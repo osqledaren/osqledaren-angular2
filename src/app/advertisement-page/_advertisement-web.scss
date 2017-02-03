@@ -1,0 +1,84 @@
+.web-ad {
+	overflow: hidden;
+	line-height: 1.1;
+	font-size: $font-size-h6;
+	margin-top: 15px;
+
+	i {
+		font-size: 1rem !important;
+	}
+
+	>i {
+		color: #666666 !important;
+		font-size: $font-size-h6 !important;
+	}
+
+	b {
+		color: black;
+		display: block;
+	}
+
+	>div {
+		width: 78%;
+		margin: auto;
+		overflow: inherit;
+		border-bottom: 1px solid white;
+		padding: 15px 0 10px 15px;
+
+		i {
+			color: #333333 !important;
+		}
+
+		.figure {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.description {
+			display: inline-block;
+			width: 170px;
+			margin-top: 37px;
+
+			b {
+				display:block;
+				font-size: 1rem !important;
+			}
+
+			div {
+				margin-bottom: 63px;
+			}
+		}
+
+		.note {
+			display: inline-block;
+			width: 200px;
+			text-align: center;
+			color: #e26857;
+			font-size: $font-size-h5;
+			-ms-transform: rotate(15deg);
+    		-webkit-transform: rotate(15deg);
+    		transform: rotate(15deg);
+    		margin-left: 75px;
+    		margin-top: 190px;
+    		position: absolute;
+
+    		svg {
+    			margin-left: -280px;
+    			-ms-transform: rotate(10deg);
+    			-webkit-transform: rotate(10deg);
+    			transform: rotate(10deg);
+    		}
+		}
+
+		.info {
+			font-style: italic;
+		}
+
+		.lineUp {
+			top: -10px;
+    		position: relative;
+    		font-style: regular !important;
+    		color: $link-color;
+		}
+	}
+}
