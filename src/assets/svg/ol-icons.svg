@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none">
+	<symbol id="toner-icon" viewBox="0 0 200 200">
+		<path d="M100 0 L50 50 L100 100 L150 50 Z" fill="#00aff6"/>
+		<path d="M50 50 L0 100 L50 150 L100 100 Z" fill="#f50088"/>
+		<path d="M100 100 L50 150 L100 200 L150 150 Z" fill="#fffc13"/>
+		<path d="M150 50 L100 100 L150 150 L200 100 Z" fill="#212323"/>
+	</symbol>
+
+	<symbol id="margin-icon" viewBox="0 0 60 70">
+		<path d="M3 45 L3 3 L50 3" stroke="#ed1c24" stroke-width="3" fill="none"/>
+		<path d="M13 55 L13 13 L60 13" stroke="#000000" stroke-width="3" fill="none"/>
+		<text x="30" y="45" fill="#333" style="font-size:28px;">3 mm</text>
+	</symbol>
+
+	<symbol id="hogerspaltNote-arrow" viewBox="0 0 150 50">
+		<path d="M 140 45 q -60 -55 -130 -5" stroke="#ed1c24" stroke-width="1" fill="none" marker-end="url(#arrowHead)"/>
+	</symbol>
+
+	<symbol id="web-page" viewBox="0 0 350 444">
+		<rect x="0" y="0" width="310" height="444" style="fill:#cbccce;" />
+		<rect x="15" y="15" width="277" height="34" style="fill:#fabd9b;" />
+		<rect x="15" y="51" width="277" height="53" style="fill:#ffffff;" />
+		<text x="23" y="87" style="fill:#000000;font-size:45px;font-weight:bold;">OL</text>
+		<line x1="23" y1="94" x2="284" y2="94" stroke="#000000" stroke-width="4" />
+		<rect x="15" y="110" width="184" height="86" style="fill:#ffffff;" />
+		<rect x="15" y="199" width="184" height="58" style="fill:#ffffff;" />
+		<rect x="15" y="262" width="184" height="36" style="fill:#febb99;" />
+		<rect x="15" y="303" width="184" height="77" style="fill:#ffffff;" />
+		<polygon points="15,385 199,385 199,417 187,419 167,410 157,417 137,410 87,421 50,412 15,419" style="fill:#ffffff;" />
+		<rect x="209" y="110" width="83" height="62" style="fill:#ffffff;" />
+		<rect x="209" y="175" width="83" height="50" style="fill:#ffffff;" />
+		<rect x="211.2" y="182" width="78" height="42" style="fill:#febb99;" />
+		<rect x="209" y="228" width="83" height="81" style="fill:#ffffff;" />
+		<path d="M 345 45 C310,47 310,35 270,35" stroke="#ed1c24" stroke-width="1" fill="none" marker-end="url(#arrowHead)"/>
+		<path d="M 345 182 C310,182 335,205 280,202" stroke="#ed1c24" stroke-width="1" fill="none" marker-end="url(#arrowHead)"/>
+		<path d="M 345 320 C240,320 260,275 190,280" stroke="#ed1c24" stroke-width="1" fill="none" marker-end="url(#arrowHead)"/>
+	</symbol>
+
+	<symbol id="ad-schedule" viewBox="0 0 390 535">
+		<rect x="0" y="0" width="390" height="128" fill="url(#calendar-pattern)" />
+		<text x="12" y="20" style="fill:#000000;font-weight:bold;font-size:14px;">AUGUSTI 2016</text>
+		<path d="M53 95 L125 95 L125 130 L0 130 L0 112 L53 112 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+
+		<text x="155" y="20" style="fill:#000000;font-weight:bold;font-size:14px;">SEPTEMBER</text>
+		<path d="M223 95 L257 95 L257 130 L136 130 L136 112 L223 112 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="135" y="26" width="51" height="17" fill="#e5e5e5" />
+		<text x="297" y="20" style="fill:#000000;font-weight:bold;font-size:14px;">OKTOBER</text>
+		<path d="M284 112 L390 112 L390 130 L284 130 L284 112 Z M267 25 L358 25 L358 44 L267 44 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+
+		<rect x="0" y="130" width="390" height="128" fill="url(#calendar-pattern)" />
+		<text x="22" y="150" style="fill:#000000;font-weight:bold;font-size:14px;">NOVEMBER</text>
+		<path d="M53 223 L125 223 L125 257 L0 257 L0 240 L53 240 Z M0 155 L17 155 L17 172 L0 172 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="0" y="172" width="86" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
+		<path d="M17 173 L17 188 M35 173 L35 188 M52 173 L52 188 M69 173 L69 188" stroke="#e5e5e5" stroke-width="3"/>
+		<text x="5" y="185" style="fill:#000000;font-weight:bold;font-size:12px;">7</text>
+		<text x="22" y="185" style="fill:#000000;font-weight:bold;font-size:12px;">8</text>
+		<text x="40" y="185" style="fill:#000000;font-weight:bold;font-size:12px;">9</text>
+		<text x="55" y="185" style="fill:#000000;font-weight:bold;font-size:12px;">10</text>
+		<text x="74" y="185" style="fill:#000000;font-weight:bold;font-size:12px;">11</text>
+
+		<text x="158" y="150" style="fill:#000000;font-weight:bold;font-size:14px;">DECEMBER</text>
+		<path d="M240 223 L257 223 L257 257 L135 257 L135 240 L240 240 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="135" y="155" width="51" height="17" fill="#e5e5e5" />
+		<text x="288" y="150" style="fill:#000000;font-weight:bold;font-size:14px;">JANUARI 2017</text>
+		<path d="M284 240 L390 240 L390 257 L284 257 L284 240 Z M267 155 L375 155 L375 172 L267 172 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="269" y="240" width="36" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
+		<path d="M287 241 L287 256" stroke="#e5e5e5" stroke-width="3"/>
+		<text x="271" y="253" style="fill:#000000;font-weight:bold;font-size:12px;">30</text>
+		<text x="290" y="253" style="fill:#000000;font-weight:bold;font-size:12px;">31</text>
+
+		<rect x="0" y="260" width="390" height="128" fill="url(#calendar-pattern)" />
+		<text x="25" y="276" style="fill:#000000;font-weight:bold;font-size:14px;">FEBRUARI</text>
+		<path d="M53 351 L125 351 L125 385 L0 385 L0 368 L53 368 Z M0 283 L34 283 L34 300 L0 300 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="34" y="283" width="53" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
+		<path d="M52 284 L52 299 M69 284 L69 299" stroke="#e5e5e5" stroke-width="3"/>
+		<text x="39" y="295" style="fill:#000000;font-weight:bold;font-size:12px;">1</text>
+		<text x="57" y="295" style="fill:#000000;font-weight:bold;font-size:12px;">2</text>
+		<text x="75" y="295" style="fill:#000000;font-weight:bold;font-size:12px;">3</text>
+
+		<text x="175" y="276" style="fill:#000000;font-weight:bold;font-size:14px;">MARS</text>
+		<path d="M223 351 L257 351 L257 385 L136 385 L136 368 L223 368 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="135" y="283" width="34" height="17" fill="#e5e5e5" />
+		<rect x="135" y="352" width="86" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
+		<path d="M152 353 L151 368 M170 353 L170 368 M187 353 L187 368 M204 353 L204 368" stroke="#e5e5e5" stroke-width="3"/>
+		<text x="136" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">27</text>
+		<text x="153" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">28</text>
+		<text x="171" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">29</text>
+		<text x="188" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">30</text>
+		<text x="207" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">31</text>
+
+		<text x="310" y="276" style="fill:#000000;font-weight:bold;font-size:14px;">APRIL</text>
+		<path d="M284 368 L390 368 L390 385 L284 385 L284 368 Z M267 283 L358 283 L358 300 L267 300 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+
+		<rect x="0" y="390" width="390" height="128" fill="url(#calendar-pattern)" />
+		<text x="45" y="402" style="fill:#000000;font-weight:bold;font-size:14px;">MAJ</text>
+		<path d="M53 480 L125 480 L125 514 L0 514 L0 497 L53 497 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="0" y="412" width="86" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
+		<path d="M17 413 L17 428 M35 413 L35 428 M52 413 L52 428 M69 413 L69 428" stroke="#e5e5e5" stroke-width="3"/>
+		<text x="5" y="425" style="fill:#000000;font-weight:bold;font-size:12px;">1</text>
+		<text x="22" y="425" style="fill:#000000;font-weight:bold;font-size:12px;">2</text>
+		<text x="40" y="425" style="fill:#000000;font-weight:bold;font-size:12px;">3</text>
+		<text x="56" y="425" style="fill:#000000;font-weight:bold;font-size:12px;">4</text>
+		<text x="75" y="425" style="fill:#000000;font-weight:bold;font-size:12px;">5</text>
+
+		<text x="180" y="402" style="fill:#000000;font-weight:bold;font-size:14px;">JUNI</text>
+		<path d="M223 480 L257 480 L257 514 L136 514 L136 497 L223 497 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		<rect x="135" y="412" width="51" height="17" fill="#e5e5e5" />
+		<text x="315" y="402" style="fill:#000000;font-weight:bold;font-size:14px;">JULI</text>
+		<path d="M284 497 L390 497 L390 514 L284 514 L284 368 Z M267 412 L358 412 L358 429 L267 429 Z" fill="#e5e5e5" stroke="#e5e5e5" stroke-width="3"/>
+		
+	</symbol>
+</svg>

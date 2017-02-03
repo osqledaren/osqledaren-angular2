@@ -25,6 +25,7 @@ import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
 import { ArchiveComponent } from './archive-widget/archive-widget.component';
+import { AdvertisementPageComponent } from './advertisement-page/advertisement-page.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ArchiveComponent } from './archive-widget/archive-widget.component';
         ArticleGridItemComponent,
         AboutComponent,
         PrintedIssuesComponent,
-        ArchiveComponent
+        ArchiveComponent,
+        AdvertisementPageComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -83,6 +85,11 @@ import { ArchiveComponent } from './archive-widget/archive-widget.component';
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
                 data: {name: 'printed-issues'}
+            },
+            {
+                path: 'annonsera',
+                component: AdvertisementPageComponent,
+                data: {name: 'annonsera'}
             },
             {
                 path: '',
