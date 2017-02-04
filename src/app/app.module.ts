@@ -18,16 +18,17 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
-import {PrintedIssuesComponent} from './printed-issues/printed-issues.component';
+import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
+import { PrintedIssuesGridComponent } from './printed-issues-grid/printed-issues-grid.component';
+import {ArchiveComponent} from "./archive-widget/archive-widget.component";
+import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
-import { ArchiveComponent } from './archive-widget/archive-widget.component';
-import { AdvertisementPageComponent } from './advertisement-page/advertisement-page.component';
-import { PrintedIssuesGridComponent } from './printed-issues-grid/printed-issues-grid.component';
-
+// Pipes
+import {PadNumberPipe} from "./pad-number.pipe";
 
 @NgModule({
     declarations: [
@@ -42,9 +43,10 @@ import { PrintedIssuesGridComponent } from './printed-issues-grid/printed-issues
         ArticleGridItemComponent,
         AboutComponent,
         PrintedIssuesComponent,
+        PrintedIssuesGridComponent,
         ArchiveComponent,
         AdvertisementPageComponent,
-        PrintedIssuesGridComponent
+        PadNumberPipe
     ],
     imports: [
         CollapseModule.forRoot(),

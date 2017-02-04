@@ -1,3 +1,13 @@
-<p>
-  archive works!
-</p>
+<div>
+    <label for="archive-year-select" class="h3">Arkiv</label>
+    <select id="archive-year-select" class="custom-select">
+        <option [value]="distribution.year" *ngFor="let distribution of distribution" [innerText]="distribution.year"></option>
+    </select>
+</div>
+<div>
+    <ul class="no-bullets">
+        <li *ngFor="let month of months">
+            <a routerLink="/" [innerText]="month | padNumber: 2"></a>
+        </li>
+    </ul>
+</div>

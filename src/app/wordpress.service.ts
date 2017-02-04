@@ -88,7 +88,7 @@ export class WordpressService extends ContentService {
      * @param text: string
      * @returns {string}
      */
-    private static htmlToPlainText(text: string): string {
+    protected static htmlToPlainText(text: string): string {
         return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
     }
 
@@ -97,7 +97,7 @@ export class WordpressService extends ContentService {
      * @param res:Response
      * @returns {Article[]|{}}
      */
-    private static extractData(res: Response) {
+    protected static extractData(res: Response) {
         let body: any = res.json();
         let posts: Article[] = <Article[]>[];
 
