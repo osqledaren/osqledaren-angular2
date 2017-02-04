@@ -13,19 +13,21 @@ export class PrintedIssuesComponent implements OnInit {
     {
       "year": "16/17",
       "issues": [
-        "https://image.isu.pub/141128232153-067219625361f694a356d3f961e7d8c8/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140124165731-785470d503d489ce164a152fa35f3a21/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140521081054-bf53cb66629fdd3e741f6c547b6e4020/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140325134913-911b2a5b633355bbbfb14807d3a1e93a/jpg/page_1_thumb_large.jpg"
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png"
       ]
     },
     {
       "year": "15/16",
       "issues": [
-        "https://image.isu.pub/141128232153-067219625361f694a356d3f961e7d8c8/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140124165731-785470d503d489ce164a152fa35f3a21/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140521081054-bf53cb66629fdd3e741f6c547b6e4020/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140325134913-911b2a5b633355bbbfb14807d3a1e93a/jpg/page_1_thumb_large.jpg"
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png"
       ]
     },
     {
@@ -33,8 +35,9 @@ export class PrintedIssuesComponent implements OnInit {
       "issues": [
         "https://image.isu.pub/140903103228-38010298161cece30f4ab2f5c4bbdaa1/jpg/page_1_thumb_large.jpg",
         "https://image.isu.pub/141128232153-067219625361f694a356d3f961e7d8c8/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140521081054-bf53cb66629fdd3e741f6c547b6e4020/jpg/page_1_thumb_large.jpg",
-        "https://image.isu.pub/140325134913-911b2a5b633355bbbfb14807d3a1e93a/jpg/page_1_thumb_large.jpg"
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png",
+        "assets/img/placeholder-printed-issues.png"
       ]
     },
     {
