@@ -1,0 +1,90 @@
+.newspaper-ad {
+	overflow: hidden;
+	line-height: 1.1;
+	font-size: 1rem;
+	margin-top: 15px;
+
+	i {
+		font-size: $font-size-h6 !important;
+	}
+
+	>i {
+		color: #666666 !important;
+	}
+
+	>div {
+		width: 78%;
+		margin: auto;
+		overflow: inherit;
+		border-bottom: 1px solid white;
+		padding: 15px 0 10px 15px;
+
+		b {
+			color: black;
+			display: block;
+		}
+
+		i {
+			color: #333333 !important;
+		}
+
+		>div[class*="figure"]{
+			display: inline-block;
+			float:left;
+			width: 50%;
+			margin-bottom: 15px;
+
+			.figure {
+				width: 120px;
+				height: 144px;
+				display: inherit;
+				float: inherit;
+				background-color: #ebbbad;
+			}
+
+			.description {
+				margin-left: 30px;
+				width: 50%;
+				display: inherit;
+				float: inherit;
+			}
+		}
+
+		.figure1 .box1 {
+			height: 14px;
+			background-color: #d6d6d6;
+		}
+
+		@each $figure in figure2, figure4 {
+			.#{$figure} [class*="box"] {
+				width: 50%;
+				height: 50%;
+				background-color: #eb9b82;
+
+				&:nth-child(2) {
+					float: right;
+					@if $figure == figure2 {
+						background-color: #d6d6d6;
+					}
+				}
+			}
+		}
+		
+
+		.figure6 {
+			ul {margin-bottom: 0;}
+			text {
+				display: inline-block;
+	    		vertical-align: top;
+	    		margin-left: 20px;
+			}
+
+			div>i {margin: 0 25px 30px 50px !important; display: inline-block;}
+			
+    		.toner-icon, .margin-icon {
+    			display: inline-block !important;
+    		}
+		}
+	}
+
+}

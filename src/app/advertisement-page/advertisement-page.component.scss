@@ -1,0 +1,54 @@
+$font-size-h5: 1.25rem;
+$font-size-h6: 1.25rem;
+$link-color: #ebb07b;
+$ol-orange: #f05022 !default;
+$font-size-h2: 3rem;
+$content-bgColor: #e5e5e5;
+
+@import "advertisement-newspaper";
+@import "advertisement-web";
+@import "advertisement-schedule";
+@import "advertisement-covers";
+
+#container-advertisement {
+	font-size: $font-size-h5;
+	
+	h1, h3{
+		color: black;
+	}
+
+	.preamble {
+		font-weight: bold;
+		font-size: 1rem;
+	}
+
+	.contact-info{
+		margin-top: 30px;
+
+		span {
+			color: $link-color;
+			&:hover {color: $ol-orange;}
+			&:after {content:""; display:block;}
+		}
+	}
+
+	i {
+		font-size: $font-size-h2;
+		color: silver;
+		margin-right: 10px;
+    	vertical-align: middle;
+    	min-width: 30px;
+	}
+
+	p { margin-bottom: 40px; }
+
+	.content {
+		background-color: $content-bgColor;
+		padding: 10px 50px;
+
+		>h1{
+			font-size: 2.5rem;
+		}
+	}
+
+}
