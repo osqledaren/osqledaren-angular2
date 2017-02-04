@@ -18,15 +18,16 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
-import {PrintedIssuesComponent} from './printed-issues/printed-issues.component';
+import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
+import {ArchiveComponent} from "./archive-widget/archive-widget.component";
+import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
-import { ArchiveComponent } from './archive-widget/archive-widget.component';
 // Pipes
-import { PadNumberPipe } from './pad-number.pipe';
+import {PadNumberPipe} from "./pad-number.pipe";
 
 
 @NgModule({
@@ -43,8 +44,9 @@ import { PadNumberPipe } from './pad-number.pipe';
         AboutComponent,
         PrintedIssuesComponent,
         ArchiveComponent,
-        PadNumberPipe,
+        AdvertisementPageComponent,
         PadNumberPipe
+
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -87,6 +89,11 @@ import { PadNumberPipe } from './pad-number.pipe';
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
                 data: {name: 'printed-issues'}
+            },
+            {
+                path: 'annonsera',
+                component: AdvertisementPageComponent,
+                data: {name: 'annonsera'}
             },
             {
                 path: '',
