@@ -24,25 +24,39 @@
         <div id="main-nav-collapsible" [ngClass]="{'submenu-open': !isCollapsed}">
             <div class="bg-inverse nav-subcontainer p-a-1">
                 <div class="container">
-                    <ul class="nav navbar hidden-md-up">
-                        <li class="nav-item active">
-                            <a class="nav-link" routerLink="#">Tidningen<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="#">Podcast</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="#">Play</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="#">Annonsera</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/about">Om oss</a>
-                        </li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul class="nav navbar hidden-md-up">
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="#">Podcast</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="#">Play</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="#">Annonsera</a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar">
+                                <li class="nav-item active">
+                                    <a class="nav-link" routerLink="/tidningen">Tidningen<span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/om-oss">Om oss</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="#">Sök redaktionen</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <app-archive></app-archive>
+                        </div>
+                        <div class="col-md-6">
+                            <app-search></app-search>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

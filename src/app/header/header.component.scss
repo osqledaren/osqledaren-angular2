@@ -19,7 +19,6 @@
 
 .menu-toggle {
 
-  
     position: absolute;
     margin-left: 0;
     margin-right: $grid-gutter-width-base/2;
@@ -115,7 +114,8 @@
   a {
       color: white !important;
       text-transform: uppercase;
-      padding: 15px 0;
+      padding: 0;
+      line-height: 40px;
     }
 
   .navbar {
