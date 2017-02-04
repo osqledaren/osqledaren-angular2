@@ -1,5 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ArchiveService} from "../archive.service";
+import {ArchiveDistribution} from "../model/archive-distribution";
 
 @Component({
   selector: 'app-archive',
@@ -11,6 +12,8 @@ export class ArchiveComponent implements OnInit, OnDestroy {
   public searchInput: string;
   public visible: boolean = false;
   public activated: boolean;
+  public distribution: ArchiveDistribution[];
+  public months: number[];
   private sub;
 
   constructor(private archiveService: ArchiveService) {
@@ -19,6 +22,13 @@ export class ArchiveComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.archiveService.activated.subscribe(
         (activated) => this.activated = activated
+    );
+
+    this.sub = this.archiveService.archiveDistribution.subscribe(
+        (archiveDistribution) => {
+          this.distribution = archiveDistribution;
+          this.months = archiveDistribution[0].months; // Set collection of months of current year.
+        }
     );
   }
 

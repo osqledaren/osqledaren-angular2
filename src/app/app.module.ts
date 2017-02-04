@@ -25,6 +25,8 @@ import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
 import { ArchiveComponent } from './archive-widget/archive-widget.component';
+// Pipes
+import { PadNumberPipe } from './pad-number.pipe';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { ArchiveComponent } from './archive-widget/archive-widget.component';
         ArticleGridItemComponent,
         AboutComponent,
         PrintedIssuesComponent,
-        ArchiveComponent
+        ArchiveComponent,
+        PadNumberPipe,
+        PadNumberPipe
     ],
     imports: [
         CollapseModule.forRoot(),
