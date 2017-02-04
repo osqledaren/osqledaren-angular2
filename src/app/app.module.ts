@@ -26,6 +26,7 @@ import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
 import { ArchiveComponent } from './archive-widget/archive-widget.component';
 import { AdvertisementPageComponent } from './advertisement-page/advertisement-page.component';
+import { PrintedIssuesGridComponent } from './printed-issues-grid/printed-issues-grid.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AdvertisementPageComponent } from './advertisement-page/advertisement-p
         AboutComponent,
         PrintedIssuesComponent,
         ArchiveComponent,
-        AdvertisementPageComponent
+        AdvertisementPageComponent,
+        PrintedIssuesGridComponent
     ],
     imports: [
         CollapseModule.forRoot(),
