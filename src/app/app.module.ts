@@ -18,15 +18,17 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
-import {PrintedIssuesComponent} from './printed-issues/printed-issues.component';
-import { ArchiveComponent } from './archive-widget/archive-widget.component';
+import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
+import {ArchiveComponent} from "./archive-widget/archive-widget.component";
+import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
-import { ArchiveComponent } from './archive-widget/archive-widget.component';
-import { AdvertisementPageComponent } from './advertisement-page/advertisement-page.component';
+// Pipes
+import {PadNumberPipe} from "./pad-number.pipe";
+
 
 @NgModule({
     declarations: [
@@ -42,7 +44,9 @@ import { AdvertisementPageComponent } from './advertisement-page/advertisement-p
         AboutComponent,
         PrintedIssuesComponent,
         ArchiveComponent,
-        AdvertisementPageComponent
+        AdvertisementPageComponent,
+        PadNumberPipe
+
     ],
     imports: [
         CollapseModule.forRoot(),

@@ -65,8 +65,6 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
 
         this.sub = this.route.params.subscribe(params => {
 
-            console.log(params);
-
             if(params){
 
                 this.args = <ArticleQueryParams>{};
