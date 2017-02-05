@@ -1,0 +1,78 @@
+//Style the article heading box
+#article-heading-box {
+	color: white;
+	background-color: $ol-orange;
+	padding: 1.5% 4% 1%;
+	margin-top: -60px !important;
+	z-index: 1;
+	width: $fullwidth;
+
+	h1 {
+		font-weight: bold;
+	}
+
+	p {
+		font-weight: normal;
+	}
+
+	//Style the list of the social media symbols
+	ul.social-medias {
+		text-align:center;
+		padding-left: 0px !important;
+		list-style-type:none;
+
+		li {
+			display:inline;
+			list-style-type: none;
+			margin:0 1em;
+
+			a {
+				display:inline-block;
+				color: white;
+				font-size: 2rem;
+				padding: 0;
+				line-height: 0;
+			}
+		}
+	}
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+	#article-heading-box {
+		h1 {
+			font-size: $font-size-h3;
+		}
+
+		p {
+			font-size: $font-size-h6;
+		}
+
+		ul.social-medias {
+			margin:15px 0 20px !important;
+			li a {
+				font-size: $font-size-h4;
+			}
+		}
+	}
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+	#article-heading-box {
+		h1 {
+			font-size: $font-size-h2;
+		}
+
+		p {
+			font-size: $font-size-h6 + 0.12rem;
+		}
+
+		ul.social-medias {
+			margin:20px 0 25px !important;
+			li a {
+				font-size: $font-size-h3;
+			}
+		}
+	}
+}
