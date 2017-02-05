@@ -1,4 +1,4 @@
 export interface ArchiveDistribution {
-    years: [number],
+    year: number,
     months: [number]
 }
