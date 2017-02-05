@@ -19,6 +19,7 @@ import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
 import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
+import { PrintedIssuesGridComponent } from './printed-issues-grid/printed-issues-grid.component';
 import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 // Services
@@ -28,7 +29,6 @@ import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
-
 
 @NgModule({
     declarations: [
@@ -43,10 +43,10 @@ import {PadNumberPipe} from "./pad-number.pipe";
         ArticleGridItemComponent,
         AboutComponent,
         PrintedIssuesComponent,
+        PrintedIssuesGridComponent,
         ArchiveComponent,
         AdvertisementPageComponent,
         PadNumberPipe
-
     ],
     imports: [
         CollapseModule.forRoot(),
