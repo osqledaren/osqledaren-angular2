@@ -1,9 +1,8 @@
-<div *ngIf="activated" class="search-container">
-    <div class="nav-item">
-        <h3 class="nav-heading">Sök</h3>
-    </div>
-    <div class="nav-item">
-        <input class="form-inline form-control" type="text" [(ngModel)]="searchInput">
-        <button class="btn btn-primary form-inline form-control" (click)="search()">Click me!</button>
+<div [class]="'search-widget ' + (visible ? 'visible' : '')">
+    <div class="nav-item search-form">
+        <form>
+            <input class="form-inline form-control" type="text" [(ngModel)]="searchInput" name="search">
+            <button type="submit" class="btn btn-primary form-inline form-control" (click)="search()"><i class="fa fa-search"></i></button>
+        </form>
     </div>
 </div>

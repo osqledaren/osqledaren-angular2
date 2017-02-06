@@ -1,16 +1,19 @@
+@import "./src/utility";
+
 .imgdiv {
 	text-align: center;
-	padding: 120px 0 150px;
+	padding: $grid-gutter-width-base 0;
 	width: 100%;
 }
 
 img {
-	width: 500px;
-	margin-left: 100px;
+	max-width: 500px;
+	width: 100%;
+	margin: 0 0 $grid-gutter-width-base/2;
 }
 
 p {
-	color: #ee512e;
-	font-size: 16pt;
-	margin: 20px 18px 0 0;
+	color: $ol-orange;
+	font-size: $font-size-lg;
+	margin: 0;
 }

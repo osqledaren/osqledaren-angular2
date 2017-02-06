@@ -29,6 +29,7 @@ import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
+import { SplitPipe } from './split.pipe';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import {PadNumberPipe} from "./pad-number.pipe";
         PrintedIssuesGridComponent,
         ArchiveComponent,
         AdvertisementPageComponent,
-        PadNumberPipe
+        PadNumberPipe,
+        SplitPipe
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -71,12 +73,12 @@ import {PadNumberPipe} from "./pad-number.pipe";
                 data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive/:year/:month/:searchTerm',
+                path: 'articles/archive/:date/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive/:year/:month',
+                path: 'articles/archive/:date',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive-widget'}
             },

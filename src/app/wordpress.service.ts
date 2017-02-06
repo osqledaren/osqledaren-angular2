@@ -8,6 +8,7 @@ import {ContentService} from "./model/content-service";
 import {ArticleQueryParams} from "./model/article-query-params";
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
+import {isUndefined} from "util";
 
 @Injectable()
 export class WordpressService extends ContentService {
@@ -64,10 +65,29 @@ export class WordpressService extends ContentService {
             if (!isNullOrUndefined(args.searchTerm)) {
                 queryParams += 'search=' + args.searchTerm + '&'
             }
+            if (!isNullOrUndefined(args.date)) {
 
-            if (!isNullOrUndefined(args.month) && !isNullOrUndefined(args.year)) {
-                queryParams += 'after=' + args.year + '-' + args.month + '-01T00:00:00&'
+                let date: Array<string> = args.date.split('-');
+                let yearToday: number = new Date().getFullYear();
+                let year: string;
+                let month: string = '01';
+
+                // Do some validation
+
+                if(date[0].length == 4 && Number(date[0]) <= yearToday && Number(date[0]) >= 2000){
+                     year = date[0];
+                }
+
+                if(!isUndefined(date[1])){
+                    if (date[1].length == 2 && Number(date[1]) > 0 && Number(date[1]) <= 12){
+                        month = date[1];
+                    }
+                }
+
+                queryParams += 'after=' + year + '-' + month + '-01T00:00:00&'
             }
+
+            // Do some validation.
         }
 
         query = this.endpoint + '/posts?';
