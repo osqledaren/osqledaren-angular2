@@ -36,7 +36,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.searchService.deactivate();
         this.sub.unsubscribe();
     }
 

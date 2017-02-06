@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ArchiveService} from "../archive.service";
+import {Archive} from "../model/enums";
 
 @Component({
   selector: 'app-advertisement-page',
@@ -13,7 +15,7 @@ export class AdvertisementPageComponent implements OnInit {
   erik_tingstrom_email: string;
   erik_tingstrom_mobile: string;
 
-  constructor() {
+  constructor(private archiveService: ArchiveService) {
   	this.covers = ["http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg",
   			"http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141501.jpg",
 	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141500.jpg",
@@ -39,6 +41,7 @@ export class AdvertisementPageComponent implements OnInit {
   }
 
   ngOnInit() {
+  	this.archiveService.activate(Archive.article);
   }
 
 }

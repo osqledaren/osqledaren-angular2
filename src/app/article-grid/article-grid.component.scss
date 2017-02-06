@@ -1,6 +1,17 @@
 @import "./src/utility";
 
+.archive-heading {
+	text-align: center;
+	margin: $grid-gutter-width-base/2 0;
+
+	span {
+		color:$link-color;
+	}
+}
+
 .has-more-posts{
+
+	font-weight: bold;
 
 	&.hidden {
 		display: none;
@@ -8,7 +19,10 @@
 
 	text-align: center;
 
-	button {
+	.btn {
+		cursor: pointer;
+		color:white;
+		font-weight: bold;
 		margin: $grid-gutter-width-base auto;
 	}
 
@@ -18,7 +32,7 @@
 	}
 
 	&.all-loaded{
-		button {
+		.btn {
 			display: none;
 		}
 
@@ -131,3 +145,4 @@
 		}
 	}
 }
+

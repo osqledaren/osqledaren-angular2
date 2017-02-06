@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ArchiveService} from "../archive.service";
+import {Archive} from "../model/enums";
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private archiveService: ArchiveService) { }
 
   ngOnInit() {
+    this.archiveService.activate(Archive.article);
   }
 
 }

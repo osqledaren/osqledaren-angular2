@@ -1,13 +1,19 @@
-<div>
-    <label for="archive-year-select" class="h3">Arkiv</label>
-    <select id="archive-year-select" class="custom-select">
-        <option [value]="distribution.year" *ngFor="let distribution of distribution" [innerText]="distribution.year"></option>
-    </select>
-</div>
-<div>
-    <ul class="no-bullets">
-        <li *ngFor="let month of months">
-            <a routerLink="/" [innerText]="month | padNumber: 2"></a>
-        </li>
-    </ul>
+<div id="nav-archive-widget" [class]="'archive-widget ' + (visible ? 'visible': '')">
+    <h3>Arkiv</h3>
+    <div id="selection" class="selection">
+        <form>
+            <select id="archive-year-select" class="custom-select" name="year" [(ngModel)]="yearInput">
+                <option value="">År</option>
+                <option [ngValue]="{index: i, year:distribution.year}" *ngFor="let distribution of distribution; let i = index;"
+                        [innerText]="distribution.year"></option>
+            </select>
+            <select id="archive-month-select" class="custom-select" name="month" [(ngModel)]="monthInput">
+                <option value="">Månad</option>
+                <option [value]="month | padNumber: 2" *ngFor="let month of months"
+                        [innerText]="month | padNumber: 2"></option>
+            </select>
+            <button type="submit" class="btn btn-primary form-inline form-control" (click)="setArchive()"><i
+                    class="fa fa-calendar"></i></button>
+        </form>
+    </div>
 </div>
