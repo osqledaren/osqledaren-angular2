@@ -104,7 +104,14 @@
 
 /* For mobile phones: */
 @media only screen and (max-width: 600px) {
-	#single-article-container {
+	:host /deep/ #single-article-container {
+		padding: 0 !important;
+		width: 100%;
+
+		.logo{
+			display:none;
+		}
+
 		.content{
 			font-size: $font-size-h6;
 
@@ -112,14 +119,14 @@
 				font-size: $font-size-h5;
 			}
 
-			.quote {
+			blockquote {
 				font-size: $font-size-h5;
 				padding: 20px 0;
 				width: 100%;
 				margin: 0;
 
 				i {
-					font-size: $font-size-h3;
+					font-size: $font-size-h4;
 				}
 			}
 
@@ -140,7 +147,11 @@
 
 /* For tablets: */
 @media only screen and (min-width: 600px) and (max-width: 768px) {
-	#single-article-container {
+	:host /deep/ #single-article-container {
+		.logo{
+			display:inline-block;
+		}
+
 		.content{
 			font-size: $font-size-h6 + 0.12rem;
 
@@ -148,12 +159,12 @@
 				font-size: $font-size-h4;
 			}
 
-			.quote {
+			blockquote {
 				font-size: $font-size-h4;
 				padding: 2px 35px 30px 0px;
 
 				i {
-					font-size: $font-size-h2;
+					font-size: $font-size-h3;
 				}
 			}
 
