@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/throw';
 import {APP_CONFIG} from "../app.config";
 import {Inject, Injectable} from "@angular/core";
-import {Article} from "./article";
+import {IArticle} from "./interface-article";
 
 @Injectable()
 export abstract class ContentService{

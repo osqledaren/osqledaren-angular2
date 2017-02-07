@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Menus} from './mock/menus';
-import {Menu, MenuList} from "./model/menu";
+import {IMenu, IMenuList} from "./model/interface-menu";
 
 @Injectable()
 export class NavigationService {
@@ -8,11 +8,11 @@ export class NavigationService {
 	constructor() {
 	}
 
-	public getAllNavs(): Menu {
+	public getAllNavs(): IMenu {
 		return Menus;
 	}
 
-	public getNav(name: string): MenuList{
+	public getNav(name: string): IMenuList{
 		return Menus[name];
 	}
 
