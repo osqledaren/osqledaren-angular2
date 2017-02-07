@@ -7,7 +7,7 @@
 
 body {
 
-	padding-top: 62px; // Give some padding for fixed header.
+	padding-top: $header-height; // Give some padding for fixed header.
 
 	&.article{
 		background: white;

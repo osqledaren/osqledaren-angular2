@@ -1,0 +1,66 @@
+//Return a color of a given name
+@function getColor($name) {
+	@if $name == "facebook" {
+		@return #3b5998;
+	}@else if $name == "twitter" {
+		@return #1da1f2;
+	}@else if $name == "pinterest" {
+		@return #bd081c;
+	}
+}
+
+//Style the article share buttons
+.share-buttons {
+	padding: 5px;
+	margin: 20px 0 40px;
+
+	[class*="button-"] {
+		padding: 5px;
+		color: white;
+		font-size: 0.85em;
+		display: inline-block;
+		margin-right: 15px;
+
+		i {
+			font-size: $font-size-h2;
+			vertical-align: middle;
+		}
+	}
+}
+
+//Set background color of the share buttons
+@each $name in "facebook", "twitter", "pinterest" {
+	.button-#{$name} {
+		background-color : getColor($name);
+
+		@if $name == "facebook" {
+			padding: 5px 20px !important;
+			i {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+	.share-buttons {
+		[class*="button-"] {
+			margin-bottom: 5px;
+			i {
+				font-size: $font-size-h4;
+			}
+		}
+	}
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+	.share-buttons {
+		[class*="button-"] {
+			i {
+				font-size: $font-size-h3;
+			}
+		}
+	}
+}

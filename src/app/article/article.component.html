@@ -1,12 +1,91 @@
-<div id="single-article-container" class="single-article-container container">
+<div class="container" id="single-article-container">
+    <div class="logo">OL</div>
+
     <div class="row">
-        <div class="col-12">
+        <div class="col-xs-12">
             <article *ngIf="article">
-                <header class="article-heading">
-                    <h1 class="article-title" [innerText]="article?.headline"></h1>
-                    <time class="article-date" [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
-                </header>
-                <div class="article-grid-item-text" [innerHTML]="article?.body_html"></div>
+                <div class="article-image">
+                    <img src="http://osqledaren.se/wp-content/uploads/2016/09/EntreFUgle-1140x570.jpg" alt="Emma Klint"/>
+                </div>
+
+                <div class="content">
+                    <!-- Article heading box -->
+                    <div id="article-heading-box">
+                        <h1 [innerText]="article?.headline"></h1>
+                        <p>Tisday 6 september startar eventet och utställningen the Science of The Big Bang Theory på KTH entré.</p>
+                        <ul class="social-medias">
+                            <li>
+                                <a href="#" data-name="Tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" data-name="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" data-name="Twitter2"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" data-name="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <span class="date">
+                        <time [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
+                        (<i>Uppdaterad 21 September 2016</i>)
+                    </span>
+
+                    <!-- Byline -->
+                    <div class="byline_above">
+                        <div class="author_text">
+                            <img src="http://3.bp.blogspot.com/-Rerlap0l1BQ/T5UkVIL-Z9I/AAAAAAAABa0/n2v7X--yVbU/s1600/beautiful+picture.jpg"
+                                     alt="Emma Klint"/>
+                            <div>
+                                <b>Emma Klint</b>
+                                <span>Text</span>
+                            </div>
+                        </div>
+                        <div class="author_foto">
+                            <img src="http://images.freeimages.com/images/premium/previews/3202/32028464-beautiful-christmas-lantern.jpg"
+                                     alt="Sofia Blomgren"/>
+                            <div>
+                                <b>Sofia Blomgren</b>
+                                <span>Foto</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <div class="article-grid-item-text" [innerHTML]="article?.body_html"></div>
+
+                    <div class="article-rm-button">Läs mer i Osqledaren #2 2015 <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+
+                    <hr/>
+
+                    <div class="byline_below">
+                        <div class="author_text">
+                            <img src="http://3.bp.blogspot.com/-Rerlap0l1BQ/T5UkVIL-Z9I/AAAAAAAABa0/n2v7X--yVbU/s1600/beautiful+picture.jpg"
+                                     alt="Emma Klint"/>
+                            <div>
+                                <b>Emma Klint</b>
+                                <span>emma@osqledaren.se</span>
+                            </div>
+                        </div>
+                        <div class="author_foto">
+                            <img src="http://images.freeimages.com/images/premium/previews/3202/32028464-beautiful-christmas-lantern.jpg"
+                                     alt="Sofia Blomgren"/>
+                            <div>
+                                <b>Sofia Blomgren</b>
+                                <span>sofia@osqledaren.se</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="share-buttons">
+                        <div class="button-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> DELA/KOMMENTERA</div>
+                        <div class="button-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                        <div class="button-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
+                    </div>
+                </div>
             </article>
         </div>
     </div>
