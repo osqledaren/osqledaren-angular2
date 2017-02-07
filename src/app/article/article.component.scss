@@ -85,10 +85,10 @@
 :host /deep/ blockquote {
 	display: inline-block;
 	width: 40%;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	float: left;
 	text-align: right;
-	padding: 2px 55px 25px 0px;
+	padding: 2px 55px 25px 55px;
 	font-weight: bold;
 	line-height: 1.1em;
 	font-style: italic;
@@ -132,7 +132,7 @@
 
 	:host /deep/ blockquote {
 		font-size: $font-size-h5;
-		padding: 20px 0;
+		padding: 2px 35px 30px 40px;
 		width: 100%;
 		margin: 0;
 		text-align: left;
