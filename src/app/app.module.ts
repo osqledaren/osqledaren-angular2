@@ -30,6 +30,7 @@ import {ArchiveService} from "./archive.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import { SplitPipe } from './split.pipe';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { SplitPipe } from './split.pipe';
         ArchiveComponent,
         AdvertisementPageComponent,
         PadNumberPipe,
-        SplitPipe
+        SplitPipe,
+        LoaderComponent
     ],
     imports: [
         CollapseModule.forRoot(),
