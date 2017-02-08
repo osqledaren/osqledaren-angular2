@@ -30,6 +30,7 @@ export class ArchiveService extends ContentService {
         this.endpoint = config.wordpressEndpoint;
     }
 
+
     public activate(archive: Archive) {
 
         if (this.archive === archive) {
@@ -57,7 +58,7 @@ export class ArchiveService extends ContentService {
         }
 
         this.http.get(this.endpoint + '/archives/' + postType)
-            .map(ArchiveService.extractData)
+            .map(this.map)
             .catch(this.handleError).subscribe(
             (distribution) => {
                 this.archiveDistributionElements = distribution;
@@ -152,7 +153,7 @@ export class ArchiveService extends ContentService {
      * @param res:Response
      * @returns {ArchiveDistribution[]|{}}
      */
-    protected static extractData(res: Response) {
+    protected map(res: Response) {
         let json: any = res.json();
         let distribution: ArchiveDistribution[] = <ArchiveDistribution[]>[];
 
