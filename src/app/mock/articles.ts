@@ -1,6 +1,6 @@
-import {Article} from '../model/article';
+import {IArticle} from '../model/interface-article';
 
-export const Articles: Article[] = <Article[]>[
+export const Articles: IArticle[] = <IArticle[]>[
 	{
 		type: 'text',
 		byline: 'Osqledaren',

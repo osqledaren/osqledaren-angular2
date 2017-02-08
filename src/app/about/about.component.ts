@@ -20,8 +20,6 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.searchService.activate(Archive.article);
     }
 
-    ngOnDestroy() {
-        this.searchService.deactivate();
-    }
+    ngOnDestroy() {}
 
 }

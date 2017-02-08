@@ -1,13 +1,14 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http} from "@angular/http";
-import {Article} from "./model/article";
+import {IArticle} from "./model/interface-article";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import {ContentService} from "./model/content-service";
-import {ArticleQueryParams} from "./model/article-query-params";
+import {ContentService} from "./model/abstract-content-service";
+import {IArticleQueryParams} from "./model/interface-article-query-params";
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
+import {isUndefined} from "util";
 
 @Injectable()
 export class WordpressService extends ContentService {
@@ -23,7 +24,7 @@ export class WordpressService extends ContentService {
     /**
      * Fetches posts from wordpress by slug/id
      * @param param: any
-     * @returns {Observable<Article[]>}
+     * @returns {Observable<IArticle[]>}
      */
     public getArticle(param: any) {
         switch (typeof param) {
@@ -40,9 +41,9 @@ export class WordpressService extends ContentService {
 
     /**
      * Fetches posts from wordpress
-     * @returns {Observable<Article[]>}
+     * @returns {Observable<IArticle[]>}
      */
-    public getArticles(args?: ArticleQueryParams): Observable<Article[]> {
+    public getArticles(args?: IArticleQueryParams): Observable<IArticle[]> {
         this.offset = 0;
         return this.getNextBatchOfArticles(args);
 
@@ -50,10 +51,10 @@ export class WordpressService extends ContentService {
 
     /**
      * Retrieves next offset of posts from wordpress
-     * @param args?: ArticleQueryParams
-     * @returns {Observable<Article[]>}
+     * @param args?: IArticleQueryParams
+     * @returns {Observable<IArticle[]>}
      */
-    public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]> {
+    public getNextBatchOfArticles(args?: IArticleQueryParams): Observable<IArticle[]> {
         let request: Observable<Response>;
         let query: string;
         let queryParams: string = '';
@@ -64,10 +65,29 @@ export class WordpressService extends ContentService {
             if (!isNullOrUndefined(args.searchTerm)) {
                 queryParams += 'search=' + args.searchTerm + '&'
             }
+            if (!isNullOrUndefined(args.date)) {
 
-            if (!isNullOrUndefined(args.month) && !isNullOrUndefined(args.year)) {
-                queryParams += 'after=' + args.year + '-' + args.month + '-01T00:00:00&'
+                let date: Array<string> = args.date.split('-');
+                let yearToday: number = new Date().getFullYear();
+                let year: string;
+                let month: string = '01';
+
+                // Do some validation
+
+                if(date[0].length == 4 && Number(date[0]) <= yearToday && Number(date[0]) >= 2000){
+                     year = date[0];
+                }
+
+                if(!isUndefined(date[1])){
+                    if (date[1].length == 2 && Number(date[1]) > 0 && Number(date[1]) <= 12){
+                        month = date[1];
+                    }
+                }
+
+                queryParams += 'after=' + year + '-' + month + '-01T00:00:00&'
             }
+
+            // Do some validation.
         }
 
         query = this.endpoint + '/posts?';
@@ -88,22 +108,22 @@ export class WordpressService extends ContentService {
      * @param text: string
      * @returns {string}
      */
-    private static htmlToPlainText(text: string): string {
+    protected static htmlToPlainText(text: string): string {
         return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
     }
 
     /**
      * Maps a response object to an article array
      * @param res:Response
-     * @returns {Article[]|{}}
+     * @returns {IArticle[]|{}}
      */
-    private static extractData(res: Response) {
+    protected static extractData(res: Response) {
         let body: any = res.json();
-        let posts: Article[] = <Article[]>[];
+        let posts: IArticle[] = <IArticle[]>[];
 
         for (let i in body) {
 
-            posts.push(<Article>{
+            posts.push(<IArticle>{
                 id: body[i].id,
                 slug: body[i].slug,
                 type: 'text',

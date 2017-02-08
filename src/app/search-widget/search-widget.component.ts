@@ -1,5 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ArchiveService} from "../archive.service";
+import {isUndefined} from "util";
 
 @Component({
 	selector: 'app-search',
@@ -10,35 +11,22 @@ export class SearchComponent implements OnInit, OnDestroy {
 
 	public searchInput: string;
 	public visible: boolean = false;
-	public activated: boolean;
 	private sub;
 
 	constructor(private archiveService: ArchiveService) {
 	}
 
-	public show(){
-		//this.visible = this.searchService.activated;
-	}
-
-	public hide(){
-		//this.visible = false;
-	}
-
-	public toggleVisibility() {
-		if (this.visible) {
-			this.hide();
-		} else {
-			this.show();
-		}
-	}
-
 	public search(){
-		this.archiveService.search(this.searchInput);
+		let s: string;
+
+		s = isUndefined(this.searchInput)? '' : this.searchInput;
+
+		this.archiveService.search(s);
 	}
 
 	ngOnInit() {
 		this.sub = this.archiveService.activated.subscribe(
-			(activated) => this.activated = activated
+			(activated) => this.visible = activated
 		);
 	}
 

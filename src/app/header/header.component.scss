@@ -1,18 +1,87 @@
 @import "./src/utility";
 
+#site-header {
+  top: 0;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+}
+
 .container {
-  position: static;
+  position: relative;
 }
 
 .menu-toggle {
+  position: absolute;
+  margin-left: 0;
+  margin-right: $grid-gutter-width-base/2;
+  right: 0;
 
-  margin-left: $grid-gutter-width-base/4;
-  float: right;
+  text-transform: uppercase;
+  color: white !important;
+  cursor: pointer;
 
-  @include media-breakpoint-up(md) {
+  // fix for vertical center alignment
+  top: 50%;
+  margin-top: -8px; // half of the element's own size
+}
+
+#nav-icon {
+  transform: rotate(0deg);
+  transition: .3s ease-in-out;
+  cursor: pointer;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  span {
+    display: block;
     position: absolute;
-    margin-left: 0;
+    height: 3px;
+    width: 100%;
+    background: white;
+    opacity: 1;
     left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: 6px;
+    }
+
+    &:nth-child(3) {
+      top: 12px;
+    }
+
+  }
+
+  &.open span {
+    &:nth-child(1) {
+      top: 6px;
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+      transform: rotate(135deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+      left: -60px;
+    }
+
+    &:nth-child(3) {
+      top: 6px;
+      -webkit-transform: rotate(-135deg);
+      -moz-transform: rotate(-135deg);
+      -o-transform: rotate(-135deg);
+      transform: rotate(-135deg);
+    }
   }
 
 }
@@ -45,11 +114,10 @@
       flex-direction: row;
 
       a {
-        padding: 0 $grid-gutter-width-base/8;
+        padding: 0;
       }
 
     }
-
 
     .navbar-brand {
       float: none;
@@ -63,12 +131,73 @@
     }
   }
 
-  #main-nav-collapsible {
-    background: black!important;
-    padding: $grid-gutter-width-base/2 0;
+  #main-nav-collapsible > div {
+    background-color: black !important;
+  }
+
+  /* Animating links on hover */
+  .hidden-sm-down .nav-item {
+    position: relative;
+    margin: 0 $grid-gutter-width-base/8;
+  }
+  .hidden-sm-down .nav-item:after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transition: transform 0.2s ease-in-out;
+  }
+  .hidden-sm-down .nav-item:hover:after {
+    width: 100%;
+    transition: all 0.2s ease-in-out;
   }
 }
 
-.nav-item {
-  line-height: 40px;
+.nav-subcontainer {
+  .row {
+
+    padding-top: $grid-gutter-width-base/4;
+    padding-bottom: $grid-gutter-width-base/4;
+
+    > div {
+      padding-top: $grid-gutter-width-base/4;
+      padding-bottom: $grid-gutter-width-base/4;
+    }
+  }
+
+  a {
+    color: white !important;
+    text-transform: uppercase;
+    padding: 0;
+    line-height: 40px;
+  }
+
+  .navbar {
+    padding: 0;
+  }
 }
+
+#main-nav-collapsible {
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.2s ease-in-out;
+  transition: max-height .8s cubic-bezier(0, 1, 0, 1) -.1s;
+  transition-delay: 0s;
+}
+
+#main-nav-collapsible.submenu-open {
+  max-height: 9999px;
+  transition-timing-function: cubic-bezier(0.5, 0, 1, 0);
+  transition-delay: 0s;
+}
+
+h3 {
+  color: white;
+  line-height: 40px;
+  margin-bottom: 0;
+}
+
+

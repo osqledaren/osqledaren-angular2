@@ -16,7 +16,6 @@ export class NewsArchiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.searchService.deactivate();
   }
 
 }

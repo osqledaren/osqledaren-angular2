@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuList} from "../model/menu";
+import {IMenuList} from "../model/interface-menu";
 import {NavigationService} from "../navigation.service";
 
 @Component({
@@ -9,8 +9,8 @@ import {NavigationService} from "../navigation.service";
 })
 export class HeaderComponent implements OnInit {
 
-	public mainMenu: MenuList;
-	public secondaryMenu: MenuList;
+	public mainMenu: IMenuList;
+	public secondaryMenu: IMenuList;
 	public isCollapsed: boolean = true;
 
 	constructor(private navigation: NavigationService) {
@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
 	}
 
 }

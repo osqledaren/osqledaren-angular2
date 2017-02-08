@@ -18,14 +18,18 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
-import {PrintedIssuesComponent} from './printed-issues/printed-issues.component';
+import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
+import { PrintedIssuesGridComponent } from './printed-issues-grid/printed-issues-grid.component';
+import {ArchiveComponent} from "./archive-widget/archive-widget.component";
+import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {ArchiveService} from "./archive.service";
-import { ArchiveComponent } from './archive-widget/archive-widget.component';
-
+// Pipes
+import {PadNumberPipe} from "./pad-number.pipe";
+import { SplitPipe } from './split.pipe';
 
 @NgModule({
     declarations: [
@@ -40,7 +44,11 @@ import { ArchiveComponent } from './archive-widget/archive-widget.component';
         ArticleGridItemComponent,
         AboutComponent,
         PrintedIssuesComponent,
-        ArchiveComponent
+        PrintedIssuesGridComponent,
+        ArchiveComponent,
+        AdvertisementPageComponent,
+        PadNumberPipe,
+        SplitPipe
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -65,12 +73,12 @@ import { ArchiveComponent } from './archive-widget/archive-widget.component';
                 data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive/:year/:month/:searchTerm',
+                path: 'articles/archive/:date/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive-widget'}
             },
             {
-                path: 'articles/archive/:year/:month',
+                path: 'articles/archive/:date',
                 component: NewsArchiveComponent,
                 data: {name: 'news-archive-widget'}
             },
@@ -83,6 +91,11 @@ import { ArchiveComponent } from './archive-widget/archive-widget.component';
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
                 data: {name: 'printed-issues'}
+            },
+            {
+                path: 'annonsera',
+                component: AdvertisementPageComponent,
+                data: {name: 'annonsera'}
             },
             {
                 path: '',

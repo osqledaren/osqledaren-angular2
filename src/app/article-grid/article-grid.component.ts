@@ -5,6 +5,8 @@ import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleQueryParams} from "../model/article-query-params";
+import {isNullOrUndefined} from "util";
+import {PadNumberPipe} from "../pad-number.pipe";
 
 @Component({
     selector: 'app-article-grid',
@@ -20,6 +22,7 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
     public masonryOptions: MasonryOptions;
     public hasMorePosts: boolean = true;
     public isInitialized: boolean = false;
+    public heading;
     private sub: any;
     private initialBatchSize: number = 12;
     private args: ArticleQueryParams;
@@ -65,20 +68,33 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
 
         this.sub = this.route.params.subscribe(params => {
 
-            console.log(params);
+            if (params) {
 
-            if(params){
+                let date = null;
 
                 this.args = <ArticleQueryParams>{};
 
                 if (params.hasOwnProperty('searchTerm')) {
                     this.args.searchTerm = params['searchTerm'];
                 }
-                if (params.hasOwnProperty('month')) {
-                    this.args.month = params['month'];
+                if (params.hasOwnProperty('date')) {
+                    this.args.date = params['date'];
+
+                    let dO = new Date(params['date']);
+                    date = dO.getFullYear();
+                    date += '-' + new PadNumberPipe().transform(dO.getMonth() +1, 2);
+                    date += '-01';
+
                 }
-                if (params.hasOwnProperty('year')) {
-                    this.args.year = params['year'];
+
+                if (!isNullOrUndefined(params['date']) && isNullOrUndefined(params['searchTerm'])) {
+                    this.heading = 'Arkiv från <span>' + date + '</span>';
+                } else if (isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])) {
+                    this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span>';
+                } else if (!isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])){
+                    this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span> från <span>' + date + '</span>';
+                } else {
+                    this.heading = 'Nyheter';
                 }
 
             }
