@@ -1,5 +1,4 @@
-@import "./src/variables";
-@import "./src/mixins";
+@import "./src/utility";
 @import "byline";
 @import "article-share-buttons";
 @import "article-heading-box";
@@ -85,10 +84,10 @@
 :host /deep/ blockquote {
 	display: inline-block;
 	width: 40%;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	float: left;
 	text-align: right;
-	padding: 2px 55px 25px 0px;
+	padding: 2px 55px 25px 55px;
 	font-weight: bold;
 	line-height: 1.1em;
 	font-style: italic;
@@ -103,25 +102,18 @@
 }
 
 /* For mobile phones: */
-@media only screen and (max-width: 600px) {
+@include media-breakpoint-down(sm) {
 	#single-article-container {
+		padding: 0 !important;
+		width: 100%;
+
+		.logo{
+			display:none;
+		}
+
 		.content{
-			font-size: $font-size-h6;
-
-			h3 {
-				font-size: $font-size-h5;
-			}
-
-			.quote {
-				font-size: $font-size-h5;
-				padding: 20px 0;
-				width: 100%;
-				margin: 0;
-
-				i {
-					font-size: $font-size-h3;
-				}
-			}
+			font-size: $font-size-h6 - 0.2rem !important;
+			width: 90%;
 
 			.article-rm-button {
 				padding: 10px 0;
@@ -136,25 +128,46 @@
 			}
 		}
 	}
+
+	:host /deep/ blockquote {
+		font-size: $font-size-h5;
+		padding: 2px 35px 30px 40px;
+		width: 100%;
+		margin: 0;
+		text-align: left;
+
+		i {
+			font-size: $font-size-h2 - 0.5rem !important;
+			color: red !important;
+		}
+	}
+
+	:host /deep/ .article-grid-item-text{
+		h3{
+			font-size: $font-size-h5 !important;
+		}
+		h4{
+			font-size: $font-size-h5 - 0.2rem !important;
+		}
+	}
 }
 
 /* For tablets: */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@include media-breakpoint-only(md) {
 	#single-article-container {
+	    box-sizing: content-box;
+
+		.logo{
+			display:inline-block;
+			font-size: 4em;
+	    	margin-left: -75px;
+		}
+
 		.content{
-			font-size: $font-size-h6 + 0.12rem;
+			font-size: $font-size-h6 !important;
 
 			h3 {
-				font-size: $font-size-h4;
-			}
-
-			.quote {
-				font-size: $font-size-h4;
-				padding: 2px 35px 30px 0px;
-
-				i {
-					font-size: $font-size-h2;
-				}
+				font-size: $font-size-h4 !important;
 			}
 
 			.article-rm-button {
@@ -170,4 +183,16 @@
 			}
 		}
 	}
+
+	:host /deep/ blockquote {
+		font-size: $font-size-h4 - 0.12rem !important;
+		padding: 2px 35px 30px 0px;
+		text-align: left;
+		i {
+			font-size: $font-size-h2 !important;
+			color: green !important;
+		}
+	}
+
+	
 }

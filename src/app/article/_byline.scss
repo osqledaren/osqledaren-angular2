@@ -17,7 +17,7 @@
 }
 
 /* For mobile phones: */
-@media only screen and (max-width: 600px) {
+@include media-breakpoint-down(sm) {
 	.byline_above {
 		img {
 			width: 53px !important;
@@ -34,7 +34,7 @@
 }
 
 /* For tablets: */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@include media-breakpoint-only(md) {
 	.byline_above {
 		img {
 			width: 60px !important;
