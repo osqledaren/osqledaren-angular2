@@ -1,7 +1,13 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {ArchiveService} from "../archive.service";
-import {ArchiveDistribution} from "../model/archive-distribution";
+import {IArchiveDistribution} from "../model/interface-archive-distribution";
 import {isUndefined} from "util";
+
+
+interface YearInput {
+    index: string;
+    year: string
+}
 
 @Component({
     selector: 'app-archive',
@@ -10,10 +16,13 @@ import {isUndefined} from "util";
 })
 export class ArchiveComponent implements OnInit, OnDestroy {
 
-    public yearInput: {index: string, year:string};
+
+
+
+    public yearInput: YearInput;
     public monthInput: string;
     public visible: boolean = false;
-    public distribution: ArchiveDistribution[];
+    public distribution: IArchiveDistribution[];
     public months: number[];
     private sub;
 
@@ -27,6 +36,16 @@ export class ArchiveComponent implements OnInit, OnDestroy {
         let month = Number(this.monthInput);
         this.archiveService.setArchive(index,year,month);
 
+    }
+
+    public setMonths(year: YearInput | string){
+
+        if(typeof(year) === 'string'){
+            this.months = [];
+            return;
+        }
+
+        this.months = this.distribution[year.index].months;
     }
 
     ngOnInit() {

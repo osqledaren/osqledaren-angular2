@@ -1,45 +1,45 @@
-import {Menu, MenuList, MenuItem} from '../model/menu';
+import {IMenu, IMenuList, IMenuItem} from '../model/interface-menu';
 
 /**
  * Assigns constant menus for the application.
  * Contains a Main navigation and Secondary navigation.
- * @type {Menu}
+ * @type {IMenu}
  */
-export const Menus: Menu = <Menu>{
+export const Menus: IMenu = <IMenu>{
 	// Main navigation
-	'main-nav': <MenuList>{
-		'nytt': <MenuItem>{
+	'main-nav': <IMenuList>{
+		'nytt': <IMenuItem>{
 			name: 'Nytt',
 			url: '#'
 		},
-		'play': <MenuItem>{
+		'play': <IMenuItem>{
 			name: 'Play',
 			url: '#'
 		},
-		'podcast': <MenuItem>{
+		'podcast': <IMenuItem>{
 			name: 'Podcast',
 			url: '#'
 		}
 	},
 	// Secondary navigation
-	'secondary-nav': <MenuList>{
-		'annonsering': <MenuItem>{
+	'secondary-nav': <IMenuList>{
+		'annonsering': <IMenuItem>{
 			name: 'Annonsering',
 			url: '#'
 		},
-		'fysiska-nummer': <MenuItem>{
+		'fysiska-nummer': <IMenuItem>{
 			name: 'Fysiska nummer',
 			url: '#'
 		},
-		'legacy': <MenuItem>{
+		'legacy': <IMenuItem>{
 			name: 'Legacy',
 			url: '#'
 		},
-		'redaktionen': <MenuItem>{
+		'redaktionen': <IMenuItem>{
 			name: 'Redaktionen',
 			url: '#'
 		},
-		'kontakt': <MenuItem>{
+		'kontakt': <IMenuItem>{
 			name: 'Kontakt',
 			url: '#'
 		}

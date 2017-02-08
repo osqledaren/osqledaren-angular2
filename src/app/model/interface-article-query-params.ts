@@ -1,4 +1,4 @@
-export interface ArticleQueryParams {
+export interface IArticleQueryParams {
     searchTerm?: string,
     date?: string,
 }

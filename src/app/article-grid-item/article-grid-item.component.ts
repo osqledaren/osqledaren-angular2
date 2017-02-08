@@ -1,5 +1,5 @@
 import {ViewChild, ElementRef, Component, Input, AfterViewInit} from '@angular/core';
-import {Article} from "../model/article";
+import {IArticle} from "../model/interface-article";
 
 declare let $clamp: any;
 
@@ -9,7 +9,7 @@ declare let $clamp: any;
 })
 
 export class ArticleGridItemComponent implements AfterViewInit {
-  @Input() article: Article;
+  @Input() article: IArticle;
 
   constructor(private elementView: ElementRef) {}
 

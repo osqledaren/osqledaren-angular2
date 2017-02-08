@@ -1,11 +1,11 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http} from "@angular/http";
-import {Article} from "./model/article";
+import {IArticle} from "./model/interface-article";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import {ContentService} from "./model/content-service";
-import {ArticleQueryParams} from "./model/article-query-params";
+import {ContentService} from "./model/abstract-content-service";
+import {IArticleQueryParams} from "./model/interface-article-query-params";
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
 import {isUndefined} from "util";
@@ -24,7 +24,7 @@ export class WordpressService extends ContentService {
     /**
      * Fetches posts from wordpress by slug/id
      * @param param: any
-     * @returns {Observable<Article[]>}
+     * @returns {Observable<IArticle[]>}
      */
     public getArticle(param: any) {
         switch (typeof param) {
@@ -41,9 +41,9 @@ export class WordpressService extends ContentService {
 
     /**
      * Fetches posts from wordpress
-     * @returns {Observable<Article[]>}
+     * @returns {Observable<IArticle[]>}
      */
-    public getArticles(args?: ArticleQueryParams): Observable<Article[]> {
+    public getArticles(args?: IArticleQueryParams): Observable<IArticle[]> {
         this.offset = 0;
         return this.getNextBatchOfArticles(args);
 
@@ -51,10 +51,10 @@ export class WordpressService extends ContentService {
 
     /**
      * Retrieves next offset of posts from wordpress
-     * @param args?: ArticleQueryParams
-     * @returns {Observable<Article[]>}
+     * @param args?: IArticleQueryParams
+     * @returns {Observable<IArticle[]>}
      */
-    public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]> {
+    public getNextBatchOfArticles(args?: IArticleQueryParams): Observable<IArticle[]> {
         let request: Observable<Response>;
         let query: string;
         let queryParams: string = '';
@@ -115,15 +115,15 @@ export class WordpressService extends ContentService {
     /**
      * Maps a response object to an article array
      * @param res:Response
-     * @returns {Article[]|{}}
+     * @returns {IArticle[]|{}}
      */
     protected static extractData(res: Response) {
         let body: any = res.json();
-        let posts: Article[] = <Article[]>[];
+        let posts: IArticle[] = <IArticle[]>[];
 
         for (let i in body) {
 
-            posts.push(<Article>{
+            posts.push(<IArticle>{
                 id: body[i].id,
                 slug: body[i].slug,
                 type: 'text',
