@@ -1,4 +1,4 @@
-export interface IArchiveDistribution {
+export interface ArchiveDistribution {
     year: number,
     months: [number]
 }

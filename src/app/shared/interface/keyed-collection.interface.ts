@@ -1,4 +1,4 @@
-export interface IKeyedCollection<T> {
+export interface KeyedCollection<T> {
     add(key: string, value: T);
     containsKey(key: string): boolean;
     count(): number;

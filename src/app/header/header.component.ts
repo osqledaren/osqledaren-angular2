@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IMenuList} from "../model/interface-menu";
+import {IMenuList} from "../shared/interface/menu.interface";
 import {NavigationService} from "../navigation.service";
 
 @Component({

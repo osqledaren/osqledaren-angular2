@@ -1,9 +1,7 @@
 import {Response, Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/throw';
-import {APP_CONFIG} from "../app.config";
-import {Inject, Injectable} from "@angular/core";
-import {IArticle} from "./interface-article";
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export abstract class ContentService{

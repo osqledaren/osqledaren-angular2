@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {ArchiveService} from "../archive.service";
-import {IArchiveDistribution} from "../model/interface-archive-distribution";
+import {ArchiveDistribution} from "../shared/interface/archive-distribution.interface";
 import {isUndefined} from "util";
 
 
@@ -22,7 +22,7 @@ export class ArchiveComponent implements OnInit, OnDestroy {
     public yearInput: YearInput;
     public monthInput: string;
     public visible: boolean = false;
-    public distribution: IArchiveDistribution[];
+    public distribution: ArchiveDistribution[];
     public months: number[];
     private sub;
 

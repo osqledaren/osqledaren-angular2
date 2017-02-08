@@ -1,25 +1,25 @@
 import {Injectable, Inject} from "@angular/core";
-import {Archive} from "./model/enums";
+import {Archive} from "./shared/enums";
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import {IArchiveDistribution} from "./model/interface-archive-distribution";
+import {ArchiveDistribution} from "./shared/interface/archive-distribution.interface";
 import {isNullOrUndefined} from "util";
 import {PadNumberPipe} from "./pad-number.pipe";
 import {Response, Http} from "@angular/http";
-import {ContentService} from "./model/abstract-content-service";
+import {ContentService} from "./shared/abstract/abstract.content.service";
 import {APP_CONFIG} from "./app.config";
 
 @Injectable()
 export class ArchiveService extends ContentService {
 
     private archive: Archive = null;
-    private archiveDistributionElements = <IArchiveDistribution[]>[];
+    private archiveDistributionElements = <ArchiveDistribution[]>[];
     private date: string = '';
     private searchTerm: string = '';
     public activated: Subject<boolean> = new Subject();
-    public archiveDistribution: Subject<IArchiveDistribution[]> = new Subject();
+    public archiveDistribution: Subject<ArchiveDistribution[]> = new Subject();
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
@@ -150,15 +150,15 @@ export class ArchiveService extends ContentService {
     /**
      * Maps a response object to an ArchiveDistribution array
      * @param res:Response
-     * @returns {IArchiveDistribution[]|{}}
+     * @returns {ArchiveDistribution[]|{}}
      */
     protected static extractData(res: Response) {
         let json: any = res.json();
-        let distribution: IArchiveDistribution[] = <IArchiveDistribution[]>[];
+        let distribution: ArchiveDistribution[] = <ArchiveDistribution[]>[];
 
         for (let i in json) {
 
-            distribution.push(<IArchiveDistribution>{
+            distribution.push(<ArchiveDistribution>{
                 year: json[i].year,
                 months: json[i].months
             });
