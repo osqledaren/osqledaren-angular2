@@ -1,6 +1,6 @@
-import {IKeyedCollection} from "./interface-keyed-collection";
+import {KeyedCollection} from "../interface/keyed-collection.interface";
 
-export class Dictionary<T> implements IKeyedCollection<T> {
+export class Dictionary<T> implements KeyedCollection<T> {
     private items: {[index: string]: T} = {};
 
     private size: number = 0;

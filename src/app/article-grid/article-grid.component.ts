@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, OnDestroy} from "@angular/core";
-import {Article} from "../model/article";
+import {Article} from "../shared/interface/article.interface";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
 import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
 import {ActivatedRoute} from "@angular/router";
-import {ArticleQueryParams} from "../model/article-query-params";
+import {ArticleQueryParams} from "../shared/interface/article-query-params.interface";
 import {isNullOrUndefined} from "util";
 import {PadNumberPipe} from "../pad-number.pipe";
 

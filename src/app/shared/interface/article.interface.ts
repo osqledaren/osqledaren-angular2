@@ -1,4 +1,4 @@
-export interface IArticle {
+export interface Article {
     id: number,
     slug: string,
     uri: string,

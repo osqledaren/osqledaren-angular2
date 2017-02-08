@@ -1,9 +1,9 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {NewsArticleService} from "../news-article.service";
 import {ActivatedRoute} from "@angular/router";
-import {IArticle} from "../model/interface-article";
+import {Article} from "../shared/interface/article.interface";
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../model/enums";
+import {Archive} from "../shared/enums";
 
 @Component({
     selector: 'app-article',
@@ -13,7 +13,7 @@ import {Archive} from "../model/enums";
 export class ArticleComponent implements OnInit, OnDestroy {
 
     private sub: any;
-    public article: IArticle;
+    public article: Article;
 
     constructor(private NS: NewsArticleService, private route: ActivatedRoute, private searchService: ArchiveService) {
     }
