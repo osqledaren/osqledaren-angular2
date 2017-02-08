@@ -1,8 +1,8 @@
 import {Injectable, Inject} from '@angular/core';
-import {IArticle} from "./model/interface-article";
+import {Article} from "./shared/interface/article.interface";
 import {WordpressService} from "./wordpress.service";
 import {Observable} from "rxjs/Observable";
-import {IArticleQueryParams} from "./model/interface-article-query-params";
+import {ArticleQueryParams} from "./shared/interface/article-query-params.interface";
 
 @Injectable()
 export class NewsArticleService {
@@ -11,17 +11,17 @@ export class NewsArticleService {
 
     constructor(private WP: WordpressService) {}
 
-	public getArticles(args?: IArticleQueryParams){
+	public getArticles(args?: ArticleQueryParams){
         //TODO: If using several services e.g not only wordpress, join observables into one.
         return this.WP.getArticles(args);
 	}
 
-	public getNextBatchOfArticles(args?: IArticleQueryParams): Observable<IArticle[]>{
+	public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]>{
 
         return this.WP.getNextBatchOfArticles(args);
     }
 
-	public getArticle(param: any): Observable<IArticle[]> {
+	public getArticle(param: any): Observable<Article[]> {
 
         let WPObservable = this.WP.getArticle(param);
 

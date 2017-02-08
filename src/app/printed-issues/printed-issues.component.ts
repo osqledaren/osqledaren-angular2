@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../model/enums";
+import {Archive} from "../shared/enums";
 
 @Component({
   selector: 'app-printed-issues',
