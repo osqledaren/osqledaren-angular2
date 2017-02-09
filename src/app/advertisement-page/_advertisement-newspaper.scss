@@ -88,3 +88,50 @@
 	}
 
 }
+
+/* For mobile phones: */
+@include media-breakpoint-down(sm) {
+	.newspaper-ad {
+		i {
+			font-size: $font-size-base !important;
+		}
+
+		>div {
+			b {
+				font-size: $font-size-base !important;
+			}
+
+			>div[class*="figure"]{
+				width: 100%;
+			}
+		}
+	}
+}
+
+/* For tablets: */
+@include media-breakpoint-only(md) {
+	.newspaper-ad {
+		i {
+			font-size: $font-size-base !important;
+		}
+
+		>div {
+			b {
+				font-size: $font-size-base !important;
+			}
+
+			>div[class*="figure"]{
+				width: 50%;
+
+				.description {
+					margin-left: 0px;
+					width: 100%;
+				}
+			}
+
+			.figure6 {
+				div>i {margin: 0 25px 30px 35px !important;}
+			}
+		}
+	}
+}

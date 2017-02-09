@@ -1,9 +1,4 @@
-$font-size-h5: 1.25rem;
-$font-size-h6: 1.25rem;
-$link-color: #ebb07b;
-$ol-orange: #f05022 !default;
-$font-size-h2: 3rem;
-$content-bgColor: #e5e5e5;
+@import "./src/utility";
 
 @import "advertisement-newspaper";
 @import "advertisement-web";
@@ -51,4 +46,63 @@ $content-bgColor: #e5e5e5;
 		}
 	}
 
+}
+
+/* For mobile phones: */
+@include media-breakpoint-down(sm) {
+	#container-advertisement {
+		font-size: $font-size-h4;
+
+		h3{
+			font-size: $font-size-h5;
+		}
+
+		.preamble {
+			font-weight: bold;
+			font-size: $font-size-base;
+		}
+
+		.content {
+			padding: 10px 20px;
+			>h1{
+				font-size: $font-size-h3;
+			}
+		}
+
+		p{
+			font-size: $font-size-h3;
+			i{
+				font-size: $font-size-h3;
+			}
+		}
+	}
+}
+
+/* For tablets: */
+@include media-breakpoint-only(md) {
+	#container-advertisement {
+		font-size: $font-size-h4;
+
+		h3{
+			font-size: $font-size-h5;
+		}
+
+		.preamble {
+			font-size: $font-size-base;
+		}
+
+		.content {
+
+			>h1{
+				font-size: $font-size-h3;
+			}
+		}
+
+		p{
+			font-size: $font-size-h3;
+			i{
+				font-size: $font-size-h3;
+			}
+		}
+	}
 }

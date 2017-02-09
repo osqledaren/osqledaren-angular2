@@ -1,3 +1,5 @@
+@import "./src/utility";
+
 .web-ad {
 	overflow: hidden;
 	line-height: 1.1;
@@ -5,7 +7,7 @@
 	margin-top: 15px;
 
 	i {
-		font-size: 1rem !important;
+		font-size: $font-size-h6 !important;
 	}
 
 	>i {
@@ -79,6 +81,72 @@
     		position: relative;
     		font-style: regular !important;
     		color: $link-color;
+		}
+	}
+}
+
+/* For mobile phones: */
+@include media-breakpoint-down(sm) {
+	.web-ad {
+		i {
+			font-size: $font-size-base !important;
+		}
+
+		>div {
+			width: 100%;
+			padding: 15px 0 10px 0px;
+
+			.description {
+				b {
+					font-size: $font-size-base !important;
+				}
+
+				div {
+					margin-bottom: 35px;
+				}
+			}
+
+			.note {
+				font-size: $font-size-base !important;
+				margin-left: 0px; 
+			}
+
+			.info{
+				b, p{font-size: $font-size-base !important; margin-left: 10px;}
+			}
+		}
+	}
+}
+
+/* For tablets: */
+@include media-breakpoint-only(md) {
+	.web-ad {
+		i {
+			font-size: $font-size-base !important;
+		}
+
+		>div {
+			width: 100%;
+			padding: 15px 0 10px 0px;
+
+			.description {
+				b {
+					font-size: $font-size-base !important;
+				}
+
+				div {
+					margin-bottom: 35px;
+				}
+			}
+
+			.note {
+				font-size: $font-size-base !important;
+				margin-left: 0px; 
+			}
+
+			.info{
+				b, p{font-size: $font-size-base !important; margin-left: 10px;}
+			}
 		}
 	}
 }
