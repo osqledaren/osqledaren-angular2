@@ -1,4 +1,4 @@
-import {IMenu, IMenuList, IMenuItem} from '../shared/interface/menu.interface';
+import {IMenu, IMenuList, IMenuItem} from '../interface/menu.interface';
 
 /**
  * Assigns constant menus for the application.

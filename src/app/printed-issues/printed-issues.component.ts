@@ -66,7 +66,6 @@ export class PrintedIssuesComponent implements OnInit {
 
   constructor(private archiveService: ArchiveService) {}
 
-
   ngOnInit() {
   	this.archiveService.activate(Archive.article);
   }

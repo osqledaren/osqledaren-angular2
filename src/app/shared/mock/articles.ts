@@ -1,4 +1,4 @@
-import {Article} from '../shared/interface/article.interface';
+import {Article} from '../interface/article.interface';
 
 export const Articles: Article[] = <Article[]>[
 	{

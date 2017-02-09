@@ -12,9 +12,8 @@ import {LoaderService} from "../loader.service";
     templateUrl: './article.component.html',
     styleUrls: ['./article.component.scss']
 })
-export class ArticleComponent extends LoadableComponent implements OnInit, OnDestroy {
+export class ArticleComponent extends LoadableComponent {
 
-    private sub: any;
     public article: Article;
 
     constructor(private NS: NewsArticleService,
@@ -59,15 +58,9 @@ export class ArticleComponent extends LoadableComponent implements OnInit, OnDes
         }
     }
 
-    ngOnInit() {
+    init() {
         this.searchService.activate(Archive.article);
         this.initializeData();
-
-    }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-        this.loaded();
     }
 
 }

@@ -1,24 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { LoaderService } from "../loader.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent implements OnInit, OnDestroy {
 
   public loaded: boolean = false;
   public hidden: boolean = false;
   public initialized: boolean = false;
   private timer;
+  private sub: Subscription;
 
   constructor(private loaderService: LoaderService) {}
 
   ngOnInit() {
 
-    this.loaderService.loaded.subscribe(
+    this.sub = this.loaderService.loaded.subscribe(
         (loaded) => {
           this.loaded = loaded;
           this.hidden = false;
@@ -43,5 +44,9 @@ export class LoaderComponent implements OnInit {
 
         }
     );
+  }
+
+  ngOnDestroy(){
+      this.sub.unsubscribe();
   }
 }

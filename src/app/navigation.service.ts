@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Menus} from './mock/menus';
+import {Menus} from './shared/mock/menus';
 import {IMenu, IMenuList} from "./shared/interface/menu.interface";
 
 @Injectable()

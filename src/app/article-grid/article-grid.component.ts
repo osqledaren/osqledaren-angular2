@@ -16,7 +16,7 @@ import {LoaderService} from "../loader.service";
     styleUrls: ['./article-grid.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ArticleGridComponent extends LoadableComponent implements OnInit, OnDestroy {
+export class ArticleGridComponent extends LoadableComponent {
 
     @ViewChildren(ArticleGridItemComponent) articleGridItems: QueryList<ArticleGridItemComponent>;
 
@@ -25,7 +25,6 @@ export class ArticleGridComponent extends LoadableComponent implements OnInit, O
     public hasMorePosts: boolean = true;
     public isInitialized: boolean = false;
     public heading;
-    private sub: any;
     private initialBatchSize: number = 12;
     private args: ArticleQueryParams;
 
@@ -154,12 +153,7 @@ export class ArticleGridComponent extends LoadableComponent implements OnInit, O
             error => errorMessage = <any> error);
     }
 
-    ngOnInit() {
+    init() {
         this.initializeData();
-    }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-        this.loaded();
     }
 }

@@ -16,14 +16,13 @@ interface YearInput {
     templateUrl: 'archive-widget.component.html',
     styleUrls: ['archive-widget.component.scss']
 })
-export class ArchiveComponent extends LoadableComponent implements OnInit, OnDestroy{
+export class ArchiveComponent extends LoadableComponent{
 
     public yearInput: YearInput;
     public monthInput: string;
     public visible: boolean = false;
     public distribution: ArchiveDistribution[];
     public months: number[];
-    private sub;
 
     constructor(private archiveService: ArchiveService,
                 loaderService: LoaderService) {
@@ -49,7 +48,7 @@ export class ArchiveComponent extends LoadableComponent implements OnInit, OnDes
         this.months = this.distribution[year.index].months;
     }
 
-    ngOnInit() {
+    init() {
 
         this.sub = this.archiveService.activated.subscribe(
             (activated) => {
@@ -64,11 +63,6 @@ export class ArchiveComponent extends LoadableComponent implements OnInit, OnDes
                 this.months = archiveDistribution[0].months; // Set collection of months of current year.
             }
         );
-    }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-        this.loaded();
     }
 
 }
