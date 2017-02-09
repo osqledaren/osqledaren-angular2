@@ -1,4 +1,4 @@
-<div class="loader-overlay">
+<div class="loader-overlay" [ngClass]="{'loaded': loaded, 'initialized': initialized, 'hidden': hidden}">
   <div class="bounce1"></div>
   <div class="bounce2"></div>
   <div class="bounce3"></div>

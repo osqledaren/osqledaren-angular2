@@ -4,18 +4,24 @@ import {ActivatedRoute} from "@angular/router";
 import {Article} from "../shared/interface/article.interface";
 import {ArchiveService} from "../archive.service";
 import {Archive} from "../shared/enums";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
 
 @Component({
     selector: 'app-article',
     templateUrl: './article.component.html',
     styleUrls: ['./article.component.scss']
 })
-export class ArticleComponent implements OnInit, OnDestroy {
+export class ArticleComponent extends LoadableComponent implements OnInit, OnDestroy {
 
     private sub: any;
     public article: Article;
 
-    constructor(private NS: NewsArticleService, private route: ActivatedRoute, private searchService: ArchiveService) {
+    constructor(private NS: NewsArticleService,
+                private route: ActivatedRoute,
+                private searchService: ArchiveService,
+                loaderService: LoaderService) {
+        super(loaderService);
     }
 
     private initializeData() {
@@ -27,8 +33,11 @@ export class ArticleComponent implements OnInit, OnDestroy {
                 posts => {
                     this.article = posts[0];
                     setTimeout(() => this.checkQuoteElement());
+                    this.loaded();
                 },
-                error => errorMessage = <any> error);
+                error => {
+                    errorMessage = <any> error
+                });
         });
 
     }
@@ -58,6 +67,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.sub.unsubscribe();
+        this.loaded();
     }
 
 }

@@ -20,6 +20,7 @@ export class Dictionary<T> implements KeyedCollection<T> {
 
     public remove(key: string): T {
         let val = this.items[key];
+
         delete this.items[key];
         this.size--;
         return val;

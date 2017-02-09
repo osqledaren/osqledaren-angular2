@@ -1,0 +1,28 @@
+@import './src/utility';
+
+.loader-overlay {
+  z-index: 1001;
+  transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
+
+  > div {
+    transition: background 0.3s ease-in-out;
+  }
+
+  &.initialized {
+    z-index: 999;
+    background: $body-bg;
+
+    > div {
+      background: black;
+    }
+  }
+
+  &.hidden {
+    z-index: -1;
+  }
+
+}
+
+.loaded {
+  opacity: 0;
+}

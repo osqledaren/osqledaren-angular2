@@ -7,6 +7,8 @@ import {ActivatedRoute} from "@angular/router";
 import {ArticleQueryParams} from "../shared/interface/article-query-params.interface";
 import {isNullOrUndefined} from "util";
 import {PadNumberPipe} from "../pad-number.pipe";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
 
 @Component({
     selector: 'app-article-grid',
@@ -14,7 +16,7 @@ import {PadNumberPipe} from "../pad-number.pipe";
     styleUrls: ['./article-grid.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ArticleGridComponent implements OnInit, OnDestroy {
+export class ArticleGridComponent extends LoadableComponent implements OnInit, OnDestroy {
 
     @ViewChildren(ArticleGridItemComponent) articleGridItems: QueryList<ArticleGridItemComponent>;
 
@@ -27,7 +29,10 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
     private initialBatchSize: number = 12;
     private args: ArticleQueryParams;
 
-    constructor(private NS: NewsArticleService, private route: ActivatedRoute) {
+    constructor(private NS: NewsArticleService,
+                private route: ActivatedRoute,
+                loaderService: LoaderService) {
+        super(loaderService);
         this.articles = [];
     }
 
@@ -105,6 +110,7 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
                     this.articles = posts;
                     this.isInitialized = true;
                     this.hasMorePosts = true;
+                    this.loaded();
 
                     if (posts.length > 0) {
                         if (posts.length < this.initialBatchSize) {
@@ -154,5 +160,6 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.sub.unsubscribe();
+        this.loaded();
     }
 }

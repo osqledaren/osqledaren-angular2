@@ -2,6 +2,8 @@ import {Component, OnInit, OnDestroy} from "@angular/core";
 import {ArchiveService} from "../archive.service";
 import {ArchiveDistribution} from "../shared/interface/archive-distribution.interface";
 import {isUndefined} from "util";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
 
 
 interface YearInput {
@@ -14,10 +16,7 @@ interface YearInput {
     templateUrl: 'archive-widget.component.html',
     styleUrls: ['archive-widget.component.scss']
 })
-export class ArchiveComponent implements OnInit, OnDestroy {
-
-
-
+export class ArchiveComponent extends LoadableComponent implements OnInit, OnDestroy{
 
     public yearInput: YearInput;
     public monthInput: string;
@@ -26,7 +25,9 @@ export class ArchiveComponent implements OnInit, OnDestroy {
     public months: number[];
     private sub;
 
-    constructor(private archiveService: ArchiveService) {
+    constructor(private archiveService: ArchiveService,
+                loaderService: LoaderService) {
+        super(loaderService);
     }
 
     public setArchive() {
@@ -49,9 +50,11 @@ export class ArchiveComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+
         this.sub = this.archiveService.activated.subscribe(
             (activated) => {
                 this.visible = activated;
+                this.loaded();
             }
         );
 
@@ -65,6 +68,7 @@ export class ArchiveComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.sub.unsubscribe();
+        this.loaded();
     }
 
 }

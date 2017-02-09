@@ -19,18 +19,19 @@ import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
 import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
-import { PrintedIssuesGridComponent } from './printed-issues-grid/printed-issues-grid.component';
+import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-grid.component";
 import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
+import {LoaderComponent} from "./loader/loader.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
+import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
-import { SplitPipe } from './split.pipe';
-import { LoaderComponent } from './loader/loader.component';
+import {SplitPipe} from "./split.pipe";
 
 @NgModule({
     declarations: [
@@ -112,9 +113,10 @@ import { LoaderComponent } from './loader/loader.component';
         ])
     ],
     providers: [
+        ArchiveService,
+        LoaderService,
         NavigationService,
         NewsArticleService,
-        ArchiveService,
         WordpressService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
