@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {ArchiveService} from "../archive.service";
 import {Archive} from "../shared/enums";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
 
 @Component({
   selector: 'app-advertisement-page',
   templateUrl: './advertisement-page.component.html',
   styleUrls: ['./advertisement-page.component.scss']
 })
-export class AdvertisementPageComponent implements OnInit {
+export class AdvertisementPageComponent extends LoadableComponent {
   covers: Array<string>;
   osqledaren_email: string;
   osqledaren_mobile: string;
@@ -15,7 +17,10 @@ export class AdvertisementPageComponent implements OnInit {
   erik_tingstrom_email: string;
   erik_tingstrom_mobile: string;
 
-  constructor(private archiveService: ArchiveService) {
+  constructor(private archiveService: ArchiveService, loaderService: LoaderService) {
+
+  	super(loaderService);
+
   	this.covers = ["http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg",
   			"http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141501.jpg",
 	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141500.jpg",
@@ -40,7 +45,8 @@ export class AdvertisementPageComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  init() {
+  	this.loaded();
   	this.archiveService.activate(Archive.article);
   }
 
