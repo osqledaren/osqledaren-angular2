@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Dictionary} from "./shared/class/dictionary.class";
 import {Subject, Observable} from "rxjs/Rx";
-import {ngAppResolve} from "angular-cli/models";
 
 @Injectable()
 export class LoaderService {
 
   private collection: Dictionary<boolean>;
   private isLoaded: boolean = false;
+  private timer;
   public loaded: Subject<boolean> = new Subject;
 
   constructor() {
@@ -16,9 +16,8 @@ export class LoaderService {
     // Initial refresh with one second delay. Loader is always active on initialization.
     // Deactivate the loader if no component is using the loader during initialization.
 
-
-    let timer = Observable.timer(1000);
-    timer.subscribe(t => {
+    this.timer = Observable.timer(1000);
+    this.timer.subscribe(t => {
       this.refresh();
     });
   }
@@ -37,6 +36,7 @@ export class LoaderService {
    * @param item
    */
   public remove(item: string){
+    this.collection.remove('preload'); // Remove preload handle from queue.
     this.collection.remove(item);
     this.refresh();
   }
@@ -53,7 +53,6 @@ export class LoaderService {
    * Flags loader as true if collection is empty.
    */
   private refresh(){
-
     if(this.collection.values().length == 0){
       this.isLoaded = true;
       this.loaded.next(this.isLoaded);

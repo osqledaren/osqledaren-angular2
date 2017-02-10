@@ -4,15 +4,11 @@
   z-index: 1001;
   transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
 
-  > div {
-    transition: background 0.3s ease-in-out;
-  }
-
   &.initialized {
     z-index: 999;
     background: $body-bg;
 
-    > div {
+    .bounce {
       background: black;
     }
   }

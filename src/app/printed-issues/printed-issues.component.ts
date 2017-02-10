@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {ArchiveService} from "../archive.service";
 import {Archive} from "../shared/enums";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
 
 @Component({
   selector: 'app-printed-issues',
   templateUrl: './printed-issues.component.html',
   styleUrls: ['./printed-issues.component.scss']
 })
-export class PrintedIssuesComponent implements OnInit {
+export class PrintedIssuesComponent extends LoadableComponent {
   itemImages1617: Array<string>;
   itemImages1516: Array<string>;
 
@@ -64,10 +66,13 @@ export class PrintedIssuesComponent implements OnInit {
     }
   ];
 
-  constructor(private archiveService: ArchiveService) {}
+  constructor(private archiveService: ArchiveService, loaderService: LoaderService) {
+    super(loaderService);
+  }
 
   ngOnInit() {
   	this.archiveService.activate(Archive.article);
+  	this.loaded();
   }
 
 }

@@ -32,6 +32,7 @@ import {ArchiveService} from "./archive.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
+import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
 
 @NgModule({
     declarations: [
@@ -63,52 +64,62 @@ import {SplitPipe} from "./split.pipe";
             {
                 path: 'article/:slug',
                 component: ArticleComponent,
-                data: {name: 'article'}
+                data: {name: 'article'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'articles',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'articles'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'articles/search/:searchTerm',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'search'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'articles/archive/:date/:searchTerm',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'archive'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'articles/archive/:date',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'archive'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'om-oss',
                 component: AboutComponent,
-                data: {name: 'about'}
+                data: {name: 'about'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
-                data: {name: 'printed-issues'}
+                data: {name: 'printed-issues'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'annonsera',
                 component: AdvertisementPageComponent,
-                data: {name: 'annonsera'}
+                data: {name: 'advertise'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: '',
                 component: NewsArchiveComponent,
-                data: {name: 'home'}
+                data: {name: 'home'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: '**',
                 component: PageNotFoundComponent,
-                data: {name: '404'}
+                data: {name: '404'},
+                canDeactivate: [LoadableDeactivateGuard]
             }
         ])
     ],
@@ -118,6 +129,7 @@ import {SplitPipe} from "./split.pipe";
         NavigationService,
         NewsArticleService,
         WordpressService,
+        LoadableDeactivateGuard,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
     bootstrap: [AppComponent]

@@ -1,52 +1,53 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import { LoaderService } from "../loader.service";
+import {Component, OnInit, OnDestroy} from "@angular/core";
+import {LoaderService} from "../loader.service";
 import {Observable, Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-loader',
-  templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.scss']
+    selector: 'app-loader',
+    templateUrl: './loader.component.html',
+    styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit, OnDestroy {
 
-  public loaded: boolean = false;
-  public hidden: boolean = false;
-  public initialized: boolean = false;
-  private timer;
-  private sub: Subscription;
+    public loaded: boolean = false;
+    public hidden: boolean = false;
+    public initialized: boolean = false;
+    private timer;
+    private sub: Subscription;
 
-  constructor(private loaderService: LoaderService) {}
+    constructor(private loaderService: LoaderService) {
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.sub = this.loaderService.loaded.subscribe(
-        (loaded) => {
-          this.loaded = loaded;
-          this.hidden = false;
+        this.sub = this.loaderService.loaded.subscribe(
+            (loaded) => {
+                this.loaded = loaded;
+                this.hidden = false;
 
-          this.timer = Observable.timer(300);
+                this.timer = Observable.timer(300);
 
-          // Delay removal of initialization state a short while.
-          if (!this.initialized) {
+                this.timer.subscribe(() => {
 
-            this.timer.subscribe(t => {
-              this.initialized = true;
-              this.hidden = loaded;
-            });
+                    this.hidden = loaded;
 
-          } else {
+                    if (!this.initialized) {
 
-            this.timer.subscribe(t => {
-              this.hidden = loaded;
-            });
+                        // Delay removal of initialization state a short while.
+                        Observable.timer(1000).subscribe(
+                            () => {
+                                this.initialized = true;
+                            }
+                        );
 
-          }
+                    }
 
-        }
-    );
-  }
+                });
+            }
+        );
+    }
 
-  ngOnDestroy(){
-      this.sub.unsubscribe();
-  }
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
 }
