@@ -1,56 +1,49 @@
-<div class="container" id="single-article-container">
-
-    <div class="row">
-        <div class="col-xs-12">
-            <article *ngIf="article">
-                <div class="article-image">
-                    <img src="http://osqledaren.se/wp-content/uploads/2016/09/EntreFUgle-1140x570.jpg" alt="Emma Klint"/>
-                </div>
-
-                <div class="content">
-                    <!-- Article heading box -->
-                    <div id="article-heading-box">
-                        <h1 [innerText]="article?.headline"></h1>
-                        <ul class="social-medias" *ngIf="false">
-                            <li>
-                                <a href="#" data-name="Tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" data-name="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" data-name="Twitter2"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" data-name="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <span class="date">
-                        <time [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
-                    </span>
-
-                    <!-- Byline above-->
-                    <app-byline *ngIf="false"></app-byline>
-
-                    <br/>
-                    <div class="article-grid-item-text" [innerHTML]="article?.body_html"></div>
-
-                    <div class="article-rm-button" *ngIf="false">Läs mer i Osqledaren #2 2015 <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
-
-                    <hr/>
-
-                    <!-- Byline below-->
-                    <app-byline *ngIf="false"></app-byline>
-
-                    <div class="share-buttons" *ngIf="false">
-                        <div class="button-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> DELA/KOMMENTERA</div>
-                        <div class="button-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                        <div class="button-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
-                    </div>
-                </div>
-            </article>
+<div class="container" id="single-article">
+    <article [id]="article?.headline">
+        <div class="article-image">
+            <img src="http://osqledaren.se/wp-content/uploads/2016/09/EntreFUgle-1140x570.jpg" alt="Emma Klint"/>
         </div>
-    </div>
+
+        <div class="content">
+            <!-- Article heading box -->
+            <div id="article-heading-box">
+                <h1 [innerText]="article?.headline"></h1>
+                <ul class="social-medias" *ngIf="false">
+                    <li>
+                        <a href="#" data-name="Tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" data-name="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" data-name="Twitter2"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" data-name="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+                <span class="date">
+                    <time [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
+                </span>
+            </div>
+
+            <!-- Byline above-->
+            <app-byline *ngIf="false"></app-byline>
+
+            <br/>
+            <div class="article-grid-item-text" [innerHTML]="article?.body_html"></div>
+
+            <div class="article-rm-button" *ngIf="false">Läs mer i Osqledaren #2 2015 <i class="fa fa-arrow-right"
+                                                                                         aria-hidden="true"></i></div>
+
+            <!-- Byline below-->
+            <app-byline *ngIf="false"></app-byline>
+
+            <div class="share-buttons" *ngIf="false">
+                <div class="button-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> DELA/KOMMENTERA</div>
+                <div class="button-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                <div class="button-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
+            </div>
+        </div>
+    </article>
 </div>

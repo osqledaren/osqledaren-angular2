@@ -4,13 +4,21 @@
 @import "article-heading-box";
 
 //Style the article main container
-#single-article-container {
-	margin: auto;
-	font-family: $font-family-sans-serif;
-	font-size: $font-size-base;
 
-	.row {
-		margin: 0 !important;
+:host /deep/ {
+	margin: auto;
+	font-size: $font-size-lg;
+	line-height: $line-height-lg;
+	max-width: $container-narrow;
+
+	// Make sure no heading is clipped or offset by block-quote
+	h1, h2, h3, h4, h5, h6 {
+		clear: both;
+	}
+
+	ol, ul {
+		@include clearfix();
+		overflow: hidden;
 	}
 
 	//Set the size of and display the article image
@@ -19,26 +27,17 @@
 
 		img {
 			width: 100%;
-			max-height: 420px;
 			position: relative;
-    		z-index: -1;
 		}
 	}
 
 	//Style the article content
 	.content{
 		margin: auto;
-		width: 80%;
-		font-size: $font-size-h5;
-
-		h3 {
-			font-size: $font-size-h3;
-		}
 
 		.date {
 			display: block;
 			padding: 10px 0px;
-			font-size: 0.85em;
 		}
 
 		.article-rm-button {
@@ -58,7 +57,6 @@
 		}
 
 		hr {
-			width: 80%;
 			margin: 30px auto;
 			//border-top: 1px solid black;
 		}
@@ -66,111 +64,33 @@
 	}
 }
 
-:host /deep/ .article-grid-item-text{
-	display: inline-table;
-}
-
 //Style the quote box and position it
 :host /deep/ blockquote {
-	display: inline-block;
+	position: relative;
 	width: 40%;
-	font-size: 1.2em;
 	float: left;
 	text-align: right;
-	padding: 2px 55px 25px 55px;
+	padding: 0 $grid-gutter-width-base/2 0 0;
+	margin: 0 -12.5% 0 0;
+	left: -12.5%;
 	font-weight: bold;
-	line-height: 1.1em;
-	font-style: italic;
-	margin-left: -12.2%;
-	margin-top: 5px;
 
 	i {
-		display: block !important;
-		font-size: $font-size-h1 !important;
-		color: $ol-orange !important;
-	}
-}
-
-/* For mobile phones: */
-@include media-breakpoint-down(sm) {
-	#single-article-container {
-		padding: 0 !important;
-		width: 100%;
-
-		.content{
-			font-size: $font-size-h6 - 0.2rem !important;
-			width: 90%;
-
-			.article-rm-button {
-				padding: 10px 0;
-
-				i {
-					font-size: $font-size-h4;
-				}
-			}
-
-			hr {
-				margin: 17px auto;
-			}
-		}
+		display: block;
+		font-size: $font-size-h1;
+		line-height: ($font-size-lg*2 * $line-height-lg);
+		color: $ol-orange;
 	}
 
-	:host /deep/ blockquote {
-		font-size: $font-size-h5;
-		padding: 2px 35px 30px 40px;
-		width: 100%;
+	@include media-breakpoint-down(md) {
+		left:0;
 		margin: 0;
+	}
+
+	@include media-breakpoint-down(sm) {
 		text-align: left;
-
-		i {
-			font-size: $font-size-h2 - 0.5rem !important;
-		}
+		float:none;
+		width: auto;
 	}
 
-	:host /deep/ .article-grid-item-text{
-		h3{
-			font-size: $font-size-h5 !important;
-		}
-		h4{
-			font-size: $font-size-h5 - 0.2rem !important;
-		}
-	}
-}
-
-/* For tablets: */
-@include media-breakpoint-only(md) {
-	#single-article-container {
-	    box-sizing: content-box;
-
-		.content{
-			font-size: $font-size-h6 !important;
-
-			h3 {
-				font-size: $font-size-h4 !important;
-			}
-
-			.article-rm-button {
-				padding: 13px 0;
-
-				i {
-					font-size: $font-size-h3;
-				}
-			}
-
-			hr {
-				margin: 25px auto;
-			}
-		}
-	}
-
-	:host /deep/ blockquote {
-		font-size: $font-size-h4 - 0.12rem !important;
-		padding: 2px 35px 30px 0px;
-		text-align: left;
-		i {
-			font-size: $font-size-h2 !important;
-		}
-	}
-
-	
 }

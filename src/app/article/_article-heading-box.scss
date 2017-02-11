@@ -2,10 +2,18 @@
 #article-heading-box {
 	color: white;
 	background-color: $ol-orange;
-	padding: 1.5% 4% 1%;
-	margin-top: -60px !important;
+	padding:$grid-gutter-width-base/2;
+	margin: -$grid-gutter-width-base $grid-gutter-width-base $grid-gutter-width-base/2;
 	z-index: 1;
-	width: $fullwidth;
+	position: relative;
+	text-align: center;
+
+	@include media-breakpoint-down(sm){
+		margin: 0 0 $grid-gutter-width-base/2;
+		h1 {
+			font-size: $font-size-h2;
+		}
+	}
 
 	h1 {
 		font-weight: bold;
@@ -18,7 +26,7 @@
 	//Style the list of the social media symbols
 	ul.social-medias {
 		text-align:center;
-		padding-left: 0px !important;
+		padding-left: 0;
 		list-style-type:none;
 
 		li {
@@ -32,46 +40,6 @@
 				font-size: 2rem;
 				padding: 0;
 				line-height: 0;
-			}
-		}
-	}
-}
-
-/* For mobile phones: */
-@include media-breakpoint-down(sm) {
-	#article-heading-box {
-		h1 {
-			font-size: $font-size-h3;
-		}
-
-		p {
-			font-size: $font-size-h6 - 0.2rem !important;
-		}
-
-		ul.social-medias {
-			margin:15px 0 20px !important;
-			li a {
-				font-size: $font-size-h4;
-			}
-		}
-	}
-}
-
-/* For tablets: */
-@include media-breakpoint-only(md) {
-	#article-heading-box {
-		h1 {
-			font-size: $font-size-h3 + 0.2rem;
-		}
-
-		p {
-			font-size: $font-size-h6 + 0.12rem !important;
-		}
-
-		ul.social-medias {
-			margin:20px 0 25px !important;
-			li a {
-				font-size: $font-size-h3;
 			}
 		}
 	}
