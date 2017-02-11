@@ -1,5 +1,4 @@
 <div class="container" id="single-article-container">
-    <div class="logo">OL</div>
 
     <div class="row">
         <div class="col-xs-12">
@@ -32,25 +31,8 @@
                         <time [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
                     </span>
 
-                    <!-- Byline -->
-                    <div class="byline_above" *ngIf="false">
-                        <div class="author_text">
-                            <img src="http://3.bp.blogspot.com/-Rerlap0l1BQ/T5UkVIL-Z9I/AAAAAAAABa0/n2v7X--yVbU/s1600/beautiful+picture.jpg"
-                                     alt="Emma Klint"/>
-                            <div>
-                                <b>Emma Klint</b>
-                                <span>Text</span>
-                            </div>
-                        </div>
-                        <div class="author_foto">
-                            <img src="http://images.freeimages.com/images/premium/previews/3202/32028464-beautiful-christmas-lantern.jpg"
-                                     alt="Sofia Blomgren"/>
-                            <div>
-                                <b>Sofia Blomgren</b>
-                                <span>Foto</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Byline above-->
+                    <app-byline *ngIf="false"></app-byline>
 
                     <br/>
                     <div class="article-grid-item-text" [innerHTML]="article?.body_html"></div>
@@ -59,24 +41,8 @@
 
                     <hr/>
 
-                    <div class="byline_below" *ngIf="false">
-                        <div class="author_text">
-                            <img src="http://3.bp.blogspot.com/-Rerlap0l1BQ/T5UkVIL-Z9I/AAAAAAAABa0/n2v7X--yVbU/s1600/beautiful+picture.jpg"
-                                     alt="Emma Klint"/>
-                            <div>
-                                <b>Emma Klint</b>
-                                <span>emma@osqledaren.se</span>
-                            </div>
-                        </div>
-                        <div class="author_foto">
-                            <img src="http://images.freeimages.com/images/premium/previews/3202/32028464-beautiful-christmas-lantern.jpg"
-                                     alt="Sofia Blomgren"/>
-                            <div>
-                                <b>Sofia Blomgren</b>
-                                <span>sofia@osqledaren.se</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Byline below-->
+                    <app-byline *ngIf="false"></app-byline>
 
                     <div class="share-buttons" *ngIf="false">
                         <div class="button-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> DELA/KOMMENTERA</div>

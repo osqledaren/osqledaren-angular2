@@ -33,6 +33,7 @@ import {ArchiveService} from "./archive.service";
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
+import { BylineComponent } from './byline/byline.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         AdvertisementPageComponent,
         PadNumberPipe,
         SplitPipe,
-        LoaderComponent
+        LoaderComponent,
+        BylineComponent
     ],
     imports: [
         CollapseModule.forRoot(),

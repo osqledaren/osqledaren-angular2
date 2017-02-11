@@ -13,16 +13,6 @@
 		margin: 0 !important;
 	}
 
-	//Style the logo and position it
-	.logo {
-		position: absolute;
-		font-size: 5em;
-		display:inline-block;
-		margin-left: -100px;
-		font-weight: $headings-font-weight;
-		color: black;
-	}
-
 	//Set the size of and display the article image
 	.article-image {
 		overflow: hidden;
@@ -107,10 +97,6 @@
 		padding: 0 !important;
 		width: 100%;
 
-		.logo{
-			display:none;
-		}
-
 		.content{
 			font-size: $font-size-h6 - 0.2rem !important;
 			width: 90%;
@@ -138,7 +124,6 @@
 
 		i {
 			font-size: $font-size-h2 - 0.5rem !important;
-			color: red !important;
 		}
 	}
 
@@ -156,12 +141,6 @@
 @include media-breakpoint-only(md) {
 	#single-article-container {
 	    box-sizing: content-box;
-
-		.logo{
-			display:inline-block;
-			font-size: 4em;
-	    	margin-left: -75px;
-		}
 
 		.content{
 			font-size: $font-size-h6 !important;
@@ -190,7 +169,6 @@
 		text-align: left;
 		i {
 			font-size: $font-size-h2 !important;
-			color: green !important;
 		}
 	}
 
