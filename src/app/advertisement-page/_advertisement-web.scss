@@ -38,8 +38,8 @@
 
 		.description {
 			display: inline-block;
-			width: 170px;
-			margin-top: 37px;
+			width: 200px;
+			margin-top: 48px;
 
 			b {
 				display:block;
@@ -47,7 +47,7 @@
 			}
 
 			div {
-				margin-bottom: 63px;
+				margin-bottom: 66px;
 			}
 		}
 
@@ -60,11 +60,11 @@
 			-ms-transform: rotate(15deg);
     		-webkit-transform: rotate(15deg);
     		transform: rotate(15deg);
-    		margin-left: 75px;
-    		margin-top: 190px;
+    		margin-left: 55px;
+    		margin-top: 113px;
     		position: absolute;
 
-    		svg {
+    		.note-arrow {
     			margin-left: -280px;
     			-ms-transform: rotate(10deg);
     			-webkit-transform: rotate(10deg);
@@ -74,6 +74,7 @@
 
 		.info {
 			font-style: italic;
+			margin-top: 20px;
 		}
 
 		.lineUp {
@@ -89,7 +90,7 @@
 @include media-breakpoint-down(sm) {
 	.web-ad {
 		i {
-			font-size: $font-size-base !important;
+			font-size: $font-size-h5 !important;
 		}
 
 		>div {
@@ -98,7 +99,7 @@
 
 			.description {
 				b {
-					font-size: $font-size-base !important;
+					font-size: $font-size-h5 !important;
 				}
 
 				div {
@@ -108,11 +109,15 @@
 
 			.note {
 				font-size: $font-size-base !important;
-				margin-left: 0px; 
+				margin-left: 20px;
+				margin-top: 210px;
+
+				p{font-size: $font-size-h5 !important;}
 			}
 
 			.info{
-				b, p{font-size: $font-size-base !important; margin-left: 10px;}
+				b{font-size: $font-size-h5 !important; margin-left: 10px;}
+				p{font-size: $font-size-h6 !important; margin-left: 10px;}
 			}
 		}
 	}
@@ -122,7 +127,7 @@
 @include media-breakpoint-only(md) {
 	.web-ad {
 		i {
-			font-size: $font-size-base !important;
+			font-size: $font-size-h6 !important;
 		}
 
 		>div {
@@ -130,22 +135,31 @@
 			padding: 15px 0 10px 0px;
 
 			.description {
+				width: 250px;
 				b {
-					font-size: $font-size-base !important;
+					font-size: $font-size-h6 !important;
 				}
 
 				div {
-					margin-bottom: 35px;
+					margin-bottom: 25px;
 				}
 			}
 
 			.note {
 				font-size: $font-size-base !important;
-				margin-left: 0px; 
+				margin-left: -25px;
+				margin-top: 200px;
+
+				p{font-size: $font-size-h6 !important;}
 			}
 
 			.info{
-				b, p{font-size: $font-size-base !important; margin-left: 10px;}
+				b, p{font-size: $font-size-h6 !important; margin-left: 10px;}
+			}
+
+			.figure object{
+				width: 350px !important;
+				height: 444px !important;
 			}
 		}
 	}

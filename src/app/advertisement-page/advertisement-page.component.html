@@ -84,15 +84,11 @@
                         </i>
                         <div>
                             <div class="toner-icon">
-                                <svg height="36" width="36">
-                                    <use xlink:href="../../assets/svg/ol-icons.svg#toner-icon"></use>
-                                </svg>
+                                <object type="image/svg+xml" width="36" height="36" data="../../assets/svg/toner-icon.svg" ></object>
                             </div>
                             <i> 300 dpi</i>      
-                            <div class="margin-icon">              
-                                <svg height="36" width="70">
-                                    <use xlink:href="../../assets/svg/ol-icons.svg#margin-icon"></use>
-                                </svg>
+                            <div class="margin-icon">
+                                <object type="image/svg+xml" width="70" height="36" data="../../assets/svg/margin-icon.svg" ></object>
                             </div>
                         </div>
                     </div>
@@ -103,40 +99,31 @@
                 <h3>WEBANNONS</h3>
                 <i>www.osqledaren.se</i>
                 <div>
-                    <div class="figure">                               
-                        <svg width="350" height="444">  
-                            <use xlink:href="../../assets/svg/ol-icons.svg#web-page"></use>
-                        </svg>
+                    <div class="figure">
+                        <object type="image/svg+xml" width="450" height="570" data="../../assets/svg/web-ad-illustration.svg" ></object>                 
                     </div>
                     <div class="description">
                         <div class="t">
                             <b>TOPPBANNER<span class="lineUp">[1]</span></b>
                             <i>Mått: 1170 x 144 mm <br/><br/>2 V: 8 900 kr<br/>4 V: 7 490 kr</i>
                         </div>
-                        <div class="h">
+                        <div class="h" *ngIf="false">
                             <b>HÖGERSPALT (EJ MOBIL)</b>
                             <i>Mått: 340 x 220 mm <br/><br/>2 V: 2 490 kr<br/>4 V: 3 990 kr</i>
                         </div>
-                        <div class="n">
+                        <div class="n" *ngIf="false">
                             <b>NYHETSFLÖDE</b>
                             <i>Mellan nyhet två och tre<br/>Mått: 770 x 168 mm <br/><br/>2 V: 3 490 kr<br/>4 V: 5 990 kr</i>
                         </div>
                     </div>
 
-                    <div class="note">        
-                        <svg height="50" width="150">
-                            <defs>
-                                <marker id="arrowHead" markerWidth="50" markerHeight="50" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
-                                    <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
-                                </marker>
-                            </defs>
-                            <use xlink:href="../../assets/svg/ol-icons.svg#hogerspaltNote-arrow"></use>
-                        </svg>
+                    <div class="note" *ngIf="false">
+                        <object class="note-arrow" type="image/svg+xml" width="150" height="50" data="../../assets/svg/hogerspaltNote-arrow.svg" ></object>
                         <p>
                             Osqledarens nya fantastiska webbplats är byggd på responsiv design, och i den mobila versionen göms högerspalten - gå in på osqledaren.se via din smartphone och datorn, och upplev skillnaden!
                         </p>
                     </div>
-                    
+
                     <div class="info">
                         <b>ALLMÄNT</b>
                         <i>
@@ -175,49 +162,26 @@
                         </div>
                     </div>
                     <div class="calendar">
-                        <svg width="400" height="535"> 
-                            <defs>                  
-                                <pattern id="calendar-pattern" width="135" height="128"
-                                    patternUnits="userSpaceOnUse" >
-                                    <rect x="0" y="30" width="85" height="128" fill="#c1c1c1"/>
-                                    <rect x="88" y="30" width="33" height="128" fill="#d1d1d1"/>
-                                    <path d="M17 30 L17 130 M35 30 L35 130 M52 30 L52 130 M69 30 L69 130 M104 30 L104 130" stroke="#e5e5e5" stroke-width="3"/>
-                                    <path d="M0 27 L122 27 M0 44 L122 44 M0 61 L122 61 M0 78 L122 78 M0 95 L122 95 M0 112 L122 112" stroke="#e5e5e5" stroke-width="3"/>
-                                </pattern>
-                                <g id="days">
-                                    <text x="136" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">M</text>
-                                    <text x="153" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">T</text>
-                                    <text x="171" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">O</text>
-                                    <text x="188" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">T</text>
-                                    <text x="207" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">F</text>
-                                    <text x="227" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">L</text>
-                                    <text x="245" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">S</text>
-                                </g>
-                            </defs>
-                            <use xlink:href="../../assets/svg/ol-icons.svg#ad-schedule"></use>
-                            <use xlink:href="#days" x="5" y="168" />
-                            <use xlink:href="#days" x="-130" y="168" />
-                            <use xlink:href="#days" x="140" y="168" />
-                        </svg>
+                        <object type="image/svg+xml" width="400" height="535" data="../../assets/svg/ad-schedule-illustration.svg" ></object>
                     </div>
                 </div>     
             </div>
 
             <div class="contact-info">
                 <h3>Vill ert företag annonsera i Osqledaren?</h3>
-                <p>
+                <div>
                     Kontakta <b>Erik Tingström</b> på <br/>
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i><span>{{erik_tingstrom_email}}</span>
-                    <i class="fa fa-phone" aria-hidden="true"></i><span>{{erik_tingstrom_mobile}}</span>
-                </p>
-
+                    <div><i class="fa fa-envelope-o" aria-hidden="true"></i><span>{{erik_tingstrom_email}}</span></div>
+                    <div><i class="fa fa-phone" aria-hidden="true"></i><span>{{erik_tingstrom_mobile}}</span></div>
+                </div>
+                <br/>
                 <h3>Har du frågor till Osqledaren?</h3>
-                <p>
+                <div>
                     Kontakta <b>Osqledaren</b> på <br/>
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i><span>{{osqledaren_email}}</span>
-                    <i class="fa fa-phone" aria-hidden="true"></i><span>{{osqledaren_mobile}}</span>
-                    <i class="fa fa-mobile" aria-hidden="true"></i><span>{{osqledaren_telephone}}</span>
-                </p>
+                    <div><i class="fa fa-envelope-o" aria-hidden="true"></i><span>{{osqledaren_email}}</span></div>
+                    <div><i class="fa fa-phone" aria-hidden="true"></i><span>{{osqledaren_mobile}}</span></div>
+                    <div><i class="fa fa-mobile" aria-hidden="true"></i><span>{{osqledaren_telephone}}</span></div>
+                </div>
             </div>
         </div>
     </div>

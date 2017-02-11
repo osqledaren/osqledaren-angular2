@@ -93,12 +93,12 @@
 @include media-breakpoint-down(sm) {
 	.newspaper-ad {
 		i {
-			font-size: $font-size-base !important;
+			font-size: $font-size-h6 !important;
 		}
 
 		>div {
 			b {
-				font-size: $font-size-base !important;
+				font-size: $font-size-h6 !important;
 			}
 
 			>div[class*="figure"]{
@@ -112,12 +112,12 @@
 @include media-breakpoint-only(md) {
 	.newspaper-ad {
 		i {
-			font-size: $font-size-base !important;
+			font-size: $font-size-h6 !important;
 		}
 
 		>div {
 			b {
-				font-size: $font-size-base !important;
+				font-size: $font-size-h6 !important;
 			}
 
 			>div[class*="figure"]{
@@ -130,6 +130,7 @@
 			}
 
 			.figure6 {
+				width: 100% !important;
 				div>i {margin: 0 25px 30px 35px !important;}
 			}
 		}

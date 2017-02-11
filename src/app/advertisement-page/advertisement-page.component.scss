@@ -26,7 +26,6 @@
 		span {
 			color: $link-color;
 			&:hover {color: $ol-orange;}
-			&:after {content:""; display:block;}
 		}
 	}
 
@@ -41,6 +40,7 @@
 	p { margin-bottom: 40px; }
 
 	.content {
+		padding: 10px 50px;
 		//background-color: white;
 		//padding: $grid-gutter-width-base/2;
 		//margin:$grid-gutter-width-base 0 0;
@@ -54,22 +54,25 @@
 
 /* For mobile phones: */
 @include media-breakpoint-down(sm) {
+	.container{ width: 95% !important;}
+
 	#container-advertisement {
 		font-size: $font-size-h4;
+		padding: 0px !important;
 
 		h3{
-			font-size: $font-size-h5;
+			font-size: $font-size-h4;
 		}
 
 		.preamble {
 			font-weight: bold;
-			font-size: $font-size-base;
+			font-size: $font-size-h6;
 		}
 
 		.content {
 			padding: 10px 20px;
 			>h1{
-				font-size: $font-size-h3;
+				font-size: $font-size-h2;
 			}
 		}
 
@@ -88,17 +91,17 @@
 		font-size: $font-size-h4;
 
 		h3{
-			font-size: $font-size-h5;
+			font-size: $font-size-h4;
 		}
 
 		.preamble {
-			font-size: $font-size-base;
+			font-size: $font-size-h6;
 		}
 
 		.content {
 
 			>h1{
-				font-size: $font-size-h3;
+				font-size: $font-size-h2;
 			}
 		}
 
