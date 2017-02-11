@@ -1,9 +1,9 @@
-<header id="site-header" [ngClass]="{'visible': visible}">
+<header id="site-header" [ngClass]="{'visible': visible}" (mouseleave)="mouseLeave()" (mouseOver)="mouseOver()">
     <nav class="navbar">
         <div class="navbar-container">
             <div class="container">
                 <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
-                     [ngClass]="{'open': !isCollapsed}" (click)="isCollapsed = !isCollapsed">
+                     [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
                     <span></span>
                     <span></span>
                     <span></span>
