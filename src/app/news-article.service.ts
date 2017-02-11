@@ -1,12 +1,8 @@
 import {Injectable, Inject} from '@angular/core';
-import {Article} from "./model/article";
+import {Article} from "./shared/interface/article.interface";
 import {WordpressService} from "./wordpress.service";
 import {Observable} from "rxjs/Observable";
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/combineLatest';
-import {ArticleQueryParams} from "./model/article-query-params";
+import {ArticleQueryParams} from "./shared/interface/article-query-params.interface";
 
 @Injectable()
 export class NewsArticleService {

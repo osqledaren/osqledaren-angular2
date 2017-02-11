@@ -7,9 +7,15 @@
                         <img class="footer-logo float-left" src="assets/img/OL-temp.png">
                         <div class="social-media float-left">
                             <p>Vi finns även på dessa kanaler</p>
-                            <span class="channel"><i class="fa fa-3x fa-facebook-square" aria-hidden="true"></i></span>
-                            <span class="channel"><i class="fa fa-3x fa-instagram" aria-hidden="true"></i></span>
-                            <span class="channel"><i class="fa fa-3x fa-git" aria-hidden="true"></i></span>
+                            <span class="channel">
+                                <a target="_blank" href="https://www.facebook.com/osqledaren"><i class="fa fa-3x fa-facebook-square" aria-hidden="true"></i></a>
+                            </span>
+                            <span class="channel">
+                                <a target="_blank" href="https://www.instagram.com/osqledaren/"><i class="fa fa-3x fa-instagram" aria-hidden="true"></i></a>
+                            </span>
+                            <span class="channel">
+                                <a target="_blank" href="https://github.com/osqledaren"><i class="fa fa-3x fa-git" aria-hidden="true"></i></a>
+                            </span>
                         </div>
 
                     </div>
@@ -34,7 +40,7 @@
                     <ul class="no-bullets">
                         <li><a routerLink="/om-oss">Om Osqledaren</a></li>
                         <li><a routerLink="">Sök redaktionen</a></li>
-                        <li><a routerLink="">Annonsera</a></li>
+                        <li><a routerLink="/annonsera">Annonsera</a></li>
                     </ul>
                 </nav>
             </div>
@@ -42,10 +48,10 @@
 
         <div class="row">
             <div class="col-sm-12 col-lg-7 col-xl-6">
-                <span>Producerad med kärlek <i class="fa fa-heart-o" aria-hidden="true"></i> på KTH </span>
+                <span>Producerad med kärlek <i class="fa fa-heart-o" aria-hidden="true"></i> på <a target="_blank" href="https://www.kth.se/">KTH</a> </span>
             </div>
             <div class="col-sm-12 col-lg-5 col-xl-6">
-                <span>&copy; 2008 - 2017 Osqledaren.</span>
+                <span>&copy; 2008 - <span [innerHTML]="year">2017</span> Osqledaren.</span>
             </div>
 
         </div>

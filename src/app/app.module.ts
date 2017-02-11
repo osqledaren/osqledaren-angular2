@@ -18,15 +18,21 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
-import {PrintedIssuesComponent} from './printed-issues/printed-issues.component';
+import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
+import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-grid.component";
+import {ArchiveComponent} from "./archive-widget/archive-widget.component";
+import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
+import {LoaderComponent} from "./loader/loader.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
+import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
-import { ArchiveComponent } from './archive-widget/archive-widget.component';
-import { AdvertisementPageComponent } from './advertisement-page/advertisement-page.component';
-
+// Pipes
+import {PadNumberPipe} from "./pad-number.pipe";
+import {SplitPipe} from "./split.pipe";
+import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
 
 @NgModule({
     declarations: [
@@ -41,8 +47,12 @@ import { AdvertisementPageComponent } from './advertisement-page/advertisement-p
         ArticleGridItemComponent,
         AboutComponent,
         PrintedIssuesComponent,
+        PrintedIssuesGridComponent,
         ArchiveComponent,
-        AdvertisementPageComponent
+        AdvertisementPageComponent,
+        PadNumberPipe,
+        SplitPipe,
+        LoaderComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -54,60 +64,72 @@ import { AdvertisementPageComponent } from './advertisement-page/advertisement-p
             {
                 path: 'article/:slug',
                 component: ArticleComponent,
-                data: {name: 'article'}
+                data: {name: 'article'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'articles',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'articles'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'articles/search/:searchTerm',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'search'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'articles/archive/:year/:month/:searchTerm',
+                path: 'articles/archive/:date/:searchTerm',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'archive'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'articles/archive/:year/:month',
+                path: 'articles/archive/:date',
                 component: NewsArchiveComponent,
-                data: {name: 'news-archive-widget'}
+                data: {name: 'archive'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'om-oss',
                 component: AboutComponent,
-                data: {name: 'about'}
+                data: {name: 'about'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
-                data: {name: 'printed-issues'}
+                data: {name: 'printed-issues'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'annonsera',
                 component: AdvertisementPageComponent,
-                data: {name: 'annonsera'}
+                data: {name: 'advertise'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: '',
                 component: NewsArchiveComponent,
-                data: {name: 'home'}
+                data: {name: 'home'},
+                canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: '**',
                 component: PageNotFoundComponent,
-                data: {name: '404'}
+                data: {name: '404'},
+                canDeactivate: [LoadableDeactivateGuard]
             }
         ])
     ],
     providers: [
+        ArchiveService,
+        LoaderService,
         NavigationService,
         NewsArticleService,
-        ArchiveService,
         WordpressService,
+        LoadableDeactivateGuard,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
     bootstrap: [AppComponent]

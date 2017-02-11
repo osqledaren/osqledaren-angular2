@@ -4,22 +4,14 @@
 @import "./src/variables";
 @import "./node_modules/bootstrap/scss/bootstrap-grid";
 @import "./node_modules/bootstrap/scss/bootstrap";
+@import "./src/loader";
 
 body {
+
+	padding-top: $header-height; // Give some padding for fixed header.
 
 	&.article{
 		background: white;
 	}
 
-}
-
-#loader {
-	line-height: 100vh;
-	text-align: center;
-	height: 100vh;
-	width: 100vw;
-	position: fixed;
-	left:0;
-	top:0;
-	background: white;
 }

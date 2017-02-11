@@ -1,14 +1,14 @@
 import {Response, Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/throw';
-import {APP_CONFIG} from "../app.config";
-import {Inject, Injectable} from "@angular/core";
-import {Article} from "./article";
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export abstract class ContentService{
 
     protected endpoint;
+
+    protected abstract map(res: Response): any;
 
     protected handleError(error: Response | any) {
         let errMsg: string;

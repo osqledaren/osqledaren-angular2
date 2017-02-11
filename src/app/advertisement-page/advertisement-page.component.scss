@@ -5,6 +5,10 @@
 @import "advertisement-schedule";
 @import "advertisement-covers";
 
+.container {
+	padding: $grid-gutter-width-base/2;
+}
+
 #container-advertisement {
 	font-size: $font-size-h5;
 	
@@ -13,8 +17,7 @@
 	}
 
 	.preamble {
-		font-weight: bold;
-		font-size: 1rem;
+		font-size: $font-size-lg;
 	}
 
 	.contact-info{
@@ -29,7 +32,7 @@
 
 	i {
 		font-size: $font-size-h2;
-		color: silver;
+		color: $gray;
 		margin-right: 10px;
     	vertical-align: middle;
     	min-width: 30px;
@@ -38,8 +41,9 @@
 	p { margin-bottom: 40px; }
 
 	.content {
-		background-color: $content-bgColor;
-		padding: 10px 50px;
+		//background-color: white;
+		//padding: $grid-gutter-width-base/2;
+		//margin:$grid-gutter-width-base 0 0;
 
 		>h1{
 			font-size: 2.5rem;

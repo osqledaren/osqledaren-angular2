@@ -1,27 +1,24 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
+import {Component} from "@angular/core";
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../model/enums";
+import {Archive} from "../shared/enums";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
 
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class AboutComponent extends LoadableComponent {
 
-    constructor(private searchService: ArchiveService) {
+    constructor(private searchService: ArchiveService,
+                loaderService: LoaderService) {
+        super(loaderService);
     }
 
-    send(value) {
-        console.log(value);
-    }
-
-    ngOnInit() {
+    init() {
+        this.loaded();
         this.searchService.activate(Archive.article);
-    }
-
-    ngOnDestroy() {
-        this.searchService.deactivate();
     }
 
 }

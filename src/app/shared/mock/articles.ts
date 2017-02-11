@@ -1,4 +1,4 @@
-import {Article} from '../model/article';
+import {Article} from '../interface/article.interface';
 
 export const Articles: Article[] = <Article[]>[
 	{

@@ -1,10 +1,14 @@
 import {Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, OnDestroy} from "@angular/core";
-import {Article} from "../model/article";
+import {Article} from "../shared/interface/article.interface";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
 import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
 import {ActivatedRoute} from "@angular/router";
-import {ArticleQueryParams} from "../model/article-query-params";
+import {ArticleQueryParams} from "../shared/interface/article-query-params.interface";
+import {isNullOrUndefined} from "util";
+import {PadNumberPipe} from "../pad-number.pipe";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
 
 @Component({
     selector: 'app-article-grid',
@@ -12,7 +16,7 @@ import {ArticleQueryParams} from "../model/article-query-params";
     styleUrls: ['./article-grid.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ArticleGridComponent implements OnInit, OnDestroy {
+export class ArticleGridComponent extends LoadableComponent {
 
     @ViewChildren(ArticleGridItemComponent) articleGridItems: QueryList<ArticleGridItemComponent>;
 
@@ -20,11 +24,14 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
     public masonryOptions: MasonryOptions;
     public hasMorePosts: boolean = true;
     public isInitialized: boolean = false;
-    private sub: any;
+    public heading;
     private initialBatchSize: number = 12;
     private args: ArticleQueryParams;
 
-    constructor(private NS: NewsArticleService, private route: ActivatedRoute) {
+    constructor(private NS: NewsArticleService,
+                private route: ActivatedRoute,
+                loaderService: LoaderService) {
+        super(loaderService);
         this.articles = [];
     }
 
@@ -65,20 +72,33 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
 
         this.sub = this.route.params.subscribe(params => {
 
-            console.log(params);
+            if (params) {
 
-            if(params){
+                let date = null;
 
                 this.args = <ArticleQueryParams>{};
 
                 if (params.hasOwnProperty('searchTerm')) {
                     this.args.searchTerm = params['searchTerm'];
                 }
-                if (params.hasOwnProperty('month')) {
-                    this.args.month = params['month'];
+                if (params.hasOwnProperty('date')) {
+                    this.args.date = params['date'];
+
+                    let dO = new Date(params['date']);
+                    date = dO.getFullYear();
+                    date += '-' + new PadNumberPipe().transform(dO.getMonth() +1, 2);
+                    date += '-01';
+
                 }
-                if (params.hasOwnProperty('year')) {
-                    this.args.year = params['year'];
+
+                if (!isNullOrUndefined(params['date']) && isNullOrUndefined(params['searchTerm'])) {
+                    this.heading = 'Arkiv från <span>' + date + '</span>';
+                } else if (isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])) {
+                    this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span>';
+                } else if (!isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])){
+                    this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span> från <span>' + date + '</span>';
+                } else {
+                    this.heading = 'Nyheter';
                 }
 
             }
@@ -89,6 +109,7 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
                     this.articles = posts;
                     this.isInitialized = true;
                     this.hasMorePosts = true;
+                    this.loaded();
 
                     if (posts.length > 0) {
                         if (posts.length < this.initialBatchSize) {
@@ -132,11 +153,7 @@ export class ArticleGridComponent implements OnInit, OnDestroy {
             error => errorMessage = <any> error);
     }
 
-    ngOnInit() {
+    init() {
         this.initializeData();
-    }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
     }
 }

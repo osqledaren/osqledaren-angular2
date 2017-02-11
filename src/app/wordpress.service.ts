@@ -1,13 +1,14 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http} from "@angular/http";
-import {Article} from "./model/article";
+import {Article} from "./shared/interface/article.interface";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import {ContentService} from "./model/content-service";
-import {ArticleQueryParams} from "./model/article-query-params";
+import {ContentService} from "./shared/abstract/abstract.content.service";
+import {ArticleQueryParams} from "./shared/interface/article-query-params.interface";
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
+import {isUndefined} from "util";
 
 @Injectable()
 export class WordpressService extends ContentService {
@@ -29,11 +30,11 @@ export class WordpressService extends ContentService {
         switch (typeof param) {
             case 'string':
                 return this.http.get(this.endpoint + '/posts/?slug=' + param)
-                    .map(WordpressService.extractData)
+                    .map(this.map)
                     .catch(this.handleError);
             default:
                 return this.http.get(this.endpoint + '/posts/' + param)
-                    .map(WordpressService.extractData)
+                    .map(this.map)
                     .catch(this.handleError);
         }
     }
@@ -64,10 +65,29 @@ export class WordpressService extends ContentService {
             if (!isNullOrUndefined(args.searchTerm)) {
                 queryParams += 'search=' + args.searchTerm + '&'
             }
+            if (!isNullOrUndefined(args.date)) {
 
-            if (!isNullOrUndefined(args.month) && !isNullOrUndefined(args.year)) {
-                queryParams += 'after=' + args.year + '-' + args.month + '-01T00:00:00&'
+                let date: Array<string> = args.date.split('-');
+                let yearToday: number = new Date().getFullYear();
+                let year: string;
+                let month: string = '01';
+
+                // Do some validation
+
+                if(date[0].length == 4 && Number(date[0]) <= yearToday && Number(date[0]) >= 2000){
+                     year = date[0];
+                }
+
+                if(!isUndefined(date[1])){
+                    if (date[1].length == 2 && Number(date[1]) > 0 && Number(date[1]) <= 12){
+                        month = date[1];
+                    }
+                }
+
+                queryParams += 'after=' + year + '-' + month + '-01T00:00:00&'
             }
+
+            // Do some validation.
         }
 
         query = this.endpoint + '/posts?';
@@ -79,7 +99,7 @@ export class WordpressService extends ContentService {
 
         // Increment offset number
         this.offset++;
-        return request.map(WordpressService.extractData).catch(this.handleError);
+        return request.map(this.map).catch(this.handleError);
 
     }
 
@@ -88,7 +108,7 @@ export class WordpressService extends ContentService {
      * @param text: string
      * @returns {string}
      */
-    private static htmlToPlainText(text: string): string {
+    protected static htmlToPlainText(text: string): string {
         return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
     }
 
@@ -97,7 +117,7 @@ export class WordpressService extends ContentService {
      * @param res:Response
      * @returns {Article[]|{}}
      */
-    private static extractData(res: Response) {
+    protected map(res: Response) {
         let body: any = res.json();
         let posts: Article[] = <Article[]>[];
 
