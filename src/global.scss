@@ -15,3 +15,9 @@ body {
 	}
 
 }
+
+hr {
+	margin: $grid-gutter-width-base/2 auto;
+	border-color: $body-color;
+	border-width: 3px;
+}

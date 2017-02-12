@@ -5,11 +5,14 @@
 
 //Style the article main container
 
-:host /deep/ {
-	margin: auto;
+:host {
+	width: 100%;
+	max-width: $container-narrow;
 	font-size: $font-size-lg;
 	line-height: $line-height-lg;
-	max-width: $container-narrow;
+}
+
+:host /deep/ {
 
 	// Make sure no heading is clipped or offset by block-quote
 	h1, h2, h3, h4, h5, h6 {
@@ -17,8 +20,20 @@
 	}
 
 	ol, ul {
-		@include clearfix();
+		clear:both;
 		overflow: hidden;
+		padding:$grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base;
+		background: $ol-teal;
+		color:white;
+		margin: 0 auto $font-size-lg;
+		font-weight:bold;
+		max-width: $container-narrow*2/3;
+
+		@include media-breakpoint-down(md) {
+			max-width: 100%;
+		}
+
+
 	}
 
 	//Set the size of and display the article image
@@ -31,66 +46,87 @@
 		}
 	}
 
-	//Style the article content
-	.content{
-		margin: auto;
+	.article-rm-button {
+		text-align: center;
+		background-color: $ol-orange;
+		color: white;
+		font-style:italic;
+		padding: 20px 0;
+		margin-top: 20px;
+		font-weight: bold;
 
-		.date {
+		i {
 			display: block;
-			padding: 10px 0px;
+			margin: auto;
+			font-size: $font-size-h2;
+		}
+	}
+
+	.article-grid-item-text {
+
+		h1, h2, h3, h4, h5, h6 {
+			font-size: $font-size-h3;
+			margin-bottom: $font-size-lg;
 		}
 
-		.article-rm-button {
-			text-align: center;
-			background-color: $ol-orange;
-			color: white;
-			font-style:italic;
-			padding: 20px 0;
-			margin-top: 20px;
-			font-weight: bold;
+		p {
+			margin-bottom: $font-size-lg
+		}
 
-			i {
-				display: block;
-				margin: auto;
-				font-size: $font-size-h2;
+		img {
+			float:left;
+			padding:0 $grid-gutter-width-base/2 $font-size-lg 0;
+			max-width: 50%;
+			height: auto;
+			margin:0;
+
+			@include media-breakpoint-down(sm) {
+				float:none;
+				padding:0;
+				margin-bottom: $font-size-lg;
+				max-width: 100%;
+				width: 100%;
 			}
 		}
 
-		hr {
-			margin: 30px auto;
-			//border-top: 1px solid black;
+		img + br {
+			display:none;
+		}
+	}
+
+	blockquote {
+		position: relative;
+		width: 40%;
+		float: left;
+		text-align: right;
+		padding: 0 $grid-gutter-width-base/2 $grid-gutter-width-base/2 0;
+		margin: 0 -12.5% 0 0;
+		left: -12.5%;
+		font-family: $font-family-serif;
+		font-style: italic;
+
+		i {
+			display: block;
+			font-size: $font-size-h1;
+			line-height: ($font-size-lg*2 * $line-height-lg);
+			color: $ol-orange;
 		}
 
+		@include media-breakpoint-down(md) {
+			left: 0;
+			margin: 0;
+		}
+
+		@include media-breakpoint-down(sm) {
+			text-align: left;
+			float: none;
+			width: auto;
+			padding: $grid-gutter-width-base/2;
+
+			i {
+				margin-left:-$grid-gutter-width-base/2;
+			}
+
+		}
 	}
-}
-
-//Style the quote box and position it
-:host /deep/ blockquote {
-	position: relative;
-	width: 40%;
-	float: left;
-	text-align: right;
-	padding: 0 $grid-gutter-width-base/2 0 0;
-	margin: 0 -12.5% 0 0;
-	left: -12.5%;
-	font-weight: bold;
-
-	i {
-		display: block;
-		font-size: $font-size-h1;
-		line-height: ($font-size-lg*2 * $line-height-lg);
-		color: $ol-orange;
-	}
-
-	@include media-breakpoint-down(md) {
-		left:0;
-		margin: 0;
-	}
-
-	@include media-breakpoint-down(sm) {
-		text-align: left;
-		float:none;
-		width: auto;
-	}
-
 }
