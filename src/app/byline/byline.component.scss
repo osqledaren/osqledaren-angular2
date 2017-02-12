@@ -1,0 +1,30 @@
+@import "./src/utility";
+
+//Style the byline box above
+.byline {
+	margin: inherit;
+
+	.author_text, .author_photo{
+		@include displayAuthor($imgWidth:70px, $border:1px, $space:5px);
+	}
+}
+
+/* For mobile phones: */
+@include media-breakpoint-down(sm) {
+	.byline {
+		img {
+			width: 53px !important;
+			height: 53px !important;
+		}
+	}
+}
+
+/* For tablets: */
+@include media-breakpoint-only(md) {
+	.byline {
+		img {
+			width: 60px !important;
+			height: 60px !important;
+		}
+	}
+}
