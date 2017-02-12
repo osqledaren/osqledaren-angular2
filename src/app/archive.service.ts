@@ -154,6 +154,7 @@ export class ArchiveService extends ContentService {
         if (isNullOrUndefined(date)) {
 
             if (!date) {
+                this.date = '';
                 this.filterActive.next(false);
                 this.resetListener.next(true);
             }
