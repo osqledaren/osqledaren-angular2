@@ -17,7 +17,7 @@ body {
 }
 
 hr {
-	margin: $grid-gutter-width-base/2 auto;
+	margin: $grid-gutter-width-base/4 auto $grid-gutter-width-base/2;
 	border-color: $body-color;
 	border-width: 3px;
 }
