@@ -6,6 +6,7 @@ import {ArchiveService} from "../archive.service";
 import {Archive} from "../shared/enums";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
+import {BylineComponent} from "../byline/byline.component";
 
 @Component({
     selector: 'app-article',
