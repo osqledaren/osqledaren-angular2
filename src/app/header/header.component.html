@@ -13,6 +13,9 @@
                 </a>
                 <ul class="nav navbar-nav hidden-sm-down">
                     <li class="nav-item">
+                        <a class="nav-link" routerLink="/nyheter">Nyheter</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" routerLink="#">Podcast</a>
                     </li>
                     <li class="nav-item">
@@ -31,13 +34,16 @@
                         <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
                             <ul class="nav navbar hidden-md-up">
                                 <li class="nav-item">
+                                    <a class="nav-link" routerLink="/nyehter">Nyheter</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" routerLink="#">Podcast</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" routerLink="#">Play</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" routerLink="#">Annonsera</a>
+                                    <a class="nav-link" routerLink="/annonsera">Annonsera</a>
                                 </li>
                             </ul>
                             <ul class="nav navbar">
@@ -54,8 +60,12 @@
                             </ul>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
-                            <app-archive></app-archive>
-                            <app-search></app-search>
+                            <div class="filter-widget" [ngClass]="{'visible': visible}">
+                                <h3 [innerText]="archive"></h3>
+                                <a class="reset" [ngClass]="{'active': filterActive}" (click)="reset()">Återställ</a>
+                                <app-archive></app-archive>
+                                <app-search></app-search>
+                            </div>
                         </div>
                     </div>
                 </div>

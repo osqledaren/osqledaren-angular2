@@ -1,9 +1,8 @@
 <div id="nav-archive-widget" [class]="'archive-widget ' + (visible ? 'visible': '')">
-    <h3>Arkiv</h3>
     <div id="selection" class="selection">
         <form>
             <select id="archive-year-select" class="custom-select" name="year" (ngModelChange)="setMonths(yearInput=$event)" [(ngModel)]="yearInput">
-                <option value="">År</option>
+                <option [ngValue]="null">År</option>
                 <option [ngValue]="{index: i, year:distribution.year}" *ngFor="let distribution of distribution; let i = index;"
                         [innerText]="distribution.year"></option>
             </select>

@@ -177,10 +177,35 @@
   }
 
   a {
-    color: white !important;
-    text-transform: uppercase;
+    color: white;
     padding: 0;
     line-height: 40px;
+    font-size: $font-size-lg;
+    text-transform: none;
+  }
+
+  a.reset {
+    color: $ol-orange!important;
+    transition: opacity 0.1s ease-in-out;
+    opacity: 0;
+    cursor: default;
+    pointer-events: none;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+  }
+
+  .nav-item {
+    &:after {
+      bottom: 0;
+    }
   }
 
   .navbar {
@@ -205,6 +230,16 @@ h3 {
   color: white;
   line-height: 40px;
   margin-bottom: 0;
+  display: inline;
+}
+
+.filter-widget {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
 }
 
 

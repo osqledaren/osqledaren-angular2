@@ -4,6 +4,9 @@ import {NavigationService} from "../navigation.service";
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/observable/fromEvent';
 import {Observable, Subscription} from "rxjs";
+import {ArchiveService} from "../archive.service";
+import {Archive} from "../shared/enums";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-header',
@@ -15,13 +18,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public mainMenu: IMenuList;
     public secondaryMenu: IMenuList;
     public isCollapsed: boolean = true;
+    public archive: string;
+    private filterActive;
     private visible = true;
     private lastScrollPos = 0;
     private autoCloseTimer: Subscription;
     private autoCloseTime: number = 0;
     private inside: boolean;
+    private sub: Subscription;
 
-    constructor(private navigation: NavigationService, private elementRef: ElementRef) {
+    constructor(private router: Router,
+                private navigation: NavigationService,
+                private archiveService: ArchiveService,
+                private elementRef: ElementRef) {
         this.mainMenu = navigation.getNav('main-nav');
         this.secondaryMenu = navigation.getNav('secondary-nav');
     }
@@ -75,7 +84,40 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }*/
     }
 
+    public reset() {
+        this.router.navigate(['/nyheter']);
+        this.archiveService.reset();
+    }
+
     ngOnInit() {
+
+        this.sub = this.archiveService.activated.subscribe(
+            (activated) => {
+                this.visible = activated;
+            }
+        );
+
+        this.sub = this.archiveService.activeArchive.subscribe(
+            (activeArchive) => {
+
+                let type: string;
+
+                switch (activeArchive){
+                    case Archive.article:
+                        type = 'Webbarkiv';
+                        break;
+                    default:
+                        type = Archive[activeArchive].toLocaleUpperCase() + 'arkiv';
+                        break;
+                }
+
+                this.archive = type;
+            }
+        );
+
+        this.sub = this.archiveService.filterActive.subscribe(
+            (active) => this.filterActive = active
+        );
         // throttle scroll event
         Observable.fromEvent(window, 'scroll')
             .throttleTime(100)
@@ -93,6 +135,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.sub.unsubscribe();
         this.autoCloseTimer.unsubscribe();
     }
 
