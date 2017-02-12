@@ -36,7 +36,6 @@ export class LoaderService {
    * @param item
    */
   public remove(item: string){
-    this.collection.remove('preload'); // Remove preload handle from queue.
     this.collection.remove(item);
     this.refresh();
   }

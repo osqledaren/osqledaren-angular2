@@ -1,138 +1,105 @@
 .newspaper-ad {
-	overflow: hidden;
-	line-height: 1.1;
-	font-size: 1rem;
-	margin-top: 15px;
 
-	i {
-		font-size: $font-size-h6 !important;
-	}
+  .description {
+    float: left;
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: $grid-gutter-width-base/2;
 
-	>i {
-		color: #666666 !important;
-	}
+    @include media-breakpoint-down(lg) {
+      padding-left: $grid-gutter-width-base/2;
+      width: 60%;
+    }
 
-	>div {
-		width: 78%;
-		margin: auto;
-		overflow: inherit;
-		border-bottom: 1px solid white;
-		padding: 15px 0 10px 15px;
+    @include media-breakpoint-down(md) {
+      width: 70%;
+    }
 
-		b {
-			color: black;
-			display: block;
-		}
+  }
 
-		i {
-			color: #333333 !important;
-		}
+  .figure {
+    float: left;
 
-		>div[class*="figure"]{
-			display: inline-block;
-			float:left;
-			width: 50%;
-			margin-bottom: 15px;
+    width: 100%;
+    padding-top: 112.5%;
 
-			.figure {
-				width: 120px;
-				height: 144px;
-				display: inherit;
-				float: inherit;
-				background-color: #ebbbad;
-			}
+    margin-bottom: $grid-gutter-width-base/2;
+    background-color: #ebbbad;
+    position: relative;
 
-			.description {
-				margin-left: 30px;
-				width: 50%;
-				display: inherit;
-				float: inherit;
-			}
-		}
+    @include media-breakpoint-down(lg) {
+      padding-top: 45%;
+      width: 40%;
+    }
 
-		.figure1 .box1 {
-			height: 14px;
-			background-color: #d6d6d6;
-		}
+    @include media-breakpoint-down(md) {
+      padding-top: 33.75%;
+      width: 30%;
+    }
 
-		@each $figure in figure2, figure4 {
-			.#{$figure} [class*="box"] {
-				width: 50%;
-				height: 50%;
-				background-color: #eb9b82;
+  }
 
-				&:nth-child(2) {
-					float: right;
-					@if $figure == figure2 {
-						background-color: #d6d6d6;
-					}
-				}
-			}
-		}
-		
+  .figure {
+    .box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 50%;
+      width: 50%;
+      background-color: #eb9b82;
+    }
 
-		.figure6 {
-			ul {margin-bottom: 0;}
-			text {
-				display: inline-block;
-	    		vertical-align: top;
-	    		margin-left: 20px;
-			}
+    .box2 {
+      left: auto;
+      top: auto;
+      right: 0;
+      bottom: 0;
+    }
+  }
 
-			div>i {margin: 0 25px 30px 50px !important; display: inline-block;}
-			
-    		.toner-icon, .margin-icon {
-    			display: inline-block !important;
-    		}
-		}
-	}
+  .figure1 .box {
+    height: 10%;
+    width: 100%;
+    background-color: #d6d6d6;
+  }
 
-}
+  .figure2 .box2 {
+    background: #d6d6d6;
+  }
 
-/* For mobile phones: */
-@include media-breakpoint-down(sm) {
-	.newspaper-ad {
-		i {
-			font-size: $font-size-h6 !important;
-		}
+  .general {
 
-		>div {
-			b {
-				font-size: $font-size-h6 !important;
-			}
+    background: white;
+    width: 100%;
 
-			>div[class*="figure"]{
-				width: 100%;
-			}
-		}
-	}
-}
+    object {
+      height: $font-size-h1;
+      float: left;
+      text-align: right;
+    }
 
-/* For tablets: */
-@include media-breakpoint-only(md) {
-	.newspaper-ad {
-		i {
-			font-size: $font-size-h6 !important;
-		}
+    position: relative;
 
-		>div {
-			b {
-				font-size: $font-size-h6 !important;
-			}
+    .inner {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
 
-			>div[class*="figure"]{
-				width: 50%;
+    .description {
+      padding: 0;
+      margin:0;
+    }
 
-				.description {
-					margin-left: 0px;
-					width: 100%;
-				}
-			}
+    @include media-breakpoint-down(md) {
+      padding: 0;
 
-			.figure6 {
-				width: 100% !important;
-				div>i {margin: 0 25px 30px 35px !important;}
-			}
-		}
-	}
+      .inner {
+        position: static;
+      }
+    }
+
+  }
+
 }

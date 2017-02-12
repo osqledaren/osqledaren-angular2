@@ -1,94 +1,15 @@
 .ad-schedule {
-	overflow: hidden;
-	line-height: 1.1;
-	font-size: $font-size-h6;
-	margin-top: 15px;
 
-	i {
-		font-size: $font-size-h6 !important;
+	.info {
+		text-align: left;
 	}
 
-	>i {
-		color: #666666 !important;
-		font-size: $font-size-h6 !important;
+	.calendar {
+		display: inline-block;
 	}
 
-	b {
-		color: black;
-		display: block;
-		font-size: $font-size-h6 !important;
-	}
-
-	>div {
-		width: 78%;
-		margin: auto;
-		overflow: inherit;
-		border-bottom: 1px solid white;
-		padding: 30px 0 30px 15px;
-		text-align: center;
-
-		.info {
-			width: 150px;
-			display: inline-block;
-			vertical-align: top;
-			margin: 30px 100px 0 15px;
-			text-align: left;
-			>b {
-				margin-left: 5px;
-				margin-bottom: 20px;
-			}
-
-			p {
-				color: #333333 !important;
-				font-size: $font-size-h6 !important;
-				margin-bottom: 15px !important;
-			}
-		}
-
-		.calendar {
-			display: inline-block;
-		}
-	}
-}
-
-/* For mobile phones: */
-@include media-breakpoint-down(sm) {
-	.ad-schedule {
-		>i {
-			font-size: $font-size-h5 !important;
-		}
-
-		>div {
-			width: 100%;
-			padding: 30px 0 30px 0px;
-			.info {
-				b, p {
-					font-size: $font-size-h6 !important;
-
-				}
-			}
-		}
-
-	}
-}
-
-/* For tablets: */
-@include media-breakpoint-only(md) {
-	.ad-schedule {
-		>i {
-			font-size: $font-size-h5 !important;
-		}
-
-		>div {
-			width: 100%;
-			padding: 30px 0 30px 15px;
-
-			.info {
-				margin: 30px 20px 0 15px;
-				b, p {
-					font-size: $font-size-h6 !important;
-				}
-			}
-		}
+	svg text {
+		font-family: $font-family-sans-serif!important;
+		text-transform: capitalize!important;
 	}
 }

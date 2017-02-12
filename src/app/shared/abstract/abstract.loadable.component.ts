@@ -25,6 +25,7 @@ export abstract class LoadableComponent implements OnInit, OnDestroy {
      * Removes component from load queue. Loading has been resolved in component.
      */
     protected loaded() {
+        this.loaderService.remove('preload'); // Remove preload handle from queue.
         this.loaderService.remove(this.loaderHandle);
     }
 
@@ -34,7 +35,7 @@ export abstract class LoadableComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.destroy();
-        this.loaded();
+        this.loaderService.remove(this.loaderHandle);
         this.sub.unsubscribe();
     }
 
