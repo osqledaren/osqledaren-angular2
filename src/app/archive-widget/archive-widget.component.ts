@@ -1,13 +1,13 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {ArchiveService} from "../archive.service";
 import {ArchiveDistribution} from "../shared/interface/archive-distribution.interface";
-import {isUndefined} from "util";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
+import {isNullOrUndefined} from "util";
 
 
 interface YearInput {
-    index: string;
+    index: number;
     year: string
 }
 
@@ -31,21 +31,25 @@ export class ArchiveComponent extends LoadableComponent{
 
     public setArchive() {
 
-        let index = !isUndefined(this.yearInput) ? Number(this.yearInput.index): undefined;
-        let year = !isUndefined(this.yearInput) ? Number(this.yearInput.year): undefined;
+        let index = !isNullOrUndefined(this.yearInput) ? Number(this.yearInput.index): undefined;
+        let year = !isNullOrUndefined(this.yearInput) ? Number(this.yearInput.year): undefined;
         let month = Number(this.monthInput);
-        this.archiveService.setArchive(index,year,month);
+
+        if(index !== undefined){
+            this.archiveService.setArchive(index, year, month);
+        }
 
     }
 
-    public setMonths(year: YearInput | string){
+    public setMonths(year: YearInput | null){
 
-        if(typeof(year) === 'string'){
+        if(typeof(year) === null){
             this.months = [];
             return;
+        } else {
+            this.months = this.distribution[year.index].months;
         }
 
-        this.months = this.distribution[year.index].months;
     }
 
     init() {
@@ -56,6 +60,16 @@ export class ArchiveComponent extends LoadableComponent{
                 this.loaded();
             }
         );
+
+        this.sub = this.archiveService.resetListener.subscribe(
+            (date) => {
+                if(date){
+                    this.yearInput = null;
+                    this.monthInput = '';
+                    this.months = [];
+                }
+            }
+        )
 
         this.sub = this.archiveService.archiveDistribution.subscribe(
             (archiveDistribution) => {

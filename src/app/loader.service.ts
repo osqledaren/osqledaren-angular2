@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Dictionary} from "./shared/class/dictionary.class";
 import {Subject, Observable} from "rxjs/Rx";
+import {ArchiveService} from "./archive.service";
 
 @Injectable()
 export class LoaderService {

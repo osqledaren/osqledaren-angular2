@@ -18,15 +18,18 @@ export class SearchComponent implements OnInit, OnDestroy {
 
 	public search(){
 		let s: string;
+		s = isUndefined(this.searchInput) ? '' : this.searchInput;
 
-		s = isUndefined(this.searchInput)? '' : this.searchInput;
-
-		this.archiveService.search(s);
+		if(s !== '') this.archiveService.search(s);
 	}
 
 	ngOnInit() {
 		this.sub = this.archiveService.activated.subscribe(
 			(activated) => this.visible = activated
+		);
+
+		this.sub = this.archiveService.resetListener.subscribe(
+			() => this.searchInput = ''
 		);
 	}
 

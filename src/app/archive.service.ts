@@ -1,6 +1,6 @@
 import {Injectable, Inject} from "@angular/core";
 import {Archive} from "./shared/enums";
-import {Router, ActivatedRoute, Params} from "@angular/router";
+import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
@@ -10,6 +10,7 @@ import {PadNumberPipe} from "./pad-number.pipe";
 import {Response, Http} from "@angular/http";
 import {ContentService} from "./shared/abstract/abstract.content.service";
 import {APP_CONFIG} from "./app.config";
+import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
 
 @Injectable()
 export class ArchiveService extends ContentService {
@@ -20,9 +21,11 @@ export class ArchiveService extends ContentService {
     private searchTerm: string = '';
     public activated: Subject<boolean> = new Subject();
     public archiveDistribution: Subject<ArchiveDistribution[]> = new Subject();
+    public activeArchive: Subject<Archive> = new Subject();
+    public resetListener: Subject<boolean> = new Subject();
+    public filterActive: Subject<boolean> = new Subject();
 
     constructor(private router: Router,
-                private activatedRoute: ActivatedRoute,
                 protected http: Http,
                 @Inject(APP_CONFIG) config) {
         super();
@@ -30,22 +33,17 @@ export class ArchiveService extends ContentService {
         this.endpoint = config.wordpressEndpoint;
     }
 
-
     public activate(archive: Archive) {
 
         if (this.archive === archive) {
             return; // Already active;
         }
 
-        this.activatedRoute.params.map((params: Params) => {
-                this.searchTerm = params['searchTerm'];
-                this.date = params['date'];
-            }
-        );
+        this.reset();
 
         this.archive = archive;
+        this.activeArchive.next(archive);
         this.activated.next(true);
-
 
         let postType: string;
 
@@ -97,14 +95,15 @@ export class ArchiveService extends ContentService {
                 let lastMonthIndex = this.archiveDistributionElements[index].months.length - 1;
 
                 // Year is a valid number, check if month is selected and valid.
-                if (month >= this.archiveDistributionElements[index].months[0] &&
-                    month <= this.archiveDistributionElements[index].months[lastMonthIndex]) {
+                if (month <= toInteger(this.archiveDistributionElements[index].months[0]) &&
+                    month >= toInteger(this.archiveDistributionElements[index].months[lastMonthIndex])) {
                     date += '-' + (new PadNumberPipe().transform(month, 2)); // Pad the month so it begins with zero if necessary.
                 }
             }
         }
 
         this.date = date;
+        this.reset(false);
         this.getArchive();
     }
 
@@ -116,26 +115,29 @@ export class ArchiveService extends ContentService {
     private getArchive() {
 
         switch (this.archive) {
-            case Archive.article:
 
+            case Archive.article:
                 if (!isNullOrUndefined(this.searchTerm) && this.searchTerm.length > 0) {
 
                     if (this.date.length > 0) {
 
-                        let routerParams: Array<string> = ['/articles', 'archive'];
+                        let routerParams: Array<string> = ['/nyheter', 'arkiv'];
                         routerParams.push(this.date);
                         routerParams.push(this.searchTerm);
 
                         this.router.navigate(routerParams);
                     } else {
-                        this.router.navigate(['/articles', 'search', this.searchTerm]);
+                        this.router.navigate(['/nyheter', 'sok', this.searchTerm]);
                     }
 
-                } else if (this.date.length > 0) {
-                    this.router.navigate(['/articles', 'archive', this.date]);
-                } else {
+                    this.filterActive.next(true);
 
-                    this.router.navigate(['/articles']);
+                } else if (this.date.length > 0) {
+                    this.filterActive.next(true);
+                    this.router.navigate(['/nyheter', 'arkiv', this.date]);
+                } else {
+                    this.filterActive.next(false);
+                    this.router.navigate(['/nyheter']);
                 }
 
                 break;
@@ -145,6 +147,18 @@ export class ArchiveService extends ContentService {
                 break;
             default:
                 break;
+        }
+    }
+
+    public reset(date?: boolean) {
+        if (isNullOrUndefined(date)) {
+
+            if (!date) {
+                this.filterActive.next(false);
+                this.resetListener.next(true);
+            }
+        } else {
+            this.resetListener.next(false);
         }
     }
 

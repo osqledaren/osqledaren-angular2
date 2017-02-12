@@ -64,31 +64,31 @@ import { BylineComponent } from './byline/byline.component';
         HttpModule,
         RouterModule.forRoot([
             {
-                path: 'article/:slug',
+                path: 'artikel/:slug',
                 component: ArticleComponent,
                 data: {name: 'article'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'articles',
+                path: 'nyheter',
                 component: NewsArchiveComponent,
                 data: {name: 'articles'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'articles/search/:searchTerm',
+                path: 'nyheter/sok/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'search'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'articles/archive/:date/:searchTerm',
+                path: 'nyheter/sok/:date/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'archive'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'articles/archive/:date',
+                path: 'nyheter/arkiv/:date',
                 component: NewsArchiveComponent,
                 data: {name: 'archive'},
                 canDeactivate: [LoadableDeactivateGuard]

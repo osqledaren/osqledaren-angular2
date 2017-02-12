@@ -1,12 +1,13 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {NewsArticleService} from "../news-article.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Article} from "../shared/interface/article.interface";
 import {ArchiveService} from "../archive.service";
 import {Archive} from "../shared/enums";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {BylineComponent} from "../byline/byline.component";
+import {isNullOrUndefined} from "util";
 
 @Component({
     selector: 'app-article',
@@ -19,7 +20,8 @@ export class ArticleComponent extends LoadableComponent {
 
     constructor(private NS: NewsArticleService,
                 private route: ActivatedRoute,
-                private searchService: ArchiveService,
+                private router: Router,
+                private archiveService: ArchiveService,
                 loaderService: LoaderService) {
         super(loaderService);
     }
@@ -32,8 +34,14 @@ export class ArticleComponent extends LoadableComponent {
             this.sub = this.NS.getArticle(slug).subscribe(
                 posts => {
                     this.article = posts[0];
-                    setTimeout(() => this.checkQuoteElement());
+                    this.checkQuoteElement();
+
+                    if (isNullOrUndefined(posts[0])) {
+                        this.router.navigate(['404']);
+                    }
+
                     this.loaded();
+
                 },
                 error => {
                     errorMessage = <any> error
@@ -60,8 +68,7 @@ export class ArticleComponent extends LoadableComponent {
     }
 
     init() {
-        this.searchService.activate(Archive.article);
+        this.archiveService.activate(Archive.article);
         this.initializeData();
     }
-
 }
