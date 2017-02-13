@@ -82,7 +82,7 @@ import { BylineComponent } from './byline/byline.component';
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'nyheter/sok/:date/:searchTerm',
+                path: 'nyheter/arkiv/:date/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'archive'},
                 canDeactivate: [LoadableDeactivateGuard]
