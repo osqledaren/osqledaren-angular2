@@ -23,6 +23,10 @@ import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-g
 import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 import {LoaderComponent} from "./loader/loader.component";
+import { PlayComponent } from './play/play/play.component';
+import { VideoPlayerComponent } from './play/video-player/video-player.component';
+import { PlaySingleProgramComponent } from './play/play-single-program/play-single-program.component';
+import { PlaySingleEpisodeComponent } from './play/play-single-episode/play-single-episode.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -34,6 +38,7 @@ import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
 import { BylineComponent } from './byline/byline.component';
+import { TimePipe } from './play/time.pipe';
 
 @NgModule({
     declarations: [
@@ -54,7 +59,12 @@ import { BylineComponent } from './byline/byline.component';
         PadNumberPipe,
         SplitPipe,
         LoaderComponent,
-        BylineComponent
+        BylineComponent,
+        PlayComponent,
+        VideoPlayerComponent,
+        PlaySingleProgramComponent,
+        PlaySingleEpisodeComponent,
+        TimePipe
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -109,6 +119,24 @@ import { BylineComponent } from './byline/byline.component';
                 path: 'annonsera',
                 component: AdvertisementPageComponent,
                 data: {name: 'advertise'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'play',
+                component: PlayComponent,
+                data: {name: 'play'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'play/:program',
+                component: PlaySingleProgramComponent,
+                data: {name: 'play single program'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'play/:program/:episode',
+                component: PlaySingleEpisodeComponent,
+                data: {name: 'play single episode'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {

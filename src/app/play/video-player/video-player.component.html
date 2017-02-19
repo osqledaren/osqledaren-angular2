@@ -1,0 +1,111 @@
+<div #fullPlayerElement id="fullPlayer" (mousemove)="mouseMovingOnPlayer()">
+	<div id="display" (click)="togglePlay()">
+		<video id="videoElement" #videoElement [attr.src]="src">
+			<source [src]="src" type="video/mp4">
+			Your browser does not support the video element.
+		</video>
+	</div>
+
+	<div #controller id="controller">
+		<div id="progressBar" >
+			<span id="currentTime">{{currentTime | time}}</span>
+			<div #progressMeterFull (click)="videoSeek($event)" (mousedown)="dragStart($event)" id="progressMeterFull">
+				<div id="progressMeterBar" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()"></div>
+				<div id="bufferedPercentages" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()" [style.width]="bufferedPercentages + '%'"></div>
+				<div id="progressMeter" #progressMeter (click)="videoSeek($event)" [style.width]="scrubLeft + '%'" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()"></div>
+				<div id="thumbScrubber" #thumbScrubber [style.left]="scrubLeft + '%'" (mousedown)="dragStart($event)"></div>
+				<span #pendingTimeElement [hidden]="!showPendingTime" id="pendingTime">{{pendingTime | time}}</span>
+			</div>
+			<span id="totalTime">{{totalTime | time}}</span>
+		</div>
+			
+		<div id="playerToolBar">
+			<div id="emptyBtn"><i></i></div>
+			<div id="backwardBtn"><i class="fa fa-step-backward" aria-hidden="true"></i></div>
+			<div id="playBtn"><i #playButton (click)="togglePlay()" class="fa fa-play-circle" aria-hidden="true"></i></div>
+			<div id="forwardBtn"><i class="fa fa-step-forward" aria-hidden="true"></i></div>
+			<div id="repeatBtn"><i (click)="toggleVideoRepeat($event)" class="fa fa-repeat" aria-hidden="true"></i></div>
+			
+			<div>
+				<div id="muteBtn">
+					<i #volumeButton (click)="toggleMute()" (mouseenter)="toggleVolumeBar($event)" (mouseleave)="toggleVolumeBar($event)" class="fa fa-volume-up" aria-hidden="true"></i>
+					<div *ngIf="showVolumeBar" #volumeMeterFull (click)="volumeSeek($event)" (mousedown)="dragStartVolume($event)" (mouseleave)="hideVolumeBar()" id="volumeMeterFull">
+						<div #volumeMeter (click)="volumeSeek($event)" id="volumeMeter" [style.height]="volumeScrubTop + '%'"></div>
+						<div id="volumeThumbScrubber" #volumeScrubber [style.bottom]="volumeScrubTop + '%'" (mousedown)="dragStartVolume($event)"></div>
+					</div>
+				</div>
+					
+				<div id="cogBtn">
+					<i #cogIcon (click)="toggleSettingPanel($event)" class="fa fa-cogs" aria-hidden="true"></i>
+					<div *ngIf="showSettingPanel" class="settingPanel">
+						<div>
+							<span>Autoplay<i>Play next video</i></span>
+							<div class="on-off-b-container">
+								<div #onOffThumbScrubber class="on-off-thumbScrubber" (click)="toggleAutoplay()"></div>
+								<div (click)="toggleAutoplay()">
+									<div #onOffButton class="on-off-button">
+										<div>On</div>
+										<div>Off</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="fullScreenBtn"><i [innerHTML]="fullscreenIcon" (click)="toggleFullScreen()" class="material-icons"></i></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="playlist-icon">
+		<i class="material-icons" (click)="togglePlaylist($event)">playlist_play</i>
+	</div>
+
+	<div *ngIf="showPlaylist" id="playlist">
+		<div class="episode selected">
+  			<div class="image-wrapper">
+  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
+  			</div>
+  			<div class="info-wrapper">
+  				<p>Avsnitt 1: Title av första avsnitt Title av första avsnitt</p>
+  				<span>3:10</span>
+  			</div>
+  		</div>
+  		<div class="episode">
+  			<div class="image-wrapper" >
+  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
+  			</div>
+  			<div class="info-wrapper">
+  				<p>Avsnitt 2: Title av andra avsnitt</p>
+  				<span>1:32:10</span>
+  			</div>
+  		</div>
+  		<div class="episode">
+  			<div class="image-wrapper">
+  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
+  			</div>
+  			<div class="info-wrapper">
+  				<p>Avsnitt 2: Title av andra avsnitt</p>
+  				<span>1:32:10</span>
+  			</div>
+  		</div>
+  		<div class="episode">
+  			<div class="image-wrapper">
+  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
+  			</div>
+  			<div class="info-wrapper">
+  				<p>Avsnitt 2: Title av andra avsnitt</p>
+  				<span>1:32:10</span>
+  			</div>
+  		</div>
+  		<div class="episode">
+  			<div class="image-wrapper">
+  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
+  			</div>
+  			<div class="info-wrapper">
+  				<p>Avsnitt 2: Title av andra avsnitt</p>
+  				<span>1:32:10</span>
+  			</div>
+  		</div>
+	</div>
+</div>
