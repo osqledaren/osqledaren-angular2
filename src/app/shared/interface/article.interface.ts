@@ -1,12 +1,16 @@
 export interface Article {
-    id: number,
-    slug: string,
-    uri: string,
-    type: string,
-    versioncreated: string,
-    byline: string,
-    headline: string,
     body_html: string,
+    byline: string,
+    copyrightholder: string,
+    copyrightnotice: string,
     description_text: string,
-    urgency: number
+    headline: string,
+    id: number,
+    renditions?: {},
+    representationtype: string,
+    slug: string,
+    type: string,
+    uri: string,
+    urgency: number,
+    versioncreated: string
 }

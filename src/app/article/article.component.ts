@@ -34,6 +34,9 @@ export class ArticleComponent extends LoadableComponent {
             this.sub = this.NS.getArticle(slug).subscribe(
                 posts => {
                     this.article = posts[0];
+
+                    console.log(posts[0]);
+
                     setTimeout(()=>this.checkQuoteElement());
                     if (isNullOrUndefined(posts[0])) {
                         this.router.navigate(['404']);

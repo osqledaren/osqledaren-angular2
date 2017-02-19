@@ -9,6 +9,9 @@ import {ArticleQueryParams} from "./shared/interface/article-query-params.interf
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
 import {isUndefined} from "util";
+import {isString} from "util";
+import {isNumber} from "util";
+import {Subscription} from "rxjs";
 
 @Injectable()
 export class WordpressService extends ContentService {
@@ -30,11 +33,11 @@ export class WordpressService extends ContentService {
         switch (typeof param) {
             case 'string':
                 return this.http.get(this.endpoint + '/posts/?slug=' + param)
-                    .map(this.map)
+                    .map((res) => this.map(res))
                     .catch(this.handleError);
             default:
                 return this.http.get(this.endpoint + '/posts/' + param)
-                    .map(this.map)
+                    .map((res) => this.map(res))
                     .catch(this.handleError);
         }
     }
@@ -99,7 +102,23 @@ export class WordpressService extends ContentService {
 
         // Increment offset number
         this.offset++;
-        return request.map(this.map).catch(this.handleError);
+        return request.map((res) => this.map(res)).catch(this.handleError);
+
+    }
+
+    public getMedia(query: string | number): Observable<any> {
+
+        let request;
+
+        if(isNumber(query)){
+            query = query.toString();
+            query = this.endpoint + '/media/' + query.toString();
+        }
+
+        query = query.toString();
+
+        request = this.http.get(query);
+        return request.map((res) => this.mapMediaObject(res)).catch(this.handleError);
 
     }
 
@@ -112,6 +131,17 @@ export class WordpressService extends ContentService {
         return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
     }
 
+    protected mapMediaObject(res: Response){
+
+        let media = res.json();
+        let json = {
+            title: media.title.rendered,
+            mediadetails: media.media_details
+        };
+
+        return json;
+    }
+
     /**
      * Maps a response object to an article array
      * @param res:Response
@@ -119,25 +149,65 @@ export class WordpressService extends ContentService {
      */
     protected map(res: Response) {
         let body: any = res.json();
+        let imageSub: Subscription;
+        let image: any;
+        let renditions;
         let posts: Article[] = <Article[]>[];
 
         for (let i in body) {
 
+            if(!isNullOrUndefined(body[i]._links['wp:featuredmedia'])){
+                imageSub = this.getMedia(body[i]._links['wp:featuredmedia'][0].href).subscribe(
+                    res => {
+                        image = res;
+                        console.log(image);
+                        renditions = {
+                            featuredimage_thumb: {
+                                title: image.mediadetails.title,
+                                mime_type: image.mediadetails.sizes.thumbnail.mime_type,
+                                height: image.mediadetails.sizes.thumbnail.height,
+                                width: image.mediadetails.sizes.thumbnail.width,
+                                href: image.mediadetails.sizes.thumbnail.source_url
+                            },
+                            featuredimage_l: {
+                                title: image.mediadetails.title,
+                                mime_type: image.mediadetails.sizes.large.mime_type,
+                                height: image.mediadetails.sizes.large.height,
+                                width: image.mediadetails.sizes.large.width,
+                                href: image.mediadetails.sizes.large.source_url
+                            },
+                            featuredimage: {
+                                title: image.mediadetails.title,
+                                mime_type: image.mediadetails.sizes.full.mime_type,
+                                height: image.mediadetails.sizes.full.height,
+                                width: image.mediadetails.sizes.full.width,
+                                href: image.mediadetails.sizes.full.source_url
+                            }
+                        }
+                    }
+                );
+            } else {
+                renditions = {};
+            }
+
             posts.push(<Article>{
+                body_html: body[i].content.rendered,
+                byline: 'Osqledaren',
+                copyrightholder: 'Osqledaren',
+                copyrightnotice: 'Copyright Osqledaren',
+                description_text: WordpressService.htmlToPlainText(body[i].excerpt.rendered),
+                headline: body[i].title.rendered,
                 id: body[i].id,
+                mimetype: 'text/html',
+                renditions: renditions,
+                representationtype: 'complete',
                 slug: body[i].slug,
                 type: 'text',
-                byline: 'Osqledaren',
-                versioncreated: body[i].date,
+                uri: body[i].link,
                 urgency: 1,
-                headline: body[i].title.rendered,
-                body_html: body[i].content.rendered,
-                description_text: WordpressService.htmlToPlainText(body[i].excerpt.rendered)
+                versioncreated: body[i].date
             });
         }
-
         return posts;
     }
-
-
 }
