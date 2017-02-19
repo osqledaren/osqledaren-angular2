@@ -15,9 +15,9 @@ export class PrintedIssuesComponent implements OnInit {
     {
       "year": "16/17",
       "issues": [
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png",
+        "assets/img/printed-issues/161700.png",
+        "assets/img/printed-issues/161701.png",
+        "assets/img/printed-issues/161702.png",
         "assets/img/placeholder-printed-issues.png",
         "assets/img/placeholder-printed-issues.png"
       ]
@@ -25,11 +25,11 @@ export class PrintedIssuesComponent implements OnInit {
     {
       "year": "15/16",
       "issues": [
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png"
+        "assets/img/printed-issues/151600.png",
+        "assets/img/printed-issues/151601.png",
+        "assets/img/printed-issues/151602.png",
+        "assets/img/printed-issues/151603.png",
+        "assets/img/printed-issues/151604.png"
       ]
     },
     {
@@ -37,9 +37,9 @@ export class PrintedIssuesComponent implements OnInit {
       "issues": [
         "https://image.isu.pub/140903103228-38010298161cece30f4ab2f5c4bbdaa1/jpg/page_1_thumb_large.jpg",
         "https://image.isu.pub/141128232153-067219625361f694a356d3f961e7d8c8/jpg/page_1_thumb_large.jpg",
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png"
+        "assets/img/printed-issues/141502.png",
+        "assets/img/printed-issues/141503.png",
+        "assets/img/printed-issues/141504.png"
       ]
     },
     {
