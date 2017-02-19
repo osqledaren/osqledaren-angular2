@@ -1,40 +1,75 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {ArchiveService} from "../archive.service";
-import {ArchiveDistribution} from "../model/archive-distribution";
-import {isUndefined} from "util";
+import {ArchiveDistribution} from "../shared/interface/archive-distribution.interface";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
+import {isNullOrUndefined} from "util";
+
+
+interface YearInput {
+    index: number;
+    year: string
+}
 
 @Component({
     selector: 'app-archive',
     templateUrl: 'archive-widget.component.html',
     styleUrls: ['archive-widget.component.scss']
 })
-export class ArchiveComponent implements OnInit, OnDestroy {
+export class ArchiveComponent extends LoadableComponent{
 
-    public yearInput: {index: string, year:string};
+    public yearInput: YearInput;
     public monthInput: string;
     public visible: boolean = false;
     public distribution: ArchiveDistribution[];
     public months: number[];
-    private sub;
 
-    constructor(private archiveService: ArchiveService) {
+    constructor(private archiveService: ArchiveService,
+                loaderService: LoaderService) {
+        super(loaderService);
     }
 
     public setArchive() {
 
-        let index = !isUndefined(this.yearInput) ? Number(this.yearInput.index): undefined;
-        let year = !isUndefined(this.yearInput) ? Number(this.yearInput.year): undefined;
+        let index = !isNullOrUndefined(this.yearInput) ? Number(this.yearInput.index): undefined;
+        let year = !isNullOrUndefined(this.yearInput) ? Number(this.yearInput.year): undefined;
         let month = Number(this.monthInput);
-        this.archiveService.setArchive(index,year,month);
+
+        if(index !== undefined){
+            this.archiveService.setArchive(index, year, month);
+        }
 
     }
 
-    ngOnInit() {
+    public setMonths(year: YearInput | null){
+
+        if(typeof(year) === null){
+            this.months = [];
+            return;
+        } else {
+            this.months = this.distribution[year.index].months;
+        }
+
+    }
+
+    init() {
+
         this.sub = this.archiveService.activated.subscribe(
             (activated) => {
                 this.visible = activated;
+                this.loaded();
             }
         );
+
+        this.sub = this.archiveService.resetListener.subscribe(
+            (date) => {
+                if(date){
+                    this.yearInput = null;
+                    this.monthInput = '';
+                    this.months = [];
+                }
+            }
+        )
 
         this.sub = this.archiveService.archiveDistribution.subscribe(
             (archiveDistribution) => {
@@ -42,10 +77,6 @@ export class ArchiveComponent implements OnInit, OnDestroy {
                 this.months = archiveDistribution[0].months; // Set collection of months of current year.
             }
         );
-    }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
     }
 
 }

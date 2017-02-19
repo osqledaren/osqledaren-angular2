@@ -43,7 +43,7 @@
 }
 
 /* For mobile phones: */
-@media only screen and (max-width: 600px) {
+@include media-breakpoint-down(sm) {
 	.share-buttons {
 		[class*="button-"] {
 			margin-bottom: 5px;
@@ -55,7 +55,7 @@
 }
 
 /* For tablets: */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@include media-breakpoint-only(md) {
 	.share-buttons {
 		[class*="button-"] {
 			i {

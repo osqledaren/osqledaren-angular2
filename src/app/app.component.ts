@@ -16,7 +16,6 @@ import {
 })
 export class AppComponent {
     @HostBinding('class') bodyRouterClass: string = 'start';
-    loading: boolean = true;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router) {
 
@@ -28,20 +27,16 @@ export class AppComponent {
     // Shows and hides the loading spinner during RouterEvent changes
     navigationInterceptor(event: Event): void {
         if (event instanceof NavigationStart) {
-            this.loading = true;
         }
 
         if (event instanceof NavigationEnd) {
             this.bodyRouterClass = this.getClass(this.activatedRoute.snapshot);
-            this.loading = false;
         }
 
         // Set loading state to false in both of the below events to hide the spinner in case a request fails
         if (event instanceof NavigationCancel) {
-            this.loading = false;
         }
         if (event instanceof NavigationError) {
-            this.loading = false;
         }
     }
 

@@ -1,21 +1,29 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {NewsArticleService} from "../news-article.service";
-import {ActivatedRoute} from "@angular/router";
-import {Article} from "../model/article";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Article} from "../shared/interface/article.interface";
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../model/enums";
+import {Archive} from "../shared/enums";
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
+import {BylineComponent} from "../byline/byline.component";
+import {isNullOrUndefined} from "util";
 
 @Component({
     selector: 'app-article',
     templateUrl: './article.component.html',
     styleUrls: ['./article.component.scss']
 })
-export class ArticleComponent implements OnInit, OnDestroy {
+export class ArticleComponent extends LoadableComponent {
 
-    private sub: any;
     public article: Article;
 
-    constructor(private NS: NewsArticleService, private route: ActivatedRoute, private searchService: ArchiveService) {
+    constructor(private NS: NewsArticleService,
+                private route: ActivatedRoute,
+                private router: Router,
+                private archiveService: ArchiveService,
+                loaderService: LoaderService) {
+        super(loaderService);
     }
 
     private initializeData() {
@@ -26,9 +34,17 @@ export class ArticleComponent implements OnInit, OnDestroy {
             this.sub = this.NS.getArticle(slug).subscribe(
                 posts => {
                     this.article = posts[0];
-                    setTimeout(() => this.checkQuoteElement());
+                    setTimeout(()=>this.checkQuoteElement());
+                    if (isNullOrUndefined(posts[0])) {
+                        this.router.navigate(['404']);
+                    }
+
+                    this.loaded();
+
                 },
-                error => errorMessage = <any> error);
+                error => {
+                    errorMessage = <any> error
+                });
         });
 
     }
@@ -50,14 +66,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnInit() {
-        this.searchService.activate(Archive.article);
+    init() {
+        this.archiveService.activate(Archive.article);
         this.initializeData();
-
     }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
-
 }

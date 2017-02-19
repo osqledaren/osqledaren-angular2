@@ -1,11 +1,11 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http} from "@angular/http";
-import {Article} from "./model/article";
+import {Article} from "./shared/interface/article.interface";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import {ContentService} from "./model/content-service";
-import {ArticleQueryParams} from "./model/article-query-params";
+import {ContentService} from "./shared/abstract/abstract.content.service";
+import {ArticleQueryParams} from "./shared/interface/article-query-params.interface";
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
 import {isUndefined} from "util";
@@ -30,11 +30,11 @@ export class WordpressService extends ContentService {
         switch (typeof param) {
             case 'string':
                 return this.http.get(this.endpoint + '/posts/?slug=' + param)
-                    .map(WordpressService.extractData)
+                    .map(this.map)
                     .catch(this.handleError);
             default:
                 return this.http.get(this.endpoint + '/posts/' + param)
-                    .map(WordpressService.extractData)
+                    .map(this.map)
                     .catch(this.handleError);
         }
     }
@@ -99,7 +99,7 @@ export class WordpressService extends ContentService {
 
         // Increment offset number
         this.offset++;
-        return request.map(WordpressService.extractData).catch(this.handleError);
+        return request.map(this.map).catch(this.handleError);
 
     }
 
@@ -117,7 +117,7 @@ export class WordpressService extends ContentService {
      * @param res:Response
      * @returns {Article[]|{}}
      */
-    protected static extractData(res: Response) {
+    protected map(res: Response) {
         let body: any = res.json();
         let posts: Article[] = <Article[]>[];
 

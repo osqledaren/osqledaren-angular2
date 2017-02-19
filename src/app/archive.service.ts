@@ -1,15 +1,19 @@
-import {Injectable} from "@angular/core";
-import {Archive} from "./model/enums";
-import {Router, ActivatedRoute, Params} from "@angular/router";
+import {Injectable, Inject} from "@angular/core";
+import {Archive} from "./shared/enums";
+import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
-import 'rxjs/add/operator/map';
-import {ArchiveDistribution} from "./model/archive-distribution";
+import "rxjs/add/operator/catch";
+import "rxjs/add/operator/map";
+import {ArchiveDistribution} from "./shared/interface/archive-distribution.interface";
 import {isNullOrUndefined} from "util";
-import {padNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
 import {PadNumberPipe} from "./pad-number.pipe";
+import {Response, Http} from "@angular/http";
+import {ContentService} from "./shared/abstract/abstract.content.service";
+import {APP_CONFIG} from "./app.config";
+import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
 
 @Injectable()
-export class ArchiveService {
+export class ArchiveService extends ContentService {
 
     private archive: Archive = null;
     private archiveDistributionElements = <ArchiveDistribution[]>[];
@@ -17,45 +21,48 @@ export class ArchiveService {
     private searchTerm: string = '';
     public activated: Subject<boolean> = new Subject();
     public archiveDistribution: Subject<ArchiveDistribution[]> = new Subject();
+    public activeArchive: Subject<Archive> = new Subject();
+    public resetListener: Subject<boolean> = new Subject();
+    public filterActive: Subject<boolean> = new Subject();
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    }
+    constructor(private router: Router,
+                protected http: Http,
+                @Inject(APP_CONFIG) config) {
+        super();
 
-    private getArchiveDistribution(): ArchiveDistribution[] {
-
-        // TODO: Get archive from wordpress.
-
-
-        this.archiveDistributionElements = <ArchiveDistribution[]>[];
-
-        this.archiveDistributionElements.push(<ArchiveDistribution>{
-            year: 2017,
-            months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        });
-
-        this.archiveDistributionElements.push(<ArchiveDistribution>{
-            year: 2016,
-            months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        });
-
-        return this.archiveDistributionElements;
+        this.endpoint = config.wordpressEndpoint;
     }
 
     public activate(archive: Archive) {
 
-        if(this.archive === archive){
+        if (this.archive === archive) {
             return; // Already active;
         }
 
-        this.activatedRoute.params.map((params: Params) => {
-                this.searchTerm = params['searchTerm'];
-                this.date = params['date'];
-            }
-        );
+        this.reset();
 
         this.archive = archive;
+        this.activeArchive.next(archive);
         this.activated.next(true);
-        this.archiveDistribution.next(this.getArchiveDistribution());
+
+        let postType: string;
+
+        switch (archive) {
+            case Archive.article:
+                postType = 'post';
+                break;
+            default:
+                postType = Archive[archive];
+        }
+
+        this.http.get(this.endpoint + '/archives/' + postType)
+            .map(this.map)
+            .catch(this.handleError).subscribe(
+            (distribution) => {
+                this.archiveDistributionElements = distribution;
+                this.archiveDistribution.next(distribution);
+            }
+        );
     }
 
     public deactivate() {
@@ -65,17 +72,13 @@ export class ArchiveService {
         this.activated.next(false);
     }
 
-    public currentArchive(): Archive {
-        return this.archive;
-    }
-
     public setArchive(index: number, year: number, month?: number) {
 
-        let date:string = '';
+        let date: string = '';
 
         this.searchTerm = ''; // Reset search term.
 
-        if(isNullOrUndefined(index)){
+        if (isNullOrUndefined(index)) {
             this.getArchive();
             return;
         }
@@ -88,23 +91,20 @@ export class ArchiveService {
 
             date = year.toString();
 
-            if(!isNullOrUndefined(month)){
+            if (!isNullOrUndefined(month)) {
                 let lastMonthIndex = this.archiveDistributionElements[index].months.length - 1;
 
                 // Year is a valid number, check if month is selected and valid.
-                if (month >= this.archiveDistributionElements[index].months[0] &&
-                    month <= this.archiveDistributionElements[index].months[lastMonthIndex]) {
-                    date += '-' + (new PadNumberPipe().transform(month,2)); // Pad the month so it begins with zero if necessary.
+                if (month <= toInteger(this.archiveDistributionElements[index].months[0]) &&
+                    month >= toInteger(this.archiveDistributionElements[index].months[lastMonthIndex])) {
+                    date += '-' + (new PadNumberPipe().transform(month, 2)); // Pad the month so it begins with zero if necessary.
                 }
             }
         }
 
         this.date = date;
+        this.reset(false);
         this.getArchive();
-    }
-
-    public getMonths(index: number): Array<number> {
-        return this.archiveDistributionElements[index].months;
     }
 
     public search(searchTerm: string) {
@@ -112,29 +112,32 @@ export class ArchiveService {
         this.getArchive();
     }
 
-    private getArchive(){
+    private getArchive() {
 
         switch (this.archive) {
-            case Archive.article:
 
-                if(!isNullOrUndefined(this.searchTerm) && this.searchTerm.length > 0){
+            case Archive.article:
+                if (!isNullOrUndefined(this.searchTerm) && this.searchTerm.length > 0) {
 
                     if (this.date.length > 0) {
 
-                        let routerParams: Array<string> = ['/articles', 'archive'];
+                        let routerParams: Array<string> = ['/nyheter', 'arkiv'];
                         routerParams.push(this.date);
                         routerParams.push(this.searchTerm);
 
                         this.router.navigate(routerParams);
                     } else {
-                        this.router.navigate(['/articles', 'search', this.searchTerm]);
+                        this.router.navigate(['/nyheter', 'sok', this.searchTerm]);
                     }
 
-                } else if( this.date.length > 0) {
-                    this.router.navigate(['/articles', 'archive', this.date]);
-                } else {
+                    this.filterActive.next(true);
 
-                    this.router.navigate(['/articles']);
+                } else if (this.date.length > 0) {
+                    this.filterActive.next(true);
+                    this.router.navigate(['/nyheter', 'arkiv', this.date]);
+                } else {
+                    this.filterActive.next(false);
+                    this.router.navigate(['/nyheter']);
                 }
 
                 break;
@@ -145,6 +148,39 @@ export class ArchiveService {
             default:
                 break;
         }
+    }
+
+    public reset(date?: boolean) {
+        if (isNullOrUndefined(date)) {
+
+            if (!date) {
+                this.date = '';
+                this.filterActive.next(false);
+                this.resetListener.next(true);
+            }
+        } else {
+            this.resetListener.next(false);
+        }
+    }
+
+    /**
+     * Maps a response object to an ArchiveDistribution array
+     * @param res:Response
+     * @returns {ArchiveDistribution[]|{}}
+     */
+    protected map(res: Response) {
+        let json: any = res.json();
+        let distribution: ArchiveDistribution[] = <ArchiveDistribution[]>[];
+
+        for (let i in json) {
+
+            distribution.push(<ArchiveDistribution>{
+                year: json[i].year,
+                months: json[i].months
+            });
+        }
+
+        return distribution;
     }
 
 }

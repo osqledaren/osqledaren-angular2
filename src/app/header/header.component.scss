@@ -5,6 +5,13 @@
   position: fixed;
   z-index: 1000;
   width: 100%;
+  transition: transform .5s cubic-bezier(0.645, 0.045, 0.355, 1.000) -.1s;
+  transform: translate(0, -$header-height);
+
+  &.visible {
+    transform: translate(0,0);
+  }
+
 }
 
 .container {
@@ -121,7 +128,6 @@
 
     .navbar-brand {
       float: none;
-      display: inline-flex;
       vertical-align: middle;
       padding: 0;
 
@@ -134,26 +140,28 @@
   #main-nav-collapsible > div {
     background-color: black !important;
   }
+}
 
-  /* Animating links on hover */
-  .hidden-sm-down .nav-item {
-    position: relative;
-    margin: 0 $grid-gutter-width-base/8;
-  }
-  .hidden-sm-down .nav-item:after {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: white;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    transition: transform 0.2s ease-in-out;
-  }
-  .hidden-sm-down .nav-item:hover:after {
-    width: 100%;
-    transition: all 0.2s ease-in-out;
-  }
+/* Animating links on hover */
+.nav-item {
+  position: relative;
+  margin: 0 $grid-gutter-width-base/8;
+}
+
+.nav-item:after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-item:hover:after {
+  width: 100%;
+  transition: all 0.2s ease-in-out;
 }
 
 .nav-subcontainer {
@@ -169,10 +177,35 @@
   }
 
   a {
-    color: white !important;
-    text-transform: uppercase;
+    color: white;
     padding: 0;
     line-height: 40px;
+    font-size: $font-size-lg;
+    text-transform: none;
+  }
+
+  a.reset {
+    color: $ol-orange!important;
+    transition: opacity 0.1s ease-in-out;
+    opacity: 0;
+    cursor: default;
+    pointer-events: none;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+  }
+
+  .nav-item {
+    &:after {
+      bottom: 0;
+    }
   }
 
   .navbar {
@@ -183,8 +216,7 @@
 #main-nav-collapsible {
   overflow: hidden;
   max-height: 0;
-  transition: all 0.2s ease-in-out;
-  transition: max-height .8s cubic-bezier(0, 1, 0, 1) -.1s;
+  transition: all 0.2s ease-in-out, max-height .5s cubic-bezier(0, 1, 0, 1) -.1s;
   transition-delay: 0s;
 }
 
@@ -198,6 +230,16 @@ h3 {
   color: white;
   line-height: 40px;
   margin-bottom: 0;
+  display: inline;
+}
+
+.filter-widget {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
 }
 
 

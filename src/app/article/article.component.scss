@@ -1,27 +1,39 @@
-@import "./src/variables";
-@import "./src/mixins";
+@import "./src/utility";
 @import "byline";
 @import "article-share-buttons";
 @import "article-heading-box";
 
 //Style the article main container
-#single-article-container {
-	margin: auto;
-	font-family: $font-family-sans-serif;
-	font-size: $font-size-base;
 
-	.row {
-		margin: 0 !important;
+:host {
+	width: 100%;
+	max-width: $container-narrow;
+	font-size: $font-size-lg;
+	line-height: $line-height-lg;
+}
+
+:host /deep/ {
+
+	// Make sure no heading is clipped or offset by block-quote
+	h1, h2, h3, h4, h5, h6 {
+		clear: both;
 	}
 
-	//Style the logo and position it
-	.logo {
-		position: absolute;
-		font-size: 5em;
-		display:inline-block;
-		margin-left: -100px;
-		font-weight: $headings-font-weight;
-		color: black;
+	ol, ul {
+		clear:both;
+		overflow: hidden;
+		padding:$grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base;
+		background: $ol-teal;
+		color:white;
+		margin: 0 auto $font-size-lg;
+		font-weight:bold;
+		max-width: $container-narrow*2/3;
+
+		@include media-breakpoint-down(md) {
+			max-width: 100%;
+		}
+
+
 	}
 
 	//Set the size of and display the article image
@@ -30,144 +42,91 @@
 
 		img {
 			width: 100%;
-			max-height: 420px;
 			position: relative;
-    		z-index: -1;
 		}
 	}
 
-	//Style the article content
-	.content{
-		margin: auto;
-		width: 80%;
-		font-size: $font-size-h5;
+	.article-rm-button {
+		text-align: center;
+		background-color: $ol-orange;
+		color: white;
+		font-style:italic;
+		padding: 20px 0;
+		margin-top: 20px;
+		font-weight: bold;
 
-		h3 {
-			font-size: $font-size-h3;
-		}
-
-		.date {
+		i {
 			display: block;
-			padding: 10px 0px;
-			font-size: 0.85em;
+			margin: auto;
+			font-size: $font-size-h2;
+		}
+	}
+
+	.article-grid-item-text {
+
+		h1, h2, h3, h4, h5, h6 {
+			font-size: $font-size-h3;
+			margin-bottom: $font-size-lg;
 		}
 
-		.article-rm-button {
-			text-align: center;
-			background-color: $ol-orange;
-			color: white;
-			font-style:italic;
-			padding: 20px 0;
-			margin-top: 20px;
-			font-weight: bold;
+		p {
+			margin-bottom: $font-size-lg
+		}
+
+		img {
+			float:left;
+			padding:0 $grid-gutter-width-base/2 $font-size-lg 0;
+			max-width: 50%;
+			height: auto;
+			margin:0;
+
+			@include media-breakpoint-down(sm) {
+				float:none;
+				padding:0;
+				margin-bottom: $font-size-lg;
+				max-width: 100%;
+				width: 100%;
+			}
+		}
+
+		img + br {
+			display:none;
+		}
+	}
+
+	blockquote {
+		position: relative;
+		width: 40%;
+		float: left;
+		text-align: right;
+		padding: 0 $grid-gutter-width-base/2 $grid-gutter-width-base/2 0;
+		margin: 0 -12.5% 0 0;
+		left: -12.5%;
+		font-family: $font-family-serif;
+		font-style: italic;
+
+		i {
+			display: block;
+			font-size: $font-size-h1;
+			line-height: ($font-size-lg*2 * $line-height-lg);
+			color: $ol-orange;
+		}
+
+		@include media-breakpoint-down(md) {
+			left: 0;
+			margin: 0;
+		}
+
+		@include media-breakpoint-down(sm) {
+			text-align: left;
+			float: none;
+			width: auto;
+			padding: $grid-gutter-width-base/2;
 
 			i {
-				display: block;
-				margin: auto;
-				font-size: $font-size-h2;
-			}
-		}
-
-		hr {
-			width: 80%;
-			margin: 30px auto;
-			//border-top: 1px solid black;
-		}
-
-	}
-}
-
-:host /deep/ .article-grid-item-text{
-	display: inline-table;
-}
-
-//Style the quote box and position it
-:host /deep/ blockquote {
-	display: inline-block;
-	width: 40%;
-	font-size: 1.5em;
-	float: left;
-	text-align: right;
-	padding: 2px 55px 25px 0px;
-	font-weight: bold;
-	line-height: 1.1em;
-	font-style: italic;
-	margin-left: -12.2%;
-	margin-top: 5px;
-
-	i {
-		display: block !important;
-		font-size: $font-size-h1 !important;
-		color: $ol-orange !important;
-	}
-}
-
-/* For mobile phones: */
-@media only screen and (max-width: 600px) {
-	#single-article-container {
-		.content{
-			font-size: $font-size-h6;
-
-			h3 {
-				font-size: $font-size-h5;
+				margin-left:-$grid-gutter-width-base/2;
 			}
 
-			.quote {
-				font-size: $font-size-h5;
-				padding: 20px 0;
-				width: 100%;
-				margin: 0;
-
-				i {
-					font-size: $font-size-h3;
-				}
-			}
-
-			.article-rm-button {
-				padding: 10px 0;
-
-				i {
-					font-size: $font-size-h4;
-				}
-			}
-
-			hr {
-				margin: 17px auto;
-			}
-		}
-	}
-}
-
-/* For tablets: */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-	#single-article-container {
-		.content{
-			font-size: $font-size-h6 + 0.12rem;
-
-			h3 {
-				font-size: $font-size-h4;
-			}
-
-			.quote {
-				font-size: $font-size-h4;
-				padding: 2px 35px 30px 0px;
-
-				i {
-					font-size: $font-size-h2;
-				}
-			}
-
-			.article-rm-button {
-				padding: 13px 0;
-
-				i {
-					font-size: $font-size-h3;
-				}
-			}
-
-			hr {
-				margin: 25px auto;
-			}
 		}
 	}
 }
