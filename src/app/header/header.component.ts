@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
         this.autoCloseTimer = Observable.timer(3000).subscribe(
             () => {
-                console.log('closing');
                 this.isCollapsed = true;
             }
         );
