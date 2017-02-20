@@ -34,6 +34,7 @@ import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
 import { BylineComponent } from './byline/byline.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { BylineComponent } from './byline/byline.component';
         PadNumberPipe,
         SplitPipe,
         LoaderComponent,
-        BylineComponent
+        BylineComponent,
+        ComingSoonComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -121,6 +123,12 @@ import { BylineComponent } from './byline/byline.component';
                 path: '**',
                 component: PageNotFoundComponent,
                 data: {name: '404'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'pods',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
                 canDeactivate: [LoadableDeactivateGuard]
             }
         ])
