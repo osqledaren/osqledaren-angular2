@@ -3,17 +3,16 @@
 	color: white;
 	background-color: $ol-orange;
 	padding:$grid-gutter-width-base/2;
-	margin: -$grid-gutter-width-base auto $grid-gutter-width-base/2;
+	margin: 0 auto $grid-gutter-width-base/2;
 	z-index: 1;
 	position: relative;
 	text-align: center;
-	max-width: $container-narrow*2/3;
 
 	@include media-breakpoint-down(md) {
 		max-width: 100%;
 		margin-top:0;
 	}
-	
+
 
 	//Style the list of the social media symbols
 	ul.social-medias {
