@@ -10,6 +10,7 @@ import {PadNumberPipe} from "../pad-number.pipe";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {ArchiveService} from "../archive.service";
+import {AdvertisementTopBannerComponent} from "../advertisement-top-banner/advertisement-top-banner.component";
 
 @Component({
     selector: 'app-article-grid',

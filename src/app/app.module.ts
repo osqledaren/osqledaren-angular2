@@ -25,6 +25,7 @@ import {AdvertisementPageComponent} from "./advertisement-page/advertisement-pag
 import {LoaderComponent} from "./loader/loader.component";
 import {BylineComponent} from './byline/byline.component';
 import {ArticleImageComponent} from './article-image/article-image.component';
+import {AdvertisementTopBannerComponent} from './advertisement-top-banner/advertisement-top-banner.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -57,7 +58,8 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         SplitPipe,
         LoaderComponent,
         BylineComponent,
-        ArticleImageComponent
+        ArticleImageComponent,
+        AdvertisementTopBannerComponent
     ],
     imports: [
         CollapseModule.forRoot(),
