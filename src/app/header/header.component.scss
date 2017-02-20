@@ -11,26 +11,57 @@
   &.visible {
     transform: translate(0,0);
   }
-
 }
 
 .container {
   position: relative;
 }
 
-.menu-toggle {
+.button-container {
+  display: block;
   position: absolute;
   margin-left: 0;
   margin-right: $grid-gutter-width-base/2;
   right: 0;
 
+  // fix for vertical center alignment
+  top: 50%;
+  margin-top: -8px; // half of the element's own size
+}
+
+.filter-indicator {
+  display: inline-block;
+  background: $ol-teal;
+  border-radius: 100%;
+  height: $grid-gutter-width-base/8;
+  width: $grid-gutter-width-base/8;
+  margin-left: -10px;
+  transition: all 0.3s ease-in-out;
+  transform: scale(0,0);
+
+  &.active {
+    transform: scale(1, 1);
+  }
+}
+
+.navbar-container .filter-indicator {
+  margin-left: 0;
+  display: block;
+  left: -$grid-gutter-width-base/8;
+  top: -$grid-gutter-width-base/8;
+  position: absolute;
+  height: $grid-gutter-width-base/4;
+  width: $grid-gutter-width-base/4;
+  border: $ol-orange $grid-gutter-width-base/16 solid;
+}
+
+.menu-toggle {
+
+  width: $grid-gutter-width-base/2;
   text-transform: uppercase;
   color: white !important;
   cursor: pointer;
 
-  // fix for vertical center alignment
-  top: 50%;
-  margin-top: -8px; // half of the element's own size
 }
 
 #nav-icon {
