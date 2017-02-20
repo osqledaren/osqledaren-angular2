@@ -1,0 +1,15 @@
+@import "./src/utility";
+
+#ad-top-banner-container{
+	margin-top: $grid-gutter-width-base/2;
+	width: 100%;
+	height: auto;
+	margin-left: auto;
+    margin-right: auto;
+
+    img{
+    	width: 100%;
+    	height: auto;
+    }
+}
+

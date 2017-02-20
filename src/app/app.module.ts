@@ -34,6 +34,7 @@ import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
 import { BylineComponent } from './byline/byline.component';
+import { AdvertisementTopBannerComponent } from './advertisement-top-banner/advertisement-top-banner.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { BylineComponent } from './byline/byline.component';
         PadNumberPipe,
         SplitPipe,
         LoaderComponent,
-        BylineComponent
+        BylineComponent,
+        AdvertisementTopBannerComponent
     ],
     imports: [
         CollapseModule.forRoot(),
