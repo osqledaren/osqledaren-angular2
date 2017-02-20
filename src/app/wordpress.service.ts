@@ -1,17 +1,18 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http} from "@angular/http";
-import {Article} from "./shared/interface/article.interface";
+import {Article, Rendition} from "./shared/interface/article.interface";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/mergeMap";
 import {ContentService} from "./shared/abstract/abstract.content.service";
 import {ArticleQueryParams} from "./shared/interface/article-query-params.interface";
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
 import {isUndefined} from "util";
-import {isString} from "util";
 import {isNumber} from "util";
-import {Subscription} from "rxjs";
+import {padNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
+import {PadNumberPipe} from "./pad-number.pipe";
 
 @Injectable()
 export class WordpressService extends ContentService {
@@ -29,14 +30,14 @@ export class WordpressService extends ContentService {
      * @param param: any
      * @returns {Observable<Article[]>}
      */
-    public getArticle(param: any) {
+    public getArticle(param: string | number) {
         switch (typeof param) {
             case 'string':
-                return this.http.get(this.endpoint + '/posts/?slug=' + param)
+                return this.http.get(this.endpoint + '/posts/?_embed&slug=' + param)
                     .map((res) => this.map(res))
                     .catch(this.handleError);
             default:
-                return this.http.get(this.endpoint + '/posts/' + param)
+                return this.http.get(this.endpoint + '/posts/' + param + '?_embed')
                     .map((res) => this.map(res))
                     .catch(this.handleError);
         }
@@ -73,7 +74,9 @@ export class WordpressService extends ContentService {
                 let date: Array<string> = args.date.split('-');
                 let yearToday: number = new Date().getFullYear();
                 let year: string;
-                let month: string = '01';
+                let month: any = -1;
+                let nextMonth: string = '12';
+                let nextYear: string;
 
                 // Do some validation
 
@@ -87,13 +90,20 @@ export class WordpressService extends ContentService {
                     }
                 }
 
-                queryParams += 'after=' + year + '-' + month + '-01T00:00:00&'
+                nextMonth = (Number(month) !== 12 && Number(month) !== -1) ? (Number(month) + 1).toString() : '01';
+                nextYear = Number(nextMonth) !== 1 ? year : (Number(year) +1).toString();
+                month = month === -1 ? '01' : month;
+
+                queryParams += 'after=' + year + '-' + month + '-01T00:00:00&';
+                queryParams += 'before=' + nextYear + '-' + new PadNumberPipe().transform(nextMonth, 2) + '-01T00:00:00&'
+
+                console.log(queryParams);
             }
 
             // Do some validation.
         }
 
-        query = this.endpoint + '/posts?';
+        query = this.endpoint + '/posts?_embed&';
         query += queryParams;
         query += 'per_page=' + this.batchCount + '&offset=' + this.offset * this.batchCount;
 
@@ -106,22 +116,6 @@ export class WordpressService extends ContentService {
 
     }
 
-    public getMedia(query: string | number): Observable<any> {
-
-        let request;
-
-        if(isNumber(query)){
-            query = query.toString();
-            query = this.endpoint + '/media/' + query.toString();
-        }
-
-        query = query.toString();
-
-        request = this.http.get(query);
-        return request.map((res) => this.mapMediaObject(res)).catch(this.handleError);
-
-    }
-
     /**
      * Strips html from text.
      * @param text: string
@@ -131,17 +125,6 @@ export class WordpressService extends ContentService {
         return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
     }
 
-    protected mapMediaObject(res: Response){
-
-        let media = res.json();
-        let json = {
-            title: media.title.rendered,
-            mediadetails: media.media_details
-        };
-
-        return json;
-    }
-
     /**
      * Maps a response object to an article array
      * @param res:Response
@@ -149,45 +132,28 @@ export class WordpressService extends ContentService {
      */
     protected map(res: Response) {
         let body: any = res.json();
-        let imageSub: Subscription;
-        let image: any;
-        let renditions;
         let posts: Article[] = <Article[]>[];
+        let renditions: {};
+        let media: any, sizes: any;
 
         for (let i in body) {
 
-            if(!isNullOrUndefined(body[i]._links['wp:featuredmedia'])){
-                imageSub = this.getMedia(body[i]._links['wp:featuredmedia'][0].href).subscribe(
-                    res => {
-                        image = res;
-                        console.log(image);
-                        renditions = {
-                            featuredimage_thumb: {
-                                title: image.mediadetails.title,
-                                mime_type: image.mediadetails.sizes.thumbnail.mime_type,
-                                height: image.mediadetails.sizes.thumbnail.height,
-                                width: image.mediadetails.sizes.thumbnail.width,
-                                href: image.mediadetails.sizes.thumbnail.source_url
-                            },
-                            featuredimage_l: {
-                                title: image.mediadetails.title,
-                                mime_type: image.mediadetails.sizes.large.mime_type,
-                                height: image.mediadetails.sizes.large.height,
-                                width: image.mediadetails.sizes.large.width,
-                                href: image.mediadetails.sizes.large.source_url
-                            },
-                            featuredimage: {
-                                title: image.mediadetails.title,
-                                mime_type: image.mediadetails.sizes.full.mime_type,
-                                height: image.mediadetails.sizes.full.height,
-                                width: image.mediadetails.sizes.full.width,
-                                href: image.mediadetails.sizes.full.source_url
-                            }
-                        }
-                    }
-                );
-            } else {
-                renditions = {};
+            try {
+                renditions = <Rendition>{};
+                media = body[i]._embedded['wp:featuredmedia'];
+                sizes = media[0].media_details.sizes;
+
+                for (let j in sizes) {
+                    renditions[j] = <Rendition>{
+                            title: media[0].title.rendered,
+                            href: sizes[j].source_url,
+                            mime_type: sizes[j].mime_type,
+                            height: sizes[j].height,
+                            width: sizes[j].width
+                    };
+                }
+            } catch (Exception){
+                renditions = null;
             }
 
             posts.push(<Article>{
@@ -208,6 +174,7 @@ export class WordpressService extends ContentService {
                 versioncreated: body[i].date
             });
         }
+
         return posts;
     }
 }

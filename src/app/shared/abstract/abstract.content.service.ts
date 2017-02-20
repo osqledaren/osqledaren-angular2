@@ -10,6 +10,7 @@ export abstract class ContentService{
     protected abstract map(res: Response): any;
 
     protected handleError(error: Response | any) {
+
         let errMsg: string;
         if (error instanceof Response) {
             const body = error.json() || '';

@@ -76,6 +76,7 @@ export class ArticleGridComponent extends LoadableComponent {
             if (params) {
 
                 let date = null;
+                let endDate = null;
 
                 this.args = <ArticleQueryParams>{};
 
@@ -85,19 +86,33 @@ export class ArticleGridComponent extends LoadableComponent {
                 if (params.hasOwnProperty('date')) {
                     this.args.date = params['date'];
 
-                    let dO = new Date(params['date']);
-                    date = dO.getFullYear();
-                    date += '-' + new PadNumberPipe().transform(dO.getMonth() +1, 2);
+                    let d0 = new Date(params['date']);
+                    let d1 = new Date(d0);
+
+                    date = d0.getFullYear();
+                    date += '-' + new PadNumberPipe().transform(d0.getMonth() +1, 2);
                     date += '-01';
+
+                    if(this.args.date.length > 4){
+                        d1.setMonth(d1.getMonth() + 1);
+                    } else {
+                        d1.setFullYear(d1.getFullYear() + 1);
+                    }
+
+                    endDate = d1.getFullYear();
+                    endDate += '-' + new PadNumberPipe().transform(d1.getMonth() + 1, 2);
+                    endDate += '-01';
 
                 }
 
                 if (!isNullOrUndefined(params['date']) && isNullOrUndefined(params['searchTerm'])) {
-                    this.heading = 'Arkiv från <span>' + date + '</span>';
+                    this.heading = 'Arkiv från <span>' + date + '</span> ';
+                    this.heading += 'till <span>' + endDate + '</span> ';
                 } else if (isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])) {
                     this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span>';
                 } else if (!isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])){
-                    this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span> från <span>' + date + '</span>';
+                    this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span> från <span>' + date + '</span> ';
+                    this.heading += 'till <span>' + endDate + '</span> ';
                 } else {
                     this.heading = 'Nyheter';
                 }

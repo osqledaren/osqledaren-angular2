@@ -35,8 +35,6 @@ export class ArticleComponent extends LoadableComponent {
                 posts => {
                     this.article = posts[0];
 
-                    console.log(posts[0]);
-
                     setTimeout(()=>this.checkQuoteElement());
                     if (isNullOrUndefined(posts[0])) {
                         this.router.navigate(['404']);
