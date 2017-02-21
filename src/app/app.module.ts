@@ -107,6 +107,12 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
+                path: 'sok-redaktionen',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
                 data: {name: 'printed-issues'},
