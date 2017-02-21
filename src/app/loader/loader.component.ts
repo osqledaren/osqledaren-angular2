@@ -25,24 +25,25 @@ export class LoaderComponent implements OnInit, OnDestroy {
                 this.loaded = loaded;
                 this.hidden = false;
 
-                this.timer = Observable.timer(300);
+                if(loaded) {
+                    this.timer = Observable.timer(300);
+                    this.timer.subscribe(() => {
 
-                this.timer.subscribe(() => {
+                        this.hidden = loaded;
 
-                    this.hidden = loaded;
+                        if (!this.initialized) {
 
-                    if (!this.initialized) {
+                            // Delay removal of initialization state a short while.
+                            Observable.timer(1000).subscribe(
+                                () => {
+                                    this.initialized = true;
+                                }
+                            );
 
-                        // Delay removal of initialization state a short while.
-                        Observable.timer(1000).subscribe(
-                            () => {
-                                this.initialized = true;
-                            }
-                        );
+                        }
 
-                    }
-
-                });
+                    });
+                }
             }
         );
     }

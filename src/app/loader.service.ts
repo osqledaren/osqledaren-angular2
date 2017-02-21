@@ -13,6 +13,7 @@ export class LoaderService {
 
   constructor() {
     this.collection = new Dictionary<boolean>();
+    this.add('init');
 
     // Initial refresh with one second delay. Loader is always active on initialization.
     // Deactivate the loader if no component is using the loader during initialization.

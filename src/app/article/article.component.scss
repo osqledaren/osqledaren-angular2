@@ -6,6 +6,7 @@
 //Style the article main container
 
 :host {
+	margin: $grid-gutter-width-base 0;
 	width: 100%;
 	max-width: $container-narrow;
 	font-size: $font-size-lg;
@@ -27,7 +28,6 @@
 		color:white;
 		margin: 0 auto $font-size-lg;
 		font-weight:bold;
-		max-width: $container-narrow*2/3;
 
 		@include media-breakpoint-down(md) {
 			max-width: 100%;
@@ -74,19 +74,9 @@
 		}
 
 		img {
-			float:left;
-			padding:0 $grid-gutter-width-base/2 $font-size-lg 0;
-			max-width: 50%;
+			width: 100%;
 			height: auto;
-			margin:0;
-
-			@include media-breakpoint-down(sm) {
-				float:none;
-				padding:0;
-				margin-bottom: $font-size-lg;
-				max-width: 100%;
-				width: 100%;
-			}
+			margin-bottom: $font-size-lg;
 		}
 
 		img + br {
@@ -96,12 +86,7 @@
 
 	blockquote {
 		position: relative;
-		width: 40%;
-		float: left;
-		text-align: right;
-		padding: 0 $grid-gutter-width-base/2 $grid-gutter-width-base/2 0;
-		margin: 0 -12.5% 0 0;
-		left: -12.5%;
+		padding: $grid-gutter-width-base;
 		font-family: $font-family-serif;
 		font-style: italic;
 
@@ -112,21 +97,8 @@
 			color: $ol-orange;
 		}
 
-		@include media-breakpoint-down(md) {
-			left: 0;
-			margin: 0;
-		}
-
 		@include media-breakpoint-down(sm) {
-			text-align: left;
-			float: none;
-			width: auto;
-			padding: $grid-gutter-width-base/2;
-
-			i {
-				margin-left:-$grid-gutter-width-base/2;
-			}
-
+			padding:$grid-gutter-width-base/2;
 		}
 	}
 }

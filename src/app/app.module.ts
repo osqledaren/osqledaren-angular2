@@ -23,6 +23,10 @@ import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-g
 import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 import {LoaderComponent} from "./loader/loader.component";
+import {BylineComponent} from './byline/byline.component';
+import {ArticleImageComponent} from './article-image/article-image.component';
+import {AdvertisementTopBannerComponent} from './advertisement-top-banner/advertisement-top-banner.component';
+import {ComingSoonComponent} from './coming-soon/coming-soon.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -32,9 +36,8 @@ import {ArchiveService} from "./archive.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
+// Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
-import { BylineComponent } from './byline/byline.component';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +59,9 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
         SplitPipe,
         LoaderComponent,
         BylineComponent,
-        ComingSoonComponent
+        ComingSoonComponent,
+        ArticleImageComponent,
+        AdvertisementTopBannerComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -114,6 +119,18 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
+                path: 'play',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'pods',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
                 path: '',
                 component: NewsArchiveComponent,
                 data: {name: 'home'},
@@ -123,12 +140,6 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
                 path: '**',
                 component: PageNotFoundComponent,
                 data: {name: '404'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'pods',
-                component: ComingSoonComponent,
-                data: {name: 'coming-soon'},
                 canDeactivate: [LoadableDeactivateGuard]
             }
         ])

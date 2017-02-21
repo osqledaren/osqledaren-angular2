@@ -1,13 +1,7 @@
-<header id="site-header" [ngClass]="{'visible': visible}" (mouseleave)="mouseLeave()" (mouseOver)="mouseOver()">
+<header id="site-header" [ngClass]="{'visible': visible}">
     <nav class="navbar">
         <div class="navbar-container">
             <div class="container">
-                <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
-                     [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
                 <a class="navbar-brand" routerLink="/">
                     <img src="assets/img/temp_logo.png">
                 </a>
@@ -25,6 +19,15 @@
                         <a class="nav-link" routerLink="/annonsera">Annonsera</a>
                     </li>
                 </ul>
+                <div class="button-container">
+                    <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
+                         [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div id="nav-filter-indicator" class="filter-indicator" [ngClass]="{'active': (isCollapsed && filterActive)}"></div>
+                </div>
             </div>
         </div>
         <div id="main-nav-collapsible" [ngClass]="{'submenu-open': !isCollapsed}">
@@ -61,6 +64,8 @@
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
                             <div class="filter-widget" [ngClass]="{'visible': visible}">
+                                <div class="filter-indicator"
+                                     [ngClass]="{'active': filterActive}"></div>
                                 <h3 [innerText]="archive"></h3>
                                 <a class="reset" [ngClass]="{'active': filterActive}" (click)="reset()">Återställ</a>
                                 <app-archive></app-archive>

@@ -1,7 +1,7 @@
 <div class="container" id="single-article">
     <article [id]="article?.headline">
         <div class="article-image">
-            <img src="http://osqledaren.se/wp-content/uploads/2016/09/EntreFUgle-1140x570.jpg" alt="Emma Klint"/>
+            <app-article-image [renditions]="article?.renditions"></app-article-image>
         </div>
 
         <!-- Article heading box -->
