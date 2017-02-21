@@ -28,6 +28,12 @@ export class SearchComponent implements OnInit, OnDestroy {
 			(activated) => this.visible = activated
 		);
 
+		this.sub = this.archiveService.filter.subscribe(
+			filter => {
+				this.searchInput = filter.searchTerm;
+			}
+		);
+
 		this.sub = this.archiveService.resetListener.subscribe(
 			() => this.searchInput = ''
 		);

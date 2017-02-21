@@ -11,19 +11,21 @@ import {Response, Http} from "@angular/http";
 import {ContentService} from "./shared/abstract/abstract.content.service";
 import {APP_CONFIG} from "./app.config";
 import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
+import {YearInput} from "./shared/interface/year-input.interface";
 
 @Injectable()
 export class ArchiveService extends ContentService {
 
     private archive: Archive = null;
     private archiveDistributionElements = <ArchiveDistribution[]>[];
-    private date: string = '';
-    private searchTerm: string = '';
+    public searchTerm: string = '';
+    public date: string = '';
     public activated: Subject<boolean> = new Subject();
     public archiveDistribution: Subject<ArchiveDistribution[]> = new Subject();
     public activeArchive: Subject<Archive> = new Subject();
     public resetListener: Subject<boolean> = new Subject();
     public filterActive: Subject<boolean> = new Subject();
+    public filter: Subject<{yearInput:number, months:[number], month:string, searchTerm:string}> = new Subject();
 
     constructor(private router: Router,
                 protected http: Http,

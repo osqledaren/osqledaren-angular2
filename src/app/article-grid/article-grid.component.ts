@@ -11,6 +11,7 @@ import {LoadableComponent} from "../shared/abstract/abstract.loadable.component"
 import {LoaderService} from "../loader.service";
 import {ArchiveService} from "../archive.service";
 import {AdvertisementTopBannerComponent} from "../advertisement-top-banner/advertisement-top-banner.component";
+import {YearInput} from "../shared/interface/year-input.interface";
 
 @Component({
     selector: 'app-article-grid',
@@ -32,6 +33,7 @@ export class ArticleGridComponent extends LoadableComponent {
 
     constructor(private NS: NewsArticleService,
                 private route: ActivatedRoute,
+                private archiveService: ArchiveService,
                 loaderService: LoaderService) {
         super(loaderService);
         this.articles = [];
@@ -74,7 +76,7 @@ export class ArticleGridComponent extends LoadableComponent {
 
         this.sub = this.route.params.subscribe(params => {
 
-            if (params) {
+            if (params && Object.keys(params).length !== 0) {
 
                 let date = null;
                 let endDate = null;
@@ -118,6 +120,11 @@ export class ArticleGridComponent extends LoadableComponent {
                     this.heading = 'Nyheter';
                 }
 
+            } else {
+                this.archiveService.searchTerm = '';
+                this.archiveService.date = '';
+                this.archiveService.filter.next({yearInput: null, months: null, month: '', searchTerm: ''});
+                this.archiveService.filterActive.next(false);
             }
 
             this.sub = this.NS.getArticles(this.args).subscribe(
@@ -138,6 +145,48 @@ export class ArticleGridComponent extends LoadableComponent {
 
                 },
                 error => errorMessage = <any> error);
+
+            this.sub = this.archiveService.archiveDistribution.subscribe(
+                archiveDistribution => {
+                    if (params && Object.keys(params).length !== 0) {
+
+                        let yearInput = null;
+                        let months: [number] = null;
+                        let month: string = '';
+                        let searchTerm: string = '';
+
+                        if (params.hasOwnProperty('date')) {
+                            let d0 = new Date(params['date']);
+                            let year: any = d0.getFullYear();
+                            let date = '';
+
+                            for (let i in archiveDistribution) {
+                                if (year == archiveDistribution[i].year) {
+                                    yearInput = i;
+                                    months = archiveDistribution[i].months;
+                                    date = year;
+                                }
+                            }
+
+                            if (params['date'].length > 4) {
+                                month = new PadNumberPipe().transform(d0.getMonth() + 1, 2);
+                                date += '-' + month;
+                            }
+
+                            this.archiveService.date = date.toString();
+                        }
+
+                        if (params.hasOwnProperty('searchTerm')) {
+                            searchTerm = params['searchTerm'];
+                            this.archiveService.searchTerm = searchTerm;
+                        }
+
+                        this.archiveService.filter.next({yearInput, months, month, searchTerm});
+                        this.archiveService.filterActive.next(true);
+
+                    }
+                }
+            );
 
             this.masonryOptions = {
                 transitionDuration: '0.5s',
