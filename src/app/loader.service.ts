@@ -54,6 +54,9 @@ export class LoaderService {
    * Flags loader as true if collection is empty.
    */
   private refresh(){
+
+    console.log(this.collection.keys());
+
     if(this.collection.values().length == 0){
       this.isLoaded = true;
       this.loaded.next(this.isLoaded);

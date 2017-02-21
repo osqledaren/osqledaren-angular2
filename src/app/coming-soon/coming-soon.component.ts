@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../loader.service";
+import {Archive} from "../shared/enums";
+import {ArchiveService} from "../archive.service";
 
 @Component({
   selector: 'app-coming-soon',
   templateUrl: './coming-soon.component.html',
   styleUrls: ['./coming-soon.component.scss']
 })
-export class ComingSoonComponent implements OnInit {
+export class ComingSoonComponent extends LoadableComponent {
 
-  constructor() { }
+  constructor(loaderService: LoaderService, private archiveService: ArchiveService) {
+    super(loaderService);
+  }
 
-  ngOnInit() {
+  init(){
+    this.archiveService.activate(Archive.article);
+    this.loaded();
   }
 
 }
