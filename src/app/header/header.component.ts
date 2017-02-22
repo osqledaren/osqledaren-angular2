@@ -84,7 +84,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             }
         );
 
-        this.sub = this.archiveService.activeArchive.subscribe(
+        this.sub = this.archiveService.archive.subscribe(
             (activeArchive) => {
 
                 let type: string;

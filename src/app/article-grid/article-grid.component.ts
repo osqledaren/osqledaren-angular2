@@ -1,17 +1,16 @@
-import {Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, OnDestroy} from "@angular/core";
+import {Component, ViewEncapsulation, ViewChildren, QueryList} from "@angular/core";
 import {Article} from "../shared/interface/article.interface";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
 import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleQueryParams} from "../shared/interface/article-query-params.interface";
 import {isNullOrUndefined} from "util";
 import {PadNumberPipe} from "../pad-number.pipe";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {ArchiveService} from "../archive.service";
-import {AdvertisementTopBannerComponent} from "../advertisement-top-banner/advertisement-top-banner.component";
-import {YearInput} from "../shared/interface/year-input.interface";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-article-grid',
@@ -33,6 +32,7 @@ export class ArticleGridComponent extends LoadableComponent {
 
     constructor(private NS: NewsArticleService,
                 private route: ActivatedRoute,
+                private router: Router,
                 private archiveService: ArchiveService,
                 loaderService: LoaderService) {
         super(loaderService);
@@ -71,41 +71,80 @@ export class ArticleGridComponent extends LoadableComponent {
         }
     }
 
+    private validateDate(date: string){
+        let d0 = new Date(date);
+        let msToday = new Date().getTime();
+        let msd0 = d0.getTime();
+
+        if(msToday-msd0 < 0 || msd0 == 0){
+            return false;
+        }
+
+        if(date.length > 4 && date.length <= 7){
+
+            let a = date.split('-');
+
+            if(a.length != 2){
+                return false;
+            }
+
+            if(a[0].length != 4 && a[1].length != 2){
+                return false;
+            }
+
+        } else if(date.length !== 4){
+            return false;
+        }
+
+        return true;
+    }
+
     private initializeData() {
         let errorMessage;
 
         this.sub = this.route.params.subscribe(params => {
 
+            this.heading = 'Nyheter';
+
             if (params && Object.keys(params).length !== 0) {
 
-                let date = null;
-                let endDate = null;
+                let date = '';
+                let endDate = '';
 
                 this.args = <ArticleQueryParams>{};
 
                 if (params.hasOwnProperty('searchTerm')) {
                     this.args.searchTerm = params['searchTerm'];
                 }
+
                 if (params.hasOwnProperty('date')) {
-                    this.args.date = params['date'];
 
-                    let d0 = new Date(params['date']);
-                    let d1 = new Date(d0);
+                    if(this.validateDate(params['date'])) {
 
-                    date = d0.getFullYear();
-                    date += '-' + new PadNumberPipe().transform(d0.getMonth() +1, 2);
-                    date += '-01';
+                        let d0 = new Date(params['date']);
+                        let d1 = new Date(d0);
 
-                    if(this.args.date.length > 4){
-                        d1.setMonth(d1.getMonth() + 1);
+                        this.args.date = params['date'];
+
+                        date = d0.getFullYear().toString();
+                        date += '-' + new PadNumberPipe().transform(d0.getMonth() + 1, 2);
+                        date += '-01';
+
+                        if (this.args.date.length > 4) {
+                            d1.setMonth(d1.getMonth() + 1);
+                        } else {
+                            d1.setFullYear(d1.getFullYear() + 1);
+                        }
+
+                        endDate = d1.getFullYear().toString();
+                        endDate += '-' + new PadNumberPipe().transform(d1.getMonth() + 1, 2);
+                        endDate += '-01';
                     } else {
-                        d1.setFullYear(d1.getFullYear() + 1);
+
+                        this.archiveService.reset();
+                        this.router.navigate(['/404']);
+
                     }
-
-                    endDate = d1.getFullYear();
-                    endDate += '-' + new PadNumberPipe().transform(d1.getMonth() + 1, 2);
-                    endDate += '-01';
-
                 }
 
                 if (!isNullOrUndefined(params['date']) && isNullOrUndefined(params['searchTerm'])) {
@@ -113,18 +152,13 @@ export class ArticleGridComponent extends LoadableComponent {
                     this.heading += 'till <span>' + endDate + '</span> ';
                 } else if (isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])) {
                     this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span>';
-                } else if (!isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])){
+                } else if (!isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])) {
                     this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span> från <span>' + date + '</span> ';
                     this.heading += 'till <span>' + endDate + '</span> ';
-                } else {
-                    this.heading = 'Nyheter';
                 }
 
             } else {
-                this.archiveService.searchTerm = '';
-                this.archiveService.date = '';
-                this.archiveService.filter.next({yearInput: null, months: null, month: '', searchTerm: ''});
-                this.archiveService.filterActive.next(false);
+                this.archiveService.reset();
             }
 
             this.sub = this.NS.getArticles(this.args).subscribe(
@@ -146,43 +180,33 @@ export class ArticleGridComponent extends LoadableComponent {
                 },
                 error => errorMessage = <any> error);
 
-            this.sub = this.archiveService.archiveDistribution.subscribe(
+            // Need to explicitely command archive service to apply filters if these are active in url params.
+            // The service can't determine it by itself as this components route parameters are out of scope
+            // for the service.
+            this.sub = this.archiveService.distributions.subscribe(
                 archiveDistribution => {
                     if (params && Object.keys(params).length !== 0) {
 
-                        let yearInput = null;
-                        let months: [number] = null;
-                        let month: string = '';
+                        let year: number = null;
+                        let month: number = null;
                         let searchTerm: string = '';
 
                         if (params.hasOwnProperty('date')) {
                             let d0 = new Date(params['date']);
-                            let year: any = d0.getFullYear();
-                            let date = '';
 
-                            for (let i in archiveDistribution) {
-                                if (year == archiveDistribution[i].year) {
-                                    yearInput = i;
-                                    months = archiveDistribution[i].months;
-                                    date = year;
-                                }
-                            }
+                            year = d0.getFullYear();
+                            year = archiveDistribution.containsKey(year.toString()) ? year : null;
+                            month = params['date'].length > 4 ? d0.getMonth() + 1 : null;
 
-                            if (params['date'].length > 4) {
-                                month = new PadNumberPipe().transform(d0.getMonth() + 1, 2);
-                                date += '-' + month;
-                            }
-
-                            this.archiveService.date = date.toString();
                         }
 
                         if (params.hasOwnProperty('searchTerm')) {
                             searchTerm = params['searchTerm'];
-                            this.archiveService.searchTerm = searchTerm;
                         }
 
-                        this.archiveService.filter.next({yearInput, months, month, searchTerm});
-                        this.archiveService.filterActive.next(true);
+                        Observable.timer(0).subscribe(
+                            () => { this.archiveService.applyFilter({year, month, searchTerm}, false); }
+                        );
 
                     }
                 }
