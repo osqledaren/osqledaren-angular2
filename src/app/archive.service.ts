@@ -1,4 +1,4 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable, Inject, OnInit} from "@angular/core";
 import {Archive} from "./shared/enums";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
@@ -13,7 +13,7 @@ import {APP_CONFIG} from "./app.config";
 import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
 
 @Injectable()
-export class ArchiveService extends ContentService {
+export class ArchiveService extends ContentService{
 
     private archive: Archive = null;
     private archiveDistributionElements = <ArchiveDistribution[]>[];
@@ -182,5 +182,4 @@ export class ArchiveService extends ContentService {
 
         return distribution;
     }
-
 }
