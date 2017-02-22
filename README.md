@@ -1,7 +1,7 @@
 # Osqledaren Angular
 An Angular 2 app that provides a rich and dynamic web experience for news reading, pod listening and video-cast watching. Succeeded the old WordPress public front-end in web 16/17.
 
-Original authors of: [Tedy Warsitha](https://github.com/tedyw), [Emma Bäckström](https://github.com/emmabckstrm), [Simóne Perrone](https://github.com/simpison), [Ah-Zau Marang](https://github.com/AZNanoi) and [Thomas Vakili](https://github.com/touzen)
+Original authors: [Tedy Warsitha](https://github.com/tedyw), [Emma Bäckström](https://github.com/emmabckstrm), [Simóne Perrone](https://github.com/simpison), [Ah-Zau Marang](https://github.com/AZNanoi) and [Thomas Vakili](https://github.com/touzen)
 
 ## Code Stack
 - Typescript
@@ -47,8 +47,11 @@ These are some common operations done with git.
 ### Merging changes from origin to local.
 
 1. `git fetch` Fetch updates from origin.
-2. `git checkout [local branch]` Switch to local branch.
-3. `git merge origin/[origin branch]` Merge origin branch. into local branch.
+2. `git checkout [origin branch]` Switch to fetched origin branch.
+3. `git pull` Mirror branch with origin.
+4. `git checkout [local branch]` Switch to local branch.
+5. `git pull` Mirror branch with origin.
+6. `git merge origin/[origin branch]` Merge origin branch. into local branch.
 
 ### Merging changes from local 1 to local 2.
 
