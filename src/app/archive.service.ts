@@ -1,4 +1,4 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable, Inject, OnInit} from "@angular/core";
 import {Archive} from "./shared/enums";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
@@ -19,7 +19,7 @@ interface ArchiveFilter {
 }
 
 @Injectable()
-export class ArchiveService extends ContentService {
+export class ArchiveService extends ContentService{
 
     private _archive: Archive = null;
     private _distributions: Dictionary<string[]> = new Dictionary<string[]>();
@@ -200,5 +200,4 @@ export class ArchiveService extends ContentService {
 
         return dist;
     }
-
 }

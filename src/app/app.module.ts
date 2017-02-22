@@ -26,6 +26,7 @@ import {LoaderComponent} from "./loader/loader.component";
 import {BylineComponent} from './byline/byline.component';
 import {ArticleImageComponent} from './article-image/article-image.component';
 import {AdvertisementTopBannerComponent} from './advertisement-top-banner/advertisement-top-banner.component';
+import {ComingSoonComponent} from './coming-soon/coming-soon.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -58,6 +59,7 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         SplitPipe,
         LoaderComponent,
         BylineComponent,
+        ComingSoonComponent,
         ArticleImageComponent,
         AdvertisementTopBannerComponent
     ],
@@ -105,6 +107,12 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
+                path: 'sok-redaktionen',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
                 data: {name: 'printed-issues'},
@@ -114,6 +122,18 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
                 path: 'annonsera',
                 component: AdvertisementPageComponent,
                 data: {name: 'advertise'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'play',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'pods',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
