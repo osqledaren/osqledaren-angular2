@@ -4,26 +4,33 @@ import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import {ArchiveDistribution} from "./shared/interface/archive-distribution.interface";
 import {isNullOrUndefined} from "util";
-import {PadNumberPipe} from "./pad-number.pipe";
 import {Response, Http} from "@angular/http";
 import {ContentService} from "./shared/abstract/abstract.content.service";
 import {APP_CONFIG} from "./app.config";
-import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
+import {Dictionary} from "./shared/class/dictionary.class";
+import {PadNumberPipe} from "./pad-number.pipe";
+
+interface ArchiveFilter {
+    year: number,
+    month: number,
+    dateString: string,
+    searchTerm: string,
+}
 
 @Injectable()
 export class ArchiveService extends ContentService{
 
-    private archive: Archive = null;
-    private archiveDistributionElements = <ArchiveDistribution[]>[];
-    private date: string = '';
-    private searchTerm: string = '';
+    private _archive: Archive = null;
+    private _distributions: Dictionary<string[]> = new Dictionary<string[]>();
+    private _filter: ArchiveFilter = <ArchiveFilter>{};
+
+    public archive: Subject<Archive> = new Subject();
     public activated: Subject<boolean> = new Subject();
-    public archiveDistribution: Subject<ArchiveDistribution[]> = new Subject();
-    public activeArchive: Subject<Archive> = new Subject();
-    public resetListener: Subject<boolean> = new Subject();
+    public distributions: Subject<Dictionary<string[]>> = new Subject();
     public filterActive: Subject<boolean> = new Subject();
+    public filter: Subject<ArchiveFilter> = new Subject();
+
 
     constructor(private router: Router,
                 protected http: Http,
@@ -33,17 +40,25 @@ export class ArchiveService extends ContentService{
         this.endpoint = config.wordpressEndpoint;
     }
 
+    public reset() {
+        this._filter.year = null;
+        this._filter.month = null;
+        this._filter.searchTerm = '';
+        this._filter.dateString = '';
+        this.filterActive.next(false);
+        this.emitFilter(false);
+    }
+
+    private emitFilter(active: boolean = true) {
+        this.filterActive.next(active);
+        this.filter.next(this._filter);
+    }
+
     public activate(archive: Archive) {
 
-        if (this.archive === archive) {
+        if (this._archive === archive) {
             return; // Already active;
         }
-
-        this.reset();
-
-        this.archive = archive;
-        this.activeArchive.next(archive);
-        this.activated.next(true);
 
         let postType: string;
 
@@ -58,86 +73,106 @@ export class ArchiveService extends ContentService{
         this.http.get(this.endpoint + '/archives/' + postType)
             .map(this.map)
             .catch(this.handleError).subscribe(
-            (distribution) => {
-                this.archiveDistributionElements = distribution;
-                this.archiveDistribution.next(distribution);
+            (dist) => {
+
+                this._distributions = dist;
+                this.distributions.next(dist);
+
+                this.reset();
+                this._archive = archive;
+                this.archive.next(archive);
+                this.activated.next(true);
             }
         );
     }
 
     public deactivate() {
-        this.searchTerm = '';
-        this.date = '';
-        this.archive = null;
         this.activated.next(false);
     }
 
-    public setArchive(index: number, year: number, month?: number) {
+    public applyFilter(params?: {year?: number, month?: number, searchTerm?: string}, navigate = true) {
 
-        let date: string = '';
-
-        this.searchTerm = ''; // Reset search term.
-
-        if (isNullOrUndefined(index)) {
-            this.getArchive();
+        if (isNullOrUndefined(params) || Object.keys(params).length == 0) {
+            this.reset();
+            if (navigate) {
+                this.navigate();
+            }
             return;
         }
 
-        let lastYearIndex: number = this.archiveDistributionElements.length - 1;
-
-        // Validate year selection.
-        if (year <= this.archiveDistributionElements[0].year &&
-            year >= this.archiveDistributionElements[lastYearIndex].year) {
-
-            date = year.toString();
-
-            if (!isNullOrUndefined(month)) {
-                let lastMonthIndex = this.archiveDistributionElements[index].months.length - 1;
-
-                // Year is a valid number, check if month is selected and valid.
-                if (month <= toInteger(this.archiveDistributionElements[index].months[0]) &&
-                    month >= toInteger(this.archiveDistributionElements[index].months[lastMonthIndex])) {
-                    date += '-' + (new PadNumberPipe().transform(month, 2)); // Pad the month so it begins with zero if necessary.
-                }
-            }
+        if (!isNullOrUndefined(params.year)) {
+            this.applyDateFilter(params.year, params.month);
         }
 
-        this.date = date;
-        this.reset(false);
-        this.getArchive();
+        if (!isNullOrUndefined(params.searchTerm)) {
+            this.applySearchFilter(params.searchTerm);
+        }
+
+        if (navigate) {
+            this.navigate();
+        }
+
+        this.emitFilter();
     }
 
-    public search(searchTerm: string) {
-        this.searchTerm = searchTerm;
-        this.getArchive();
+    private applyDateFilter(year: number, month?: number) {
+
+        this._filter.searchTerm = ''; // Reset search term.
+
+        let years: number[] = this._distributions.keys().map(Number);
+        let lastYear: number = years.length - 1;
+        let dateString: string = '';
+
+        // Validate year selection (Not ascending array order).
+        if (year >= years[0] &&
+            year <= years[lastYear]) {
+
+            this._filter.year = year;
+            dateString += year.toString();
+
+            if (!isNullOrUndefined(month)) {
+                let lastMonth = this._distributions.item(year.toString()).length - 1;
+
+                // Year is a valid number, check if month is selected and valid (Note descending array order).
+                if (month <= Number(this._distributions.item(year.toString())[0]) &&
+                    month >= Number(this._distributions.item(year.toString())[lastMonth])) {
+
+                    this._filter.month = month;
+                    dateString += '-' + new PadNumberPipe().transform(month, 2);
+
+                }
+            }
+            this._filter.dateString = dateString;
+        }
     }
 
-    private getArchive() {
+    private applySearchFilter(searchTerm: string) {
+        this._filter.searchTerm = searchTerm;
+    }
 
-        switch (this.archive) {
+    private navigate() {
 
+        switch (this._archive) {
             case Archive.article:
-                if (!isNullOrUndefined(this.searchTerm) && this.searchTerm.length > 0) {
+                if (!isNullOrUndefined(this._filter.searchTerm)) {
 
-                    if (this.date.length > 0) {
+                    if (this._filter.searchTerm.length > 0) {
 
-                        let routerParams: Array<string> = ['/nyheter', 'arkiv'];
-                        routerParams.push(this.date);
-                        routerParams.push(this.searchTerm);
+                        if (this._filter.dateString.length > 0) {
 
-                        this.router.navigate(routerParams);
+                            let routerParams: Array<string> = ['/nyheter', 'arkiv'];
+                            routerParams.push(this._filter.dateString);
+                            routerParams.push(this._filter.searchTerm);
+
+                            this.router.navigate(routerParams);
+                        } else {
+                            this.router.navigate(['/nyheter', 'sok', this._filter.searchTerm]);
+                        }
+                    } else if (this._filter.dateString.length > 0) {
+                        this.router.navigate(['/nyheter', 'arkiv', this._filter.dateString]);
                     } else {
-                        this.router.navigate(['/nyheter', 'sok', this.searchTerm]);
+                        this.router.navigate(['/nyheter']);
                     }
-
-                    this.filterActive.next(true);
-
-                } else if (this.date.length > 0) {
-                    this.filterActive.next(true);
-                    this.router.navigate(['/nyheter', 'arkiv', this.date]);
-                } else {
-                    this.filterActive.next(false);
-                    this.router.navigate(['/nyheter']);
                 }
 
                 break;
@@ -150,36 +185,19 @@ export class ArchiveService extends ContentService{
         }
     }
 
-    public reset(date?: boolean) {
-        if (isNullOrUndefined(date)) {
-
-            if (!date) {
-                this.date = '';
-                this.filterActive.next(false);
-                this.resetListener.next(true);
-            }
-        } else {
-            this.resetListener.next(false);
-        }
-    }
-
     /**
      * Maps a response object to an ArchiveDistribution array
-     * @param res:Response
-     * @returns {ArchiveDistribution[]|{}}
+     * @param res: Response
+     * @returns {Dictionary<number[]>}
      */
     protected map(res: Response) {
         let json: any = res.json();
-        let distribution: ArchiveDistribution[] = <ArchiveDistribution[]>[];
+        let dist = new Dictionary<number[]>();
 
         for (let i in json) {
-
-            distribution.push(<ArchiveDistribution>{
-                year: json[i].year,
-                months: json[i].months
-            });
+            dist.add(json[i].year, json[i].months);
         }
 
-        return distribution;
+        return dist;
     }
 }

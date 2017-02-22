@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 		let s: string;
 		s = isUndefined(this.searchInput) ? '' : this.searchInput;
 
-		if(s !== '') this.archiveService.search(s);
+		if(s !== '') this.archiveService.applyFilter({searchTerm:s});
 	}
 
 	ngOnInit() {
@@ -28,8 +28,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 			(activated) => this.visible = activated
 		);
 
-		this.sub = this.archiveService.resetListener.subscribe(
-			() => this.searchInput = ''
+		this.sub = this.archiveService.filter.subscribe(
+			filter => {
+				this.searchInput = filter.searchTerm;
+			}
 		);
 	}
 

@@ -10,8 +10,6 @@ import {ArticleQueryParams} from "./shared/interface/article-query-params.interf
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined} from "util";
 import {isUndefined} from "util";
-import {isNumber} from "util";
-import {padNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
 import {PadNumberPipe} from "./pad-number.pipe";
 
 @Injectable()
@@ -96,8 +94,6 @@ export class WordpressService extends ContentService {
 
                 queryParams += 'after=' + year + '-' + month + '-01T00:00:00&';
                 queryParams += 'before=' + nextYear + '-' + new PadNumberPipe().transform(nextMonth, 2) + '-01T00:00:00&'
-
-                console.log(queryParams);
             }
 
             // Do some validation.

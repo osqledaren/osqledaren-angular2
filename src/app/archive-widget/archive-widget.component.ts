@@ -1,53 +1,46 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
+import {Component} from "@angular/core";
 import {ArchiveService} from "../archive.service";
-import {ArchiveDistribution} from "../shared/interface/archive-distribution.interface";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
-
-
-interface YearInput {
-    index: number;
-    year: string
-}
+import {ActivatedRoute, Router} from "@angular/router";
+import {Dictionary} from "../shared/class/dictionary.class";
+import {PadNumberPipe} from "../pad-number.pipe";
 
 @Component({
     selector: 'app-archive',
     templateUrl: 'archive-widget.component.html',
     styleUrls: ['archive-widget.component.scss']
 })
-export class ArchiveComponent extends LoadableComponent{
+export class ArchiveComponent extends LoadableComponent {
 
-    public yearInput: YearInput;
+    public years: string[];
+    public yearInput: string;
     public monthInput: string;
     public visible: boolean = false;
-    public distribution: ArchiveDistribution[];
-    public months: number[];
+    public distribution: Dictionary<string[]>;
+    public months: string[];
 
     constructor(private archiveService: ArchiveService,
-                loaderService: LoaderService) {
+                loaderService: LoaderService,
+                private router: Router,
+                private activatedRoute: ActivatedRoute) {
         super(loaderService);
     }
 
-    public setArchive() {
-
-        let index = !isNullOrUndefined(this.yearInput) ? Number(this.yearInput.index): undefined;
-        let year = !isNullOrUndefined(this.yearInput) ? Number(this.yearInput.year): undefined;
-        let month = Number(this.monthInput);
-
-        if(index !== undefined){
-            this.archiveService.setArchive(index, year, month);
+    public apply() {
+        if (!isNullOrUndefined(this.yearInput)) {
+            this.archiveService.applyFilter({year: Number(this.yearInput), month: Number(this.monthInput)});
         }
-
     }
 
-    public setMonths(year: YearInput | null){
+    public setMonths(year: string) {
 
-        if(typeof(year) === null){
+        if (year.length == 0) {
             this.months = [];
             return;
         } else {
-            this.months = this.distribution[year.index].months;
+            this.months = this.distribution.item(year.toString());
         }
 
     }
@@ -61,20 +54,19 @@ export class ArchiveComponent extends LoadableComponent{
             }
         );
 
-        this.sub = this.archiveService.resetListener.subscribe(
-            (date) => {
-                if(date){
-                    this.yearInput = null;
-                    this.monthInput = '';
-                    this.months = [];
-                }
-            }
-        )
+        this.sub = this.archiveService.distributions.subscribe(
+            (dist) => {
+                this.years = dist.keys().reverse(); // Make an array of years in descending order.
+                this.distribution = dist;
+                this.months = []; // Set collection of months of current year.
 
-        this.sub = this.archiveService.archiveDistribution.subscribe(
-            (archiveDistribution) => {
-                this.distribution = archiveDistribution;
-                this.months = archiveDistribution[0].months; // Set collection of months of current year.
+                this.archiveService.filter.subscribe(
+                    filter => {
+                        this.yearInput = isNullOrUndefined(filter.year) ? '' : filter.year.toString();
+                        this.months = isNullOrUndefined(filter.year) ? [] : this.distribution.item(filter.year.toString());
+                        this.monthInput = isNullOrUndefined(filter.month) ? '' : new PadNumberPipe().transform(filter.month, 2);
+                    }
+                );
             }
         );
     }

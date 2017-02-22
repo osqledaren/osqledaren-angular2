@@ -2,16 +2,16 @@
     <div id="selection" class="selection">
         <form>
             <select id="archive-year-select" class="custom-select" name="year" (ngModelChange)="setMonths(yearInput=$event)" [(ngModel)]="yearInput">
-                <option [ngValue]="null">År</option>
-                <option [ngValue]="{index: i, year:distribution.year}" *ngFor="let distribution of distribution; let i = index;"
-                        [innerText]="distribution.year"></option>
+                <option value="">År</option>
+                <option [value]="year" *ngFor="let year of years;"
+                        [innerText]="year"></option>
             </select>
             <select id="archive-month-select" class="custom-select" name="month" [(ngModel)]="monthInput">
                 <option value="">Månad</option>
-                <option [value]="month | padNumber: 2" *ngFor="let month of months"
-                        [innerText]="month | padNumber: 2"></option>
+                <option [value]="month" *ngFor="let month of months"
+                        [innerText]="month"></option>
             </select>
-            <button type="submit" class="btn btn-primary form-inline form-control" (click)="setArchive()"><i
+            <button type="submit" class="btn btn-primary form-inline form-control" (click)="apply()"><i
                     class="fa fa-calendar"></i></button>
         </form>
     </div>
