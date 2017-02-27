@@ -16,7 +16,7 @@ export class ArticleImageComponent {
     try {
       return this.renditions['large'].href;
     } catch (Exception){
-      return null;
+      return undefined;
     }
   }
 
@@ -24,7 +24,7 @@ export class ArticleImageComponent {
     try {
       return this.renditions['large'].title;
     } catch (Exception){
-      return null;
+      return '';
     }
   }
 
