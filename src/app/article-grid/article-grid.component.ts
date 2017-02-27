@@ -108,8 +108,6 @@ export class ArticleGridComponent extends LoadableComponent {
 
             if (params && Object.keys(params).length !== 0) {
 
-                console.log(params);
-
                 let date = '';
                 let endDate = '';
 
