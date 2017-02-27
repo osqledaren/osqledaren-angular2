@@ -13,11 +13,19 @@ export class ArticleImageComponent {
   constructor() { }
 
   private href(): string{
-    return this.renditions['large'].href;
+    try {
+      return this.renditions['large'].href;
+    } catch (Exception){
+      return undefined;
+    }
   }
 
   private title(): string {
-    return this.renditions['large'].title;
+    try {
+      return this.renditions['large'].title;
+    } catch (Exception){
+      return '';
+    }
   }
 
 }
