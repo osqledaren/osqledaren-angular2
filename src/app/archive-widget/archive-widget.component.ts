@@ -29,7 +29,7 @@ export class ArchiveComponent extends LoadableComponent {
     }
 
     public apply() {
-        if (!isNullOrUndefined(this.yearInput)) {
+        if (!isNullOrUndefined(this.yearInput) && this.yearInput != '') {
             this.archiveService.applyFilter({year: Number(this.yearInput), month: Number(this.monthInput)});
         }
     }
