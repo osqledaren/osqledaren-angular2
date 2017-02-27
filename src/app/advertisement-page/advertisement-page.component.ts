@@ -21,20 +21,20 @@ export class AdvertisementPageComponent extends LoadableComponent {
 
   	super(loaderService);
 
-  	this.covers = ["http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg",
-  			"http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141501.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141500.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131404.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131403.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131402.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131401.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131400.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121305.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121304.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121303.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121302.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121301.jpg",
-	        "http://osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg"];
+  	this.covers = ["http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg",
+  			"http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141501.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141500.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131404.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131403.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131402.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131401.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131400.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121305.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121304.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121303.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121302.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121301.jpg",
+	        "http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg"];
 
 	this.osqledaren_email = "osqledaren@ths.kth.se";
   	this.osqledaren_mobile = "08-790 98 70";
