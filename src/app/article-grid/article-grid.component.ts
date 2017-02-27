@@ -108,6 +108,8 @@ export class ArticleGridComponent extends LoadableComponent {
 
             if (params && Object.keys(params).length !== 0) {
 
+                console.log(params);
+
                 let date = '';
                 let endDate = '';
 
@@ -147,12 +149,12 @@ export class ArticleGridComponent extends LoadableComponent {
                     }
                 }
 
-                if (!isNullOrUndefined(params['date']) && isNullOrUndefined(params['searchTerm'])) {
+                if (date != '' && isNullOrUndefined(params['searchTerm'])) {
                     this.heading = 'Arkiv från <span>' + date + '</span> ';
                     this.heading += 'till <span>' + endDate + '</span> ';
-                } else if (isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])) {
+                } else if (date == '' && !isNullOrUndefined(params['searchTerm'])) {
                     this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span>';
-                } else if (!isNullOrUndefined(date) && !isNullOrUndefined(params['searchTerm'])) {
+                } else if (date != '' && !isNullOrUndefined(params['searchTerm'])) {
                     this.heading = 'Sökresultat för <span>' + params['searchTerm'] + '</span> från <span>' + date + '</span> ';
                     this.heading += 'till <span>' + endDate + '</span> ';
                 }
