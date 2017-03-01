@@ -15,7 +15,7 @@ div {
     display: flex;
   }
 
-  select, button {
+  select, .btn {
     padding: 0 $grid-gutter-width-base/2 0 $grid-gutter-width-base/4;
     line-height: 30px;
     margin: 5px 0;
@@ -37,7 +37,7 @@ div {
     text-align: right;
   }
 
-  button {
+  .btn {
     flex: 0;
     flex-basis: 50px;
     padding: 0;
@@ -45,6 +45,11 @@ div {
 
     i {
       margin: auto;
+    }
+
+    &:focus {
+      outline: none!important;
+      background-color: $brand-primary!important;
     }
 
   }

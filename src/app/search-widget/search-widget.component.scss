@@ -9,7 +9,7 @@
       display: flex;
     }
 
-    input[type="text"], button {
+    input[type="text"], .btn {
       padding: 5px $grid-gutter-width-base/4;
       line-height: 20px;
       margin: 5px 0;
@@ -22,11 +22,16 @@
       flex: 1;
     }
 
-    button {
+    .btn {
       flex: 0;
       flex-basis: 50px;
       padding:0;
       cursor: pointer;
+
+      &:focus {
+        outline: none !important;
+        background-color: $brand-primary !important;
+      }
 
       i {
         margin:auto;
