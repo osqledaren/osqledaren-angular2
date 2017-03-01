@@ -3,6 +3,7 @@
 node_modules
 *.idea
 dist
+.htaccess
 
 # Compiled source #
 ###################
