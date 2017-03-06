@@ -7,6 +7,7 @@ import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {MasonryModule} from "angular2-masonry/src/module";
 import {CollapseModule} from "ng2-bootstrap/collapse";
+import {DisqusModule} from 'ng2-awesome-disqus';
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -65,6 +66,7 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
     ],
     imports: [
         CollapseModule.forRoot(),
+        DisqusModule,
         MasonryModule,
         BrowserModule,
         FormsModule,
