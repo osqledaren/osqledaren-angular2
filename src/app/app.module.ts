@@ -7,6 +7,7 @@ import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {MasonryModule} from "angular2-masonry/src/module";
 import {CollapseModule} from "ng2-bootstrap/collapse";
+import {DisqusModule} from 'ng2-awesome-disqus';
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -27,7 +28,6 @@ import {BylineComponent} from './byline/byline.component';
 import {ArticleImageComponent} from './article-image/article-image.component';
 import {AdvertisementTopBannerComponent} from './advertisement-top-banner/advertisement-top-banner.component';
 import {ComingSoonComponent} from './coming-soon/coming-soon.component';
-import {Ng2DisqusModule} from 'ng2-disqus';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -66,7 +66,7 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
     ],
     imports: [
         CollapseModule.forRoot(),
-        Ng2DisqusModule,
+        DisqusModule,
         MasonryModule,
         BrowserModule,
         FormsModule,
