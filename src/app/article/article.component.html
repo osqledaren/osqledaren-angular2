@@ -46,7 +46,7 @@
             <div class="button-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
         </div>
 
-        <div class="">
+        <div class="" *ngIf="showRelated">
             <h3>Relaterade artiklar</h3>
             <div *ngFor="let rel_post of relatedArticles">
                 <a [href]="'/artikel/' + rel_post?.post_name"><span [innerText]="rel_post?.post_title"></span></a>

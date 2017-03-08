@@ -18,6 +18,7 @@ export class ArticleComponent extends LoadableComponent {
 
     public article: Article;
     public relatedArticles: Object[] = [];
+    private showRelated: boolean = false;
 
     constructor(private NS: NewsArticleService,
                 private route: ActivatedRoute,
@@ -46,6 +47,7 @@ export class ArticleComponent extends LoadableComponent {
                     console.log("Related?",posts[0].related_posts);
 
                     if (posts[0].related_posts != undefined) {
+                        this.showRelated = true;
                         for (let i=0; i< posts[0].related_posts.length; i++) {
                             this.relatedArticles.push(posts[0].related_posts[i]);
                             
@@ -58,6 +60,8 @@ export class ArticleComponent extends LoadableComponent {
                         }
                         console.log(this.relatedArticles);
                         
+                    } else {
+                        this.showRelated = false;
                     }
                     
 
