@@ -35,7 +35,8 @@ export class WordpressService extends ContentService {
                     .map((res) => this.map(res))
                     .catch(this.handleError);
             default:
-                return this.http.get(this.endpoint + '/posts/' + param + '?_embed')
+                console.log(String(param));
+                return this.http.get(this.endpoint + '/posts/' + String(param) + '?_embed')
                     .map((res) => this.map(res))
                     .catch(this.handleError);
         }
@@ -161,6 +162,7 @@ export class WordpressService extends ContentService {
                 headline: body[i].title.rendered,
                 id: body[i].id,
                 mimetype: 'text/html',
+                related_posts: body[i].acf.related_posts,
                 renditions: renditions,
                 representationtype: 'complete',
                 slug: body[i].slug,

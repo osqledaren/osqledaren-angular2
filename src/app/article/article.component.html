@@ -24,6 +24,9 @@
             <span class="date">
                     <time [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
                 </span>
+
+             
+
         </div>
 
         <!-- Byline above-->
@@ -42,6 +45,14 @@
             <div class="button-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
             <div class="button-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
         </div>
+
+        <div class="">
+            <h3>Relaterade artiklar</h3>
+            <div *ngFor="let rel_post of relatedArticles">
+                <a [href]="'/artikel/' + rel_post?.post_name"><span [innerText]="rel_post?.post_title"></span></a>
+            </div>
+        </div>
+        
     </article>
 </div>
 <div class="container" id="disqus">
