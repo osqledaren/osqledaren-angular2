@@ -96,6 +96,9 @@ export class WordpressService extends ContentService {
                 queryParams += 'after=' + year + '-' + month + '-01T00:00:00&';
                 queryParams += 'before=' + nextYear + '-' + new PadNumberPipe().transform(nextMonth, 2) + '-01T00:00:00&'
             }
+            if (!isNullOrUndefined(args.category)) {
+                queryParams += 'categories=' + args.category + '&';
+            }
 
             // Do some validation.
         }
@@ -157,7 +160,7 @@ export class WordpressService extends ContentService {
             for (let k in categories) {
                 categoriesById[k] = categories[k];
             }
-            console.log("This is the info an article contains",body);
+            
             posts.push(<Article>{
                 body_html: body[i].content.rendered,
                 byline: 'Osqledaren',
