@@ -6,7 +6,7 @@ export interface Article {
     description_text: string,
     headline: string,
     id: number,
-    related_posts: string,
+    related_posts: Array<any>,
     renditions?: {[id: string] : Rendition},
     representationtype: string,
     slug: string,
