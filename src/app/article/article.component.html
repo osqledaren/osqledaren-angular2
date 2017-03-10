@@ -54,7 +54,7 @@
                         <a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><app-article-image-thumbnail [renditions]="rel_post.renditions"></app-article-image-thumbnail></a>
                     </div>
                     <div class="col-sm-10 related-post-title">
-                        <div><a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><span [innerText]="rel_post.headline"></span></a></div>
+                        <div><a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><span [innerHTML]="rel_post?.headline"></span></a></div>
                     </div>
                 </div>
             </div>
