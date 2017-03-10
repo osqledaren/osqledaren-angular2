@@ -131,7 +131,8 @@ export class WordpressService extends ContentService {
         let body: any = res.json();
         let posts: Article[] = <Article[]>[];
         let renditions: {};
-        let media: any, sizes: any;
+        let categoriesById: Array<any> = [];
+        let media: any, sizes: any, categories: any;
 
         for (let i in body) {
 
@@ -152,12 +153,18 @@ export class WordpressService extends ContentService {
             } catch (Exception){
                 renditions = null;
             }
-
+            categories = body[i].categories;
+            for (let k in categories) {
+                categoriesById[k] = categories[k];
+            }
+            console.log("This is the info an article contains",body);
             posts.push(<Article>{
                 body_html: body[i].content.rendered,
                 byline: 'Osqledaren',
+                categoriesById: categoriesById,
                 copyrightholder: 'Osqledaren',
                 copyrightnotice: 'Copyright Osqledaren',
+                cred: body[i].acf.cred,
                 description_text: WordpressService.htmlToPlainText(body[i].excerpt.rendered),
                 headline: body[i].title.rendered,
                 id: body[i].id,

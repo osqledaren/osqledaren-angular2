@@ -1,8 +1,10 @@
 export interface Article {
     body_html: string,
     byline: string,
+    categoriesById: Array<any>,
     copyrightholder: string,
     copyrightnotice: string,
+    cred: string,
     description_text: string,
     headline: string,
     id: number,
