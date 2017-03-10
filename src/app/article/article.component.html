@@ -46,10 +46,17 @@
             <div class="button-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
         </div>
 
-        <div class="" *ngIf="showRelated">
-            <h3>Relaterade artiklar</h3>
+        <div class="related-posts" *ngIf="showRelated">
+            <h3>Läs också</h3>
             <div *ngFor="let rel_post of relatedArticles">
-                <a [href]="'/artikel/' + rel_post?.post_name"><span [innerText]="rel_post?.post_title"></span></a>
+                <div class="row">
+                    <div class="col-sm-2 related-post-img">
+                        <a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><app-article-image-thumbnail [renditions]="rel_post.renditions"></app-article-image-thumbnail></a>
+                    </div>
+                    <div class="col-sm-10 related-post-title">
+                        <div><a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><span [innerText]="rel_post.headline"></span></a></div>
+                    </div>
+                </div>
             </div>
         </div>
         

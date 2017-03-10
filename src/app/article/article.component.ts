@@ -44,21 +44,22 @@ export class ArticleComponent extends LoadableComponent {
 
                     this.loaded();
 
-                    console.log("Related?",posts[0].related_posts);
-
-                    if (posts[0].related_posts != undefined) {
+                    // If this article has related posts
+                    if (posts[0].related_posts != undefined) {    
                         this.showRelated = true;
                         for (let i=0; i< posts[0].related_posts.length; i++) {
-                            this.relatedArticles.push(posts[0].related_posts[i]);
+                            //this.relatedArticles.push(posts[0].related_posts[i]);
                             
-                            //this.NS.getArticle("karlek-pa-kth").subscribe(
-                                // related_post => {
-                                //     console.log("Post?", related_post[0]);
-                                //     relatedArticles.push(related_post);
-                                // }
-                            //)
+                            if(this.relatedArticles.length==0) {
+                                this.NS.getArticle(posts[0].related_posts[i].post_name).subscribe(
+                                related_post => {
+                                    this.relatedArticles.push(related_post[0]);
+                                }
+                            )
+                            }
+                            
                         }
-                        console.log(this.relatedArticles);
+                        
                         
                     } else {
                         this.showRelated = false;
