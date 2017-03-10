@@ -74,20 +74,19 @@ export class ArticleComponent extends LoadableComponent {
                         }
                         
                         this.NS.getArticles(this.args).subscribe(
-                            posts => {
+                            relatedPosts => {
                                 let usedNumbers = [];
                                 let randomNum;
                                 // Grabs three randem related articles from the same category as the original post
                                 for (let j=0; j<3; j++) {
                                     randomNum = this.getRandomInt(0,11);
                                     
-                                    // If we have used this number, find another
-                                    while(usedNumbers.indexOf(randomNum) > -1 ) {
+                                    // If we have used this number OR if this number points to the current article, find another number
+                                    while(usedNumbers.indexOf(randomNum) > -1 || relatedPosts[randomNum].id == posts[0].id) {
                                         randomNum = this.getRandomInt(0,11);
-                                        
                                     }
                                     usedNumbers.push(randomNum);
-                                    this.relatedArticles.push(posts[randomNum]);
+                                    this.relatedArticles.push(relatedPosts[randomNum]);
                                 }
 
                                 if (this.relatedArticles.length == 0) {
