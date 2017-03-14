@@ -101,4 +101,35 @@
 			padding:$grid-gutter-width-base/2;
 		}
 	}
+
+
 }
+.related-posts .row {
+	padding-top: 7.5px;
+	padding-bottom: 7.5px;
+}
+.related-post-img, .related-post-title {
+		//display: inline-block;
+}
+.related-post-title {
+
+	div {
+		//display: inline-block;
+		//vertical-align: middle;
+	}
+}
+.related-post-titleee::before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+
+
+
+
+
+
+

@@ -35,7 +35,8 @@ export class WordpressService extends ContentService {
                     .map((res) => this.map(res))
                     .catch(this.handleError);
             default:
-                return this.http.get(this.endpoint + '/posts/' + param + '?_embed')
+                console.log(String(param));
+                return this.http.get(this.endpoint + '/posts/' + String(param) + '?_embed')
                     .map((res) => this.map(res))
                     .catch(this.handleError);
         }
@@ -95,6 +96,9 @@ export class WordpressService extends ContentService {
                 queryParams += 'after=' + year + '-' + month + '-01T00:00:00&';
                 queryParams += 'before=' + nextYear + '-' + new PadNumberPipe().transform(nextMonth, 2) + '-01T00:00:00&'
             }
+            if (!isNullOrUndefined(args.category)) {
+                queryParams += 'categories=' + args.category + '&';
+            }
 
             // Do some validation.
         }
@@ -130,7 +134,8 @@ export class WordpressService extends ContentService {
         let body: any = res.json();
         let posts: Article[] = <Article[]>[];
         let renditions: {};
-        let media: any, sizes: any;
+        let categoriesById: Array<any> = [];
+        let media: any, sizes: any, categories: any;
 
         for (let i in body) {
 
@@ -151,16 +156,23 @@ export class WordpressService extends ContentService {
             } catch (Exception){
                 renditions = null;
             }
-
+            categories = body[i].categories;
+            for (let k in categories) {
+                categoriesById[k] = categories[k];
+            }
+            
             posts.push(<Article>{
                 body_html: body[i].content.rendered,
                 byline: 'Osqledaren',
+                categoriesById: categoriesById,
                 copyrightholder: 'Osqledaren',
                 copyrightnotice: 'Copyright Osqledaren',
+                cred: body[i].acf.cred,
                 description_text: WordpressService.htmlToPlainText(body[i].excerpt.rendered),
                 headline: body[i].title.rendered,
                 id: body[i].id,
                 mimetype: 'text/html',
+                related_posts: body[i].acf.related_posts,
                 renditions: renditions,
                 representationtype: 'complete',
                 slug: body[i].slug,

@@ -39,6 +39,7 @@ import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 // Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
+import { ArticleImageThumbnailComponent } from './article-image-thumbnail/article-image-thumbnail.component';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         BylineComponent,
         ComingSoonComponent,
         ArticleImageComponent,
-        AdvertisementTopBannerComponent
+        AdvertisementTopBannerComponent,
+        ArticleImageThumbnailComponent
     ],
     imports: [
         CollapseModule.forRoot(),

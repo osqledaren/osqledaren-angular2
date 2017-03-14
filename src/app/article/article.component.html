@@ -24,6 +24,9 @@
             <span class="date">
                     <time [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
                 </span>
+
+             
+
         </div>
 
         <!-- Byline above-->
@@ -42,6 +45,21 @@
             <div class="button-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
             <div class="button-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
         </div>
+
+        <div class="related-posts" *ngIf="showRelated">
+            <h3>Läs också</h3>
+            <div *ngFor="let rel_post of relatedArticles">
+                <div class="row">
+                    <div class="col-sm-2 related-post-img">
+                        <a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><app-article-image-thumbnail [renditions]="rel_post.renditions"></app-article-image-thumbnail></a>
+                    </div>
+                    <div class="col-sm-10 related-post-title">
+                        <div><a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><span [innerHTML]="rel_post?.headline"></span></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </article>
 </div>
 <div class="container" id="disqus">
