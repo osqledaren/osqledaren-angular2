@@ -1,65 +1,301 @@
+@import "../../../utility";
+@import "../../../loader";
+
 #playContainer{
-	padding: 0 !important;
 	box-sizing: border-box;
 	margin-bottom: 50px;
 
+	.row{margin:0;}
+
 	.col-xs-12{
 		padding: 0;
-		margin-top: 50px;
-		background: #e8e8e8;
-	    padding: 10px 10px 20px 10px;
-	    border-radius: 15px;
-	    box-shadow: 1px 1px 7px #c1c1c1;
+	}
+	.playerContainer{
+		width: 100%;
+		background-color: black;
+		margin-top: 10px;
+	}
 
-	    .page-title{
-	    	font-size: 3rem;
-    		color: #f05022;
-    		margin-left: 40px;
-    	}
+	.search {
+		background-color: #e8e8e8;
 
-		.bar {
-			overflow: hidden;
-			strong{
-				float: left;
-				font-size: 2rem;
-				color: #ff8300;
+		>div {
+			padding: 17px 0 17px 2.2%;
+			width: 100%; padding: 15px;
+
+			h3 {
+				color: #e67233;
+				span{color:white;}
 			}
-
-			span{
-				padding: 2px 10px;
-				border: 1px solid white;
-				border-radius: 15px;
-				float: left;
-			}
-
-			>span:last-child{
-				float: right;
-			}
-		}
-		
-
-		.clips-container{
-			margin-bottom: 20px;
-
-			.clip{
-				display:inline-block;
-				background: white;
-				cursor: pointer;
-				margin-right: 33px;
-				//box-shadow: 3px 3px 10px gray;
-
-				.cover{
-					background: silver;
-					width:260px; height:140px;
-					img{width:260px; height:140px;}
+			form{
+				button{
+					background: none;
+					border: none;
+					outline: none;
+					i {
+						color: #e67233;
+						font-size: 20px;
+						cursor: pointer;
+					}
 				}
-
-				.title{
-					padding:5px 10px; font-size: 1.2rem; color: #65d4f7;
-					&:hover{color:#00c2ff;}
+				>div{
+					width: 50%;
+					display: inline-block;
+					position: relative;
+					input{
+						width: 100%;
+						background: none;
+						border: none;
+						border-bottom: 1px solid;
+						outline: none;
+						padding-right: 25px;
+					}
+					span{
+						position: absolute;
+						right: 0;
+						top: 0;
+						font-size: 2rem;
+						padding: 0;
+						border-radius: 15px;
+						font-weight: bold;
+						line-height: 0.5;
+						cursor: pointer;
+					}
 				}
 			}
-			>div:last-child{margin-right: 0px !important;}
+
+			.filter {
+				margin-left: 20px;
+				margin-top: 5px;
+				div {cursor: pointer; display: inline; margin-right: 20px;}
+				.selected {color: #e67233;}
+			}
 		}
 	}
+
+	.pod-play-grid{
+		margin: auto;
+		width: 100%;
+		background-color: white;
+		padding: 35px 30px 10px;
+		>div{
+			width: inherit;
+			>div{vertical-align: top;padding-bottom: 30px;}
+		}
+
+		span {
+			display: block;
+			font-size: 0.9em;
+		}
+
+		h3 {
+			cursor: pointer;
+			color: #fd8d16;
+			&:hover {color: #f9ae5f;}
+		}
+
+		.episodeContainer{
+			color: black;
+			.episode{
+				width: 49%;
+				display: inline-block;
+				>div{
+					display:inline-block;
+					vertical-align: top;
+
+					&:last-child{width:60%;margin-left:10px;}
+
+					strong{color:#ff8300; cursor:pointer; font-weight:inherit;}
+				}
+
+				.image-wrapper{
+					cursor:pointer;
+					position: relative;
+
+					span{
+						padding:5px 10px;
+						background: rgba(0, 0, 0, 0.36);
+						bottom: 0;
+						position: absolute;
+						right: 0;
+						color: white;
+						border-radius: 10px;
+					}
+				}
+			}
+		}
+		.seriesContainer{
+			color: #ffffff;
+			.series{
+				width: 24.9%;
+				display: inline-block;
+				padding: 0 1%;
+				strong{
+					display: block;
+				}
+				>span{
+					color: #e67334;
+					font-size: 0.9rem;
+				}
+			}
+		}
+		.getMore{
+			display: block;
+			margin: 40px 0 0;
+			text-align: center;
+			>div{
+				display: inline-block;
+				i{
+					font-size: 2rem;
+					cursor: pointer;
+					&:hover{
+						color: #ff8300;
+					}
+				}
+			}
+		}
+
+	}
+}
+
+:host /deep/ {
+	.loader-overlay{
+		position: relative;
+		background: none !important;
+		display: inline-block;
+		width: 50% !important;
+		vertical-align: middle;
+		padding:20px 0;
+		.loader{
+			margin-top: 0;
+			display: inline-block;
+			.bounce{
+				background: black !important;
+			}
+		}
+	}
+	#searchEpisodeText{
+		strong{
+			font-weight: 900 !important;
+		}
+		span{
+			strong{color: #ca6800 !important;}
+		}
+	}
+
+	.pod-play-grid{
+		p{margin:0;
+			p{margin:0;}
+		}
+	}
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	color: gray;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: gray;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: gray;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: gray;
+}
+input:-webkit-autofill{
+	&, &:hover, &:focus, &:active{
+		transition: background-color 5000s ease-in-out 0s;
+		-webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0) inset;
+	}
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@include media-breakpoint-only(xs) {
+	#playContainer{
+		width: 100%;
+		padding: 0;
+		.search {
+			>div {
+				padding: 5px;
+				h3 {font-size:1rem;}
+				hr{margin: 10px auto 10px;}
+				.filter {
+					div {font-size: 0.80rem;}
+				}
+			}
+		}
+		.pod-play-grid{
+			padding: 5px;
+			.episode, .series{
+				width: 48% !important;
+				margin: 1%;
+				>div{
+					width: 100%;
+					&:last-child{width: 100%;font-size: 0.8rem;margin: 0;}
+					strong{font-size: 1rem;}
+				}
+				.image-wrapper{
+					img{width: 100% !important;}
+					span{bottom: 2px;right: 2px;}
+				}
+			}
+		}
+	}
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-only(sm) {
+	#playContainer{
+		width: 100%;
+		padding: 0;
+		.search {
+			>div {
+				padding: 5px;
+				hr{margin: 10px auto 10px;}
+			}
+		}
+		.pod-play-grid{
+			padding: 5px;
+			.episode{
+				width: 48%;
+				margin: 1%;
+				>div{
+					width: 100%;
+					&:last-child{width: 100%;margin: 0;}
+				}
+				.image-wrapper{
+					img{width: 100% !important;height: 180px !important;}
+					span{bottom: 2px;right: 2px;}
+				}
+			}
+		}
+	}
+}
+
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-only(md){
+	.info-wrapper{margin-left: 0 !important;}
+	.pod-play-grid{
+		h3{font-size: 1.3rem;}
+	}
+}
+
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-only(lg) {
+	.pod-play-grid{
+		.episode{
+			.image-wrapper{
+				width: 40%;
+				img{
+					width: 100%;
+					height: auto;
+				}
+			}
+			.info-wrapper{padding: 0 5px; width: 59% !important; margin-left: 0 !important;display:inline-block;}
+		}
+	}
+}
+// Extra large devices (large desktops, 1600px and up)
+@include media-breakpoint-only(xl) {
+
 }

@@ -1,81 +1,106 @@
+@mixin right-arrow($size, $color) {
+	content: " ";
+	position: absolute;
+	top:50%;
+	left:100%;
+	margin-top: -#{$size}px;
+	border-width: #{$size}px;
+	border-style: solid;
+	border-color: transparent transparent transparent $color;
+}
+
+@mixin left-arrow($size, $color) {
+	content: " ";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -#{$size}px;
+	border-width: #{$size}px;
+	border-style: solid;
+	border-color: transparent $color transparent transparent;
+}
 #programContainer{
 	box-sizing: border-box;
-	padding: 0 !important;
 
-	.cover-wrapper{
-		box-shadow: 1px 1px 7px #c1c1c1;
-		padding: 0 !important;
-		margin: 20px 0px;
-
-		>div{display:inline-block; padding: 0 !important;}
-
-		.title{
-			width: 33%;text-align: center;
-
-			strong{font-size:2.2rem;color:#f05022;}
+	.row{
+		margin:0;
+		>div[class*="box"]{
+			width: 50%;
+			position: relative;
 		}
 	}
 
-	.content{
+	.col-xs-12{
 		padding: 0;
-		margin-bottom: 50px;
-		margin-top: 35px;
-		>div{
-			display: inline-block;
-			box-shadow: 1px 1px 7px #c1c1c1;
-			vertical-align: top;
-			padding: 10px 15px;
+	}
 
-			>strong{font-size:2rem;color:gray;display:inline-block;margin-bottom:15px;}
-		}
-		
-		>div:last-child{
-			margin-left: 30px;
-			width: 47.1%;
-		}
+	.playerContainer{
+		width: 100%;
+		background-color: black;
+		margin-top: 10px;
+	}
 
-		.episodes{
-			position: relative;
+	@for $box from 1 through 4 {
+		$bg-color: white;
+		$padding: 35px 35px 25px;
+		$h3-color: black;
 
-			.episode{
-				margin-bottom: 30px;
-				>div{
-					display:inline-block;
-					vertical-align: top;
+		.box#{$box} {
+			@if $box == 1 {
+				$bg-color: #3a3a3a;
+				$padding: 25px 35px 0px;
+				$h3-color: white;
 
-					&:last-child{width:60%;margin-left:10px;}
+				& span{color:#e67334;}
 
-					strong{color:#ff8300;cursor:pointer;}
+			}@else if $box == 2 {
+				$bg-color: #f3f3f3;
+				$padding: 25px 35px 0px;
+				$h3-color: #e67233;
+				&::after {
+					@include left-arrow($size: 20, $color: #f3f3f3);
+					z-index: 1;
 				}
-
-				.image-wrapper{
-					cursor:pointer;
-					position: relative;
-
-					span{
-						padding:5px 10px;
-						background: rgba(0, 0, 0, 0.36);
-						bottom: 0;
-					    position: absolute;
-					    right: 0;
-					    color: white;
-					    border-radius: 10px;
+				p { margin-top: 5px; }
+				hr{border-width:1px; margin:0;}
+			}@else if $box == 3 {
+				$bg-color: #646464;
+				$padding: 20px 0px 0px;
+				color: white;
+				>div{
+					padding: 7px 0;
+					border-bottom:1px solid #5a5a5a;
+					.duration{
+						min-width: 25%;
+						display: inline-block;
+						text-align: center;
+					}
+					.plus{padding:0 20px;}
+					.title, .plus{
+						cursor: pointer;
+						&:hover{color: #e67334;}
 					}
 				}
+			}@else if $box == 4 {
+				p { margin-top: 20px; }
 			}
 
-			>span{
-				position: absolute;
-			    right: 20px;
-			    padding: 5px 10px;
-			    background: rgba(0, 255, 44, 0.1);
-			    border-radius: 15px;
-			    top: -15px;
-			    box-shadow: 2px 2px 7px #b9b9b9;
-			    cursor:pointer;
+			padding: $padding;
+			background-color: $bg-color;
 
-			    &:hover{background: rgba(0, 255, 44, 0.3);}
-			}
+			h3 { color: $h3-color; }
 		}
+	}
+}
+:host /deep/ {
+	.message{
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #304c01;
+		text-align: center;
+		font-size: 0;
+		transition: padding 0.5s, font-size 0.5s;
+		-webkit-transition: padding 0.5s, font-size 0.5s; /* For Safari 3.1 to 6.0 */
 	}
 }

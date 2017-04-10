@@ -2,6 +2,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="container">
+                <a *ngIf="displayPlayQueue" class="navbar-queue" routerLink="/play/queue">Din kö ({{numberOfEpisodes}})</a>
                 <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
                      [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
                     <span></span>

@@ -1,111 +1,140 @@
-<div #fullPlayerElement id="fullPlayer" (mousemove)="mouseMovingOnPlayer()">
-	<div id="display" (click)="togglePlay()">
-		<video id="videoElement" #videoElement [attr.src]="src">
-			<source [src]="src" type="video/mp4">
-			Your browser does not support the video element.
-		</video>
-	</div>
-
-	<div #controller id="controller">
-		<div id="progressBar" >
-			<span id="currentTime">{{currentTime | time}}</span>
-			<div #progressMeterFull (click)="videoSeek($event)" (mousedown)="dragStart($event)" id="progressMeterFull">
-				<div id="progressMeterBar" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()"></div>
-				<div id="bufferedPercentages" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()" [style.width]="bufferedPercentages + '%'"></div>
-				<div id="progressMeter" #progressMeter (click)="videoSeek($event)" [style.width]="scrubLeft + '%'" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()"></div>
-				<div id="thumbScrubber" #thumbScrubber [style.left]="scrubLeft + '%'" (mousedown)="dragStart($event)"></div>
-				<span #pendingTimeElement [hidden]="!showPendingTime" id="pendingTime">{{pendingTime | time}}</span>
-			</div>
-			<span id="totalTime">{{totalTime | time}}</span>
+<div #fullPlayerContainer id="fullPlayerContainer">
+	<div #fullPlayerElement id="fullPlayer" (mousemove)="mouseMovingOnPlayer()">
+		<div id="display" (click)="togglePlay()">
+			<video id="videoElement" #videoElement [attr.src]="videoMetaData.video.url">
+				<source [src]="videoMetaData.video.url" type="video/mp4">
+				Your browser does not support the video element.
+			</video>
 		</div>
-			
-		<div id="playerToolBar">
-			<div id="emptyBtn"><i></i></div>
-			<div id="backwardBtn"><i class="fa fa-step-backward" aria-hidden="true"></i></div>
-			<div id="playBtn"><i #playButton (click)="togglePlay()" class="fa fa-play-circle" aria-hidden="true"></i></div>
-			<div id="forwardBtn"><i class="fa fa-step-forward" aria-hidden="true"></i></div>
-			<div id="repeatBtn"><i (click)="toggleVideoRepeat($event)" class="fa fa-repeat" aria-hidden="true"></i></div>
-			
-			<div>
-				<div id="muteBtn">
-					<i #volumeButton (click)="toggleMute()" (mouseenter)="toggleVolumeBar($event)" (mouseleave)="toggleVolumeBar($event)" class="fa fa-volume-up" aria-hidden="true"></i>
-					<div *ngIf="showVolumeBar" #volumeMeterFull (click)="volumeSeek($event)" (mousedown)="dragStartVolume($event)" (mouseleave)="hideVolumeBar()" id="volumeMeterFull">
-						<div #volumeMeter (click)="volumeSeek($event)" id="volumeMeter" [style.height]="volumeScrubTop + '%'"></div>
-						<div id="volumeThumbScrubber" #volumeScrubber [style.bottom]="volumeScrubTop + '%'" (mousedown)="dragStartVolume($event)"></div>
-					</div>
+
+		<div [hidden]="!circleController" #wheelController id="wheelController">
+			<div #canvasContainer (mousedown)="dragStart($event)">
+				<canvas #progressMeterFull_wheel id="progressMeterFull_wheel" style="position: absolute;"></canvas>
+				<canvas #bufferedPercentages_wheel id="bufferedPercentages_wheel" style="position: absolute;"></canvas>
+				<canvas #progressMeter_wheel id="progressMeterBar_wheel" style="position: absolute;"></canvas>
+				<canvas #thumbScrubber_wheel id="thumbScrubber_wheel" style="position: absolute;"></canvas>
+				<canvas #volumeMeterFull_wheel id="volumeMeterFull_wheel" style="position: absolute;"></canvas>
+				<canvas #volumeMeter_wheel id="volumeMeter_wheel" style="position: absolute;"></canvas>
+				<canvas #volumeThumbScrubber_wheel id="volumeThumbScrubber_wheel" style="position: relative;"></canvas>
+			</div>
+			<div id="playBtn_wheel"><i #playButton_wheel (click)="togglePlay()" class="fa fa-play-circle" aria-hidden="true"></i></div>
+			<div id="muteBtn_wheel"><i #volumeButton_wheel (click)="toggleMute()" class="fa fa-volume-up" aria-hidden="true"></i></div>
+			<div id="backwardBtn_wheel"><i #previousButton_wheel (click)="playPrevious()" class="fa fa-step-backward" aria-hidden="true"></i></div>
+			<div id="forwardBtn_wheel"><i #nextButton_wheel (click)="playNext()" class="fa fa-step-forward" aria-hidden="true"></i></div>
+			<div id="repeatBtn_wheel"><i #repeatButton_wheel (click)="toggleVideoRepeat()" class="fa fa-repeat" aria-hidden="true"></i></div>
+			<div id="fullScreenBtn_wheel"><i #fullScreenBtn_wheel [innerHTML]="fullscreenIcon" (click)="toggleFullScreen()" class="material-icons"></i></div>
+			<div id="viewMode_wheel" #viewMode_wheel (click)="switchViewMode()"></div>
+			<span #pendingTimeElementWheel [hidden]="!showPendingTime" id="pendingTime_wheel">{{pendingTime | time}}</span>
+		</div>
+
+		<div [hidden]="!standardController" #controller id="controller">
+			<div id="progressBar" >
+				<span id="currentTime">{{currentTime | time}}</span>
+				<div #progressMeterFull (click)="videoSeek($event)" (mousedown)="dragStart($event)" id="progressMeterFull">
+					<div id="progressMeterBar" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()"></div>
+					<div id="bufferedPercentages" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()" [style.width]="bufferedPercentages + '%'"></div>
+					<div id="progressMeter" #progressMeter (click)="videoSeek($event)" [style.width]="scrubLeft + '%'" (mousemove)="displayPendingTime($event)" (mouseleave)="hidePendingTime()"></div>
+					<div id="thumbScrubber" #thumbScrubber [style.left]="scrubLeft + '%'" (mousedown)="dragStart($event)"></div>
+					<span #pendingTimeElement [hidden]="!showPendingTime" id="pendingTime">{{pendingTime | time}}</span>
 				</div>
-					
-				<div id="cogBtn">
-					<i #cogIcon (click)="toggleSettingPanel($event)" class="fa fa-cogs" aria-hidden="true"></i>
-					<div *ngIf="showSettingPanel" class="settingPanel">
-						<div>
-							<span>Autoplay<i>Play next video</i></span>
-							<div class="on-off-b-container">
-								<div #onOffThumbScrubber class="on-off-thumbScrubber" (click)="toggleAutoplay()"></div>
-								<div (click)="toggleAutoplay()">
-									<div #onOffButton class="on-off-button">
-										<div>On</div>
-										<div>Off</div>
-									</div>
+				<span id="totalTime">{{totalTime | time}}</span>
+			</div>
+
+			<div id="playerToolBar">
+				<div id="emptyBtn"><i></i></div>
+				<div id="backwardBtn"><i #previousButton (click)="playPrevious()" class="fa fa-step-backward" aria-hidden="true"></i></div>
+				<div id="playBtn"><i #playButton (click)="togglePlay()" class="fa fa-play-circle" aria-hidden="true"></i></div>
+				<div id="forwardBtn"><i #nextButton (click)="playNext()" class="fa fa-step-forward" aria-hidden="true"></i></div>
+				<div id="repeatBtn"><i #repeatButton (click)="toggleVideoRepeat()" class="fa fa-repeat" aria-hidden="true"></i></div>
+
+				<div>
+					<div id="muteBtn">
+						<i #volumeButton (click)="toggleMute()" (mouseenter)="toggleVolumeBar($event)" (mouseleave)="toggleVolumeBar($event)" class="fa fa-volume-up" aria-hidden="true"></i>
+						<div [hidden]="!showVolumeBar" #volumeMeterFull (click)="volumeSeek($event)" (mousedown)="dragStartVolume($event)" (mouseleave)="hideVolumeBar()" id="volumeMeterFull">
+							<div #volumeMeter (click)="volumeSeek($event)" id="volumeMeter" [style.height]="volumeScrubTop + '%'"></div>
+							<div id="volumeThumbScrubber" #volumeScrubber [style.bottom]="volumeScrubTop + '%'" (mousedown)="dragStartVolume($event)"></div>
+						</div>
+					</div>
+					<div id="viewMode" (click)="switchViewMode()"></div>
+					<div id="fullScreenBtn"><i [innerHTML]="fullscreenIcon" (click)="toggleFullScreen()" class="material-icons"></i></div>
+				</div>
+			</div>
+		</div>
+
+		<div #settingBar id="settingBar">
+			<div id="playlist-icon">
+				<i #playlistIcon class="fa fa-list" aria-hidden="true" (click)="togglePlaylist()"></i>
+			</div>
+			<div id="cogBtn">
+				<i #cogIcon (click)="toggleSettingPanel()" class="fa fa-cogs" aria-hidden="true"></i>
+				<div [hidden]="!showSettingPanel" class="settingPanel">
+					<div>
+						<span>Autoplay<i>Play next video</i></span>
+						<div class="on-off-b-container">
+							<div #onOffThumbScrubber class="on-off-thumbScrubber" (click)="toggleAutoplay()"></div>
+							<div (click)="toggleAutoplay()">
+								<div #onOffButton class="on-off-button">
+									<div><span>On</span></div>
+									<div><span>Off</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<span>Controller<i>Switch controller</i></span>
+						<div class="on-off-b-container">
+							<div #switchThumbScrubber class="on-off-thumbScrubber" (click)="switchController()"></div>
+							<div (click)="switchController()">
+								<div #switchButton class="on-off-button">
+									<div><span>Circle</span></div>
+									<div><span>Standard</span></div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div id="fullScreenBtn"><i [innerHTML]="fullscreenIcon" (click)="toggleFullScreen()" class="material-icons"></i></div>
+			</div>
+			<div id="info-icon" (click)="toggleInfo($event)">
+				<i class="fa fa-info" aria-hidden="true"></i>
+			</div>
+		</div>
+
+		<div *ngIf="showPlaylist" #playlist id="playlist">
+			<div *ngFor="let e of episodes; let i=index" class="episode {{i == 0? 'selected': ''}}" (click)="loadEpisode(i)">
+				<div class="image-wrapper">
+					<img width="100%" height="auto" src="{{e.imageURL}}"/>
+				</div>
+				<div class="info-wrapper">
+					<p>Avsnitt {{e.episode_number}}: <span [innerHTML]="e.title"></span></p>
+					<span>{{e.video.duration}}</span>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="featured_clips" id="featured_clips">
+			<div *ngFor="let e of episodes; let i=index" (click)="loadEpisode(i)">
+				<div class="image-wrapper">
+					<img width="100%" height="100%" src="{{e.imageURL}}"/>
+				</div>
+				<div class="info-wrapper">
+					<p>Avsnitt {{e.episode_number}}: <span [innerHTML]="e.title"></span></p>
+					<span>{{e.video.duration}}</span>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<div id="playlist-icon">
-		<i class="material-icons" (click)="togglePlaylist($event)">playlist_play</i>
-	</div>
-
-	<div *ngIf="showPlaylist" id="playlist">
-		<div class="episode selected">
-  			<div class="image-wrapper">
-  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
-  			</div>
-  			<div class="info-wrapper">
-  				<p>Avsnitt 1: Title av första avsnitt Title av första avsnitt</p>
-  				<span>3:10</span>
-  			</div>
-  		</div>
-  		<div class="episode">
-  			<div class="image-wrapper" >
-  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
-  			</div>
-  			<div class="info-wrapper">
-  				<p>Avsnitt 2: Title av andra avsnitt</p>
-  				<span>1:32:10</span>
-  			</div>
-  		</div>
-  		<div class="episode">
-  			<div class="image-wrapper">
-  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
-  			</div>
-  			<div class="info-wrapper">
-  				<p>Avsnitt 2: Title av andra avsnitt</p>
-  				<span>1:32:10</span>
-  			</div>
-  		</div>
-  		<div class="episode">
-  			<div class="image-wrapper">
-  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
-  			</div>
-  			<div class="info-wrapper">
-  				<p>Avsnitt 2: Title av andra avsnitt</p>
-  				<span>1:32:10</span>
-  			</div>
-  		</div>
-  		<div class="episode">
-  			<div class="image-wrapper">
-  				<img width="90px" height="50px" src="https://d1fc69ngj1uuz1.cloudfront.net/4fc630da04bf725f69000053/fb1024_idol2016.png?1"/>
-  			</div>
-  			<div class="info-wrapper">
-  				<p>Avsnitt 2: Title av andra avsnitt</p>
-  				<span>1:32:10</span>
-  			</div>
-  		</div>
+	<div #description class="description">
+		<div *ngIf="description_excerpt" class="excerpt">
+			<span>Spelar just nu serien:</span> <span (click)="goToProgram(videoMetaData.series.slug)">{{videoMetaData.series.name}}</span>
+			<br/><br/>
+			<strong>Avsnitt {{videoMetaData.episode_number}}: <span [innerHTML]="videoMetaData.title"></span></strong>
+			<p [innerHTML]="videoMetaData.excerpt | textOverflowEllipsis"></p>
+			<div class="readMore" (click)="goToProgram(videoMetaData.series.slug)">Läs Mer & Fler avsnitt</div>
+		</div>
+		<div *ngIf="description_full" class="full">
+			<span>Spelar just nu serien:</span> <span (click)="goToProgram(videoMetaData.series.slug)">{{videoMetaData.series.name}}</span>
+			<br/><br/>
+			<strong>Avsnitt {{videoMetaData.episode_number}}: <span [innerHTML]="videoMetaData.title"></span></strong>
+			<p [innerHTML]="videoMetaData.content"></p>
+		</div>
 	</div>
 </div>

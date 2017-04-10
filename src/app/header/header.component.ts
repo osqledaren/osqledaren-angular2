@@ -6,7 +6,9 @@ import 'rxjs/add/observable/fromEvent';
 import {Observable, Subscription} from "rxjs";
 import {ArchiveService} from "../archive.service";
 import {Archive} from "../shared/enums";
-import {Router} from "@angular/router";
+import {Router,  NavigationEnd} from "@angular/router";
+import {PlayService} from "../play.service";
+import { PlayHeaderCommunicationService } from '../play-header-communication.service';
 
 @Component({
     selector: 'app-header',
@@ -26,10 +28,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private autoCloseTime: number = 0;
     private inside: boolean;
     private sub: Subscription;
+    private displayPlayQueue: boolean = false;
+    public numberOfEpisodes: number;
+    private queueUpdater: Subscription;
 
     constructor(private router: Router,
                 private navigation: NavigationService,
                 private archiveService: ArchiveService,
+                private playService: PlayService,
+                private playHeaderCommunicationService: PlayHeaderCommunicationService,
                 private elementRef: ElementRef) {
         this.mainMenu = navigation.getNav('main-nav');
         this.secondaryMenu = navigation.getNav('secondary-nav');
@@ -89,7 +96,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.archiveService.reset();
     }
 
+    public updateNumberInQueue(){
+        this.numberOfEpisodes = this.playService.getEpisodesInQueue().length;
+    }
+
     ngOnInit() {
+        this.router.events.subscribe(x => {
+            if(x instanceof NavigationEnd) {
+                if(x.url.substring(0, 5) == "/play"){
+                    this.displayPlayQueue = true;
+                    this.updateNumberInQueue();
+                }else{
+                    this.displayPlayQueue = false;
+                }
+            }
+        });
+
+        this.queueUpdater = this.playHeaderCommunicationService.notifyObservable$.subscribe(()=>{
+            this.updateNumberInQueue();
+        });
 
         this.sub = this.archiveService.activated.subscribe(
             (activated) => {

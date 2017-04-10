@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PlaySingleEpisodeComponent } from './play-single-episode.component';
+import { PlayQueueComponent } from './play-queue.component';
 
-describe('PlaySingleEpisodeComponent', () => {
-  let component: PlaySingleEpisodeComponent;
-  let fixture: ComponentFixture<PlaySingleEpisodeComponent>;
+describe('PlayQueueComponent', () => {
+  let component: PlayQueueComponent;
+  let fixture: ComponentFixture<PlayQueueComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaySingleEpisodeComponent ]
+      declarations: [ PlayQueueComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlaySingleEpisodeComponent);
+    fixture = TestBed.createComponent(PlayQueueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

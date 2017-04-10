@@ -26,7 +26,6 @@ import {LoaderComponent} from "./loader/loader.component";
 import { PlayComponent } from './play/play/play.component';
 import { VideoPlayerComponent } from './play/video-player/video-player.component';
 import { PlaySingleProgramComponent } from './play/play-single-program/play-single-program.component';
-import { PlaySingleEpisodeComponent } from './play/play-single-episode/play-single-episode.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -39,6 +38,11 @@ import {SplitPipe} from "./split.pipe";
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
 import { BylineComponent } from './byline/byline.component';
 import { TimePipe } from './play/time.pipe';
+import { TextOverflowEllipsisPipe } from './play/text-overflow-ellipsis.pipe';
+import { PlayQueueComponent } from './play/play-queue/play-queue.component';
+import {PlayService} from "./play.service";
+import {PlayHeaderCommunicationService} from "./play-header-communication.service";
+import { MarkMatchedWordsPipe } from './play/mark-matched-words.pipe';
 
 @NgModule({
     declarations: [
@@ -63,8 +67,10 @@ import { TimePipe } from './play/time.pipe';
         PlayComponent,
         VideoPlayerComponent,
         PlaySingleProgramComponent,
-        PlaySingleEpisodeComponent,
-        TimePipe
+        TimePipe,
+        TextOverflowEllipsisPipe,
+        PlayQueueComponent,
+        MarkMatchedWordsPipe
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -128,15 +134,15 @@ import { TimePipe } from './play/time.pipe';
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'play/:program',
+                path: 'play/series/:program',
                 component: PlaySingleProgramComponent,
                 data: {name: 'play single program'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'play/:program/:episode',
-                component: PlaySingleEpisodeComponent,
-                data: {name: 'play single episode'},
+                path: 'play/queue',
+                component: PlayQueueComponent,
+                data: {name: 'play queue program'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -160,6 +166,8 @@ import { TimePipe } from './play/time.pipe';
         NewsArticleService,
         WordpressService,
         LoadableDeactivateGuard,
+        PlayService,
+        PlayHeaderCommunicationService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
     bootstrap: [AppComponent]
