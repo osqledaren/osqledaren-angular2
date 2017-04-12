@@ -14,6 +14,7 @@ import {LoaderService} from "../../loader.service";
 })
 export class PlayComponent implements OnInit {
     videoMetaData: Podcast;
+    episodesOnstage: Podcast[] = [];
     latestEpisodes: Podcast[] = [];
     searchResults: Podcast[] = [];
     featuredEpisodes: Podcast[] = [];
@@ -40,6 +41,7 @@ export class PlayComponent implements OnInit {
     isExistMore_featuredEpisodes: boolean = false;
     isExistMore_weeklyTopEpisodes: boolean = false;
     isExistMore_searchResults: boolean = false;
+    noResults: boolean = false;
 
     constructor(private playService: PlayService, private router: Router, private renderer: Renderer, private loaderService: LoaderService) { }
 
@@ -60,6 +62,7 @@ export class PlayComponent implements OnInit {
                     this.isExistMore_latestEpisodes = false;
                 }
                 this.latestEpisodes = this.latestEpisodes.concat(res);
+                this.episodesOnstage = this.latestEpisodes;
                 if(!this.videoMetaData){
                     this.videoMetaData = res[0];
                 }
@@ -84,6 +87,7 @@ export class PlayComponent implements OnInit {
                     this.isExistMore_featuredEpisodes = false;
                 }
                 this.featuredEpisodes = this.featuredEpisodes.concat(res);
+                this.episodesOnstage = this.featuredEpisodes;
                 if(!this.videoMetaData){
                     this.videoMetaData = res[0];
                 }
@@ -108,6 +112,7 @@ export class PlayComponent implements OnInit {
                     this.isExistMore_weeklyTopEpisodes = false;
                 }
                 this.weeklyTopEpisodes = this.weeklyTopEpisodes.concat(res);
+                this.episodesOnstage = this.weeklyTopEpisodes;
                 if(!this.videoMetaData){
                     this.videoMetaData = res[0];
                 }
@@ -167,6 +172,7 @@ export class PlayComponent implements OnInit {
             if(!this.latestEpisodes.length){
                 this.getLatestEpisodes();
             }else{
+                this.episodesOnstage = this.latestEpisodes;
                 this.loaded = true;
             }
             this.actualTypeTitle = "Senaste Nytt";
@@ -183,6 +189,7 @@ export class PlayComponent implements OnInit {
             if(!this.featuredEpisodes.length){
                 this.getFeaturedEpisodes();
             }else{
+                this.episodesOnstage = this.featuredEpisodes;
                 this.loaded = true;
             }
             this.actualTypeTitle = "Rampljuset";
@@ -193,6 +200,7 @@ export class PlayComponent implements OnInit {
             if(!this.weeklyTopEpisodes.length){
                 this.getWeeklyTopEpisodes();
             }else{
+                this.episodesOnstage = this.weeklyTopEpisodes;
                 this.loaded = true;
             }
             this.actualTypeTitle = "Veckans Topp";
@@ -219,14 +227,14 @@ export class PlayComponent implements OnInit {
             this.searchBarElement.nativeElement.style.backgroundColor = "#8bb5bf";
             this.typeTitleElement.nativeElement.style.color = "#ececec";
             this.searchButtonElement.nativeElement.style.color = "white";
-            this.searchItems();
+            this.searchItems("search");
         }
     }
 
     //Search and retrieve the results from wordpress
-    searchItems(){
+    searchItems(arg){
         let lastPostDate = null;
-        if(this.searchResults.length){
+        if(this.searchResults.length && arg == "getMore"){
             lastPostDate = this.searchResults[this.searchResults.length-1].date;
         }
         this.playService.search(this.searchTerm, lastPostDate).subscribe(res => {
@@ -236,7 +244,17 @@ export class PlayComponent implements OnInit {
             }else{
                 this.isExistMore_searchResults = false;
             }
-            this.searchResults = this.searchResults.concat(res);
+            if(arg == "getMore"){
+                this.searchResults = this.searchResults.concat(res);
+            }else{
+                this.searchResults = res;
+            }
+            if(res.length > 0){
+                this.noResults = false;
+            }else{
+                this.noResults = true;
+            }
+            this.episodesOnstage = this.searchResults;
             if(!this.videoMetaData){
                 this.videoMetaData = res[0];
             }
@@ -269,7 +287,7 @@ export class PlayComponent implements OnInit {
         }else if(this.displayWeeklyTopEpisodes){
             this.getWeeklyTopEpisodes();
         }else if(this.displaySearchResults){
-            this.searchItems();
+            this.searchItems("getMore");
         }
     }
 

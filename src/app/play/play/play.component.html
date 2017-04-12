@@ -1,7 +1,7 @@
 <div id="playContainer" class="container">
 	<div  class="row">
 		<div *ngIf="videoMetaData" class="col-xs-12 playerContainer">
-			<app-video-player #playerRef [videoMetaData]="videoMetaData" [context]="'play'" [episodes]="latestEpisodes"></app-video-player>
+			<app-video-player #playerRef [videoMetaData]="videoMetaData" [context]="'play'" [episodes]="episodesOnstage"></app-video-player>
 		</div>
 	</div>
 	<div #searchBarElement class="row search">
@@ -33,7 +33,7 @@
 					</div>
 					<div class="info-wrapper">
 						<h3><strong (click)="loadEpisode(i)">Avsnitt: <span [innerHTML]="e.title"></span></strong></h3>
-						<p [innerHTML]="e.excerpt | textOverflowEllipsis"></p>
+						<p class="excerpt" [innerHTML]="e.excerpt | textOverflowEllipsis"></p>
 					</div>
 				</div>
 				<app-loader *ngIf="!loaded"></app-loader>
@@ -57,13 +57,14 @@
 					</div>
 					<div id="searchEpisodeText" class="info-wrapper">
 						<h3><strong (click)="loadEpisode(i)">Avsnitt: <span [innerHTML]="e.title | markMatchedWords:matchTerm"></span></strong></h3>
-						<p [innerHTML]="e.excerpt | textOverflowEllipsis | markMatchedWords:matchTerm"></p>
+						<p class="excerpt" [innerHTML]="e.excerpt | textOverflowEllipsis | markMatchedWords:matchTerm"></p>
 					</div>
 				</div>
 				<app-loader *ngIf="!loaded"></app-loader>
 				<div *ngIf="isExistMore_searchResults" class="getMore" (click)="getMore()">
 					<div><p>Hämta flera</p><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></div>
 				</div>
+				<div *ngIf="noResults">Inga resultat hittades för "<strong>{{searchTerm}}</strong>".</div>
 			</div>
 			<div class="episodeContainer" *ngIf="displayFeaturedEpisodes">
 				<div class="episode" *ngFor="let e of featuredEpisodes; let i=index">
@@ -73,7 +74,7 @@
 					</div>
 					<div class="info-wrapper">
 						<h3><strong (click)="loadEpisode(i)">Avsnitt: <span [innerHTML]="e.title"></span></strong></h3>
-						<p [innerHTML]="e.excerpt | textOverflowEllipsis"></p>
+						<p class="excerpt" [innerHTML]="e.excerpt | textOverflowEllipsis"></p>
 					</div>
 				</div>
 				<app-loader *ngIf="!loaded"></app-loader>
@@ -89,7 +90,7 @@
 					</div>
 					<div class="info-wrapper">
 						<h3><strong (click)="loadEpisode(i)">Avsnitt: <span [innerHTML]="e.title"></span></strong></h3>
-						<p [innerHTML]="e.excerpt | textOverflowEllipsis"></p>
+						<p class="excerpt" [innerHTML]="e.excerpt | textOverflowEllipsis"></p>
 					</div>
 				</div>
 				<app-loader *ngIf="!loaded"></app-loader>

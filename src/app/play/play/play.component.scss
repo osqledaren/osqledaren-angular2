@@ -102,10 +102,11 @@
 				>div{
 					display:inline-block;
 					vertical-align: top;
-
 					&:last-child{width:60%;margin-left:10px;}
-
-					strong{color:#ff8300; cursor:pointer; font-weight:inherit;}
+					strong{
+						color:#ff8300; cursor:pointer; font-weight:inherit;
+						span{display: inline;}
+					}
 				}
 
 				.image-wrapper{
@@ -186,6 +187,9 @@
 	.pod-play-grid{
 		p{margin:0;
 			p{margin:0;}
+		}
+		.excerpt{
+			p{display: inline;}
 		}
 	}
 }
