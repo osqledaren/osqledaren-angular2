@@ -278,7 +278,7 @@ export class VideoPlayerComponent implements OnInit {
       } else if (docElm.mozCancelFullScreen) {
         docElm.mozCancelFullScreen();
       } else if (docElm.webkitExitFullscreen) {
-        docElm.webkitExitFullScreen();
+        docElm.webkitExitFullscreen();
       }
     }
     if(this.standardController){
