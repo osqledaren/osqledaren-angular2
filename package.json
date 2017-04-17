@@ -22,6 +22,7 @@
     "@angular/router": "^3.1.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.8",
     "angular2-masonry": "^0.4.0",
+    "angulartics2": "^2.2.0",
     "bootstrap": "^4.0.0-alpha.4",
     "clamp-js-main": "^0.11.1",
     "core-js": "^2.4.1",
