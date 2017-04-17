@@ -22,7 +22,10 @@
 			<div id="backwardBtn_wheel"><i #previousButton_wheel (click)="playPrevious()" class="fa fa-step-backward" aria-hidden="true"></i></div>
 			<div id="forwardBtn_wheel"><i #nextButton_wheel (click)="playNext()" class="fa fa-step-forward" aria-hidden="true"></i></div>
 			<div id="repeatBtn_wheel"><i #repeatButton_wheel (click)="toggleVideoRepeat()" class="fa fa-repeat" aria-hidden="true"></i></div>
-			<div id="fullScreenBtn_wheel"><i #fullScreenBtn_wheel [innerHTML]="fullscreenIcon" (click)="toggleFullScreen()" class="material-icons"></i></div>
+			<div id="fullScreenBtn_wheel" (click)="toggleFullScreen($event)">
+				<object #fullScreenBtn_wheel type="image/svg+xml" width="35" height="35"
+						data="../../assets/svg/fullscreen.svg"></object>
+			</div>
 			<div id="viewMode_wheel" #viewMode_wheel (click)="switchViewMode()"></div>
 			<span #pendingTimeElementWheel [hidden]="!showPendingTime" id="pendingTime_wheel">{{pendingTime | time}}</span>
 		</div>
@@ -56,7 +59,10 @@
 						</div>
 					</div>
 					<div id="viewMode" (click)="switchViewMode()"></div>
-					<div id="fullScreenBtn"><i [innerHTML]="fullscreenIcon" (click)="toggleFullScreen()" class="material-icons"></i></div>
+					<div id="fullScreenBtn" (click)="toggleFullScreen($event)">
+						<object #fullScreenBtn_wheel type="image/svg+xml" width="35" height="35"
+								data="../../assets/svg/fullscreen.svg"></object>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -106,8 +106,9 @@
 				top: 34%;
 				left: 50%;
 				margin-left: -20px;
+				cursor: pointer;
 
-				i{font-size: 40px; line-height: 0.5;}
+				object{pointer-events: none;}
 			}
 			#viewMode_wheel{
 				position: absolute;
@@ -267,6 +268,7 @@
 
 				#muteBtn {
 					min-width: 10px;
+					vertical-align: middle;
 				}
 
 				>div:last-child{
@@ -287,9 +289,17 @@
 						width: 30px;
 						height: 20px;
 						cursor: pointer;
+						vertical-align: middle;
+						margin-top: -5px;
 						&:hover {border: 2px solid #e67233;}
 					}
-					#fullScreenBtn{margin-left: 5px;}
+					#fullScreenBtn{
+						margin-left: 5px;
+						margin-top: -9%;
+						vertical-align: middle;
+						cursor: pointer;
+						object{width:30px;height: 30px;pointer-events: none;}
+					}
 
 					.material-icons{font-size: 2rem;}
 				}
@@ -637,10 +647,8 @@
 	border-radius: 10px;
 }
 
-
-
 // Extra small devices (portrait phones, less than 576px)
-@include media-breakpoint-between(xs, sm) {
+@include media-breakpoint-only(xs) {
 	#fullPlayerContainer {
 		#fullPlayer {
 			width: 100%;
@@ -653,6 +661,7 @@
 				#muteBtn_wheel{
 					margin-top: -6px;
 					margin-left: -6px;
+					top: 27.5% !important;
 					i{font-size: 12px;}
 				}
 				#backwardBtn_wheel{
@@ -665,17 +674,20 @@
 				}
 				#repeatBtn_wheel{
 					margin-left: -7.5px;
+					top: 60% !important;
 					i{font-size: 15px;}
 				}
 				#fullScreenBtn_wheel{
-					margin-left: -10px;
-					i{font-size: 20px;}
+					margin-left: -11px;
+					top: 30% !important;
+					object{width: 22px;height: 22px;}
 				}
 				#viewMode_wheel{
 					width: 20px;
 					height: 12px;
 					border: 1px solid #cadce8;
 					margin-left: -10px;
+					top: 87% !important;
 				}
 				#pendingTime_wheel{
 					padding: 10px 5px;
@@ -728,7 +740,10 @@
 							height: 10px;
 							&:hover {border: 1.5px solid #e67233;}
 						}
-						#fullScreenBtn{margin-left: 2px;}
+						#fullScreenBtn{
+							margin-left: 2px;
+							object{width: 22px;height: 22px;}
+						}
 						.material-icons{font-size: 1.2rem;}
 					}
 				}
@@ -762,24 +777,24 @@
 			}
 			#cogBtn {
 				top: 30px;
-				i {font-size: 1rem !important;}
+				i {font-size: 1.35rem !important;}
 				.settingPanel {
-					width: 200px;
+					width: 200px !important;
 					>div{
-						font-size: 0.9rem;
+						font-size: 0.9rem !important;
 						>span{
-							i{font-size:0.6rem;}
+							i{font-size:0.6rem !important;}
 						}
 						.on-off-b-container{
-							width: 55px;
-							height: 15px;
+							width: 55px !important;
+							height: 15px !important;
 							.on-off-thumbScrubber{
-								width: 20px;
-								height: 20px;
-								margin-left: -10px;
+								width: 20px !important;
+								height: 20px !important;
+								margin-left: -10px !important;
 							}
 							.on-off-button{
-								div {font-size:0.6rem;}
+								div {font-size:0.6rem !important;}
 							}
 
 						}
@@ -788,7 +803,189 @@
 			}
 			#settingBar{
 				#playlist-icon {
-					i {font-size: 1.40rem;}
+					i {font-size: 1rem;}
+				}
+			}
+			#playlist{
+				width: 70%;
+				height: 80%;
+				font-size: 0.7rem;
+			}
+			#featured_clips{
+				.info-wrapper{font-size: 0.6rem;}
+			}
+		}
+		.description{
+			margin: 0 -90% 0 0;
+			z-index: 1;
+			width: 80%;
+			height: 80%;
+			border-radius: 10px;
+			background-color: rgba(107, 33, 13, 0.89);
+			padding: 10px 20px;
+		}
+	}
+	::-webkit-scrollbar
+	{
+		width: 7px;
+	}
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-only(sm) {
+	#fullPlayerContainer {
+		#fullPlayer {
+			width: 100%;
+			#wheelController{
+				#playBtn_wheel{
+					margin-top: -15px;
+					margin-left: -12.86px;
+					i{font-size: 30px;}
+				}
+				#muteBtn_wheel{
+					margin-top: -6px;
+					margin-left: -6px;
+					i{font-size: 12px;}
+				}
+				#backwardBtn_wheel{
+					margin-top: -7.5px;
+					i{font-size: 15px;}
+				}
+				#forwardBtn_wheel{
+					margin-top: -7.5px;
+					i{font-size: 15px;}
+				}
+				#repeatBtn_wheel{
+					margin-left: -7.5px;
+					i{font-size: 15px;}
+				}
+				#fullScreenBtn_wheel{
+					margin-left: -12.5px;
+					top: 31%;
+					object{width: 25px;height: 25px;}
+				}
+				#viewMode_wheel{
+					width: 20px;
+					height: 12px;
+					border: 1px solid #cadce8;
+					margin-left: -10px;
+					top: 87% !important;
+				}
+				#pendingTime_wheel{
+					padding: 10px 5px;
+					font-size: 0.8rem;
+					line-height: 0.1;
+				}
+			}
+			#controller {
+				padding-top: 10px;
+				border-top-left-radius: 30px;
+				border-top-right-radius: 30px;
+				#progressBar{font-size: 0.55rem; height: 2px;}
+				#progressMeterFull, #progressMeter {width: 65%;}
+				#progressMeterFull {
+					height: 2px; margin-left: 17.5%;
+					#pendingTime {top: -20px; font-size: 0.7rem;}
+				}
+				#currentTime, #totalTime {width: 17.5%;}
+				#thumbScrubber {
+					width: 6px;
+					height: 6px;
+					margin-top: -2px;
+					margin-left: -4px;
+					&::after {
+						width: 30px;
+						height: 14px;
+						margin-top: -4px;
+						margin-left: -5px;
+					}
+				}
+				#playerToolBar {
+					>div {
+						font-size: 0.9rem;
+						padding: 0 4px;
+						&:nth-of-type(3) {
+							font-size: 1.6rem !important;
+							line-height: 1em;
+						}
+					}
+					>div:last-child{
+						margin-right: 0;
+						margin-top: 3%;
+						>div{
+							margin-left:5px;
+							i{margin-top:-4px;}
+						}
+						#viewMode{
+							border: 1.5px solid;
+							width: 15px;
+							height: 10px;
+							&:hover {border: 1.5px solid #e67233;}
+						}
+						#fullScreenBtn{
+							margin-left: 2px;
+							object{width: 22px;height: 22px;}
+						}
+						.material-icons{font-size: 1.2rem;}
+					}
+				}
+				#volumeMeterFull, #volumeMeter {height: 80px;}
+
+				#volumeMeterFull {
+					margin-top: -110px;
+					right: 58px;
+					&::after{
+						height: 105px !important;
+						width: 20px;
+						margin: -12px -10.5px;
+					}
+				}
+				#volumeThumbScrubber {
+					width: 6px;
+					height: 6px;
+					margin-left: -1px;
+					&::after {
+						width: 14px;
+						height: 30px;
+						margin-top: -19px;
+					}
+				}
+			}
+			#info-icon{
+				display: inline-block !important;
+				i{
+					font-size: 1rem !important;
+				}
+			}
+			#cogBtn {
+				top: 30px;
+				i {font-size: 1.35rem !important;}
+				.settingPanel {
+					width: 200px !important;
+					>div{
+						font-size: 0.9rem !important;
+						>span{
+							i{font-size:0.6rem !important;}
+						}
+						.on-off-b-container{
+							width: 55px !important;
+							height: 15px !important;
+							.on-off-thumbScrubber{
+								width: 20px !important;
+								height: 20px !important;
+								margin-left: -10px !important;
+							}
+							.on-off-button{
+								div {font-size:0.6rem !important;}
+							}
+
+						}
+					}
+				}
+			}
+			#settingBar{
+				#playlist-icon {
+					i {font-size: 1rem;}
 				}
 			}
 			#playlist{
@@ -844,8 +1041,9 @@
 					i{font-size: 15px;}
 				}
 				#fullScreenBtn_wheel{
-					margin-left: -10px;
-					i{font-size: 20px;}
+					margin-left: -12.5px;
+					top: 31%;
+					object{width: 25px;height: 25px;}
 				}
 				#viewMode_wheel{
 					width: 20px;
@@ -904,7 +1102,10 @@
 							height: 10px;
 							&:hover {border: 1.5px solid #e67233;}
 						}
-						#fullScreenBtn{margin-left: 2px;}
+						#fullScreenBtn{
+							margin-left: 2px;
+							object{width: 22px;height: 22px;}
+						}
 						.material-icons{font-size: 1.2rem;}
 					}
 				}
@@ -935,24 +1136,24 @@
 			}
 			#cogBtn {
 				top: 30px;
-				i {font-size: 1rem !important;}
+				i {    font-size: 1.35rem !important;}
 				.settingPanel {
-					width: 200px;
+					width: 200px !important;
 					>div{
-						font-size: 0.9rem;
+						font-size: 0.9rem !important;
 						>span{
-							i{font-size:0.6rem;}
+							i{font-size:0.6rem !important;}
 						}
 						.on-off-b-container{
-							width: 55px;
-							height: 15px;
+							width: 55px !important;
+							height: 15px !important;
 							.on-off-thumbScrubber{
-								width: 20px;
-								height: 20px;
-								margin-left: -10px;
+								width: 20px !important;
+								height: 20px !important;
+								margin-left: -10px !important;
 							}
 							.on-off-button{
-								div {font-size:0.6rem;}
+								div {font-size:0.6rem !important;}
 							}
 
 						}
@@ -961,7 +1162,7 @@
 			}
 			#settingBar{
 				#playlist-icon {
-					i {font-size: 1.40rem;}
+					i {font-size: 1rem;}
 				}
 			}
 			#playlist{
@@ -1013,7 +1214,7 @@
 				}
 				#fullScreenBtn_wheel{
 					margin-left: -15px;
-					i{font-size: 30px;}
+					object{width: 30px;height: 30px;}
 				}
 				#viewMode_wheel{
 					width: 25px;
@@ -1061,7 +1262,7 @@
 					}
 					>div:last-child{
 						margin-right: 0;
-						margin-top: 2%;
+						margin-top: 2.2%;
 						>div{
 							margin-left:10px;
 							i{margin-top:-4px;}
@@ -1103,7 +1304,7 @@
 				top: 45px;
 				i {font-size: 1.6rem;}
 				.settingPanel {
-					width: 220px;
+					width: 220px !important;
 					>div{
 						font-size: 1rem;
 						>span{
@@ -1178,8 +1379,7 @@
 				}
 				#fullScreenBtn_wheel{
 					top: 33%;
-					margin-left: -20px;
-					i{font-size: 35px;}
+					margin-left: -17.5px;
 				}
 				#viewMode_wheel{
 					width: 25px;
@@ -1269,7 +1469,7 @@
 				top: 45px;
 				i {font-size: 1.6rem;}
 				.settingPanel {
-					width: 220px;
+					width: 220px !important;
 					>div{
 						font-size: 1rem;
 						>span{

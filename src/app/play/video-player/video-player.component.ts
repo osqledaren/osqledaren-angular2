@@ -70,7 +70,7 @@ export class VideoPlayerComponent implements OnInit {
   currentVolume: number = 1;
   showVolumeBar: boolean = false;
   videoRepeat: boolean = false;
-  fullscreenIcon: string = "fullscreen";
+  isFullscreen: boolean = false;
   showSettingPanel: boolean = false;
   autoPlay: boolean = true;
   controlsOpacity: number = 1;
@@ -116,6 +116,7 @@ export class VideoPlayerComponent implements OnInit {
   touchStartListener: any = null;
   touchStartListener_volume: any = null;
   watchBuffer: any;
+  previousViewMode: string;
 
   constructor(private renderer: Renderer, private router: Router) {
   }
@@ -160,7 +161,7 @@ export class VideoPlayerComponent implements OnInit {
       t.style.background = "#878788";
       b.style.margin = "0 0 0 -100%";
       this.updateProgressMeter();
-      this.volumeScrubTop = this.currentVolume * 100;
+      this.volumeScrubTop = this.video.volume * 100;
       this.clearTouchListeners();
       this.addTouchListeners("standard");
     }else{
@@ -171,7 +172,8 @@ export class VideoPlayerComponent implements OnInit {
       b.style.margin = "0";
       this.clearTouchListeners();
       this.addTouchListeners("circle");
-      this.drawCircle("volumeMeter", this.volumeMeterFull_wheel_canvas, this.volumeMeterFull_wheel_ctx, this.currentVolume, this.volumeMeterFull_wheel_radius);
+      this.drawCircle("progressMeter", this.progressMeterFull_wheel_canvas, this.progressMeterFull_wheel_ctx, this.video.currentTime/this.video.duration, this.progressMeterFull_wheel_radius);
+      this.drawCircle("volumeMeter", this.volumeMeterFull_wheel_canvas, this.volumeMeterFull_wheel_ctx, this.video.volume, this.volumeMeterFull_wheel_radius);
     }
     if(this.currentEpisodeIndex == this.episodes.length-1){
       this.changeNextBtnOpacity("0.5", "default");
@@ -252,33 +254,59 @@ export class VideoPlayerComponent implements OnInit {
   }
 
   //Toggle full screen
-  toggleFullScreen(){
-    console.log("fullscreen");
+  toggleFullScreen(event){
+    event.preventDefault();
+    console.log("asdf");
     var docElm:any = window.document;
-    if (!docElm.fullscreenElement && !docElm.webkitFullscreenElement && !docElm.mozFullScreenElement && !docElm.msFullscreenElement) {
+    if (!docElm.fullscreenElement && !docElm.webkitIsFullScreen && !docElm.mozFullScreenElement && !docElm.msFullscreenElement) {
+      event.target.children[0].setAttribute("data", "../../assets/svg/fullscreen-exit.svg");
+      this.previousViewMode = this.viewMode;
+      console.log(this.previousViewMode);
       this.viewMode = "Default view";
       this.switchViewMode();
       var elem = this.fullPlayerContainer.nativeElement;
-      this.fullscreenIcon = "fullscreen_exit";
+      console.log("fullscreenElement");
+      this.isFullscreen = true;
       if (elem.requestFullscreen) {
+        console.log("requestFullscreen");
         elem.requestFullscreen();
       } else if (elem.msRequestFullscreen) {
+        console.log("msRequestFullscreen");
         elem.msRequestFullscreen();
       }else if (elem.mozRequestFullScreen) {
+        console.log("mozRequestFullScreen");
         elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) {
+      } else if (elem.webkitRequestFullScreen) {
+        console.log("webkitRequestFullScreen");
         elem.webkitRequestFullScreen();
       }
+      let self = this;
+      let fullscreenWatcher = setInterval(function () {
+        console.log("fullscreenWatcher");
+        if(docElm.fullscreenElement || docElm.webkitIsFullScreen || docElm.mozFullScreenElement || docElm.msFullscreenElement){
+          console.log("fullscreenWatcherTrue");
+          self.updateWheelController();
+          clearInterval(fullscreenWatcher);
+        }
+      }, 200);
     } else {
-      this.fullscreenIcon = "fullscreen";
+      if(this.previousViewMode == "Default view"){
+        this.viewMode = "Theater mode";
+      }else{
+        this.viewMode = "Default view";
+      }
+      this.switchViewMode();
+      event.target.children[0].setAttribute("data", "../../assets/svg/fullscreen.svg");
+      console.log("exitFullscreen");
+      this.isFullscreen = false;
       if (docElm.exitFullscreen) {
         docElm.exitFullscreen();
       } else if (docElm.msExitFullscreen) {
         docElm.msExitFullscreen();
       } else if (docElm.mozCancelFullScreen) {
         docElm.mozCancelFullScreen();
-      } else if (docElm.webkitExitFullscreen) {
-        docElm.webkitExitFullScreen();
+      } else if (docElm.webkitCancelFullScreen) {
+        docElm.webkitCancelFullScreen();
       }
     }
     if(this.standardController){
@@ -376,8 +404,8 @@ export class VideoPlayerComponent implements OnInit {
       volumeButton.className = volumeButton.className.replace(/\bfa-volume-off\b/g, "fa-volume-up");
     }else{
       this.video.volume = 0.0;
-      this.drawCircle("volumeMeter", this.volumeMeterFull_wheel_canvas, this.volumeMeterFull_wheel_ctx, 0, this.volumeMeterFull_wheel_radius);
       this.volumeScrubTop = 0;
+      this.drawCircle("volumeMeter", this.volumeMeterFull_wheel_canvas, this.volumeMeterFull_wheel_ctx, 0, this.volumeMeterFull_wheel_radius);
       volumeButton_wheel.className = volumeButton_wheel.className.replace(/\bfa-volume-up\b/g, "fa-volume-off");
       volumeButton.className = volumeButton.className.replace(/\bfa-volume-up\b/g, "fa-volume-off");
     }
@@ -954,7 +982,7 @@ export class VideoPlayerComponent implements OnInit {
   //Adjust the position of wheel controller icons
   adjustWheelCIcons(cw, cl, v, p, r, vbt, vbl, fc){
     if(cw){
-      this.wheelController.nativeElement.style.width = cw+"px";
+      //this.wheelController.nativeElement.style.width = cw+"px";
     }
     if(cl){
       this.wheelController.nativeElement.style.left = cl;
@@ -1010,7 +1038,7 @@ export class VideoPlayerComponent implements OnInit {
     }else if(width > 260 && width<305){
       this.adjustWheelCIcons(null, null, null, null, null, "25%", "64%", "32%");
     }else if(width > 305 && width<350){
-      this.adjustWheelCIcons(null, null, null, null, null, "25%", "63%", null);
+      this.adjustWheelCIcons(null, null, null, null, null, "25%", "63%", "33%");
     }else if(width > 450 && height<460){
       this.adjustWheelCIcons(null, null, null, null, null, "20%", "63%", null);
     }else{
