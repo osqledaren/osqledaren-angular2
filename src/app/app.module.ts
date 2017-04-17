@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router";
 import {MasonryModule} from "angular2-masonry/src/module";
 import {CollapseModule} from "ng2-bootstrap/collapse";
 import {DisqusModule} from 'ng2-awesome-disqus';
+import {Angulartics2Module, Angulartics2GoogleAnalytics} from 'angulartics2';
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -73,6 +74,7 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         BrowserModule,
         FormsModule,
         HttpModule,
+        Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
         RouterModule.forRoot([
             {
                 path: 'artikel/:slug',
