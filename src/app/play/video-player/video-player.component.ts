@@ -1029,15 +1029,15 @@ export class VideoPlayerComponent implements OnInit {
     }
     if(width < 175){
       this.adjustWheelCIcons(null, null, "91%", "33%", "62%", "24%", "67%", "31%");
-    }else if(width > 175 && width<190){
+    }else if(width > 175 && width<=195){
       this.adjustWheelCIcons(null, null, null, null, null, "23%", "65%", "31%");
-    }else if(width > 195 && width<225){
-      this.adjustWheelCIcons(null, null, null, null, null, "27%", "65%", null);
-    }else if(width > 225 && width<260){
+    }else if(width > 195 && width<=225){
+      this.adjustWheelCIcons(null, null, null, null, null, "27%", "65%", "32%");
+    }else if(width > 225 && width<=260){
       this.adjustWheelCIcons(null, null, null, null, null, "21%", "64%", "32%");
-    }else if(width > 260 && width<305){
+    }else if(width > 260 && width<=305){
       this.adjustWheelCIcons(null, null, null, null, null, "25%", "64%", "32%");
-    }else if(width > 305 && width<350){
+    }else if(width > 305 && width<=350){
       this.adjustWheelCIcons(null, null, null, null, null, "25%", "63%", "33%");
     }else if(width > 450 && height<460){
       this.adjustWheelCIcons(null, null, null, null, null, "20%", "63%", null);
