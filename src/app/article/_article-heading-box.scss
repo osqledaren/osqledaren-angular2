@@ -1,37 +1,39 @@
 //Style the article heading box
 .article-heading-box {
-	color: white;
-	background-color: $ol-orange;
-	padding:$grid-gutter-width-base/2;
-	margin: 0 auto $grid-gutter-width-base/2;
-	z-index: 1;
-	position: relative;
-	text-align: center;
+  color: white;
+  background-color: $ol-orange;
+  padding: $grid-gutter-width-base/2;
+  margin: 0 auto $grid-gutter-width-base/2;
+  z-index: 1;
+  position: relative;
 
-	@include media-breakpoint-down(md) {
-		max-width: 100%;
-		margin-top:0;
-	}
+  @include media-breakpoint-down(md) {
+    max-width: 100%;
+    margin-top: 0;
+  }
 
+  h1 {
+    font-size: $font-size-h3;
+  }
 
-	//Style the list of the social media symbols
-	ul.social-medias {
-		text-align:center;
-		padding-left: 0;
-		list-style-type:none;
+  //Style the list of the social media symbols
+  ul.social-medias {
+    text-align: center;
+    padding-left: 0;
+    list-style-type: none;
 
-		li {
-			display:inline;
-			list-style-type: none;
-			margin:0 1em;
+    li {
+      display: inline;
+      list-style-type: none;
+      margin: 0 1em;
 
-			a {
-				display:inline-block;
-				color: white;
-				font-size: 2rem;
-				padding: 0;
-				line-height: 0;
-			}
-		}
-	}
+      a {
+        display: inline-block;
+        color: white;
+        font-size: 2rem;
+        padding: 0;
+        line-height: 0;
+      }
+    }
+  }
 }

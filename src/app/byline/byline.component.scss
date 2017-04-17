@@ -2,29 +2,21 @@
 
 //Style the byline box above
 .byline {
-	margin: inherit;
 
-	.author_text, .author_photo{
-		@include displayAuthor($imgWidth:70px, $border:1px, $space:5px);
-	}
-}
+  @include clearfix;
 
-/* For mobile phones: */
-@include media-breakpoint-down(sm) {
-	.byline {
-		img {
-			width: 53px !important;
-			height: 53px !important;
-		}
-	}
-}
+  margin: $grid-gutter-width-base/2 0;
+  padding: $grid-gutter-width-base/2 $grid-gutter-width-base* 1/4 0;
+  background: $gray-lightest;
+  color: $brand-primary;
 
-/* For tablets: */
-@include media-breakpoint-only(md) {
-	.byline {
-		img {
-			width: 60px !important;
-			height: 60px !important;
-		}
-	}
+  dl {
+    float: left;
+    margin: 0 $grid-gutter-width-base/4 $grid-gutter-width-base/2;
+  }
+
+  dd, address {
+    margin-bottom: 0;
+  }
+
 }

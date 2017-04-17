@@ -1,6 +1,6 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http} from "@angular/http";
-import {Article, Rendition} from "./shared/interface/article.interface";
+import {Article, Rendition, Byline} from "./shared/interface/article.interface";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
@@ -79,18 +79,18 @@ export class WordpressService extends ContentService {
 
                 // Do some validation
 
-                if(date[0].length == 4 && Number(date[0]) <= yearToday && Number(date[0]) >= 2000){
-                     year = date[0];
+                if (date[0].length == 4 && Number(date[0]) <= yearToday && Number(date[0]) >= 2000) {
+                    year = date[0];
                 }
 
-                if(!isUndefined(date[1])){
-                    if (date[1].length == 2 && Number(date[1]) > 0 && Number(date[1]) <= 12){
+                if (!isUndefined(date[1])) {
+                    if (date[1].length == 2 && Number(date[1]) > 0 && Number(date[1]) <= 12) {
                         month = date[1];
                     }
                 }
 
                 nextMonth = (Number(month) !== 12 && Number(month) !== -1) ? (Number(month) + 1).toString() : '01';
-                nextYear = Number(nextMonth) !== 1 ? year : (Number(year) +1).toString();
+                nextYear = Number(nextMonth) !== 1 ? year : (Number(year) + 1).toString();
                 month = month === -1 ? '01' : month;
 
                 queryParams += 'after=' + year + '-' + month + '-01T00:00:00&';
@@ -135,7 +135,7 @@ export class WordpressService extends ContentService {
         let posts: Article[] = <Article[]>[];
         let renditions: {};
         let categoriesById: Array<any> = [];
-        let media: any, sizes: any, categories: any;
+        let media: any, sizes: any, categories: any, byline: Array<Byline> = [];
 
         for (let i in body) {
 
@@ -146,24 +146,48 @@ export class WordpressService extends ContentService {
 
                 for (let j in sizes) {
                     renditions[j] = <Rendition>{
-                            title: media[0].title.rendered,
-                            href: sizes[j].source_url,
-                            mime_type: sizes[j].mime_type,
-                            height: sizes[j].height,
-                            width: sizes[j].width
+                        title: media[0].title.rendered,
+                        href: sizes[j].source_url,
+                        mime_type: sizes[j].mime_type,
+                        height: sizes[j].height,
+                        width: sizes[j].width
                     };
                 }
-            } catch (Exception){
+            } catch (Exception) {
                 renditions = null;
             }
+
             categories = body[i].categories;
             for (let k in categories) {
                 categoriesById[k] = categories[k];
             }
-            
+
+            try {
+                let author: Array<string>;
+                let bylineAuthors = body[i].acf.cred.match(/[^\r\n]+/g);
+
+                for (let j in bylineAuthors) {
+                    author = bylineAuthors[j].split("="); // Split name and role at separator, in this case the "=" character.
+
+                    author[0] = author[0].trim(); // Remove leading and trailing whitespaces.
+                    author[1] = author[1].trim(); // Remove leading and trailing whitespaces.
+
+                    // If successful convert raw strings into byline element.
+                    if (author[0] !== "" && author[1] !== "") {
+                        byline.push(<Byline>{
+                            role: author[0],
+                            author: author[1]
+                        });
+                    }
+                }
+
+            } catch (Exception) {
+                byline = null;
+            }
+
             posts.push(<Article>{
                 body_html: body[i].content.rendered,
-                byline: 'Osqledaren',
+                byline: byline,
                 categoriesById: categoriesById,
                 copyrightholder: 'Osqledaren',
                 copyrightnotice: 'Copyright Osqledaren',

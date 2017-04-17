@@ -1,129 +1,130 @@
 @import "./src/utility";
-@import "byline";
 @import "article-share-buttons";
 @import "article-heading-box";
 
 //Style the article main container
 
 :host {
-	margin: $grid-gutter-width-base 0;
-	width: 100%;
-	max-width: $container-narrow;
-	font-size: $font-size-lg;
-	line-height: $line-height-lg;
+  margin: $grid-gutter-width-base 0;
+  width: 100%;
+  max-width: $container-narrow;
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
 }
 
 :host /deep/ {
 
-	// Make sure no heading is clipped or offset by block-quote
-	h1, h2, h3, h4, h5, h6 {
-		clear: both;
-	}
+  // Make sure no heading is clipped or offset by block-quote
+  h1, h2, h3, h4, h5, h6 {
+    clear: both;
+  }
 
-	ol, ul {
-		clear:both;
-		overflow: hidden;
-		padding:$grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base;
-		background: $ol-teal;
-		color:white;
-		margin: 0 auto $font-size-lg;
-		font-weight:bold;
+  ol, ul {
+    clear: both;
+    overflow: hidden;
+    padding: $grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base;
+    background: $ol-teal;
+    color: white;
+    margin: 0 auto $font-size-lg;
+    font-weight: bold;
 
-		@include media-breakpoint-down(md) {
-			max-width: 100%;
-		}
+    @include media-breakpoint-down(md) {
+      max-width: 100%;
+    }
 
+  }
 
-	}
+  //Set the size of and display the article image
+  .article-image {
+    overflow: hidden;
 
-	//Set the size of and display the article image
-	.article-image {
-		overflow: hidden;
+    img {
+      width: 100%;
+      position: relative;
+    }
+  }
 
-		img {
-			width: 100%;
-			position: relative;
-		}
-	}
+  .article-rm-button {
+    text-align: center;
+    background-color: $ol-orange;
+    color: white;
+    font-style: italic;
+    padding: 20px 0;
+    margin-top: 20px;
+    font-weight: bold;
 
-	.article-rm-button {
-		text-align: center;
-		background-color: $ol-orange;
-		color: white;
-		font-style:italic;
-		padding: 20px 0;
-		margin-top: 20px;
-		font-weight: bold;
+    i {
+      display: block;
+      margin: auto;
+      font-size: $font-size-h2;
+    }
+  }
 
-		i {
-			display: block;
-			margin: auto;
-			font-size: $font-size-h2;
-		}
-	}
+  .article-grid-item-text {
 
-	.article-grid-item-text {
+    h1, h2, h3, h4, h5, h6 {
+      font-size: $font-size-h3;
+      margin-bottom: $font-size-lg;
+    }
 
-		h1, h2, h3, h4, h5, h6 {
-			font-size: $font-size-h3;
-			margin-bottom: $font-size-lg;
-		}
+    p {
+      margin-bottom: $font-size-lg
+    }
 
-		p {
-			margin-bottom: $font-size-lg
-		}
+    img {
+      width: 100%;
+      height: auto;
+      margin-bottom: $font-size-lg;
+    }
 
-		img {
-			width: 100%;
-			height: auto;
-			margin-bottom: $font-size-lg;
-		}
+    img + br {
+      display: none;
+    }
+  }
 
-		img + br {
-			display:none;
-		}
-	}
+  blockquote {
+    position: relative;
+    padding: $grid-gutter-width-base;
+    font-family: $font-family-serif;
+    font-style: italic;
 
-	blockquote {
-		position: relative;
-		padding: $grid-gutter-width-base;
-		font-family: $font-family-serif;
-		font-style: italic;
+    i {
+      display: block;
+      font-size: $font-size-h1;
+      line-height: ($font-size-lg*2 * $line-height-lg);
+      color: $ol-orange;
+    }
 
-		i {
-			display: block;
-			font-size: $font-size-h1;
-			line-height: ($font-size-lg*2 * $line-height-lg);
-			color: $ol-orange;
-		}
-
-		@include media-breakpoint-down(sm) {
-			padding:$grid-gutter-width-base/2;
-		}
-	}
-
+    @include media-breakpoint-down(sm) {
+      padding: $grid-gutter-width-base/2;
+    }
+  }
 
 }
+
 .related-posts .row {
-	padding-top: 7.5px;
-	padding-bottom: 7.5px;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
 }
+
 .related-post-img, .related-post-title {
-		//display: inline-block;
+  //display: inline-block;
 }
+
 .related-post-title {
 
-	div {
-		//display: inline-block;
-		//vertical-align: middle;
-	}
+  div {
+    //display: inline-block;
+    //vertical-align: middle;
+  }
 }
+
 .related-post-titleee::before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-	margin-right: -0.25em; /* Adjusts for spacing */
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
 }
 
 
