@@ -34,6 +34,15 @@ Git flow can be illustrated like this: **feature -> v.X -> master**
 
 TODO
 
+### Generate Change Log
+
+Remember to tag a new version for recent change using either `git tag` or the web dashboard.
+
+Generate change log using [github-change-log-generator](https://github.com/skywinder/github-changelog-generator)
+
+`github_changelog_generator -t [Personal Access Token] -u osqledaren -p osqledaren-angular2`
+
+
 ## Git cheat sheet
 
 These are some common operations done with git.
