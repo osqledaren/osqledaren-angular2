@@ -31,6 +31,17 @@
       width: 50%;
       position: relative;
     }
+    .queue-grid{
+      position: relative;
+      display: table;
+      margin-top: -28%;
+      -webkit-transition: margin 0.5s; /* Safari */
+      transition: margin 0.5s;
+      >div{
+        display: table-cell;
+        vertical-align: top;
+      }
+    }
     .queue{
       background-color: #646464;
       width: 50%;
@@ -55,6 +66,7 @@
     width: 100%;
     background-color: black;
     margin-top: 10px;
+    overflow: hidden;
   }
 
   @for $box from 1 through 5 {

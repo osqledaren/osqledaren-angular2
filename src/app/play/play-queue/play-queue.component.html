@@ -3,34 +3,36 @@
     <div *ngIf="!isEmptyQueue" class="col-xs-12 playerContainer">
       <app-video-player #playerRef [videoMetaData]="videoOnStage" [context]="'program'" [episodes]="episodes"></app-video-player>
     </div>
-    <div #queue class="box queue">
-      <div class="col-xs-6 box1">
-        <h3>Avsnitt i kön</h3>
-      </div>
-      <div class="col-xs-6 box3">
-        <div *ngFor="let e of episodes; let i=index">
-          <span class="duration">{{e.video.duration}}</span><span class="title" (click)="loadEpisode(i)">EP - <span [innerHTML]="e.title"></span></span><span class="plus">-</span>
+    <div #queueGrid class="queue-grid">
+      <div #queue class="box queue">
+        <div class="col-xs-6 box1">
+          <h3>Avsnitt i kön</h3>
         </div>
-        <span *ngIf="isEmptyQueue">Kön är tom. Vänligen lägg till avsnitten i kön!</span>
-      </div>
-    </div>
-    <div #episodeInfo class="box episodeInfo">
-      <div #description class="box2">
-        <div  *ngIf="videoOnStage" class="description">
-          <span>Spelar just nu serien:</span> <span (click)="goToProgram(videoOnStage.series.slug)">{{videoOnStage.series.name}}</span>
-          <br/><br/>
-          <strong>Avsnitt: <span [innerHTML]="videoOnStage.title"></span></strong>
-          <p [innerHTML]="videoOnStage.content"></p>
+        <div class="col-xs-6 box3">
+          <div *ngFor="let e of episodes; let i=index">
+            <span class="duration">{{e.video.duration}}</span><span class="title" (click)="loadEpisode(i)">EP - <span [innerHTML]="e.title"></span></span><span class="plus">-</span>
+          </div>
+          <span *ngIf="isEmptyQueue">Kön är tom. Vänligen lägg till avsnitten i kön!</span>
         </div>
       </div>
-      <div class="col-xs-6 box4">
-        <h3 *ngIf="videoOnStage">{{videoOnStage.series.name}}</h3>
-        <hr/>
-        <p>A short summary of series shows here!</p>
-      </div>
-      <div class="col-xs-6 box5">
-        <h3>Om serien</h3>
-        <p *ngIf="videoOnStage">{{videoOnStage.series.description}}</p>
+      <div #episodeInfo class="box episodeInfo">
+        <div #description class="box2">
+          <div  *ngIf="videoOnStage" class="description">
+            <span>Spelar just nu serien:</span> <span (click)="goToProgram(videoOnStage.series.slug)">{{videoOnStage.series.name}}</span>
+            <br/><br/>
+            <strong>Avsnitt: <span [innerHTML]="videoOnStage.title"></span></strong>
+            <p [innerHTML]="videoOnStage.content"></p>
+          </div>
+        </div>
+        <div class="col-xs-6 box4">
+          <h3 *ngIf="videoOnStage">{{videoOnStage.series.name}}</h3>
+          <hr/>
+          <p>A short summary of series shows here!</p>
+        </div>
+        <div class="col-xs-6 box5">
+          <h3>Om serien</h3>
+          <p *ngIf="videoOnStage">{{videoOnStage.series.description}}</p>
+        </div>
       </div>
     </div>
   </div>

@@ -651,7 +651,7 @@
 @include media-breakpoint-only(xs) {
 	#fullPlayerContainer {
 		#fullPlayer {
-			width: 100%;
+			width: 100% !important;
 			#wheelController{
 				#playBtn_wheel{
 					margin-top: -15px;
@@ -802,6 +802,7 @@
 				}
 			}
 			#settingBar{
+				right: 10px !important;
 				#playlist-icon {
 					i {font-size: 1rem;}
 				}
@@ -835,7 +836,7 @@
 @include media-breakpoint-only(sm) {
 	#fullPlayerContainer {
 		#fullPlayer {
-			width: 100%;
+			width: 100% !important;
 			#wheelController{
 				#playBtn_wheel{
 					margin-top: -15px;
@@ -984,6 +985,7 @@
 				}
 			}
 			#settingBar{
+				right: 10px !important;
 				#playlist-icon {
 					i {font-size: 1rem;}
 				}

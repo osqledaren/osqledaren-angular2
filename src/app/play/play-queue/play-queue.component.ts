@@ -18,9 +18,11 @@ export class PlayQueueComponent implements AfterViewInit  {
   @ViewChild('queue') queue: ElementRef;
   @ViewChild('episodeInfo') episodeInfo: ElementRef;
   @ViewChild('description') description: ElementRef;
+  @ViewChild('queueGrid') queueGrid: ElementRef;
   queueStyle: any;
   episodeInfoStyle: any;
   descriptionStyle: any;
+  queueGridStyle: any;
 
   constructor(private router: Router, private playService: PlayService) { }
 
@@ -30,8 +32,8 @@ export class PlayQueueComponent implements AfterViewInit  {
       this.playerHidden = false;
     }
     this.playerRef.loadEpisode(index);
-    if(this.queueStyle.marginTop != "0"){
-      this.queueStyle.marginTop = "0";
+    if(this.queueGridStyle.marginTop != "0"){
+      this.queueGridStyle.marginTop = "0";
       this.descriptionStyle.marginLeft = "100%";
       let self = this;
       self.episodeInfoStyle.marginTop = "0";
@@ -47,15 +49,14 @@ export class PlayQueueComponent implements AfterViewInit  {
     this.queueStyle = this.queue.nativeElement.style;
     this.episodeInfoStyle = this.episodeInfo.nativeElement.style;
     this.descriptionStyle = this.description.nativeElement.style;
+    this.queueGridStyle = this.queueGrid.nativeElement.style;
     //Adjust the layout
     if(this.episodes.length > 0){
       this.isEmptyQueue = false;
-      this.queueStyle.marginTop = "-31%";
-      this.episodeInfoStyle.marginTop = "-31%";
+      this.queueGridStyle.marginTop = "-28%";
     }else{
       this.isEmptyQueue = true;
-      this.queueStyle.marginTop = "0";
-      this.episodeInfoStyle.marginTop = "0";
+      this.queueGridStyle.marginTop = "0";
     }
   }
 

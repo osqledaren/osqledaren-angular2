@@ -17,6 +17,8 @@ export class PlaySingleProgramComponent implements OnInit {
     videoMetaData: Podcast;
     episodes: Podcast[];
     @ViewChild('playerRef') playerRef: VideoPlayerComponent;
+    @ViewChild('episodeList') episodeList: any;
+    arrowInfo: string = "Visa avsnitt";
 
     constructor(private router: Router, private route: ActivatedRoute, private playService: PlayService, private playHeaderCommunicationService: PlayHeaderCommunicationService) { }
 
@@ -64,7 +66,22 @@ export class PlaySingleProgramComponent implements OnInit {
         }, 1500);
     }
 
+    toggleEpisodeList(e){
+        if(this.episodeList.nativeElement.style.maxHeight == "300px"){
+            this.episodeList.nativeElement.style.maxHeight = "0px";
+            this.episodeList.nativeElement.style.padding = "0";
+            e.target.className = "fa fa-arrow-circle-down rotate0";
+            this.arrowInfo = "Visa avsnitt";
+        }else{
+            this.episodeList.nativeElement.style.maxHeight = "300px";
+            this.episodeList.nativeElement.style.padding = "20px 0px";
+            e.target.className = "fa fa-arrow-circle-down rotate180";
+            this.arrowInfo = "Gömma avsnitt";
+        }
+    }
+
     ngOnInit() {
+        this.episodeList.nativeElement.style.padding = "0";
         this.route.params.subscribe((params: Params) => {
             this.programTitle = params['program'];
             this.getEpisodesPerSeries(this.programTitle);
