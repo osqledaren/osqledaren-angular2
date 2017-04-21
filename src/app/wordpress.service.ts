@@ -33,6 +33,7 @@ export class WordpressService extends ContentService {
 
         let query: Observable<Article[]>;
         let url: string;
+        let headers: Headers = new Headers();
 
         switch (isNaN(slug)) {
             case true:
@@ -43,11 +44,11 @@ export class WordpressService extends ContentService {
                 break;
         }
 
-        try {
-            if (!isNullOrUndefined(args.access_token)) url += '&access_token=' + args.access_token;
+        try{
+            headers.append('Authorization', 'BEARER ' + args.access_token);
         } catch(Exception){}
 
-        query = this.http.get(url).map((res) => this.map(res)).catch(this.handleError);
+        query = this.http.get(url, {headers: headers}).map((res) => this.map(res)).catch(this.handleError);
 
         return query;
     }

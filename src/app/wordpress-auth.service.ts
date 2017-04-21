@@ -27,7 +27,7 @@ export class WordpressAuthService extends ContentService {
 
     public authenticate(state: string) {
 
-        let authorizeUrl = this.endpoint + '/authorize?redirect_uri=' +
+        let authorizeUrl = this.endpoint + '/authorize/?redirect_uri=' +
             this.callbackUrl + '&state=' + state + '&response_type=code&client_id=' + this.clientID;
 
         window.location.href = authorizeUrl;
@@ -47,7 +47,7 @@ export class WordpressAuthService extends ContentService {
         headers.append("Authorization", "Basic " + btoa(this.clientID + ":" + this.clientSecret));
         headers.append("Content-Type", "application/x-www-form-urlencoded");
 
-        return this.http.post(this.endpoint + '/token', data, {headers: headers})
+        return this.http.post(this.endpoint + '/token/', data, {headers: headers})
             .map((res) => this.map(res))
             .catch(this.handleError);
 

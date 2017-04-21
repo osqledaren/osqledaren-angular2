@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-error',
@@ -20,12 +21,9 @@ export class ErrorComponent extends LoadableComponent {
 
   init(){
 
-    this.loaded();
-
     this.route.queryParams.subscribe((qp)=>{
 
       if (isNullOrUndefined(qp['status'])) {
-        this.loaded();
         this.router.navigate(['/']);
       }
 
@@ -33,5 +31,7 @@ export class ErrorComponent extends LoadableComponent {
       this.errorOrigin = qp['origin'];
 
     });
+
+    this.loaded();
   }
 }

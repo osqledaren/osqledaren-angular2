@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Inject} from "@angular/core";
 import {NewsArticleService} from "../news-article.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Article} from "../shared/interface/article.interface";
@@ -8,6 +8,7 @@ import {LoadableComponent} from "../shared/abstract/abstract.loadable.component"
 import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
 import {ArticleQueryParams} from "../shared/interface/article-query-params.interface";
+import {DOCUMENT} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-article',
@@ -25,6 +26,7 @@ export class ArticleComponent extends LoadableComponent {
                 protected route: ActivatedRoute,
                 protected router: Router,
                 protected archiveService: ArchiveService,
+                @Inject(DOCUMENT) protected document: Document,
                 loaderService: LoaderService) {
         super(loaderService);
     }
@@ -54,7 +56,7 @@ export class ArticleComponent extends LoadableComponent {
                             this.router.navigate(['404']);
                             break;
                         default:
-                            this.router.navigate(['error'], {queryParams: {status: error.status, origin: this.router.url}});
+                            this.router.navigate(['error'], {queryParams: {status: error.status, origin: this.document.location.href}});
                             break;
                     }
                 });

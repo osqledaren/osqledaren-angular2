@@ -8,6 +8,7 @@ import {Archive} from "../shared/enums";
 import {ArticleQueryParams} from "../shared/interface/article-query-params.interface";
 import {WordpressAuthService} from "../wordpress-auth.service";
 import {isNullOrUndefined} from "util";
+import {DOCUMENT} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-article',
@@ -25,8 +26,9 @@ export class ArticlePreviewComponent extends ArticleComponent {
                 router: Router,
                 archiveService: ArchiveService,
                 loaderService: LoaderService,
+                @Inject(DOCUMENT) document: Document,
                 private auth: WordpressAuthService) {
-        super(NS, route, router, archiveService, loaderService);
+        super(NS, route, router, archiveService, document, loaderService);
     }
 
     private authenticatedRequest(queryParams) {
