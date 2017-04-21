@@ -21,9 +21,9 @@ export class NewsArticleService {
         return this.WP.getNextBatchOfArticles(args);
     }
 
-	public getArticle(param: any): Observable<Article[]> {
+	public getArticle(slug: any, args?: ArticleQueryParams): Observable<Article[]> {
 
-        let WPObservable = this.WP.getArticle(param);
+        let WPObservable = this.WP.getArticle(slug, args);
 
         // this.articles = this.articles.concat(Articles);
 

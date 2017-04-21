@@ -10,7 +10,7 @@ body {
 
 	padding-top: $header-height; // Give some padding for fixed header.
 
-	&.article{
+	&.article, &.article-preview {
 		background: white;
 	}
 

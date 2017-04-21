@@ -7,8 +7,8 @@ import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {MasonryModule} from "angular2-masonry/src/module";
 import {CollapseModule} from "ng2-bootstrap/collapse";
-import {DisqusModule} from 'ng2-awesome-disqus';
-import {Angulartics2Module, Angulartics2GoogleAnalytics} from 'angulartics2';
+import {DisqusModule} from "ng2-awesome-disqus";
+import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -25,11 +25,14 @@ import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-g
 import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 import {LoaderComponent} from "./loader/loader.component";
-import {BylineComponent} from './byline/byline.component';
-import {ArticleImageComponent} from './article-image/article-image.component';
-import {AdvertisementTopBannerComponent} from './advertisement-top-banner/advertisement-top-banner.component';
-import {ComingSoonComponent} from './coming-soon/coming-soon.component';
+import {BylineComponent} from "./byline/byline.component";
+import {ArticleImageComponent} from "./article-image/article-image.component";
+import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
+import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
+import {ArticlePreviewComponent} from "./article/article-preview.component";
+import {OAuth2Component} from "./oauth2/oauth2.component";
 // Services
+import {WordpressAuthService} from "./wordpress-auth.service";
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
@@ -40,7 +43,8 @@ import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 // Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
-import { ArticleImageThumbnailComponent } from './article-image-thumbnail/article-image-thumbnail.component';
+import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +53,7 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         FooterComponent,
         SearchComponent,
         ArticleComponent,
+        ArticlePreviewComponent,
         NewsArchiveComponent,
         PageNotFoundComponent,
         ArticleGridComponent,
@@ -65,7 +70,9 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         ComingSoonComponent,
         ArticleImageComponent,
         AdvertisementTopBannerComponent,
-        ArticleImageThumbnailComponent
+        ArticleImageThumbnailComponent,
+        OAuth2Component,
+        ErrorComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -76,10 +83,23 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         HttpModule,
         Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
         RouterModule.forRoot([
+
             {
                 path: 'artikel/:slug',
                 component: ArticleComponent,
                 data: {name: 'article'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'artikel-preview/:slug',
+                component: ArticlePreviewComponent,
+                data: {name: 'article-preview'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'error',
+                component: ErrorComponent,
+                data: {name: 'error'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -104,6 +124,12 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
                 path: 'nyheter/arkiv/:date',
                 component: NewsArchiveComponent,
                 data: {name: 'archive'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'oauth2',
+                component: OAuth2Component,
+                data: {name: 'oauth2'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -161,6 +187,7 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         LoaderService,
         NavigationService,
         NewsArticleService,
+        WordpressAuthService,
         WordpressService,
         LoadableDeactivateGuard,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
