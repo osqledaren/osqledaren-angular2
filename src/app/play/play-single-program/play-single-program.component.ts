@@ -34,8 +34,16 @@ export class PlaySingleProgramComponent implements OnInit {
 
     //Load the episode into the player
     //that has "index" in the array episodes.
-    loadEpisode(index){
+    loadEpisode(index, event){
         this.playerRef.loadEpisode(index);
+        let el = event.target.parentNode.parentNode;
+        let container = el.parentNode;
+        container.getElementsByClassName("title selected")[0].className = "title";
+        el.getElementsByClassName("title")[0].className = "title selected";
+    }
+
+    getClass(index){
+        return index==0? 'title selected': 'title';
     }
 
     //Add an episode to the queue

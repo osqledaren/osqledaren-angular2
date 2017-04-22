@@ -10,10 +10,11 @@
         </div>
         <div class="col-xs-6 box3">
           <div *ngFor="let e of episodes; let i=index">
-            <span class="duration">{{e.video.duration}}</span><span class="title" (click)="loadEpisode(i, $event)">EP - <span [innerHTML]="e.title"></span></span><span class="plus">-</span>
-          </div>
-          <div>
-            <span class="duration">10:00</span><span class="title" (click)="loadEpisode(i, $event)">EP - thalsdj lasdfjsjjslf asdfasf asdfsdf adf asdfsafasd asdf asfdadf asdf</span><span class="plus">-</span>
+            <div class="imgWrapper" (click)="loadEpisode(i, $event)">
+              <img alt="Image" src="{{e.imageURL}}"/>
+              <span class="duration">{{e.video.duration}}</span>
+            </div>
+            <span class="{{getClass(i)}}" data-id="i" (click)="loadEpisode(i, $event)"><span>EP - </span><span [innerHTML]="e.title"></span></span><span class="plus">-</span>
           </div>
           <span *ngIf="isEmptyQueue">Kön är tom. Vänligen lägg till avsnitten i kön!</span>
         </div>

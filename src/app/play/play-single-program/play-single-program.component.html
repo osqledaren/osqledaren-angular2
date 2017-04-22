@@ -11,12 +11,12 @@
 		</div>
 		<div #episodeList class="col-xs-6 box3 episodeListMobile">
 			<div *ngFor="let e of episodes; let i=index">
-				<div class="imgWrapper" (click)="loadEpisode(i)">
+				<div class="imgWrapper" (click)="loadEpisode(i, $event)">
 					<img alt="Image" src="{{e.imageURL}}"/>
 					<span class="duration">{{e.video.duration}}</span>
 				</div>
-				<span class="title" (click)="loadEpisode(i)">
-					EP - <span [innerHTML]="e.title"></span>
+				<span class="{{getClass(i)}}" data-id="i" (click)="loadEpisode(i, $event)">
+					<span>EP - </span><span [innerHTML]="e.title"></span>
 				</span>
 				<span class="plus" (click)="addToQueue(i, $event)">+</span>
 				<div class="message"></div>
@@ -31,11 +31,11 @@
 	<div  class="row">
 		<div class="col-xs-6 box3 episodeList">
 			<div *ngFor="let e of episodes; let i=index">
-				<div class="imgWrapper" (click)="loadEpisode(i)">
+				<div class="imgWrapper" (click)="loadEpisode(i, $event)">
 					<img alt="Image" src="{{e.imageURL}}"/>
 					<span class="duration">{{e.video.duration}}</span>
 				</div>
-				<span class="title" (click)="loadEpisode(i)">
+				<span class="{{getClass(i)}}" data-id="i" (click)="loadEpisode(i, $event)">
 					EP - <span [innerHTML]="e.title"></span>
 				</span>
 				<span class="plus" (click)="addToQueue(i, $event)">+</span>

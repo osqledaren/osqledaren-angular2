@@ -99,6 +99,9 @@
 		-moz-transition: transform 0.8s;
 		transition: transform 0.8s;
 	}
+	.selected{
+		color: #e67334;
+	}
 
 	@for $box from 1 through 4 {
 		$bg-color: white;

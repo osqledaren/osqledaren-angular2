@@ -32,8 +32,8 @@ export class PlayQueueComponent implements AfterViewInit  {
       this.playerHidden = false;
     }
     this.playerRef.loadEpisode(index);
-    this.queue.nativeElement.getElementsByClassName("title").className = "title";
-    event.target.className = "title selected";
+    this.queue.nativeElement.getElementsByClassName("title selected")[0].className = "title";
+    event.target.parentNode.parentNode.getElementsByClassName("title")[0].className = "title selected";
     if(this.queueGridStyle.marginTop != "10px"){
       this.queueGridStyle.marginTop = "0";
       this.descriptionStyle.marginLeft = "100%";
@@ -43,6 +43,10 @@ export class PlayQueueComponent implements AfterViewInit  {
         self.descriptionStyle.display = "none";
       }, 500);
     }
+  }
+
+  getClass(index){
+    return index==0? 'title selected': 'title';
   }
 
   ngAfterViewInit () {
