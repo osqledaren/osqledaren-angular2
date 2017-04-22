@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { Podcast } from '../play';
 import { PlayService } from '../../play.service';
 import { VideoPlayerComponent } from '../video-player/video-player.component';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-play-queue',
@@ -19,10 +20,12 @@ export class PlayQueueComponent implements AfterViewInit  {
   @ViewChild('episodeInfo') episodeInfo: ElementRef;
   @ViewChild('description') description: ElementRef;
   @ViewChild('queueGrid') queueGrid: ElementRef;
+  @ViewChild('videoList') videoList: ElementRef;
   queueStyle: any;
   episodeInfoStyle: any;
   descriptionStyle: any;
   queueGridStyle: any;
+  private videoHighligher: Subscription;
 
   constructor(private router: Router, private playService: PlayService) { }
 
@@ -32,7 +35,7 @@ export class PlayQueueComponent implements AfterViewInit  {
       this.playerHidden = false;
     }
     this.playerRef.loadEpisode(index);
-    this.queue.nativeElement.getElementsByClassName("title selected")[0].className = "title";
+    this.queue.nativeElement.getElementsByClassName("selected")[0].className = "title";
     event.target.parentNode.parentNode.getElementsByClassName("title")[0].className = "title selected";
     if(this.queueGridStyle.marginTop != "10px"){
       this.queueGridStyle.marginTop = "0";
@@ -49,6 +52,12 @@ export class PlayQueueComponent implements AfterViewInit  {
     return index==0? 'title selected': 'title';
   }
 
+  highlightVideo(index){
+    console.log(index);
+    this.videoList.nativeElement.getElementsByClassName('selected')[0].className = "title";
+    this.videoList.nativeElement.children[index].getElementsByClassName("title")[0].className = "title selected";
+  }
+
   ngAfterViewInit () {
     this.episodes = this.playService.getEpisodesInQueue();
     this.videoOnStage = this.episodes[0];
@@ -63,6 +72,10 @@ export class PlayQueueComponent implements AfterViewInit  {
       this.isEmptyQueue = true;
       this.queueGridStyle.marginTop = "10px";
     }
+
+    this.videoHighligher = this.playService.notifyQueueObservable$.subscribe((index)=>{
+      this.highlightVideo(index);
+    });
   }
 
 }

@@ -5,15 +5,35 @@ import 'rxjs/add/operator/map';
 import { Podcast } from './play/play';
 import { Series } from './play/series';
 import {APP_CONFIG} from "./app.config";
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class PlayService {
     protected _wpBase: string;
-  private episodesInQueue: Array<Podcast> = [];
-  public count_perPage: number = 5;
+    private episodesInQueue: Array<Podcast> = [];
+    public count_perPage: number = 5;
+    private notifyQueue = new Subject<any>();
+    private notifySingleSeries = new Subject<any>();
+
+    /**
+     * Observable string streams
+     */
+    notifyQueueObservable$ = this.notifyQueue.asObservable();
+    notifySingleSeriesObservable$ = this.notifySingleSeries.asObservable();
+
   constructor(protected http: Http, @Inject(APP_CONFIG) config) {
       this._wpBase = config.wordpressEndpoint;
   }
+
+    //Service message commands
+    highlightVideoInQueue(index){
+        this.notifyQueue.next(index);
+    }
+
+    //Service message commands
+    highlightVideoInSingleSeries(index){
+        this.notifySingleSeries.next(index);
+    }
 
   //Get episodes in queue
   getEpisodesInQueue(){

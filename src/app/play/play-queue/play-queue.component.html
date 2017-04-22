@@ -1,14 +1,14 @@
 <div id="programContainer" class="container">
   <div  class="row">
     <div *ngIf="!isEmptyQueue" class="col-xs-12 playerContainer">
-      <app-video-player #playerRef [videoMetaData]="videoOnStage" [context]="'program'" [episodes]="episodes"></app-video-player>
+      <app-video-player #playerRef [videoMetaData]="videoOnStage" [context]="'queue'" [episodes]="episodes"></app-video-player>
     </div>
     <div #queueGrid class="queue-grid">
       <div #queue class="box queue">
         <div class="col-xs-6 box1">
           <h3>Avsnitt i kön</h3>
         </div>
-        <div class="col-xs-6 box3">
+        <div #videoList class="col-xs-6 box3">
           <div *ngFor="let e of episodes; let i=index">
             <div class="imgWrapper" (click)="loadEpisode(i, $event)">
               <img alt="Image" src="{{e.imageURL}}"/>

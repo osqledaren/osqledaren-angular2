@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { TimePipe } from '../time.pipe';
 import { TextOverflowEllipsisPipe } from '../text-overflow-ellipsis.pipe';
 import { Podcast } from '../play';
+import { PlayService } from '../../play.service';
 
 @Component({
   selector: 'app-video-player',
@@ -118,7 +119,7 @@ export class VideoPlayerComponent implements OnInit {
   watchBuffer: any;
   previousViewMode: string;
 
-  constructor(private renderer: Renderer, private router: Router) {
+  constructor(private renderer: Renderer, private router: Router, private playService: PlayService) {
   }
 
   //Toggle player's playlist
@@ -130,6 +131,15 @@ export class VideoPlayerComponent implements OnInit {
     }else{
       this.showPlaylist = true;
       i.color = "#e67233";
+      console.log(this.currentEpisodeIndex);
+      let _this = this;
+      let playlistWatcher = setInterval(function () {
+        if(typeof _this.playlist.nativeElement !== "undefied"){
+          _this.playlist.nativeElement.getElementsByClassName('selected')[0].className = "episode";
+          _this.playlist.nativeElement.children[_this.currentEpisodeIndex].className = "episode selected";
+          clearInterval(playlistWatcher);
+        }
+      }, 100);
     }
   }
 
@@ -465,6 +475,11 @@ export class VideoPlayerComponent implements OnInit {
       if(this.currentEpisodeIndex == this.episodes.length-1){
         this.changeNextBtnOpacity("0.5", "default");
       }
+      if(this.context == "program"){
+        this.playService.highlightVideoInSingleSeries(this.currentEpisodeIndex);
+      }else if(this.context == "queue"){
+        this.playService.highlightVideoInQueue(this.currentEpisodeIndex);
+      }
     }
   }
 
@@ -503,6 +518,11 @@ export class VideoPlayerComponent implements OnInit {
       this.loadEpisode(this.currentEpisodeIndex);
       if(this.currentEpisodeIndex == 0){
         this.changePreviousBtnOpacity("0.5", "default");
+      }
+      if(this.context == "program"){
+        this.playService.highlightVideoInSingleSeries(this.currentEpisodeIndex);
+      }else if(this.context == "queue"){
+        this.playService.highlightVideoInQueue(this.currentEpisodeIndex);
       }
     }
   }
@@ -1091,6 +1111,7 @@ export class VideoPlayerComponent implements OnInit {
   //Load/change episode in the player
   loadEpisode(index){
     this.nextVideoSeeking = true;
+    this.currentEpisodeIndex = index;
     if(this.videoMetaData.id == this.episodes[index].id){
       this.togglePlay();
     }else{
@@ -1105,9 +1126,13 @@ export class VideoPlayerComponent implements OnInit {
       }, 500);
     }
     if(this.showPlaylist){
-      this.playlist.nativeElement.getElementsByClassName('selected')[0].className = "episode";
-      this.playlist.nativeElement.children[index].className = "episode selected";
+      if(this.context == "program"){
+        this.playService.highlightVideoInSingleSeries(this.currentEpisodeIndex);
+      }else if(this.context == "queue"){
+        this.playService.highlightVideoInQueue(this.currentEpisodeIndex);
+      }
       this.showPlaylist = false;
+      this.playlistIcon.nativeElement.style.color = "#acbeca";
     }
     if(this.featured_clips){
       this.featured_clips = false;
@@ -1181,7 +1206,7 @@ export class VideoPlayerComponent implements OnInit {
     //Display either of the description boxes beside the player
     if(this.context == "play"){
       this.description_excerpt = true;
-    }else if(this.context == "program"){
+    }else if(this.context == "program" || this.context == "queue"){
       this.description_full = true;
       this.fullPlayerContainer.nativeElement.style.backgroundColor = "white";
       this.fullPlayerElement.nativeElement.style.width = "50%";

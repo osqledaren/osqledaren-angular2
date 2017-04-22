@@ -9,7 +9,7 @@
 			<h3>Fler avsnitt ur serien <span *ngIf="videoMetaData">{{videoMetaData.series.name}}</span></h3>
 			<div class="toggleEpisodeListArrow"><p>{{arrowInfo}}</p><i (click)="toggleEpisodeList($event)" class="fa fa-arrow-circle-down" aria-hidden="true"></i></div>
 		</div>
-		<div #episodeList class="col-xs-6 box3 episodeListMobile">
+		<div #episodeListMobile class="col-xs-6 box3 episodeListMobile">
 			<div *ngFor="let e of episodes; let i=index">
 				<div class="imgWrapper" (click)="loadEpisode(i, $event)">
 					<img alt="Image" src="{{e.imageURL}}"/>
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div  class="row">
-		<div class="col-xs-6 box3 episodeList">
+		<div #episodeList class="col-xs-6 box3 episodeList">
 			<div *ngFor="let e of episodes; let i=index">
 				<div class="imgWrapper" (click)="loadEpisode(i, $event)">
 					<img alt="Image" src="{{e.imageURL}}"/>
