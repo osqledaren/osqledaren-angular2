@@ -1,3 +1,5 @@
+@import "../../../utility";
+
 @mixin right-arrow($size, $color) {
   content: " ";
   position: absolute;
@@ -118,6 +120,15 @@
             cursor: pointer;
             &:hover{color: #e67334;}
           }
+          .selected{
+            color: #e67334;
+          }
+          .title{
+            width: 55%;
+            color: white;
+            display: inline-block;
+            vertical-align: top;
+          }
         }
       }@else if $box == 4 {
         $bg-color: #f3f3f3;
@@ -140,4 +151,40 @@
       h3 { color: $h3-color; }
     }
   }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@include media-breakpoint-only(xs) {
+  #programContainer{
+    padding:0 !important;
+    .row {
+      .queue-grid {
+        margin-top: -57%;
+        > div {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-only(sm) {
+
+}
+
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-only(md){
+
+}
+
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-only(lg) {
+
+
+}
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-only(xl) {
+
 }

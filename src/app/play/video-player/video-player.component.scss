@@ -618,7 +618,11 @@
 			}
 		}
 		.excerpt{color: white;}
-		.full{color: black;}
+		.full{
+			color: black;
+			strong{color: black;}
+			p{color: black;}
+		}
 		.readMore{
 			background-color: #e67334;
 			display: inline-block;
@@ -819,11 +823,15 @@
 		.description{
 			margin: 0 -90% 0 0;
 			z-index: 1;
-			width: 80%;
-			height: 80%;
+			width: 80% !important;
+			height: 80% !important;
 			border-radius: 10px;
 			background-color: rgba(107, 33, 13, 0.89);
 			padding: 10px 20px;
+			.full{
+				strong{color: white;}
+				p{color: silver;}
+			}
 		}
 	}
 	::-webkit-scrollbar

@@ -27,12 +27,14 @@ export class PlayQueueComponent implements AfterViewInit  {
   constructor(private router: Router, private playService: PlayService) { }
 
   //Load the episode into the player, and display the player
-  loadEpisode(index){
+  loadEpisode(index, event){
     if(this.playerHidden){
       this.playerHidden = false;
     }
     this.playerRef.loadEpisode(index);
-    if(this.queueGridStyle.marginTop != "0"){
+    this.queue.nativeElement.getElementsByClassName("title").className = "title";
+    event.target.className = "title selected";
+    if(this.queueGridStyle.marginTop != "10px"){
       this.queueGridStyle.marginTop = "0";
       this.descriptionStyle.marginLeft = "100%";
       let self = this;
@@ -53,10 +55,9 @@ export class PlayQueueComponent implements AfterViewInit  {
     //Adjust the layout
     if(this.episodes.length > 0){
       this.isEmptyQueue = false;
-      this.queueGridStyle.marginTop = "-28%";
     }else{
       this.isEmptyQueue = true;
-      this.queueGridStyle.marginTop = "0";
+      this.queueGridStyle.marginTop = "10px";
     }
   }
 
