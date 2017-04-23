@@ -7,8 +7,8 @@ import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {MasonryModule} from "angular2-masonry/src/module";
 import {CollapseModule} from "ng2-bootstrap/collapse";
-import {DisqusModule} from 'ng2-awesome-disqus';
-import {Angulartics2Module, Angulartics2GoogleAnalytics} from 'angulartics2';
+import {DisqusModule} from "ng2-awesome-disqus";
+import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -25,22 +25,24 @@ import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-g
 import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 import {LoaderComponent} from "./loader/loader.component";
-import {BylineComponent} from './byline/byline.component';
-import {ArticleImageComponent} from './article-image/article-image.component';
-import {AdvertisementTopBannerComponent} from './advertisement-top-banner/advertisement-top-banner.component';
-import {ComingSoonComponent} from './coming-soon/coming-soon.component';
+import {BylineComponent} from "./byline/byline.component";
+import {ArticleImageComponent} from "./article-image/article-image.component";
+import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
+import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
+import {CookieService} from 'angular2-cookie/services/cookies.service';
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 // Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
-import { ArticleImageThumbnailComponent } from './article-image-thumbnail/article-image-thumbnail.component';
+import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
     declarations: [
@@ -65,7 +67,8 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         ComingSoonComponent,
         ArticleImageComponent,
         AdvertisementTopBannerComponent,
-        ArticleImageThumbnailComponent
+        ArticleImageThumbnailComponent,
+        ErrorComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -76,10 +79,17 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         HttpModule,
         Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
         RouterModule.forRoot([
+
             {
                 path: 'artikel/:slug',
                 component: ArticleComponent,
                 data: {name: 'article'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'error',
+                component: ErrorComponent,
+                data: {name: 'error'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -157,6 +167,7 @@ import { ArticleImageThumbnailComponent } from './article-image-thumbnail/articl
         ])
     ],
     providers: [
+        CookieService,
         ArchiveService,
         LoaderService,
         NavigationService,

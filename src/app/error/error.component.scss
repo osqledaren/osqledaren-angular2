@@ -1,0 +1,12 @@
+@import "./src/utility";
+
+.error-message {
+  margin: $grid-gutter-width-base * 2;
+  max-width: $container-narrow;
+  text-align: center;
+}
+
+p {
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
+}

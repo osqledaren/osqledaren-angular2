@@ -1,6 +1,6 @@
 export interface Article {
     body_html: string,
-    byline: string,
+    byline: Array<Byline>,
     categoriesById: Array<any>,
     copyrightholder: string,
     copyrightnotice: string,
@@ -9,7 +9,7 @@ export interface Article {
     headline: string,
     id: number,
     related_posts: Array<any>,
-    renditions?: {[id: string] : Rendition},
+    renditions?: {[id: string]: Rendition},
     representationtype: string,
     slug: string,
     type: string,
@@ -24,4 +24,9 @@ export interface Rendition {
     href: string;
     mime_type: string;
     title: string;
+}
+
+export interface Byline {
+    author: string;
+    role: string;
 }

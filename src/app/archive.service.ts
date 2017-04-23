@@ -37,7 +37,7 @@ export class ArchiveService extends ContentService{
                 @Inject(APP_CONFIG) config) {
         super();
 
-        this.endpoint = config.wordpressEndpoint;
+        this.endpoint = config.wordpressEndpoint + '/wp-json/wp/v2';
     }
 
     public reset() {
