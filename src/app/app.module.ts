@@ -29,10 +29,7 @@ import {BylineComponent} from "./byline/byline.component";
 import {ArticleImageComponent} from "./article-image/article-image.component";
 import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
 import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
-import {ArticlePreviewComponent} from "./article/article-preview.component";
-import {OAuth2Component} from "./oauth2/oauth2.component";
 // Services
-import {WordpressAuthService} from "./wordpress-auth.service";
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
@@ -53,7 +50,6 @@ import { ErrorComponent } from './error/error.component';
         FooterComponent,
         SearchComponent,
         ArticleComponent,
-        ArticlePreviewComponent,
         NewsArchiveComponent,
         PageNotFoundComponent,
         ArticleGridComponent,
@@ -71,7 +67,6 @@ import { ErrorComponent } from './error/error.component';
         ArticleImageComponent,
         AdvertisementTopBannerComponent,
         ArticleImageThumbnailComponent,
-        OAuth2Component,
         ErrorComponent
     ],
     imports: [
@@ -88,12 +83,6 @@ import { ErrorComponent } from './error/error.component';
                 path: 'artikel/:slug',
                 component: ArticleComponent,
                 data: {name: 'article'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'artikel-preview/:slug',
-                component: ArticlePreviewComponent,
-                data: {name: 'article-preview'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -124,12 +113,6 @@ import { ErrorComponent } from './error/error.component';
                 path: 'nyheter/arkiv/:date',
                 component: NewsArchiveComponent,
                 data: {name: 'archive'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'oauth2',
-                component: OAuth2Component,
-                data: {name: 'oauth2'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -187,7 +170,6 @@ import { ErrorComponent } from './error/error.component';
         LoaderService,
         NavigationService,
         NewsArticleService,
-        WordpressAuthService,
         WordpressService,
         LoadableDeactivateGuard,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}

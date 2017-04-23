@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-error',

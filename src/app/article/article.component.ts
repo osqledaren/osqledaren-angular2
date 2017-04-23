@@ -31,11 +31,11 @@ export class ArticleComponent extends LoadableComponent {
         super(loaderService);
     }
 
-    protected initializeData(postParams?: ArticleQueryParams) {
+    protected initializeData() {
         this.route.params
             .map(params => params['slug']).subscribe((slug) => {
 
-            this.sub = this.NS.getArticle(slug, postParams).subscribe(
+            this.sub = this.NS.getArticle(slug).subscribe(
                 posts => {
                     this.article = posts[0];
                     if (isNullOrUndefined(posts[0])) {

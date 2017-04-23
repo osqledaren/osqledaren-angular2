@@ -7,8 +7,6 @@ import {ArticleQueryParams} from "./shared/interface/article-query-params.interf
 @Injectable()
 export class NewsArticleService {
 
-    private errorMessage;
-
     constructor(private WP: WordpressService) {}
 
 	public getArticles(args?: ArticleQueryParams){
@@ -23,7 +21,7 @@ export class NewsArticleService {
 
 	public getArticle(slug: any, args?: ArticleQueryParams): Observable<Article[]> {
 
-        let WPObservable = this.WP.getArticle(slug, args);
+        let WPObservable = this.WP.getArticle(slug);
 
         // this.articles = this.articles.concat(Articles);
 

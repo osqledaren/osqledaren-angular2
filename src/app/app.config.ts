@@ -15,8 +15,8 @@ export const APP_DI_CONFIG =
                 wordpressClientSecret: 'jKf77c1her7tu5DxXEVYOSg1nFWQKx',
                 wordpressEndpoint: 'http://osqledaren.dev'
             } : {
-                wordpressClientID:'',
-                wordpressClientSecret:'',
+                wordpressClientID:'xUmKyPrn9q2cxJ24AZpfMVFLu1u8Mk',
+                wordpressClientSecret:'Eke04NPvaZWdbtWexweXM1TsMntgvg',
                 wordpressEndpoint: 'http://wp-staging.osqledaren.se'
             });
 

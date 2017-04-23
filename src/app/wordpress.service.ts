@@ -26,10 +26,9 @@ export class WordpressService extends ContentService {
     /**
      * Fetches posts from wordpress by slug/id
      * @param slug: any
-     * @param args?: ArticleQueryParams
      * @returns {Observable<Article[]>}
      */
-    public getArticle(slug: any, args?: ArticleQueryParams) {
+    public getArticle(slug: any) {
 
         let query: Observable<Article[]>;
         let url: string;
@@ -45,7 +44,7 @@ export class WordpressService extends ContentService {
         }
 
         try{
-            headers.append('Authorization', 'BEARER ' + args.access_token);
+            //headers.append('Authorization', 'BEARER ' + args.access_token)
         } catch(Exception){}
 
         query = this.http.get(url, {headers: headers}).map((res) => this.map(res)).catch(this.handleError);
