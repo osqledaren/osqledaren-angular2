@@ -4,19 +4,16 @@ import {OpaqueToken} from "@angular/core";
 // Generate configuration constant
 export const APP_DI_CONFIG =
     (environment.production) ? {
-            wordpressClientID: '',
-            wordpressClientSecret: '',
+            wordpressOAuth2ClientName: 'osqledaren-angular-2',
             wordpressEndpoint: 'http://wp.osqledaren.se'
         } : ((environment.local) ?
             {
                 // Important!!! Insert a virtual domain in your hosts file
                 // pointing to the local wordpress installation.
-                wordpressClientID: '8XNnWTa2qPe2Xa3R1o19WhdvoUt5Bi',
-                wordpressClientSecret: 'jKf77c1her7tu5DxXEVYOSg1nFWQKx',
+                wordpressOAuth2ClientName: 'osqledaren-angular-2',
                 wordpressEndpoint: 'http://osqledaren.dev'
             } : {
-                wordpressClientID:'xUmKyPrn9q2cxJ24AZpfMVFLu1u8Mk',
-                wordpressClientSecret:'Eke04NPvaZWdbtWexweXM1TsMntgvg',
+                wordpressOAuth2ClientName: 'osqledaren-angular-2',
                 wordpressEndpoint: 'http://wp-staging.osqledaren.se'
             });
 

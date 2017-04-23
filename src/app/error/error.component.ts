@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
+import {ArchiveService} from "../archive.service";
+import {Archive} from "../shared/enums";
 
 @Component({
   selector: 'app-error',
@@ -14,23 +16,28 @@ export class ErrorComponent extends LoadableComponent {
   private errorStatus;
   private errorOrigin;
 
-  constructor(private route: ActivatedRoute, private router: Router, loaderService: LoaderService) {
+  constructor(private route: ActivatedRoute,
+              private archiveService: ArchiveService,
+              private router: Router, loaderService: LoaderService) {
     super(loaderService);
   }
 
   init(){
-
-    this.route.queryParams.subscribe((qp)=>{
+    this.archiveService.activate(Archive.article);
+    this.sub = this.route.queryParams.subscribe((qp)=>{
 
       if (isNullOrUndefined(qp['status'])) {
+        this.loaded();
         this.router.navigate(['/']);
-      }
+      } else {
 
-      this.errorStatus = qp['status'];
-      this.errorOrigin = qp['origin'];
+        this.loaded();
+        this.errorStatus = qp['status'];
+        this.errorOrigin = qp['origin'];
+      }
 
     });
 
-    this.loaded();
+
   }
 }

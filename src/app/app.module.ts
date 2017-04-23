@@ -35,6 +35,7 @@ import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
+import {CookieService} from 'angular2-cookie/services/cookies.service';
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
@@ -166,6 +167,7 @@ import { ErrorComponent } from './error/error.component';
         ])
     ],
     providers: [
+        CookieService,
         ArchiveService,
         LoaderService,
         NavigationService,

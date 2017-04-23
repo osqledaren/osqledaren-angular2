@@ -10,16 +10,20 @@ import {ArticleQueryParams} from "./shared/interface/article-query-params.interf
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined, isUndefined} from "util";
 import {PadNumberPipe} from "./pad-number.pipe";
+import {CookieService} from 'angular2-cookie/services/cookies.service';
 
 @Injectable()
 export class WordpressService extends ContentService {
 
     private batchCount: number = 12;
     private offset: number = 0;
+    private clientName;
 
     constructor(protected http: Http,
+                protected cookieService: CookieService,
                 @Inject(APP_CONFIG) config) {
         super();
+        this.clientName = config.wordpressOAuth2ClientName;
         this.endpoint = config.wordpressEndpoint + '/wp-json/wp/v2';
     }
 
@@ -44,7 +48,10 @@ export class WordpressService extends ContentService {
         }
 
         try{
-            //headers.append('Authorization', 'BEARER ' + args.access_token)
+            let token = this.cookieService.get(this.clientName + '-access-token');
+            headers.append('Authorization', 'BEARER ' + token);
+            console.log(this.clientName + '-access-token');
+            console.log(headers);
         } catch(Exception){}
 
         query = this.http.get(url, {headers: headers}).map((res) => this.map(res)).catch(this.handleError);

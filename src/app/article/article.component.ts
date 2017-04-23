@@ -124,15 +124,15 @@ export class ArticleComponent extends LoadableComponent {
 
     //Check if there are qoutes in article and add qoute symbol if so.
     protected checkQuoteElement() {
-        let d: any = document.getElementsByTagName("blockquote");
+        let d: any = this.document.getElementsByTagName("blockquote");
 
         for (let i = 0; i < d.length; i++) {
             //Create quote symbol element
-            let e: any = document.createElement('i');
-            let classAtt: any = document.createAttribute("class");
+            let e: any = this.document.createElement('i');
+            let classAtt: any = this.document.createAttribute("class");
             classAtt.value = "fa fa-quote-right";
             e.setAttributeNode(classAtt);
-            let ariaAtt: any = document.createAttribute("aria-hidden");
+            let ariaAtt: any = this.document.createAttribute("aria-hidden");
             ariaAtt.value = "true";
             e.setAttributeNode(ariaAtt);
             d[i].insertBefore(e, d[i].firstChild);
