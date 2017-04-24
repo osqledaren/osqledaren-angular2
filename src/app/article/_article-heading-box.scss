@@ -6,6 +6,7 @@
   margin: 0 auto $grid-gutter-width-base/2;
   z-index: 1;
   position: relative;
+  text-align: center;
 
   @include media-breakpoint-down(md) {
     max-width: 100%;

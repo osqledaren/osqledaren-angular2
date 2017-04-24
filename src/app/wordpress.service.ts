@@ -50,8 +50,6 @@ export class WordpressService extends ContentService {
         try{
             let token = this.cookieService.get(this.clientName + '-access-token');
             headers.append('Authorization', 'BEARER ' + token);
-            console.log(this.clientName + '-access-token');
-            console.log(headers);
         } catch(Exception){}
 
         query = this.http.get(url, {headers: headers}).map((res) => this.map(res)).catch(this.handleError);
@@ -193,13 +191,6 @@ export class WordpressService extends ContentService {
 
         } catch (Exception) {
             byline = null;
-        }
-
-        // Try getting ACF fields.
-        try {
-            cred = body.acf.cred;
-        } catch (Exception) {
-            cred = null;
         }
 
         try {
