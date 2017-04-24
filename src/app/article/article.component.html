@@ -1,5 +1,5 @@
-<div class="container" id="single-article">
-    <article [id]="article?.headline">
+<article [id]="article?.headline">
+    <div class="container" id="single-article">
         <div class="article-image">
             <app-article-image [renditions]="article?.renditions"></app-article-image>
         </div>
@@ -27,34 +27,31 @@
                           [title]="(article?.versioncreated | date: 'MMM dd y')"
                           [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
                 </span>
-
         </div>
 
         <div class="article-gricle?.bylixt" [innerHTML]="article?.body_html"></div>
 
         <!-- Byline below-->
-        <app-byline [byline]="article?.byline"></app-byline>
+        <app-byline *ngIf="article?.byline" [byline]="article?.byline"></app-byline>
+    </div>
+</article>
 
-        <div class="related-posts" *ngIf="showRelated">
-            <h3>Läs också</h3>
-            <div *ngFor="let rel_post of relatedArticles">
-                <div class="row">
-                    <div class="col-sm-2 related-post-img">
-                        <a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}">
-                            <app-article-image-thumbnail
-                                    [renditions]="rel_post.renditions"></app-article-image-thumbnail>
-                        </a>
-                    </div>
-                    <div class="col-sm-10 related-post-title">
-                        <div><a [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}"><span
-                                [innerHTML]="rel_post?.headline"></span></a></div>
-                    </div>
+<aside id="related-posts">
+    <div class="related-posts-wrapper container-fluid">
+        <div class="related-posts container" *ngIf="showRelated">
+            <h2 class="h3">Läs även</h2>
+            <a *ngFor="let rel_post of relatedArticles" [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}">
+                <div class="related-post">
+                    <app-article-image-thumbnail [renditions]="rel_post.renditions"></app-article-image-thumbnail>
+                    <div class="related-post-title"><h3 [innerHTML]="rel_post?.headline"></h3></div>
                 </div>
-            </div>
+            </a>
         </div>
+    </div>
+</aside>
 
-    </article>
-</div>
-<div class="container" id="disqus">
-    <disqus [shortname]="'osqledaren'" [identifier]="article?.id"></disqus>
-</div>
+<aside id="comments">
+    <div class="container" id="disqus">
+        <disqus [shortname]="'osqledaren'" [identifier]="article?.id"></disqus>
+    </div>
+</aside>

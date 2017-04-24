@@ -6,17 +6,19 @@
   @include clearfix;
 
   margin: $grid-gutter-width-base/2 0;
-  padding: $grid-gutter-width-base/2 $grid-gutter-width-base* 1/4 0;
-  background: $gray-lightest;
-  color: $brand-primary;
+  padding: $grid-gutter-width-base/2;
+  background: $brand-primary;
+  color: white;
+  text-align: center;
 
-  dl {
-    float: left;
-    margin: 0 $grid-gutter-width-base/4 $grid-gutter-width-base/2;
+  dl,dt,dd,address {
+    display: inline;
+    padding:0;
+    margin:0;
   }
 
-  dd, address {
-    margin-bottom: 0;
+  dl {
+    display: block;
   }
 
 }
