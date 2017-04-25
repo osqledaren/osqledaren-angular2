@@ -137,9 +137,11 @@
   height: 120px;
   width: 100%;
   padding: $grid-gutter-width-base/4 $grid-gutter-width-base/4 $grid-gutter-width-base/4 $grid-gutter-width-base/4 + 120px;
-  h3 {
+  div {
     display: table-cell;
     vertical-align: middle;
+  }
+  h3 {
     font-size: $font-size-lg;
     line-height: $line-height-lg;
   }

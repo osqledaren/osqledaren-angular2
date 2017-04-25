@@ -43,7 +43,17 @@
             <a *ngFor="let rel_post of relatedArticles" [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}">
                 <div class="related-post">
                     <app-article-image-thumbnail [renditions]="rel_post.renditions"></app-article-image-thumbnail>
-                    <div class="related-post-title"><h3 [innerHTML]="rel_post?.headline"></h3></div>
+                    <div class="related-post-title">
+                        <div>
+                            <h3 [innerHTML]="rel_post?.headline"></h3>
+                            <span class="date">
+                                <time pubtime
+                                      [attr.datetime]="(rel_post?.versioncreated)"
+                                      [title]="(rel_post?.versioncreated | date: 'MMM dd y')"
+                                      [innerText]="(rel_post?.versioncreated | date: 'y-MM-dd')"></time>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </a>
         </div>
