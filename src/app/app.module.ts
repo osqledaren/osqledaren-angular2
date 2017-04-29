@@ -29,6 +29,10 @@ import {BylineComponent} from "./byline/byline.component";
 import {ArticleImageComponent} from "./article-image/article-image.component";
 import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
 import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
+import { PlayComponent } from './play/play/play.component';
+import { VideoPlayerComponent } from './play/video-player/video-player.component';
+import { PlaySingleProgramComponent } from './play/play-single-program/play-single-program.component';
+
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -43,6 +47,12 @@ import {SplitPipe} from "./split.pipe";
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
 import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
 import { ErrorComponent } from './error/error.component';
+import { TimePipe } from './play/time.pipe';
+import { TextOverflowEllipsisPipe } from './play/text-overflow-ellipsis.pipe';
+import { PlayQueueComponent } from './play/play-queue/play-queue.component';
+import {PlayService} from "./play.service";
+import {PlayHeaderCommunicationService} from "./play-header-communication.service";
+import { MarkMatchedWordsPipe } from './play/mark-matched-words.pipe';
 
 @NgModule({
     declarations: [
@@ -68,7 +78,14 @@ import { ErrorComponent } from './error/error.component';
         ArticleImageComponent,
         AdvertisementTopBannerComponent,
         ArticleImageThumbnailComponent,
-        ErrorComponent
+        ErrorComponent,
+        PlayComponent,
+        VideoPlayerComponent,
+        PlaySingleProgramComponent,
+        TimePipe,
+        TextOverflowEllipsisPipe,
+        PlayQueueComponent,
+        MarkMatchedWordsPipe
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -141,15 +158,27 @@ import { ErrorComponent } from './error/error.component';
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'play',
+                path: 'pods',
                 component: ComingSoonComponent,
                 data: {name: 'coming-soon'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'pods',
-                component: ComingSoonComponent,
-                data: {name: 'coming-soon'},
+                path: 'play',
+                component: PlayComponent,
+                data: {name: 'play'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'play/series/:program',
+                component: PlaySingleProgramComponent,
+                data: {name: 'play single program'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'play/queue',
+                component: PlayQueueComponent,
+                data: {name: 'play queue program'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -174,6 +203,8 @@ import { ErrorComponent } from './error/error.component';
         NewsArticleService,
         WordpressService,
         LoadableDeactivateGuard,
+        PlayService,
+        PlayHeaderCommunicationService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
     bootstrap: [AppComponent]

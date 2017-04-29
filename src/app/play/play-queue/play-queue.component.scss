@@ -1,0 +1,229 @@
+@import "../../../utility";
+
+@mixin right-arrow($size, $color) {
+  content: " ";
+  position: absolute;
+  top:50%;
+  left:100%;
+  margin-top: -#{$size}px;
+  border-width: #{$size}px;
+  border-style: solid;
+  border-color: transparent transparent transparent $color;
+}
+
+@mixin left-arrow($size, $color) {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -#{$size}px;
+  border-width: #{$size}px;
+  border-style: solid;
+  border-color: transparent $color transparent transparent;
+}
+#programContainer{
+  box-sizing: border-box;
+  >div{
+    overflow: hidden;
+  }
+
+  .row{
+    margin:0;
+    >div[class*="box"]{
+      width: 50%;
+      position: relative;
+    }
+    .queue-grid{
+      position: relative;
+      display: table;
+      margin-top: -28%;
+      -webkit-transition: margin 0.5s; /* Safari */
+      transition: margin 0.5s;
+      >div{
+        display: table-cell;
+        vertical-align: top;
+      }
+    }
+    .queue{
+      background-color: #646464;
+      width: 50%;
+      position: relative;
+      z-index: 1;
+      -webkit-transition: margin 0.5s; /* Safari */
+      transition: margin 0.5s;
+    }
+    .episodeInfo{
+      background-color: white;
+      z-index: 1;
+      -webkit-transition: margin 0.5s; /* Safari */
+      transition: margin 0.5s;
+    }
+  }
+
+  .col-xs-12{
+    padding: 0;
+  }
+
+  .playerContainer{
+    width: 100%;
+    background-color: black;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  .imgWrapper{
+    width: 20%;
+    height: 70px;
+    margin: 0 20px;
+    display: inline-block;
+    position: relative;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+    .duration{
+      bottom: 2px;
+      right: 2px;
+      padding: 3px;
+      background-color: rgba(68, 5, 5, 0.5);
+      position: absolute;
+      border-radius: 10px;
+    }
+  }
+
+  @for $box from 1 through 5 {
+    $bg-color: white;
+    $padding: 35px 35px 25px;
+    $h3-color: black;
+
+    .box#{$box} {
+      @if $box == 1 {
+        $bg-color: #3a3a3a;
+        $padding: 45px 35px 10px;
+        $h3-color: white;
+
+        & span{color:#e67334;}
+
+      }@else if $box == 2 {
+        min-width: 100%;
+        -webkit-transition: margin 0.5s; /* Safari */
+        transition: margin 0.5s;
+        .description {
+          >span:nth-child(1){
+            color: gray;
+            font-weight: bold;
+          }
+          >span:nth-child(2){
+            color: orange;
+            font-weight: bold;
+            cursor: pointer;
+          }
+        }
+      }@else if $box == 3 {
+        $bg-color: #646464;
+        $padding: 20px 0px 40px;
+        color: white;
+        >span{
+          display: block;
+          text-align: center;
+        }
+        >div{
+          padding: 7px 0;
+          border-bottom:1px solid #5a5a5a;
+          .duration{
+            min-width: 25%;
+            display: inline-block;
+            text-align: center;
+          }
+          .plus{padding:0 20px;}
+          .title, .plus{
+            cursor: pointer;
+            &:hover{color: #e67334;}
+          }
+          .selected{
+            color: #e67334 !important;
+          }
+          .title{
+            width: 55%;
+            color: white;
+            display: inline-block;
+            vertical-align: top;
+          }
+        }
+      }@else if $box == 4 {
+        $bg-color: #f3f3f3;
+        $padding: 25px 35px 0px;
+        $h3-color: #e67233;
+        position: relative;
+        &::after {
+          @include left-arrow($size: 20, $color: #f3f3f3);
+          z-index: 1;
+        }
+        p {padding: 10px; margin: 0;}
+        hr{border-width:1px; margin:0;}
+      }@else if $box == 5 {
+        p { margin-top: 20px; }
+      }
+
+      padding: $padding;
+      background-color: $bg-color;
+
+      h3 { color: $h3-color; }
+    }
+  }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@include media-breakpoint-only(xs) {
+  #programContainer{
+    padding:0 !important;
+    .row {
+      .queue-grid {
+        margin-top: -57%;
+        > div {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+    .imgWrapper{
+      height: 48px;
+      margin: 0 10px;
+    }
+  }
+
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-only(sm) {
+  #programContainer{
+    .imgWrapper{
+      height: 48px;
+      margin: 0 10px;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-only(md){
+  #programContainer{
+    .imgWrapper{
+      height: 48px;
+      margin: 0 10px;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-only(lg) {
+  #programContainer{
+    .imgWrapper {
+      height: 55px;
+      margin: 0 20px;
+    }
+  }
+
+}
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-only(xl) {
+}
