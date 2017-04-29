@@ -18,20 +18,34 @@
         </g>
     </defs>
 
+    <defs>
+  <style type="text/css">
+	    @font-face {
+		  font-family: 'Proxima Nova';
+		  src: url('../../fonts/ProximaNova-Black.eot');
+		  src: url('../../fonts/ProximaNova-Black.eot?#iefix') format('embedded-opentype'),
+		  url('../../fonts/ProximaNova-Black.woff') format('woff'),
+		  url('../../fonts/ProximaNova-Black.ttf') format('truetype');
+		  font-weight: 900;
+		  font-style: normal;
+		}
+	  </style>
+	</defs>
+
 	<rect x="0" y="0" width="390" height="128" fill="url(#calendar-pattern)" />
-	<text x="12" y="20" style="fill:#000000;font-weight:bold;font-size:14px;">AUGUSTI 2016</text>
+	<text x="12" y="20" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">AUGUSTI 2016</text>
 	<path d="M53 95 L125 95 L125 130 L0 130 L0 112 L53 112 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 
-	<text x="155" y="20" style="fill:#000000;font-weight:bold;font-size:14px;">SEPTEMBER</text>
+	<text x="155" y="20" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">SEPTEMBER</text>
 	<path d="M223 95 L257 95 L257 130 L136 130 L136 112 L223 112 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="133" y="26" width="53" height="17" fill="#F0F0F0" />
-	<text x="297" y="20" style="fill:#000000;font-weight:bold;font-size:14px;">OKTOBER</text>
+	<text x="297" y="20" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">OKTOBER</text>
 	<rect x="268" y="26" width="89" height="17" fill="#F0F0F0" />
 	<rect x="286" y="111" width="105" height="17" fill="#F0F0F0" />
 
 
 	<rect x="0" y="130" width="390" height="128" fill="url(#calendar-pattern)" />
-	<text x="22" y="150" style="fill:#000000;font-weight:bold;font-size:14px;">NOVEMBER</text>
+	<text x="22" y="150" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">NOVEMBER</text>
 	<path d="M53 223 L125 223 L125 257 L0 257 L0 240 L53 240 Z M0 155 L17 155 L17 172 L0 172 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="0" y="172" width="86" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
 	<path d="M17 173 L17 188 M35 173 L35 188 M52 173 L52 188 M69 173 L69 188" stroke="#e5e5e5" stroke-width="3"/>
@@ -41,13 +55,13 @@
 	<text x="55" y="185" style="fill:#000000;font-weight:bold;font-size:12px;">10</text>
 	<text x="74" y="185" style="fill:#000000;font-weight:bold;font-size:12px;">11</text>
 
-	<text x="158" y="150" style="fill:#000000;font-weight:bold;font-size:14px;">DECEMBER</text>
+	<text x="158" y="150" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">DECEMBER</text>
 	<path d="M240 223 L257 223 L257 257 L135 257 L135 240 L240 240 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="133" y="155" width="54" height="17" fill="#F0F0F0" />
 
 	<path stroke-dasharray="5,5" d="M263 165 l0 75" stroke="#949393" stroke-width="2"/>
 
-	<text x="288" y="150" style="fill:#000000;font-weight:bold;font-size:14px;">JANUARI 2017</text>
+	<text x="288" y="150" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">JANUARI 2017</text>
 	<path d="M284 240 L390 240 L390 257 L284 257 L284 240 Z M269 155 L373 155 L373 172 L269 172 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="270" y="240" width="34" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
 	<path d="M287 241 L287 256" stroke="#e5e5e5" stroke-width="3"/>
@@ -55,7 +69,7 @@
 	<text x="290" y="253" style="fill:#000000;font-weight:bold;font-size:12px;">31</text>
 
 	<rect x="0" y="260" width="390" height="128" fill="url(#calendar-pattern)" />
-	<text x="25" y="276" style="fill:#000000;font-weight:bold;font-size:14px;">FEBRUARI</text>
+	<text x="25" y="276" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">FEBRUARI</text>
 	<path d="M38 351 L125 351 L125 385 L0 385 L0 368 L38 368 Z M0 283 L34 283 L34 300 L0 300 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="36" y="283" width="49" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
 	<path d="M52 284 L52 299 M69 284 L69 299" stroke="#e5e5e5" stroke-width="3"/>
@@ -63,7 +77,7 @@
 	<text x="57" y="295" style="fill:#000000;font-weight:bold;font-size:12px;">2</text>
 	<text x="75" y="295" style="fill:#000000;font-weight:bold;font-size:12px;">3</text>
 
-	<text x="175" y="276" style="fill:#000000;font-weight:bold;font-size:14px;">MARS</text>
+	<text x="175" y="276" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">MARS</text>
 	<path d="M223 351 L257 351 L257 385 L136 385 L136 368 L223 368 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="132" y="283" width="39" height="17" fill="#F0F0F0" />
 	<rect x="135" y="352" width="85" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
@@ -74,14 +88,14 @@
 	<text x="188" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">30</text>
 	<text x="207" y="364" style="fill:#000000;font-weight:bold;font-size:12px;">31</text>
 
-	<text x="310" y="276" style="fill:#000000;font-weight:bold;font-size:14px;">APRIL</text>
+	<text x="310" y="276" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">APRIL</text>
 	<rect x="268" y="284" width="89" height="17" fill="#F0F0F0" />
 	<rect x="265" y="369" width="125" height="17" fill="#F0F0F0" />
 
 		
 
 	<rect x="0" y="390" width="390" height="128" fill="url(#calendar-pattern)" />
-	<text x="45" y="402" style="fill:#000000;font-weight:bold;font-size:14px;">MAJ</text>
+	<text x="45" y="402" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">MAJ</text>
 	<path d="M53 480 L125 480 L125 514 L0 514 L0 497 L53 497 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="0" y="412" width="85" height="17" stroke="#000000" stroke-width="1" fill="#f2b89a" />
 	<path d="M17 413 L17 428 M35 413 L35 428 M52 413 L52 428 M69 413 L69 428" stroke="#e5e5e5" stroke-width="3"/>
@@ -91,10 +105,10 @@
 	<text x="56" y="425" style="fill:#000000;font-weight:bold;font-size:12px;">4</text>
 	<text x="75" y="425" style="fill:#000000;font-weight:bold;font-size:12px;">5</text>
 
-	<text x="180" y="402" style="fill:#000000;font-weight:bold;font-size:14px;">JUNI</text>
+	<text x="180" y="402" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">JUNI</text>
 	<path d="M223 480 L257 480 L257 514 L136 514 L136 497 L223 497 Z" fill="#F0F0F0" stroke="#F0F0F0" stroke-width="3"/>
 	<rect x="135" y="412" width="51" height="17" fill="#F0F0F0" />
-	<text x="315" y="402" style="fill:#000000;font-weight:bold;font-size:14px;">JULI</text>
+	<text x="315" y="402" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">JULI</text>
 	<rect x="270" y="412" width="85" height="17" fill="#F0F0F0" />
 	<rect x="287" y="496" width="105" height="17" fill="#F0F0F0" />
 

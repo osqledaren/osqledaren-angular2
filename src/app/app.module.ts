@@ -7,6 +7,8 @@ import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {MasonryModule} from "angular2-masonry/src/module";
 import {CollapseModule} from "ng2-bootstrap/collapse";
+import {DisqusModule} from "ng2-awesome-disqus";
+import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -26,23 +28,31 @@ import {LoaderComponent} from "./loader/loader.component";
 import { PlayComponent } from './play/play/play.component';
 import { VideoPlayerComponent } from './play/video-player/video-player.component';
 import { PlaySingleProgramComponent } from './play/play-single-program/play-single-program.component';
+import {BylineComponent} from "./byline/byline.component";
+import {ArticleImageComponent} from "./article-image/article-image.component";
+import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
+import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
+import {MediaQueueComponent} from './media-queue/media-queue.component';
+import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
+import {ErrorComponent} from './error/error.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
 import {NavigationService} from "./navigation.service";
 import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
+import {CookieService} from 'angular2-cookie/services/cookies.service';
+import {PlayService} from "./play.service";
+import {PlayHeaderCommunicationService} from "./play-header-communication.service";
+import {PlayQueueComponent} from './play/play-queue/play-queue.component';
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
+import {MarkMatchedWordsPipe} from './play/mark-matched-words.pipe';
+// Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
-import { BylineComponent } from './byline/byline.component';
 import { TimePipe } from './play/time.pipe';
 import { TextOverflowEllipsisPipe } from './play/text-overflow-ellipsis.pipe';
-import { PlayQueueComponent } from './play/play-queue/play-queue.component';
-import {PlayService} from "./play.service";
-import {PlayHeaderCommunicationService} from "./play-header-communication.service";
-import { MarkMatchedWordsPipe } from './play/mark-matched-words.pipe';
 
 @NgModule({
     declarations: [
@@ -70,19 +80,34 @@ import { MarkMatchedWordsPipe } from './play/mark-matched-words.pipe';
         TimePipe,
         TextOverflowEllipsisPipe,
         PlayQueueComponent,
-        MarkMatchedWordsPipe
+        MarkMatchedWordsPipe,
+        MediaQueueComponent,
+        ComingSoonComponent,
+        ArticleImageComponent,
+        AdvertisementTopBannerComponent,
+        ArticleImageThumbnailComponent,
+        ErrorComponent
     ],
     imports: [
         CollapseModule.forRoot(),
+        DisqusModule,
         MasonryModule,
         BrowserModule,
         FormsModule,
         HttpModule,
+        Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
         RouterModule.forRoot([
+
             {
                 path: 'artikel/:slug',
                 component: ArticleComponent,
                 data: {name: 'article'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'error',
+                component: ErrorComponent,
+                data: {name: 'error'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -116,6 +141,12 @@ import { MarkMatchedWordsPipe } from './play/mark-matched-words.pipe';
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
+                path: 'sok-redaktionen',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
                 data: {name: 'printed-issues'},
@@ -134,15 +165,21 @@ import { MarkMatchedWordsPipe } from './play/mark-matched-words.pipe';
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'play/series/:program',
+                path: 'play/series/:episode',
                 component: PlaySingleProgramComponent,
-                data: {name: 'play single program'},
+                data: {name: 'play-single'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
                 path: 'play/queue',
                 component: PlayQueueComponent,
-                data: {name: 'play queue program'},
+                data: {name: 'play-queue'},
+                canDeactivate: [LoadableDeactivateGuard]
+            },
+            {
+                path: 'pods',
+                component: ComingSoonComponent,
+                data: {name: 'coming-soon'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -160,6 +197,7 @@ import { MarkMatchedWordsPipe } from './play/mark-matched-words.pipe';
         ])
     ],
     providers: [
+        CookieService,
         ArchiveService,
         LoaderService,
         NavigationService,

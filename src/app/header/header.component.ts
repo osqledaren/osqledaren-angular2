@@ -1,14 +1,13 @@
 import {Component, OnInit, HostListener, ElementRef, OnDestroy} from "@angular/core";
 import {IMenuList} from "../shared/interface/menu.interface";
 import {NavigationService} from "../navigation.service";
-import 'rxjs/add/operator/throttleTime';
-import 'rxjs/add/observable/fromEvent';
+import "rxjs/add/operator/throttleTime";
+import "rxjs/add/observable/fromEvent";
 import {Observable, Subscription} from "rxjs";
 import {ArchiveService} from "../archive.service";
 import {Archive} from "../shared/enums";
-import {Router,  NavigationEnd} from "@angular/router";
-import {PlayService} from "../play.service";
-import { PlayHeaderCommunicationService } from '../play-header-communication.service';
+import {Router} from "@angular/router";
+import {isNullOrUndefined} from "util";
 
 @Component({
     selector: 'app-header',
@@ -25,7 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private visible = true;
     private lastScrollPos = 0;
     private autoCloseTimer: Subscription;
-    private autoCloseTime: number = 0;
     private inside: boolean;
     private sub: Subscription;
     private displayPlayQueue: boolean = false;
@@ -35,8 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     constructor(private router: Router,
                 private navigation: NavigationService,
                 private archiveService: ArchiveService,
-                private playService: PlayService,
-                private playHeaderCommunicationService: PlayHeaderCommunicationService,
                 private elementRef: ElementRef) {
         this.mainMenu = navigation.getNav('main-nav');
         this.secondaryMenu = navigation.getNav('secondary-nav');
@@ -50,12 +46,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
     }
 
-    private mouseOver() {
-        this.inside = true;
+    @HostListener('mouseenter') onMouseEnter() {
+        if (!isNullOrUndefined(this.autoCloseTimer))
+            this.autoCloseTimer.unsubscribe();
     }
 
-    private mouseLeave(){
-        this.inside = false;
+    @HostListener('mouseleave') onMouseLeave() {
+
+        this.autoCloseTimer = Observable.timer(3000).subscribe(
+            () => {
+                this.isCollapsed = true;
+            }
+        );
     }
 
     private hideMenu() {
@@ -69,26 +71,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     private ToggleSubMenu() {
-
         this.isCollapsed = !this.isCollapsed;
-
-        /*if (!this.isCollapsed) {
-
-            let time: number = 0;
-
-            this.autoCloseTimer = Observable.timer(0, 1000).subscribe(
-                () => {
-                    if(!this.inside && this.autoCloseTime > 3){
-                        this.ToggleSubMenu();
-                    } else {
-                        this.autoCloseTime += 1;
-                    }
-                }
-            );
-        } else {
-            this.autoCloseTimer = new Subscription;
-            this.autoCloseTime = 0;
-        }*/
     }
 
     public reset() {
@@ -96,25 +79,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.archiveService.reset();
     }
 
-    public updateNumberInQueue(){
-        this.numberOfEpisodes = this.playService.getEpisodesInQueue().length;
-    }
-
     ngOnInit() {
-        this.router.events.subscribe(x => {
-            if(x instanceof NavigationEnd) {
-                if(x.url.substring(0, 5) == "/play"){
-                    this.displayPlayQueue = true;
-                    this.updateNumberInQueue();
-                }else{
-                    this.displayPlayQueue = false;
-                }
-            }
-        });
-
-        this.queueUpdater = this.playHeaderCommunicationService.notifyObservable$.subscribe(()=>{
-            this.updateNumberInQueue();
-        });
 
         this.sub = this.archiveService.activated.subscribe(
             (activated) => {
@@ -122,12 +87,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
             }
         );
 
-        this.sub = this.archiveService.activeArchive.subscribe(
+        this.sub = this.archiveService.archive.subscribe(
             (activeArchive) => {
 
                 let type: string;
 
-                switch (activeArchive){
+                switch (activeArchive) {
                     case Archive.article:
                         type = 'Webbarkiv';
                         break;
@@ -143,6 +108,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.sub = this.archiveService.filterActive.subscribe(
             (active) => this.filterActive = active
         );
+
         // throttle scroll event
         Observable.fromEvent(window, 'scroll')
             .throttleTime(100)

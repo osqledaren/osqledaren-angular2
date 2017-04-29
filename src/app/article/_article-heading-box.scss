@@ -1,38 +1,40 @@
 //Style the article heading box
 .article-heading-box {
-	color: white;
-	background-color: $ol-orange;
-	padding:$grid-gutter-width-base/2;
-	margin: -$grid-gutter-width-base auto $grid-gutter-width-base/2;
-	z-index: 1;
-	position: relative;
-	text-align: center;
-	max-width: $container-narrow*2/3;
+  color: white;
+  background-color: $ol-orange;
+  padding: $grid-gutter-width-base/2;
+  margin: 0 auto $grid-gutter-width-base/2;
+  z-index: 1;
+  position: relative;
+  text-align: center;
 
-	@include media-breakpoint-down(md) {
-		max-width: 100%;
-		margin-top:0;
-	}
-	
+  @include media-breakpoint-down(md) {
+    max-width: 100%;
+    margin-top: 0;
+  }
 
-	//Style the list of the social media symbols
-	ul.social-medias {
-		text-align:center;
-		padding-left: 0;
-		list-style-type:none;
+  h1 {
+    font-size: $font-size-h3;
+  }
 
-		li {
-			display:inline;
-			list-style-type: none;
-			margin:0 1em;
+  //Style the list of the social media symbols
+  ul.social-medias {
+    text-align: center;
+    padding-left: 0;
+    list-style-type: none;
 
-			a {
-				display:inline-block;
-				color: white;
-				font-size: 2rem;
-				padding: 0;
-				line-height: 0;
-			}
-		}
-	}
+    li {
+      display: inline;
+      list-style-type: none;
+      margin: 0 1em;
+
+      a {
+        display: inline-block;
+        color: white;
+        font-size: 2rem;
+        padding: 0;
+        line-height: 0;
+      }
+    }
+  }
 }

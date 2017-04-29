@@ -55,6 +55,13 @@
 
 	img {
 		transition: transform 0.2s ease-in-out;
+		max-width: 100%;
+		min-width: 100%;
+		height: auto;
+		width: auto;
+		max-height: 100%;
+		min-height: 100%;
+		object-fit: cover;
 	}
 
 	img,
@@ -69,6 +76,10 @@
 
 	.article-grid-item-content.top {
 		background: lightblue;
+	}
+
+	.article-grid-item-header {
+		background: $gray-lightest;
 	}
 
 	.article-grid-item-header,
@@ -87,6 +98,7 @@
 
 	h3.article-title {
 		font-weight: bold;
+		font-size: 1rem;
 	}
 
 	time.article-date {
@@ -115,6 +127,7 @@
 
 	@include media-breakpoint-down(sm) {
 		width: 100%;
+		margin-bottom: $grid-gutter-width-base/2;
 	}
 
 	&.brick-large {

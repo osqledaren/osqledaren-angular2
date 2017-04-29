@@ -25,6 +25,7 @@ export abstract class LoadableComponent implements OnInit, OnDestroy {
      * Removes component from load queue. Loading has been resolved in component.
      */
     protected loaded() {
+        this.loaderService.remove('init'); // Remove initial load from queue.
         this.loaderService.remove('preload'); // Remove preload handle from queue.
         this.loaderService.remove(this.loaderHandle);
     }

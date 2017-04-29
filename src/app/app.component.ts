@@ -1,4 +1,5 @@
 import {Component, HostBinding} from "@angular/core";
+import {Angulartics2GoogleAnalytics} from 'angulartics2';
 import {
     Event,
     Router,
@@ -17,7 +18,9 @@ import {
 export class AppComponent {
     @HostBinding('class') bodyRouterClass: string = 'start';
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
+                angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
 
         this.router.events.subscribe((event: Event) => {
             this.navigationInterceptor(event);

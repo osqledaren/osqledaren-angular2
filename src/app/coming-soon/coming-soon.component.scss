@@ -1,0 +1,39 @@
+@import "./src/utility";
+
+h1 {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 40pt;
+    text-align: center;
+}
+
+img {
+	position: absolute;
+}
+
+#rocket {
+    width: 100px;
+    bottom: 20px;
+    right: 0;
+}
+
+#planets {
+    width: 140px;
+    top: 80px;
+    left: 20px;
+}
+
+.content {
+	max-width: 800px;
+    height: 600px;
+    position: relative;
+    margin: auto;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+}
