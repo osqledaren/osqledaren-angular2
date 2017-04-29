@@ -19,20 +19,6 @@
 
 .button-container {
   display: block;
-}
-
-.navbar-queue{
-  position: absolute;
-  margin-right: $grid-gutter-width-base/2 + 50px;
-  right: 0;
-  top: 50%;
-  margin-top: -8px;
-  font-family: "Proxima Nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  text-transform: none !important;
-  cursor: pointer;
-}
-
-.menu-toggle {
   position: absolute;
   margin-left: 0;
   margin-right: $grid-gutter-width-base/2;
@@ -161,7 +147,7 @@
     }
 
     .nav {
-      display: inline-block;
+      display: inline-flex;
       vertical-align: middle;
       flex-direction: row;
 
@@ -189,7 +175,6 @@
 
 /* Animating links on hover */
 .nav-item {
-  display: inline-block;
   position: relative;
   margin: 0 $grid-gutter-width-base/8;
 }
