@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Rendition} from "../shared/interface/article.interface";
+import {Rendition} from "../shared/interface/rendition.interface";
 
 @Component({
   selector: 'app-article-image-thumbnail',

@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { QueueService } from './queue.service';
+import { MediaQueueService } from './media-queue.service';
 
-describe('Service: Queue', () => {
+describe('Service: MediaQueue', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [QueueService]
     });
   });
 
-  it('should ...', inject([QueueService], (service: QueueService) => {
+  it('should ...', inject([MediaQueueService], (service: MediaQueueService) => {
     expect(service).toBeTruthy();
   }));
 });

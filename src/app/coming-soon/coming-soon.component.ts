@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
-import {Archive} from "../shared/enums";
+import {ArchiveType} from "../shared/enums";
 import {ArchiveService} from "../archive.service";
 
 @Component({
@@ -16,7 +16,7 @@ export class ComingSoonComponent extends LoadableComponent {
   }
 
   init(){
-    this.archiveService.activate(Archive.article);
+    this.archiveService.activate(ArchiveType.article);
     this.loaded();
   }
 

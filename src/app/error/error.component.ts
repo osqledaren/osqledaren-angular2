@@ -4,7 +4,7 @@ import {LoadableComponent} from "../shared/abstract/abstract.loadable.component"
 import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../shared/enums";
+import {ArchiveType} from "../shared/enums";
 
 @Component({
   selector: 'app-error',
@@ -23,7 +23,7 @@ export class ErrorComponent extends LoadableComponent {
   }
 
   init(){
-    this.archiveService.activate(Archive.article);
+    this.archiveService.activate(ArchiveType.article);
     this.sub = this.route.queryParams.subscribe((qp)=>{
 
       if (isNullOrUndefined(qp['status'])) {

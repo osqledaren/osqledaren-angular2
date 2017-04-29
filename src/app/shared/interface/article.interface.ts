@@ -1,3 +1,5 @@
+import {Rendition} from "./rendition.interface";
+import {Byline} from "./byline.interface";
 export interface Article {
     body_html: string,
     byline: Array<Byline>,
@@ -16,17 +18,4 @@ export interface Article {
     uri: string,
     urgency: number,
     versioncreated: string
-}
-
-export interface Rendition {
-    height: number;
-    width: number;
-    href: string;
-    mime_type: string;
-    title: string;
-}
-
-export interface Byline {
-    author: string;
-    role: string;
 }

@@ -25,9 +25,6 @@ import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-g
 import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 import {LoaderComponent} from "./loader/loader.component";
-import { PlayComponent } from './play/play/play.component';
-import { VideoPlayerComponent } from './play/video-player/video-player.component';
-import { PlaySingleProgramComponent } from './play/play-single-program/play-single-program.component';
 import {BylineComponent} from "./byline/byline.component";
 import {ArticleImageComponent} from "./article-image/article-image.component";
 import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
@@ -35,6 +32,7 @@ import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
 import {MediaQueueComponent} from './media-queue/media-queue.component';
 import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
 import {ErrorComponent} from './error/error.component';
+import {PlayComponent} from './play/play.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -43,16 +41,11 @@ import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
 import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {PlayService} from "./play.service";
-import {PlayHeaderCommunicationService} from "./play-header-communication.service";
-import {PlayQueueComponent} from './play/play-queue/play-queue.component';
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
-import {MarkMatchedWordsPipe} from './play/mark-matched-words.pipe';
 // Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
-import { TimePipe } from './play/time.pipe';
-import { TextOverflowEllipsisPipe } from './play/text-overflow-ellipsis.pipe';
 
 @NgModule({
     declarations: [
@@ -75,18 +68,13 @@ import { TextOverflowEllipsisPipe } from './play/text-overflow-ellipsis.pipe';
         LoaderComponent,
         BylineComponent,
         PlayComponent,
-        VideoPlayerComponent,
-        PlaySingleProgramComponent,
-        TimePipe,
-        TextOverflowEllipsisPipe,
-        PlayQueueComponent,
-        MarkMatchedWordsPipe,
         MediaQueueComponent,
         ComingSoonComponent,
         ArticleImageComponent,
         AdvertisementTopBannerComponent,
         ArticleImageThumbnailComponent,
-        ErrorComponent
+        ErrorComponent,
+        PlayComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -165,18 +153,6 @@ import { TextOverflowEllipsisPipe } from './play/text-overflow-ellipsis.pipe';
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'play/series/:episode',
-                component: PlaySingleProgramComponent,
-                data: {name: 'play-single'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'play/queue',
-                component: PlayQueueComponent,
-                data: {name: 'play-queue'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
                 path: 'pods',
                 component: ComingSoonComponent,
                 data: {name: 'coming-soon'},
@@ -205,7 +181,6 @@ import { TextOverflowEllipsisPipe } from './play/text-overflow-ellipsis.pipe';
         WordpressService,
         LoadableDeactivateGuard,
         PlayService,
-        PlayHeaderCommunicationService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
     bootstrap: [AppComponent]

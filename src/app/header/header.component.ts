@@ -5,7 +5,7 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import {Observable, Subscription} from "rxjs";
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../shared/enums";
+import {ArchiveType} from "../shared/enums";
 import {Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
 
@@ -93,11 +93,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 let type: string;
 
                 switch (activeArchive) {
-                    case Archive.article:
+                    case ArchiveType.article:
                         type = 'Webbarkiv';
                         break;
                     default:
-                        type = Archive[activeArchive].toLocaleUpperCase() + 'arkiv';
+                        type = ArchiveType[activeArchive].toLocaleUpperCase() + 'arkiv';
                         break;
                 }
 

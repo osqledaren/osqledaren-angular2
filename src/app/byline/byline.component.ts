@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Byline} from '../shared/interface/article.interface';
+import {Byline} from "../shared/interface/byline.interface";
 
 @Component({
     selector: 'app-byline',

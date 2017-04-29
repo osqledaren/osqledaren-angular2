@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../shared/enums";
+import {ArchiveType} from "../shared/enums";
 
 @Component({
   selector: 'app-news-archive',
@@ -12,7 +12,7 @@ export class NewsArchiveComponent implements OnInit, OnDestroy {
   constructor(private searchService: ArchiveService) { }
 
   ngOnInit() {
-    this.searchService.activate(Archive.article);
+    this.searchService.activate(ArchiveType.article);
   }
 
   ngOnDestroy() {

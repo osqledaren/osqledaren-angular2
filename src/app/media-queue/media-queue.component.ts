@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PlayHeaderCommunicationService} from "../play-header-communication.service";
-import {PlayService} from "../play.service";
+import {MediaQueueService} from "../media-queue.service";
 
 @Component({
   selector: 'app-media-queue',
@@ -8,16 +7,14 @@ import {PlayService} from "../play.service";
   styleUrls: ['./media-queue.component.scss']
 })
 export class MediaQueueComponent implements OnInit {
-  private numberOfEpisodes: number;
+  private queueCount: number;
 
-  constructor(private playService: PlayService,
-              private playHeaderCommunicationService: PlayHeaderCommunicationService) { }
+  constructor(private mediaQueue: MediaQueueService) { }
 
   ngOnInit() {
-  }
-
-  public updateNumberInQueue() {
-    this.numberOfEpisodes = this.playService.getEpisodesInQueue().length;
+    this.mediaQueue.queue.subscribe((queue)=>{
+      this.queueCount = queue.items.length;
+    })
   }
 
 }

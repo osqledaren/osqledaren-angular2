@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../shared/enums";
+import {ArchiveType} from "../shared/enums";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 
@@ -18,7 +18,7 @@ export class AboutComponent extends LoadableComponent {
 
     init() {
         this.loaded();
-        this.searchService.activate(Archive.article);
+        this.searchService.activate(ArchiveType.article);
     }
 
 }

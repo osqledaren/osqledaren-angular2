@@ -17,8 +17,7 @@
   position: relative;
 }
 
-<<<<<<< HEAD
-.navbar-queue{
+/*.navbar-queue{
   position: absolute;
   margin-right: $grid-gutter-width-base/2 + 50px;
   right: 0;
@@ -27,13 +26,10 @@
   font-family: "Proxima Nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   text-transform: none !important;
   cursor: pointer;
-}
+}*/
 
-.menu-toggle {
-=======
 .button-container {
   display: block;
->>>>>>> master
   position: absolute;
   margin-left: 0;
   margin-right: $grid-gutter-width-base/2;
@@ -71,7 +67,6 @@
 }
 
 .menu-toggle {
-
   width: $grid-gutter-width-base/2;
   text-transform: uppercase;
   color: white !important;

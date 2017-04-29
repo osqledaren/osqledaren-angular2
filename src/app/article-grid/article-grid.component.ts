@@ -4,7 +4,7 @@ import {MasonryOptions} from "angular2-masonry/src/masonry-options";
 import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ArticleQueryParams} from "../shared/interface/article-query-params.interface";
+import {ArticleQueryParams} from "../shared/interface/query-params.interface";
 import {isNullOrUndefined} from "util";
 import {PadNumberPipe} from "../pad-number.pipe";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";

@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
 import {isNullOrUndefined} from "util";
-import {Queue} from "./shared/enums";
+import {MediaType} from "./shared/enums";
 import {MediaQueueList, MediaQueue, MediaQueueItem} from "./shared/interface/media-queue.interface";
 
 @Injectable()
-export class QueueService {
+export class MediaQueueService {
 
     private _queues: MediaQueueList;
     public queue: BehaviorSubject<MediaQueue>;
@@ -17,7 +17,7 @@ export class QueueService {
      * Emits new queue values to subject
      * @param queue
      */
-    private emit(queue: Queue){
+    private emit(queue: MediaType){
 
         let mediaQueue = {
             name: queue,
@@ -31,7 +31,7 @@ export class QueueService {
      * Registers a queue
      * @param queue
      */
-    private registerQueue(queue: Queue) {
+    private registerQueue(queue: MediaType) {
         if (isNullOrUndefined(this._queues[queue])) {
             this._queues[queue] = [<MediaQueueItem>{}];
         }
@@ -42,7 +42,7 @@ export class QueueService {
      * @param queue
      * @param items
      */
-    public add(queue: Queue, items: MediaQueueItem[] | MediaQueueItem) {
+    public add(queue: MediaType, items: MediaQueueItem[] | MediaQueueItem) {
 
         if (Array.isArray(items)) {
             this._queues[queue].concat(items);
@@ -58,7 +58,7 @@ export class QueueService {
      * @param queue
      * @param ids
      */
-    public remove(queue: Queue, ids?: number[] | number) {
+    public remove(queue: MediaType, ids?: number[] | number) {
 
         if (Array.isArray(ids)) {
             for (let id in ids) {
@@ -76,7 +76,7 @@ export class QueueService {
      * Activates specified queue
      * @param queue
      */
-    public activate(queue: Queue) {
+    public activate(queue: MediaType) {
         this.emit(queue);
     }
 
@@ -84,7 +84,7 @@ export class QueueService {
      * Deactivates specified queue
      * @param queue
      */
-    public deactivate(queue: Queue) {
+    public deactivate(queue: MediaType) {
         this.queue.next(null);
     }
 

@@ -3,3 +3,8 @@ export interface ArticleQueryParams {
     date?: string,
     category?: any
 }
+
+export interface PodcastQueryParams {
+    series?: string,
+    search?: string
+}

@@ -1,12 +1,12 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http, RequestMethod, Request, Headers} from "@angular/http";
-import {Article, Rendition, Byline} from "./shared/interface/article.interface";
+import {Article} from "./shared/interface/article.interface";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 import {ContentService} from "./shared/abstract/abstract.content.service";
-import {ArticleQueryParams} from "./shared/interface/article-query-params.interface";
+import {ArticleQueryParams} from "./shared/interface/query-params.interface";
 import {APP_CONFIG} from "./app.config";
 import {isNullOrUndefined, isUndefined} from "util";
 import {PadNumberPipe} from "./pad-number.pipe";
@@ -22,9 +22,8 @@ export class WordpressService extends ContentService {
     constructor(protected http: Http,
                 protected cookieService: CookieService,
                 @Inject(APP_CONFIG) config) {
-        super();
+        super(http, config.wordpressEndpoint + '/wp-json/wp/v2');
         this.clientName = config.wordpressOAuth2ClientName;
-        this.endpoint = config.wordpressEndpoint + '/wp-json/wp/v2';
     }
 
     /**
@@ -142,55 +141,15 @@ export class WordpressService extends ContentService {
 
     private parse(body) {
 
-        let renditions: {};
         let categoriesById: Array<any> = [];
-        let media: any, sizes: any, categories: any, byline: Array<Byline> = [];
+        let media: any, sizes: any, categories: any;
         let cred: any, relatedPosts: any;
-
-        try {
-            renditions = <Rendition>{};
-            media = body._embedded['wp:featuredmedia'];
-            sizes = media[0].media_details.sizes;
-
-            for (let j in sizes) {
-                renditions[j] = <Rendition>{
-                    title: media[0].title.rendered,
-                    href: sizes[j].source_url,
-                    mime_type: sizes[j].mime_type,
-                    height: sizes[j].height,
-                    width: sizes[j].width
-                };
-            }
-        } catch (Exception) {
-            renditions = null;
-        }
+        let renditions = this.parseRenditions(body);
+        let byline = this.parseByline(body);
 
         categories = body.categories;
         for (let k in categories) {
             categoriesById[k] = categories[k];
-        }
-
-        try {
-            let author: Array<string>;
-            let bylineAuthors = body.acf.cred.match(/[^\r\n]+/g);
-
-            for (let j in bylineAuthors) {
-                author = bylineAuthors[j].split("="); // Split name and role at separator, in this case the "=" character.
-
-                author[0] = author[0].trim(); // Remove leading and trailing whitespaces.
-                author[1] = author[1].trim(); // Remove leading and trailing whitespaces.
-
-                // If successful convert raw strings into byline element.
-                if (author[0] !== "" && author[1] !== "") {
-                    byline.push(<Byline>{
-                        role: author[0],
-                        author: author[1]
-                    });
-                }
-            }
-
-        } catch (Exception) {
-            byline = null;
         }
 
         try {
@@ -240,7 +199,6 @@ export class WordpressService extends ContentService {
             }
         } catch (Exception) {
         }
-
 
         return posts;
     }

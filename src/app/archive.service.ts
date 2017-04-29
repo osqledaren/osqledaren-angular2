@@ -1,5 +1,5 @@
 import {Injectable, Inject, OnInit} from "@angular/core";
-import {Archive} from "./shared/enums";
+import {ArchiveType} from "./shared/enums";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 import "rxjs/add/operator/catch";
@@ -21,11 +21,11 @@ interface ArchiveFilter {
 @Injectable()
 export class ArchiveService extends ContentService{
 
-    private _archive: Archive = null;
+    private _archive: ArchiveType = null;
     private _distributions: Dictionary<string[]> = new Dictionary<string[]>();
     private _filter: ArchiveFilter = <ArchiveFilter>{};
 
-    public archive: Subject<Archive> = new Subject();
+    public archive: Subject<ArchiveType> = new Subject();
     public activated: Subject<boolean> = new Subject();
     public distributions: Subject<Dictionary<string[]>> = new Subject();
     public filterActive: Subject<boolean> = new Subject();
@@ -35,9 +35,8 @@ export class ArchiveService extends ContentService{
     constructor(private router: Router,
                 protected http: Http,
                 @Inject(APP_CONFIG) config) {
-        super();
+        super(http, config.wordpressEndpoint + '/wp-json/wp/v2');
 
-        this.endpoint = config.wordpressEndpoint + '/wp-json/wp/v2';
     }
 
     public reset() {
@@ -54,7 +53,7 @@ export class ArchiveService extends ContentService{
         this.filter.next(this._filter);
     }
 
-    public activate(archive: Archive) {
+    public activate(archive: ArchiveType) {
 
         if (this._archive === archive) {
             return; // Already active;
@@ -63,11 +62,11 @@ export class ArchiveService extends ContentService{
         let postType: string;
 
         switch (archive) {
-            case Archive.article:
+            case ArchiveType.article:
                 postType = 'post';
                 break;
             default:
-                postType = Archive[archive];
+                postType = ArchiveType[archive];
         }
 
         this.http.get(this.endpoint + '/archives/' + postType)
@@ -153,7 +152,7 @@ export class ArchiveService extends ContentService{
     private navigate() {
 
         switch (this._archive) {
-            case Archive.article:
+            case ArchiveType.article:
                 if (!isNullOrUndefined(this._filter.searchTerm)) {
 
                     if (this._filter.searchTerm.length > 0) {
@@ -176,9 +175,9 @@ export class ArchiveService extends ContentService{
                 }
 
                 break;
-            case Archive.play:
+            case ArchiveType.play:
                 break;
-            case Archive.pod:
+            case ArchiveType.pod:
                 break;
             default:
                 break;

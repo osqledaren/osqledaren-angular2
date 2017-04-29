@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {ArchiveService} from "../archive.service";
-import {Archive} from "../shared/enums";
+import {ArchiveType} from "../shared/enums";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 import {Observable} from "rxjs";
@@ -17,7 +17,7 @@ export class PageNotFoundComponent extends LoadableComponent {
     }
 
     init() {
-        this.archiveService.activate(Archive.article);
+        this.archiveService.activate(ArchiveType.article);
         this.loaded();
 
         this.archiveService.activated.subscribe(
