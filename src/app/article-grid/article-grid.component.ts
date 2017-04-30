@@ -63,7 +63,6 @@ export class ArticleGridComponent extends LoadableComponent {
     }
 
     private layoutComplete(event) {
-
         if (!this.articleGridItems.dirty) {
             this.articleGridItems.forEach(function (item) {
                 item.truncate();
@@ -213,7 +212,7 @@ export class ArticleGridComponent extends LoadableComponent {
             );
 
             this.masonryOptions = {
-                transitionDuration: '0.5s',
+                transitionDuration: '0.3s',
                 itemSelector: '.article-grid-item',
                 columnWidth: '.article-grid-sizer',
                 percentPosition: true

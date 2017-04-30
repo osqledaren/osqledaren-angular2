@@ -130,15 +130,6 @@ export class WordpressService extends ContentService {
 
     }
 
-    /**
-     * Strips html from text.
-     * @param text: string
-     * @returns {string}
-     */
-    protected static htmlToPlainText(text: string): string {
-        return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
-    }
-
     private parse(body) {
 
         let categoriesById: Array<any> = [];
@@ -165,7 +156,7 @@ export class WordpressService extends ContentService {
             copyrightholder: 'Osqledaren',
             copyrightnotice: 'Copyright Osqledaren',
             cred: cred,
-            description_text: WordpressService.htmlToPlainText(body.excerpt.rendered),
+            description_text: ContentService.htmlToPlainText(body.excerpt.rendered),
             headline: body.title.rendered,
             id: body.id,
             mimetype: 'text/html',

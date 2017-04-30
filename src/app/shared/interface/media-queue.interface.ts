@@ -1,10 +1,10 @@
-import {MediaType} from "../enums";
+import {PodcastType} from "../enums";
 export interface MediaQueueList {
     [id: number]: Array<MediaQueueItem>
 }
 
 export interface MediaQueue {
-    name: MediaType,
+    name: PodcastType,
     items: Array<MediaQueueItem>
 }
 

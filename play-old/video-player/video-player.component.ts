@@ -368,7 +368,7 @@ export class VideoPlayerComponent implements OnInit {
     }
   }
 
-  //Pause/play-old the video
+  //Pause/play-grid-old the video
   togglePlay() {
     let el;
     if(this.circleController){
@@ -394,7 +394,7 @@ export class VideoPlayerComponent implements OnInit {
       clearInterval(this.hideControllerTimer);
       this.showControls();
       this.videoPlaying = false;
-      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-play-old-circle");
+      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-play-grid-old-circle");
       clearInterval(this.progressBarTimer);
     }
     if(this.showSettingPanel){
@@ -452,7 +452,7 @@ export class VideoPlayerComponent implements OnInit {
     this.video.pause();
     clearInterval(this.progressBarTimer);
     this.videoPlaying = false;
-    playButton.className = playButton.className.replace(/\bfa-pause-circle\b/g, "fa-play-old-circle");
+    playButton.className = playButton.className.replace(/\bfa-pause-circle\b/g, "fa-play-grid-old-circle");
     this.showControls();
     if(this.showSettingPanel){
       this.toggleSettingPanel();
@@ -1105,7 +1105,7 @@ export class VideoPlayerComponent implements OnInit {
 
   //Go to the single series page
   goToProgram(program){
-    this.router.navigate(["play-old/series/"+program]);
+    this.router.navigate(["play-grid-old/series/"+program]);
   }
 
   //Load/change episode in the player
@@ -1170,7 +1170,7 @@ export class VideoPlayerComponent implements OnInit {
       }else{
         el = this.playButton.nativeElement;
       }
-      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-play-old-circle");
+      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-play-grid-old-circle");
     });
     this.renderer.listen(self.video, "loadedmetadata", (event) => {
       self.totalTime = event.target.duration;

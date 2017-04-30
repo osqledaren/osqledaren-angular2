@@ -9,7 +9,7 @@ export abstract class LoadableComponent implements OnInit, OnDestroy {
     private loaderHandle: string;
     protected sub: Subscription;
 
-    constructor(private loaderService: LoaderService) {
+    constructor(protected loaderService: LoaderService) {
         this.loaderHandle = new GUID().toString();
         this.sub = new Subscription;
         this.loaderService.add(this.loaderHandle);

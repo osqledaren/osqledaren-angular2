@@ -17,21 +17,21 @@ export class PrintedIssuesComponent extends LoadableComponent {
     {
       "year": "16/17",
       "issues": [
-        "assets/img/printed-issues/161700.png",
-        "assets/img/printed-issues/161701.png",
-        "assets/img/printed-issues/161702.png",
-        "assets/img/placeholder-printed-issues.png",
-        "assets/img/placeholder-printed-issues.png"
+        "/assets/img/printed-issues/161700.png",
+        "/assets/img/printed-issues/161701.png",
+        "/assets/img/printed-issues/161702.png",
+        "/assets/img/placeholder-printed-issues.png",
+        "/assets/img/placeholder-printed-issues.png"
       ]
     },
     {
       "year": "15/16",
       "issues": [
-        "assets/img/printed-issues/151600.png",
-        "assets/img/printed-issues/151601.png",
-        "assets/img/printed-issues/151602.png",
-        "assets/img/printed-issues/151603.png",
-        "assets/img/printed-issues/151604.png"
+        "/assets/img/printed-issues/151600.png",
+        "/assets/img/printed-issues/151601.png",
+        "/assets/img/printed-issues/151602.png",
+        "/assets/img/printed-issues/151603.png",
+        "/assets/img/printed-issues/151604.png"
       ]
     },
     {

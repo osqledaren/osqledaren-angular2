@@ -32,11 +32,10 @@ import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
 import {MediaQueueComponent} from './media-queue/media-queue.component';
 import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
 import {ErrorComponent} from './error/error.component';
-import {PlayComponent} from './play/play.component';
+import {PlayComponent} from './play-grid/play-grid.component';
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
-import {NavigationService} from "./navigation.service";
 import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
 import {CookieService} from 'angular2-cookie/services/cookies.service';
@@ -46,6 +45,7 @@ import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 // Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
+import { EpisodeGridItemComponent } from './episode-grid-item/episode-grid-item.component';
 
 @NgModule({
     declarations: [
@@ -74,7 +74,8 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         AdvertisementTopBannerComponent,
         ArticleImageThumbnailComponent,
         ErrorComponent,
-        PlayComponent
+        PlayComponent,
+        EpisodeGridItemComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -176,7 +177,6 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         CookieService,
         ArchiveService,
         LoaderService,
-        NavigationService,
         NewsArticleService,
         WordpressService,
         LoadableDeactivateGuard,

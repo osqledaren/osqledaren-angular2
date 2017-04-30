@@ -16,6 +16,15 @@ export abstract class ContentService{
         this.http = http;
     }
 
+    /**
+     * Strips html from text.
+     * @param text: string
+     * @returns {string}
+     */
+    public static htmlToPlainText(text: string): string {
+        return text ? (text).replace(/<[^>]+>/gm, '').replace('[&hellip;]', '') : '';
+    }
+
     protected parseByline(post){
 
         let byline = null;

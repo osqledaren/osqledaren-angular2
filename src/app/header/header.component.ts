@@ -1,6 +1,5 @@
 import {Component, OnInit, HostListener, ElementRef, OnDestroy} from "@angular/core";
 import {IMenuList} from "../shared/interface/menu.interface";
-import {NavigationService} from "../navigation.service";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import {Observable, Subscription} from "rxjs";
@@ -16,8 +15,6 @@ import {isNullOrUndefined} from "util";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-    public mainMenu: IMenuList;
-    public secondaryMenu: IMenuList;
     public isCollapsed: boolean = true;
     public archive: string;
     private filterActive;
@@ -31,11 +28,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private queueUpdater: Subscription;
 
     constructor(private router: Router,
-                private navigation: NavigationService,
                 private archiveService: ArchiveService,
                 private elementRef: ElementRef) {
-        this.mainMenu = navigation.getNav('main-nav');
-        this.secondaryMenu = navigation.getNav('secondary-nav');
     }
 
     @HostListener('document:click', ['$event.target'])

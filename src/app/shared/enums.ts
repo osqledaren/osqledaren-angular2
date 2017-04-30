@@ -4,7 +4,7 @@ export enum ArchiveType {
     play,
 }
 
-export enum MediaType {
-    pod,
-    play,
+export enum PodcastType {
+    audio,
+    video,
 }

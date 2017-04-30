@@ -5,7 +5,7 @@ import { PlayService } from '../../play.service';
 import { TextOverflowEllipsisPipe } from '../text-overflow-ellipsis.pipe';
 import { VideoPlayerComponent } from '../video-player/video-player.component';
 import { Series } from '../series';
-import { PlayHeaderCommunicationService } from '../../play-header-communication.service';
+import { PlayHeaderCommunicationService } from '../../play-grid-header-communication.service';
 import {Subscription} from "rxjs/Subscription";
 
 @Component({

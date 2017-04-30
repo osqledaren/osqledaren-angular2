@@ -1,6 +1,6 @@
 import {ContentService} from "./abstract.content.service";
 import {Injectable} from "@angular/core";
-import {MediaType} from "../enums";
+import {PodcastType} from "../enums";
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {PodcastQueryParams} from "../interface/query-params.interface";
@@ -10,19 +10,27 @@ import {Series} from "../interface/series.interface";
 import {Media} from "../interface/media.interface";
 @Injectable()
 export abstract class MediaContentService extends ContentService {
-    protected type: MediaType;
+    protected type: PodcastType;
     protected episodeEndpoint: string;
     protected seriesEndpoint: string;
-    protected episodebatchCount: number = 5;
+    protected episodebatchCount: number = 3;
     protected episodeOffset: number = 0;
-    protected seriesbatchCount: number = 5;
+    protected seriesbatchCount: number = 3;
     protected seriesOffset: number = 0;
 
-    constructor(type: MediaType, http: Http, endpoint: string){
+    constructor(type: PodcastType, http: Http, endpoint: string){
         super(http, endpoint);
-        let filter = '?filter[meta_query][0][key]=episode_type&filter[meta_query][0][value]=' + MediaType[type];
+        let filter = '?filter[meta_query][0][key]=episode_type&filter[meta_query][0][value]=' + PodcastType[type];
         this.episodeEndpoint = this.endpoint + '/podcast' + filter;
         this.seriesEndpoint = this.endpoint + '/series' + filter;
+    }
+
+    public getEpisodeBatchCount(){
+        return this.episodebatchCount;
+    }
+
+    public getSeriesBatchCount(){
+        return this.seriesbatchCount;
     }
 
     public getEpisodes(filters?: PodcastQueryParams): Observable<Episode[]> {
@@ -35,13 +43,14 @@ export abstract class MediaContentService extends ContentService {
         let query: string;
 
         query = this.episodeEndpoint + '&_embed&order=desc';
-        query += 'per_page=' + this.episodebatchCount + '&offset=' + this.episodeOffset * this.episodebatchCount;
+        query += '&per_page=' + this.episodebatchCount + '&offset=' + this.episodeOffset * this.episodebatchCount;
 
         try {
             if (!isNullOrUndefined(filters.series)) query += '&filter[series]=' + filters.series;
-        } catch (error) {
-            this.handleError(error);
+        } catch (e) {
         }
+
+        this.episodeOffset++;
 
         return this.http.get(query)
             .map((res: Response) => res.json())
@@ -57,51 +66,71 @@ export abstract class MediaContentService extends ContentService {
         return this.getEpisodes(filters);
     }
 
+    private parseSeriesMeta(p){
+
+        let meta = null;
+
+        try {
+            meta = <Series>{
+                id: p.pure_taxonomies.series[0].term_id,
+                name: p.pure_taxonomies.series[0].name,
+                slug: p.pure_taxonomies.series[0].slug,
+                description: p.pure_taxonomies.series[0].description,
+                episodes_count: p.pure_taxonomies.series[0].count
+            }
+        }
+        catch (e){}
+
+        return meta
+    }
+
+    private parseMediaMeta(p){
+
+        let meta = null;
+
+        try {
+            meta = <Media>{
+                url: p.meta.audio_file,
+                duration: p.meta.duration,
+                filesize: p.meta.filesize,
+                date_recorded: p.meta.date_recorded
+            }
+        } catch (e) {}
+
+        return meta
+    }
+
     private parseEpisodes(episodes) {
-        let result: Array<Episode> = [];
-        let media, sizes, renditions, byline;
+        let results: Array<Episode> = [];
 
         try {
             episodes.forEach((p) => {
-
-                let renditions = this.parseRenditions(episodes);
-                let byline = this.parseByline(episodes);
-                let videoData: Media = <Media>{
-                    url: p.meta.audio_file,
-                    duration: p.meta.duration,
-                    filesize: p.meta.filesize,
-                    date_recorded: p.meta.date_recorded
-                };
-
-                let seriesData: Series = <Series>{
-                    id: p.pure_taxonomies.series[0].term_id,
-                    name: p.pure_taxonomies.series[0].name,
-                    slug: p.pure_taxonomies.series[0].slug,
-                    description: p.pure_taxonomies.series[0].description,
-                    episodes_count: p.count
-                };
 
                 let episode: Episode = <Episode>{
                     id: p.id,
                     versioncreated: p.date,
                     content: p.content.rendered,
-                    excerpt: p.excerpt.rendered,
-                    byline: byline,
-                    renditions: renditions,
+                    excerpt: ContentService.htmlToPlainText(p.excerpt.rendered),
+                    byline: this.parseByline(p),
+                    renditions: this.parseRenditions(p),
                     episode_number: p.acf.avsnittsnummer,
-                    media: videoData,
-                    series: seriesData,
+                    media: this.parseMediaMeta(p),
+                    series: this.parseSeriesMeta(p),
                     headline: p.title.rendered,
                 };
+
+                results.push(episode);
             });
         } catch (e) {
             this.handleError(e);
         }
 
-        return result;
+        console.log(results);
+
+        return results;
     }
 
-    private search(searchTerm: string) {
+    public search(searchTerm: string) {
 
         let filters: PodcastQueryParams = <PodcastQueryParams>{
             search: searchTerm
@@ -110,15 +139,17 @@ export abstract class MediaContentService extends ContentService {
         this.getEpisodes(filters);
     }
 
-    private getSeries() {
-        this.episodeOffset = 0;
+    public getSeries() {
+        this.seriesOffset = 0;
         return this.getNextBatchOfEpisodes();
     }
 
-    private getNextBatchOfSeries() {
+    public getNextBatchOfSeries() {
 
         let query = this.seriesEndpoint + '&_embed&order=desc';
-        query += 'per_page=' + this.seriesbatchCount + '&offset=' + this.seriesOffset * this.seriesbatchCount;
+        query += '&per_page=' + this.seriesbatchCount + '&offset=' + this.seriesOffset * this.seriesbatchCount;
+
+        this.seriesOffset++;
 
         return this.http
             .get(query)

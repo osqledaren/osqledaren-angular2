@@ -45,7 +45,7 @@ export class PlayComponent implements OnInit {
 
     constructor(private playService: PlayService, private router: Router, private renderer: Renderer, private loaderService: LoaderService) { }
 
-    //Retrieve play-old latest episodes
+    //Retrieve play-grid-old latest episodes
     //After first retrieval, it retrieves subsequent episodes by specifying the date of the last episode from previously retrieved data
     getLatestEpisodes(){
         let lastPostDate = null;
@@ -132,7 +132,7 @@ export class PlayComponent implements OnInit {
 
     //Go to single series page
     goToSingleProgram(program){
-        this.router.navigate(["play-old/"+program]);
+        this.router.navigate(["play-grid-old/"+program]);
     }
 
     //Load/change the video on stage

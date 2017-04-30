@@ -1,10 +1,10 @@
-import {ViewChild, ElementRef, Component, Input, AfterViewInit} from '@angular/core';
+import {ElementRef, Component, Input, AfterViewInit} from '@angular/core';
 import {Article} from "../shared/interface/article.interface";
 
 declare let $clamp: any;
 
 @Component({
-  selector: 'masonry-brick',
+  selector: '.article-grid-item',
   templateUrl: 'article-grid-item.component.html'
 })
 
@@ -22,15 +22,10 @@ export class ArticleGridItemComponent implements AfterViewInit {
     let articlePadding = parseInt(window.getComputedStyle(container.lastElementChild).padding);
 
     let clampHeight = container.offsetHeight - articleHeading.offsetHeight - articleDate.offsetHeight - articlePadding*2 - 10;
-
     $clamp(articleText, {clamp: clampHeight + 'px'});
   }
 
   ngAfterViewInit() {
-
     this.truncate();
-
   }
-
-
 }

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
 import {isNullOrUndefined} from "util";
-import {MediaType} from "./shared/enums";
+import {PodcastType} from "./shared/enums";
 import {MediaQueueList, MediaQueue, MediaQueueItem} from "./shared/interface/media-queue.interface";
 
 @Injectable()
@@ -17,7 +17,7 @@ export class MediaQueueService {
      * Emits new queue values to subject
      * @param queue
      */
-    private emit(queue: MediaType){
+    private emit(queue: PodcastType){
 
         let mediaQueue = {
             name: queue,
@@ -31,7 +31,7 @@ export class MediaQueueService {
      * Registers a queue
      * @param queue
      */
-    private registerQueue(queue: MediaType) {
+    private registerQueue(queue: PodcastType) {
         if (isNullOrUndefined(this._queues[queue])) {
             this._queues[queue] = [<MediaQueueItem>{}];
         }
@@ -42,7 +42,7 @@ export class MediaQueueService {
      * @param queue
      * @param items
      */
-    public add(queue: MediaType, items: MediaQueueItem[] | MediaQueueItem) {
+    public add(queue: PodcastType, items: MediaQueueItem[] | MediaQueueItem) {
 
         if (Array.isArray(items)) {
             this._queues[queue].concat(items);
@@ -58,7 +58,7 @@ export class MediaQueueService {
      * @param queue
      * @param ids
      */
-    public remove(queue: MediaType, ids?: number[] | number) {
+    public remove(queue: PodcastType, ids?: number[] | number) {
 
         if (Array.isArray(ids)) {
             for (let id in ids) {
@@ -76,7 +76,7 @@ export class MediaQueueService {
      * Activates specified queue
      * @param queue
      */
-    public activate(queue: MediaType) {
+    public activate(queue: PodcastType) {
         this.emit(queue);
     }
 
@@ -84,7 +84,7 @@ export class MediaQueueService {
      * Deactivates specified queue
      * @param queue
      */
-    public deactivate(queue: MediaType) {
+    public deactivate(queue: PodcastType) {
         this.queue.next(null);
     }
 
