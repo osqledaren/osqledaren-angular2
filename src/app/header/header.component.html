@@ -19,15 +19,22 @@
                         <a class="nav-link" routerLink="/annonsera">Annonsera</a>
                     </li>
                 </ul>
-                <app-media-queue-widget></app-media-queue-widget>
                 <div class="button-container">
-                    <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
-                         [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div id="nav-filter-indicator" class="filter-indicator" [ngClass]="{'active': (isCollapsed && filterActive)}"></div>
+                    <ul>
+                        <li>
+                            <app-media-queue-widget></app-media-queue-widget>
+                        </li>
+                        <li>
+                            <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
+                                 [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div id="nav-filter-indicator" class="filter-indicator"
+                                 [ngClass]="{'active': (isCollapsed && filterActive)}"></div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

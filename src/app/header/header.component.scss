@@ -38,6 +38,19 @@
   // fix for vertical center alignment
   top: 50%;
   margin-top: -8px; // half of the element's own size
+
+  ul {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+
+    li {
+      float: left;
+      padding:0;
+      margin:0;
+    }
+  }
+
 }
 
 .filter-indicator {
@@ -91,7 +104,7 @@
     width: 100%;
     background: white;
     opacity: 1;
-    left: 0;
+    right: 0;
     transform: rotate(0deg);
     transition: .25s ease-in-out;
 
@@ -120,7 +133,7 @@
 
     &:nth-child(2) {
       opacity: 0;
-      left: -60px;
+      right: -60px;
     }
 
     &:nth-child(3) {
