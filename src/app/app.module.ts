@@ -9,6 +9,10 @@ import {MasonryModule} from "angular2-masonry/src/module";
 import {CollapseModule} from "ng2-bootstrap/collapse";
 import {DisqusModule} from "ng2-awesome-disqus";
 import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
 // Components
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
@@ -92,6 +96,10 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         FormsModule,
         HttpModule,
         Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
+        VgCoreModule,
+        VgControlsModule,
+        VgOverlayPlayModule,
+        VgBufferingModule,
         RouterModule.forRoot([
 
             {

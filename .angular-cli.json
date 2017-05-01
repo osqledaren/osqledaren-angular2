@@ -21,6 +21,7 @@
 			"prefix": "app",
 			"mobile": false,
 			"styles": [
+				"../node_modules/videogular2/fonts/videogular.css",
 				"global.scss"
 			],
 			"stylePreprocessorOptions": {
