@@ -13,9 +13,9 @@ export abstract class MediaContentService extends ContentService {
     protected type: PodcastType;
     protected episodeEndpoint: string;
     protected seriesEndpoint: string;
-    protected episodebatchCount: number = 3;
+    protected episodebatchCount: number = 12;
     protected episodeOffset: number = 0;
-    protected seriesbatchCount: number = 3;
+    protected seriesbatchCount: number = 12;
     protected seriesOffset: number = 0;
 
     constructor(type: PodcastType, http: Http, endpoint: string){

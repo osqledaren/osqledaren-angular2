@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { MediaQueueComponent } from './media-queue.component';
+import {MediaQueueWidgetComponent} from './media-queue-widget.component';
 
 describe('MediaQueueComponent', () => {
-  let component: MediaQueueComponent;
-  let fixture: ComponentFixture<MediaQueueComponent>;
+  let component: MediaQueueWidgetComponent;
+  let fixture: ComponentFixture<MediaQueueWidgetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediaQueueComponent ]
+      declarations: [ MediaQueueWidgetComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MediaQueueComponent);
+    fixture = TestBed.createComponent(MediaQueueWidgetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

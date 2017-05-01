@@ -13,7 +13,7 @@ import {EpisodeGridItemComponent} from "../episode-grid-item/episode-grid-item.c
     styleUrls: ['./play-grid.component.scss', '../episode-grid-item/episode-grid-item.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class PlayComponent extends LoadableComponent{
+export class PlayGridComponent extends LoadableComponent{
 
     @ViewChildren(EpisodeGridItemComponent) episodeGridItems: QueryList<EpisodeGridItemComponent>;
 

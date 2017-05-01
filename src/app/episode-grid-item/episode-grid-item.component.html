@@ -1,19 +1,23 @@
-<div class="episode-grid-item-content top">
-  <div class="episode-grid-item-header">
-    <app-article-image [renditions]="episode.renditions"></app-article-image>
-    <div class="episode-grid-item-text">
-      <div class="episode-excerpt" [innerHTML]="episode.excerpt"></div>
+<article>
+    <div class="episode-grid-item-content top">
+        <div class="episode-grid-item-header">
+            <app-article-image [renditions]="episode.renditions"></app-article-image>
+            <div class="episode-grid-overlay">
+                <div class="episode-excerpt" [innerHTML]="episode.excerpt"></div>
+                <div class="episode-controls">
+                    <a target="_blank" href=""><i class="fa fa-2x fa-play-circle" aria-hidden="true"></i></a>
+                    <a target="_blank" href=""><i class="fa fa-2x fa-plus-circle" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<div class="episode-grid-item-content bottom">
-  <div class="episode-grid-item-content-inner">
-    <article>
-      <h3 class="episode-title" [innerHTML]="episode.headline"></h3>
-      <ul class="episode-meta">
-        <li class="episode-series">Analog film</li>
-        <li class="episode-play-count">14k visningar</li>
-      </ul>
-    </article>
-  </div>
-</div>
+    <div class="episode-grid-item-content bottom">
+        <div class="episode-grid-item-content-inner">
+            <h3 class="episode-title" [innerHTML]="episode.headline"></h3>
+            <ul class="episode-meta">
+                <li class="episode-series">Analog film</li>
+                <li class="episode-play-count">14k visningar</li>
+            </ul>
+        </div>
+    </div>
+</article>

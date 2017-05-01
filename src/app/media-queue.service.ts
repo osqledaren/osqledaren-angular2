@@ -8,7 +8,9 @@ import {MediaQueueList, MediaQueue, MediaQueueItem} from "./shared/interface/med
 export class MediaQueueService {
 
     private _queues: MediaQueueList;
-    public queue: BehaviorSubject<MediaQueue>;
+    private _sidebarVisible: boolean = false;
+    public queue: BehaviorSubject<MediaQueue> = new BehaviorSubject(<MediaQueue>{});
+    public sidebarVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor() {
     }
@@ -86,6 +88,12 @@ export class MediaQueueService {
      */
     public deactivate(queue: PodcastType) {
         this.queue.next(null);
+    }
+
+    public toggleSidebar(){
+        this._sidebarVisible = !this._sidebarVisible;
+        this.sidebarVisible.next(this._sidebarVisible);
+        return this._sidebarVisible;
     }
 
 }

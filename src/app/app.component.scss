@@ -12,9 +12,60 @@ app-footer {
   flex: 0;
 }
 
+#site-wrapper {
+  padding-top: $header-height; // Give some padding for fixed header.
+  transform: translate3d(0, 0, 0);
+}
+
+#site-wrapper, #media-queue-sidebar {
+  transition: transform 0.3s ease-in-out;
+}
+
+#media-queue-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100%;
+  transform: translate3d(100%, 0, 0);
+  padding: $header-height+$grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base/2;
+  background: white;
+  z-index: 998;
+}
+
 :host {
   flex-direction: column;
   min-height: 100vh;
   width:100%;
   display: flex;
+
+  &.media-queue-sidebar-visible {
+    #site-wrapper {
+      transform: translate3d(-25%, 0, 0);
+    }
+
+    #media-queue-sidebar {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &.media-queue-sidebar-visible #site-wrapper {
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    #media-queue-sidebar {
+      width: 50%;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    &.media-queue-sidebar-visible #site-wrapper {
+      transform: translate3d(-100%, 0, 0);
+    }
+
+    #media-queue-sidebar {
+      width: 100%;
+    }
+  }
 }

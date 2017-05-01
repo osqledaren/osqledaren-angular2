@@ -58,8 +58,8 @@
       transform: scale(1.05, 1.05);
     }
 
-    .episode-grid-item-content .episode-grid-item-text {
-      opacity: 1 !important;
+    .episode-grid-overlay {
+      opacity: 0.9 !important;
     }
   }
 
@@ -75,6 +75,13 @@
 
   @include media-breakpoint-down(sm) {
     width: 50%;
+    .episode-grid-overlay {
+      background:transparent!important;
+      .episode-excerpt {
+        display: none!important;
+      }
+      opacity: 1!important;
+    }
   }
 }
 
@@ -122,19 +129,43 @@ h3.episode-title {
   margin:0;
 }
 
-.episode-grid-item-text {
+.episode-grid-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   padding: $grid-gutter-width-base/4;
-  background: white;
+  background: $gray-dark;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   font-size: $font-size-small;
 
-  .excerpt {
+  .episode-controls {
+    position: absolute;
+    left:0;
+    bottom:0;
+    width: 100%;
+    padding: 0 $grid-gutter-width-base/4 $grid-gutter-width-base/4;
+    max-height: $grid-gutter-width-base/2 + $grid-gutter-width-base/4;
+    height: auto;
+    overflow: hidden;
+
+    a {
+      color: white;
+      &:hover {
+        color: $brand-primary;
+      }
+    }
+
+    i {
+      margin-right: $grid-gutter-width-base/12;
+    }
+  }
+
+  .episode-excerpt {
+    color:white;
+    margin-bottom: $grid-gutter-width-base/2;
     overflow: hidden;
   }
 }

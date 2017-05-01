@@ -1,4 +1,4 @@
-import {Component, HostBinding} from "@angular/core";
+import {Component, HostBinding, OnInit} from "@angular/core";
 import {Angulartics2GoogleAnalytics} from 'angulartics2';
 import {
     Event,
@@ -9,21 +9,39 @@ import {
     NavigationCancel,
     NavigationError
 } from "@angular/router";
+import {MediaQueueService} from "./media-queue.service";
 
 @Component({
     selector: 'body',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-    @HostBinding('class') bodyRouterClass: string = 'start';
+export class AppComponent implements OnInit {
+    @HostBinding('class') bodyRouterClass: string;
+
+    private bodyClasses: {[id:string]: string} = {};
 
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
+                private queueService: MediaQueueService,
                 angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
 
         this.router.events.subscribe((event: Event) => {
             this.navigationInterceptor(event);
+
+            this.queueService.sidebarVisible.subscribe((visible) =>{
+                this.bodyClasses['mediaQueue'] = visible ? 'media-queue-sidebar-visible' : '';
+
+                this.bodyRouterClass = '';
+
+                for(let c in this.bodyClasses){
+                    if(this.bodyClasses[c] !== ''){
+                        this.bodyRouterClass += ' ' + this.bodyClasses[c];
+                    }
+                }
+
+                this.bodyRouterClass = this.bodyRouterClass.slice(1); // Remove initial white-space
+            })
         });
     }
 
@@ -33,7 +51,7 @@ export class AppComponent {
         }
 
         if (event instanceof NavigationEnd) {
-            this.bodyRouterClass = this.getClass(this.activatedRoute.snapshot);
+            this.bodyClasses['page'] = this.getClass(this.activatedRoute.snapshot);
         }
 
         // Set loading state to false in both of the below events to hide the spinner in case a request fails
@@ -53,5 +71,9 @@ export class AppComponent {
         else {
             return '';
         }
+    }
+
+    ngOnInit(){
+
     }
 }

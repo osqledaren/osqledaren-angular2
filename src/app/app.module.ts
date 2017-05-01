@@ -29,10 +29,14 @@ import {BylineComponent} from "./byline/byline.component";
 import {ArticleImageComponent} from "./article-image/article-image.component";
 import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
 import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
-import {MediaQueueComponent} from './media-queue/media-queue.component';
 import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
 import {ErrorComponent} from './error/error.component';
-import {PlayComponent} from './play-grid/play-grid.component';
+import {PlayGridComponent} from './play-grid/play-grid.component';
+import {PlayComponent} from './play/play.component';
+import {EpisodeGridItemComponent} from './episode-grid-item/episode-grid-item.component';
+import {MediaPlayerComponent} from './media-player/media-player.component';
+import {MediaQueueSidebarComponent} from './media-queue-sidebar/media-queue-sidebar.component';
+import {MediaQueueWidgetComponent} from "./media-queue-widget/media-queue-widget.component";
 // Services
 import {WordpressService} from "./wordpress.service";
 import {NewsArticleService} from "./news-article.service";
@@ -40,12 +44,13 @@ import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
 import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {PlayService} from "./play.service";
+import {MediaQueueService} from "./media-queue.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 // Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
-import { EpisodeGridItemComponent } from './episode-grid-item/episode-grid-item.component';
+
 
 @NgModule({
     declarations: [
@@ -67,15 +72,17 @@ import { EpisodeGridItemComponent } from './episode-grid-item/episode-grid-item.
         SplitPipe,
         LoaderComponent,
         BylineComponent,
-        PlayComponent,
-        MediaQueueComponent,
+        PlayGridComponent,
         ComingSoonComponent,
         ArticleImageComponent,
         AdvertisementTopBannerComponent,
         ArticleImageThumbnailComponent,
         ErrorComponent,
         PlayComponent,
-        EpisodeGridItemComponent
+        EpisodeGridItemComponent,
+        MediaPlayerComponent,
+        MediaQueueWidgetComponent,
+        MediaQueueSidebarComponent
     ],
     imports: [
         CollapseModule.forRoot(),
@@ -181,6 +188,7 @@ import { EpisodeGridItemComponent } from './episode-grid-item/episode-grid-item.
         WordpressService,
         LoadableDeactivateGuard,
         PlayService,
+        MediaQueueService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
     bootstrap: [AppComponent]
