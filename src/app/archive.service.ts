@@ -1,5 +1,5 @@
 import {Injectable, Inject, OnInit} from "@angular/core";
-import {ArchiveType} from "./shared/enums";
+import {ArchiveEnum} from "./shared/enums";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 import "rxjs/add/operator/catch";
@@ -8,8 +8,8 @@ import {isNullOrUndefined} from "util";
 import {Response, Http} from "@angular/http";
 import {ContentService} from "./shared/abstract/abstract.content.service";
 import {APP_CONFIG} from "./app.config";
-import {Dictionary} from "./shared/class/dictionary.class";
 import {PadNumberPipe} from "./pad-number.pipe";
+import Dictionary from "typescript-collections/dist/lib/Dictionary";
 
 interface ArchiveFilter {
     year: number,
@@ -21,15 +21,15 @@ interface ArchiveFilter {
 @Injectable()
 export class ArchiveService extends ContentService{
 
-    private _archive: ArchiveType = null;
-    private _distributions: Dictionary<string[]> = new Dictionary<string[]>();
+    private _archive: ArchiveEnum = null;
+    private _distributions: Dictionary<number, number[]> = new Dictionary<number, number[]>();
     private _filter: ArchiveFilter = <ArchiveFilter>{};
 
-    public archive: Subject<ArchiveType> = new Subject();
-    public activated: Subject<boolean> = new Subject();
-    public distributions: Subject<Dictionary<string[]>> = new Subject();
-    public filterActive: Subject<boolean> = new Subject();
-    public filter: Subject<ArchiveFilter> = new Subject();
+    public archive: Subject<ArchiveEnum> = new Subject<ArchiveEnum>();
+    public activated: Subject<boolean> = new Subject<boolean>();
+    public distributions: Subject<Dictionary<number, number[]>> = new Subject<Dictionary<number,number[]>>();
+    public filterActive: Subject<boolean> = new Subject<boolean>();
+    public filter: Subject<ArchiveFilter> = new Subject<ArchiveFilter>();
 
 
     constructor(private router: Router,
@@ -53,7 +53,7 @@ export class ArchiveService extends ContentService{
         this.filter.next(this._filter);
     }
 
-    public activate(archive: ArchiveType) {
+    public activate(archive: ArchiveEnum) {
 
         if (this._archive === archive) {
             return; // Already active;
@@ -62,11 +62,11 @@ export class ArchiveService extends ContentService{
         let postType: string;
 
         switch (archive) {
-            case ArchiveType.article:
+            case ArchiveEnum.article:
                 postType = 'post';
                 break;
             default:
-                postType = ArchiveType[archive];
+                postType = ArchiveEnum[archive];
         }
 
         this.http.get(this.endpoint + '/archives/' + postType)
@@ -118,11 +118,14 @@ export class ArchiveService extends ContentService{
 
         this._filter.searchTerm = ''; // Reset search term.
 
-        let years: number[] = this._distributions.keys().map(Number);
+        let years: number[] = this._distributions.keys();
+
+        years = years.reverse(); // Make years ascending
+
         let lastYear: number = years.length - 1;
         let dateString: string = '';
 
-        // Validate year selection (Not ascending array order).
+        // Validate year selection.
         if (year >= years[0] &&
             year <= years[lastYear]) {
 
@@ -130,11 +133,11 @@ export class ArchiveService extends ContentService{
             dateString += year.toString();
 
             if (!isNullOrUndefined(month)) {
-                let lastMonth = this._distributions.item(year.toString()).length - 1;
+                let lastMonth = this._distributions.getValue(year).length - 1;
 
                 // Year is a valid number, check if month is selected and valid (Note descending array order).
-                if (month <= Number(this._distributions.item(year.toString())[0]) &&
-                    month >= Number(this._distributions.item(year.toString())[lastMonth])) {
+                if (month <= this._distributions.getValue(year)[0] &&
+                    month >= this._distributions.getValue(year)[lastMonth]) {
 
                     this._filter.month = month;
                     dateString += '-' + new PadNumberPipe().transform(month, 2);
@@ -152,7 +155,7 @@ export class ArchiveService extends ContentService{
     private navigate() {
 
         switch (this._archive) {
-            case ArchiveType.article:
+            case ArchiveEnum.article:
                 if (!isNullOrUndefined(this._filter.searchTerm)) {
 
                     if (this._filter.searchTerm.length > 0) {
@@ -175,9 +178,9 @@ export class ArchiveService extends ContentService{
                 }
 
                 break;
-            case ArchiveType.play:
+            case ArchiveEnum.play:
                 break;
-            case ArchiveType.pod:
+            case ArchiveEnum.pod:
                 break;
             default:
                 break;
@@ -191,10 +194,10 @@ export class ArchiveService extends ContentService{
      */
     protected map(res: Response) {
         let json: any = res.json();
-        let dist = new Dictionary<number[]>();
+        let dist = new Dictionary<number, number[]>();
 
         for (let i in json) {
-            dist.add(json[i].year, json[i].months);
+            dist.setValue(Number(json[i].year), json[i].months);
         }
 
         return dist;

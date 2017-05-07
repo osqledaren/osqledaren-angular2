@@ -15,6 +15,12 @@ app-footer {
 #site-wrapper {
   padding-top: $header-height; // Give some padding for fixed header.
   transform: translate3d(0, 0, 0);
+
+  > .container-fluid {
+    padding:0;
+    overflow-x: hidden;
+  }
+
 }
 
 #site-wrapper, #media-queue-sidebar {
@@ -28,7 +34,7 @@ app-footer {
   width: 25%;
   height: 100%;
   transform: translate3d(100%, 0, 0);
-  padding: $header-height+$grid-gutter-width-base/2 $grid-gutter-width-base/2 $grid-gutter-width-base/2;
+  padding: $header-height 0 $grid-gutter-width-base/2;
   background: white;
   z-index: 998;
 }

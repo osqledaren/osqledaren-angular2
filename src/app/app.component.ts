@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
         this.router.events.subscribe((event: Event) => {
             this.navigationInterceptor(event);
 
-            this.queueService.sidebarVisible.subscribe((visible) =>{
+            this.queueService.subjects.sidebarVisible.subscribe((visible) =>{
                 this.bodyClasses['mediaQueue'] = visible ? 'media-queue-sidebar-visible' : '';
 
                 this.bodyRouterClass = '';

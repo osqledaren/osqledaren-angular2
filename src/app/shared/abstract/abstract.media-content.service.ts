@@ -1,16 +1,16 @@
 import {ContentService} from "./abstract.content.service";
 import {Injectable} from "@angular/core";
-import {PodcastType} from "../enums";
+import {PodcastEnum} from "../enums";
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {PodcastQueryParams} from "../interface/query-params.interface";
 import {isNullOrUndefined} from "util";
 import {Episode} from "../interface/episode.interface";
 import {Series} from "../interface/series.interface";
-import {Media} from "../interface/media.interface";
+import {EpisodeRendition} from "../interface/media-rendition.interface";
 @Injectable()
 export abstract class MediaContentService extends ContentService {
-    protected type: PodcastType;
+    protected type: PodcastEnum;
     protected episodeEndpoint: string;
     protected seriesEndpoint: string;
     protected episodebatchCount: number = 12;
@@ -18,9 +18,9 @@ export abstract class MediaContentService extends ContentService {
     protected seriesbatchCount: number = 12;
     protected seriesOffset: number = 0;
 
-    constructor(type: PodcastType, http: Http, endpoint: string){
+    constructor(type: PodcastEnum, http: Http, endpoint: string){
         super(http, endpoint);
-        let filter = '?filter[meta_query][0][key]=episode_type&filter[meta_query][0][value]=' + PodcastType[type];
+        let filter = '?filter[meta_query][0][key]=episode_type&filter[meta_query][0][value]=' + PodcastEnum[type];
         this.episodeEndpoint = this.endpoint + '/podcast' + filter;
         this.seriesEndpoint = this.endpoint + '/series' + filter;
     }
@@ -89,7 +89,7 @@ export abstract class MediaContentService extends ContentService {
         let meta = null;
 
         try {
-            meta = <Media>{
+            meta = <EpisodeRendition>{
                 url: p.meta.audio_file,
                 duration: p.meta.duration,
                 filesize: p.meta.filesize,
@@ -124,8 +124,6 @@ export abstract class MediaContentService extends ContentService {
         } catch (e) {
             this.handleError(e);
         }
-
-        console.log(results);
 
         return results;
     }

@@ -16,12 +16,8 @@ export class MediaQueueWidgetComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.queueService.queue.subscribe((queue) => {
-            try {
-                this.queueCount = queue.items.length;
-            } catch(e){
-                this.queueCount = 0;
-            }
+        this.queueService.subjects.queue.subscribe((queue) => {
+            this.queueCount = !isNullOrUndefined(queue) ? queue.size() : 0;
         });
     }
 

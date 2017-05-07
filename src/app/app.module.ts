@@ -48,6 +48,7 @@ import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
 import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {PlayService} from "./play.service";
+import {MediaPlayerService} from "./media-player.service";
 import {MediaQueueService} from "./media-queue.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
@@ -196,6 +197,7 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         WordpressService,
         LoadableDeactivateGuard,
         PlayService,
+        MediaPlayerService,
         MediaQueueService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],

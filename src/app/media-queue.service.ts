@@ -1,16 +1,27 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
+import Dictionary from "typescript-collections/dist/lib/Dictionary";
 import {isNullOrUndefined} from "util";
-import {PodcastType} from "./shared/enums";
-import {MediaQueueList, MediaQueue, MediaQueueItem} from "./shared/interface/media-queue.interface";
+import {GUID} from "./shared/class/guid.class";
+import {Episode} from "./shared/interface/episode.interface";
+import LinkedList from "typescript-collections/dist/lib/LinkedList";
+
+
+interface MediaQueueServiceSubjects {
+    queue: BehaviorSubject <LinkedList<Episode>>,
+    sidebarVisible: BehaviorSubject <boolean>
+}
 
 @Injectable()
 export class MediaQueueService {
 
-    private _queues: MediaQueueList;
-    private _sidebarVisible: boolean = false;
-    public queue: BehaviorSubject<MediaQueue> = new BehaviorSubject(<MediaQueue>{});
-    public sidebarVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    private queues: Dictionary<GUID, LinkedList<Episode>> = new Dictionary<GUID, LinkedList<Episode>>();
+    private activeQueue: GUID = undefined;
+    private sidebarVisible: boolean = false;
+    public subjects = <MediaQueueServiceSubjects>{
+        queue: new BehaviorSubject<LinkedList<Episode>>(new LinkedList<Episode>()),
+        sidebarVisible: new BehaviorSubject<boolean>(false)
+    };
 
     constructor() {
     }
@@ -19,81 +30,148 @@ export class MediaQueueService {
      * Emits new queue values to subject
      * @param queue
      */
-    private emit(queue: PodcastType){
-
-        let mediaQueue = {
-            name: queue,
-            items: this._queues[queue]
-        };
-
-        this.queue.next(mediaQueue);
+    private emit(queue: GUID) {
+        this.subjects.queue.next(this.queues.getValue(queue));
     }
 
     /**
-     * Registers a queue
+     * Creates and registers a queue
      * @param queue
      */
-    private registerQueue(queue: PodcastType) {
-        if (isNullOrUndefined(this._queues[queue])) {
-            this._queues[queue] = [<MediaQueueItem>{}];
+    public registerQueue(queue: GUID) {
+
+        let q = isNullOrUndefined(queue) ? new GUID() : queue;
+
+        if (!this.queues.containsKey(q)) {
+            this.queues.setValue(q, new LinkedList<Episode>());
         }
+
+        return q;
     }
 
     /**
-     * Appends items to active queue
+     * Removes a registered queue
      * @param queue
-     * @param items
      */
-    public add(queue: PodcastType, items: MediaQueueItem[] | MediaQueueItem) {
-
-        if (Array.isArray(items)) {
-            this._queues[queue].concat(items);
-        } else {
-            this._queues[queue].push(items);
-        }
-
-        this.emit(queue);
+    public deregisterQueue(queue: GUID) {
+        this.queues.remove(queue);
     }
 
     /**
-     * Removes items from active queue
-     * @param queue
-     * @param ids
+     * Removes all registered queues
      */
-    public remove(queue: PodcastType, ids?: number[] | number) {
+    public deregisterAll() {
+        this.queues.clear();
+        this.subjects.queue.next(undefined);
+    }
 
-        if (Array.isArray(ids)) {
-            for (let id in ids) {
-                let keyExists: number = ids.indexOf(parseInt(id), 0);
-                if (keyExists > -1) {
-                    this._queues[queue].splice(parseInt(id));
-                }
-            }
-        }
-
-        this.emit(queue);
+    /**
+     * Returns registered queues.
+     * @returns {Dictionary<GUID, LinkedList<Episode>>}
+     */
+    public getQueues() {
+        return this.queues;
     }
 
     /**
      * Activates specified queue
      * @param queue
+     * @returns {GUID}
      */
-    public activate(queue: PodcastType) {
-        this.emit(queue);
+    public activate(queue: GUID) {
+        let q = this.registerQueue(queue);
+        this.activeQueue = q;
+        this.emit(q);
+        return q;
     }
 
     /**
      * Deactivates specified queue
      * @param queue
+     * @returns {GUID}
      */
-    public deactivate(queue: PodcastType) {
-        this.queue.next(null);
+    public deactivate(queue: GUID) {
+        if (!this.queues.containsKey(queue)) return;
+        this.subjects.queue.next(undefined);
+        return queue;
     }
 
-    public toggleSidebar(){
-        this._sidebarVisible = !this._sidebarVisible;
-        this.sidebarVisible.next(this._sidebarVisible);
-        return this._sidebarVisible;
+    /**
+     * Appends item(s) to active queue
+     * @param items
+     */
+    public enqueue(items: Episode[] | Episode) {
+
+        let queue = this.activate(this.activeQueue); // Verify that there is a queue active.
+        let v: Episode[] = <Episode[]>[].concat(items);
+        let updatedQueue: LinkedList<Episode> = this.queues.getValue(queue);
+
+        for (let i = 0; i < v.length; i++) {
+            updatedQueue.add(v[i]);
+        }
+
+        this.queues.setValue(queue, updatedQueue);
+        this.emit(queue);
+    }
+
+    /**
+     * Removes item(s) from active queue
+     * @param items
+     */
+    public dequeue(items: Episode[] | Episode) {
+
+        if (isNullOrUndefined(this.activeQueue)) return;
+
+        let updatedQueue: LinkedList<Episode> = this.queues.getValue(this.activeQueue);
+        let v: Episode[] = <Episode[]>[].concat(items);
+
+        for (let i = 0; i < v.length; i++) {
+            updatedQueue.remove(v[i], MediaQueueService.compare);
+        }
+        this.queues.setValue(this.activeQueue, updatedQueue);
+        this.emit(this.activeQueue);
+    }
+
+    /**
+     * Quick way to determine if active queue contains item
+     * @param item
+     * @returns {boolean}
+     */
+    public contains(item: Episode) {
+
+        if (isNullOrUndefined(this.activeQueue)) return false;
+
+        return this.queues.getValue(this.activeQueue).contains(item, MediaQueueService.compare);
+    }
+    /**
+     * Clears active queue
+     */
+    public clearQueue() {
+        if (isNullOrUndefined(this.activeQueue)) return;
+        let updatedQueue: LinkedList<Episode> = this.queues.getValue(this.activeQueue);
+
+        updatedQueue.clear();
+        this.emit(this.activeQueue);
+    }
+
+    /**
+     * Returns whether two episodes' ids are equal
+     * @param e1
+     * @param e2
+     * @returns {boolean}
+     */
+    public static compare(e1: Episode, e2: Episode){
+        return e1.id === e2.id;
+    }
+
+    /**
+     * Toggles sidebar state
+     * @returns {boolean}
+     */
+    public toggleSidebar() {
+        this.sidebarVisible = !this.sidebarVisible;
+        this.subjects.sidebarVisible.next(this.sidebarVisible);
+        return this.sidebarVisible;
     }
 
 }

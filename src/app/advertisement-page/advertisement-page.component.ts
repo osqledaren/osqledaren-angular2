@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ArchiveService} from "../archive.service";
-import {ArchiveType} from "../shared/enums";
+import {ArchiveEnum} from "../shared/enums";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {LoaderService} from "../loader.service";
 
@@ -47,7 +47,7 @@ export class AdvertisementPageComponent extends LoadableComponent {
 
   init() {
   	this.loaded();
-  	this.archiveService.activate(ArchiveType.article);
+  	this.archiveService.activate(ArchiveEnum.article);
   }
 
 }

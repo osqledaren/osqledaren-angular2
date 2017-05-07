@@ -1,11 +1,19 @@
 <app-header></app-header>
 <div id="site-wrapper" class="site-wrapper">
-    <aside id="media-player">
-        <app-media-player></app-media-player>
-    </aside>
-    <main id="main" class="main" role="main">
-        <router-outlet></router-outlet>
-    </main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <aside id="media-player">
+                    <app-media-player></app-media-player>
+                </aside>
+            </div>
+            <div class="col-12">
+                <main id="main" class="main" role="main">
+                    <router-outlet></router-outlet>
+                </main>
+            </div>
+        </div>
+    </div>
     <app-footer></app-footer>
 </div>
 <aside id="media-queue-sidebar" class="media-queue-sidebar">

@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import {Dictionary} from "./shared/class/dictionary.class";
 import {Subject, Observable} from "rxjs/Rx";
 import {ArchiveService} from "./archive.service";
+import Dictionary from "typescript-collections/dist/lib/Dictionary";
 
 @Injectable()
 export class LoaderService {
 
-  private collection: Dictionary<boolean>;
+  private collection: Dictionary<string, boolean>;
   private isLoaded: boolean = false;
   private timer;
-  public loaded: Subject<boolean> = new Subject;
+  public loaded: Subject<boolean> = new Subject<boolean>();
 
   constructor() {
-    this.collection = new Dictionary<boolean>();
+    this.collection = new Dictionary<string, boolean>();
     this.add('init');
 
     // Initial refresh with one second delay. Loader is always active on initialization.
@@ -29,7 +29,7 @@ export class LoaderService {
    * @param item
    */
   public add(item: string){
-    this.collection.add(item, true);
+    this.collection.setValue(item, true);
     this.refresh();
   }
 
@@ -55,7 +55,7 @@ export class LoaderService {
    */
   private refresh(){
 
-    if(this.collection.values().length == 0){
+    if(this.collection.size() == 0){
       this.isLoaded = true;
       this.loaded.next(this.isLoaded);
     } else {

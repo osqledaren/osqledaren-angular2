@@ -1,4 +1,4 @@
-export interface Media {
+export interface EpisodeRendition {
     url: string;
     duration: string;
     filesize: string;

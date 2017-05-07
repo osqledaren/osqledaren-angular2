@@ -1,5 +1,5 @@
 import {Series} from "./series.interface";
-import {Media} from "./media.interface";
+import {EpisodeRendition} from "./media-rendition.interface";
 import {Rendition} from "./rendition.interface";
 import {Byline} from "./byline.interface";
 
@@ -11,7 +11,7 @@ export interface Episode {
     byline: Array<Byline>,
     renditions: {[id:string]: Rendition},
     episode_number: number | string,
-    media: Media,
+    media: EpisodeRendition,
     series: Series,
     headline: string,
     versioncreated: string

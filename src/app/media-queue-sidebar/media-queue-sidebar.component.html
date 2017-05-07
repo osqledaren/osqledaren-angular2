@@ -1,3 +1,12 @@
-<div *ngIf="isVisible" class="container-fluid">
-  <p>YEs!</p>
-</div>
+<h2>Din kö</h2>
+<ul class="list-unstyled" *ngIf="isVisible">
+  <li *ngFor="let episode of queue;" class="episode-queue-item item">
+    <span [innerHTML]="episode.headline" class="episode-queue-item-title title"></span>
+    <a (click)="remove(episode)" class="episode-queue-item-remove remove">
+      <i class="fa fa-remove"></i>
+    </a>
+    <a (click)="play(episode)" class="episode-queue-item-play play">
+      <i class="fa fa-play"></i>
+    </a>
+  </li>
+</ul>

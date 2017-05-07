@@ -3,7 +3,7 @@ import {LoaderService} from "../loader.service";
 import {PlayService} from "../play.service";
 import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
-import {ArchiveType} from "../shared/enums";
+import {ArchiveEnum} from "../shared/enums";
 import {ArchiveService} from "../archive.service";
 import {EpisodeGridItemComponent} from "../episode-grid-item/episode-grid-item.component";
 
@@ -58,7 +58,7 @@ export class PlayGridComponent extends LoadableComponent{
     }
 
     init() {
-        this.archiveService.activate(ArchiveType.article);
+        this.archiveService.activate(ArchiveEnum.article);
         this.sub = this.playService.getEpisodes().subscribe(
             (episodes) => {
                 this.episodes = episodes;

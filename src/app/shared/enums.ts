@@ -1,10 +1,10 @@
-export enum ArchiveType {
+export enum ArchiveEnum {
     article,
     pod,
     play,
 }
 
-export enum PodcastType {
+export enum PodcastEnum {
     audio,
     video,
 }

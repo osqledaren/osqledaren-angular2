@@ -194,7 +194,7 @@ export class ArticleGridComponent extends LoadableComponent {
                             let d0 = new Date(params['date']);
 
                             year = d0.getFullYear();
-                            year = archiveDistribution.containsKey(year.toString()) ? year : null;
+                            year = archiveDistribution.containsKey(year) ? year : null;
                             month = params['date'].length > 4 ? d0.getMonth() + 1 : null;
 
                         }

@@ -4,8 +4,8 @@ import {LoadableComponent} from "../shared/abstract/abstract.loadable.component"
 import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Dictionary} from "../shared/class/dictionary.class";
 import {PadNumberPipe} from "../pad-number.pipe";
+import Dictionary from "typescript-collections/dist/lib/Dictionary";
 
 @Component({
     selector: 'app-archive',
@@ -14,12 +14,12 @@ import {PadNumberPipe} from "../pad-number.pipe";
 })
 export class ArchiveComponent extends LoadableComponent {
 
-    public years: string[];
+    public years: number[];
     public yearInput: string;
     public monthInput: string;
     public visible: boolean = false;
-    public distribution: Dictionary<string[]>;
-    public months: string[];
+    public distribution: Dictionary<number, number[]>;
+    public months: number[];
 
     constructor(private archiveService: ArchiveService,
                 loaderService: LoaderService,
@@ -40,7 +40,7 @@ export class ArchiveComponent extends LoadableComponent {
             this.months = [];
             return;
         } else {
-            this.months = this.distribution.item(year.toString());
+            this.months = this.distribution.getValue(Number(year));
         }
 
     }
@@ -63,7 +63,7 @@ export class ArchiveComponent extends LoadableComponent {
                 this.archiveService.filter.subscribe(
                     filter => {
                         this.yearInput = isNullOrUndefined(filter.year) ? '' : filter.year.toString();
-                        this.months = isNullOrUndefined(filter.year) ? [] : this.distribution.item(filter.year.toString());
+                        this.months = isNullOrUndefined(filter.year) ? [] : this.distribution.getValue(filter.year);
                         this.monthInput = isNullOrUndefined(filter.month) ? '' : new PadNumberPipe().transform(filter.month, 2);
                     }
                 );

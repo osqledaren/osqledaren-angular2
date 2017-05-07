@@ -1,13 +1,13 @@
-export interface IMenuItem{
+export interface MenuItem{
 	name: string;
 	url: string;
-	items: IMenuList; // Allow items to create sub-menus
+	items: MenuList; // Allow items to create sub-menus
 };
 
-export interface IMenuList{
-	[index: string]: IMenuItem;
+export interface MenuList{
+	[index: string]: MenuItem;
 };
 
-export interface IMenu {
-	[index: string]: IMenuList;
+export interface Menu {
+	[index: string]: MenuList;
 };

@@ -1,5 +1,9 @@
 @import 'utility';
 
+a {
+  cursor: pointer;
+}
+
 .archive-heading {
   text-align: center;
   margin: $grid-gutter-width-base/2 0;
@@ -129,6 +133,42 @@ h3.episode-title {
   margin:0;
 }
 
+.episode-in-queue-splash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $grid-gutter-width-base/4;
+  z-index: 1;
+  overflow: hidden;
+  background: $gray-dark;
+  opacity: 0;
+  text-align: center;
+  color:white;
+  transition: all 0.3s ease-in-out;
+
+  i {
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: -2rem;
+    line-height: 1;
+  }
+
+  &.in-queue{
+
+    opacity: 0.5;
+
+    i {
+      top:50%
+    };
+  }
+
+}
+
 .episode-grid-overlay {
   position: absolute;
   top: 0;
@@ -140,6 +180,7 @@ h3.episode-title {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   font-size: $font-size-small;
+  z-index: 2;
 
   .episode-controls {
     position: absolute;
@@ -167,6 +208,7 @@ h3.episode-title {
     color:white;
     margin-bottom: $grid-gutter-width-base/2;
     overflow: hidden;
+    position: relative;
   }
 }
 
