@@ -2,11 +2,11 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Rendition} from "../shared/interface/rendition.interface";
 
 @Component({
-  selector: 'app-article-image-thumbnail',
-  templateUrl: './article-image-thumbnail.component.html',
-  styleUrls: ['./article-image-thumbnail.component.scss']
+  selector: 'app-article-image',
+  templateUrl: 'article-image.component.html',
+  styleUrls: ['article-image.component.scss']
 })
-export class ArticleImageThumbnailComponent {
+export class ArticleImageComponent {
 
   @Input() renditions: { [id:string] : Rendition};
 
@@ -14,7 +14,7 @@ export class ArticleImageThumbnailComponent {
 
   private href(): string{
     try {
-      return this.renditions['thumbnail'].href;
+      return this.renditions['large'].href;
     } catch (Exception){
       return undefined;
     }
@@ -22,7 +22,7 @@ export class ArticleImageThumbnailComponent {
 
   private title(): string {
     try {
-      return this.renditions['thumbnail'].title;
+      return this.renditions['large'].title;
     } catch (Exception){
       return '';
     }

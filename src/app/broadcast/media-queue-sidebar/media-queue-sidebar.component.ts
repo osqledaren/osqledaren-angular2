@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {MediaQueueService} from "../media-queue.service";
-import {Episode} from "../shared/interface/episode.interface";
+import {Episode} from "../episode.interface";
 import {isNullOrUndefined} from "util";
 import LinkedList from "typescript-collections/dist/lib/LinkedList";
 
 @Component({
   selector: 'app-media-queue-sidebar',
-  templateUrl: './media-queue-sidebar.component.html',
-  styleUrls: ['./media-queue-sidebar.component.scss']
+  templateUrl: 'media-queue-sidebar.component.html',
+  styleUrls: ['media-queue-sidebar.component.scss']
 })
 export class MediaQueueSidebarComponent implements OnInit {
 

@@ -2,8 +2,8 @@ import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
 import Dictionary from "typescript-collections/dist/lib/Dictionary";
 import {isNullOrUndefined} from "util";
-import {GUID} from "./shared/class/guid.class";
-import {Episode} from "./shared/interface/episode.interface";
+import {GUID} from "../shared/class/guid.class";
+import {Episode} from "./episode.interface";
 import LinkedList from "typescript-collections/dist/lib/LinkedList";
 
 

@@ -12,8 +12,8 @@ import {DOCUMENT} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-article',
-    templateUrl: './article.component.html',
-    styleUrls: ['./article.component.scss']
+    templateUrl: 'article.component.html',
+    styleUrls: ['article.component.scss']
 })
 export class ArticleComponent extends LoadableComponent {
 

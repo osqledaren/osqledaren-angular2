@@ -3,8 +3,8 @@ import {VgAPI} from 'videogular2/core';
 
 @Component({
   selector: 'app-media-player',
-  templateUrl: './media-player.component.html',
-  styleUrls: ['./media-player.component.scss']
+  templateUrl: 'media-player.component.html',
+  styleUrls: ['media-player.component.scss']
 })
 export class MediaPlayerComponent implements OnInit {
 

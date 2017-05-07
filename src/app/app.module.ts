@@ -18,11 +18,7 @@ import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {SearchComponent} from "./search-widget/search-widget.component";
-import {ArticleComponent} from "./article/article.component";
-import {NewsArchiveComponent} from "./news-archive/news-archive.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {ArticleGridComponent} from "./article-grid/article-grid.component";
-import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
 import {AboutComponent} from "./about/about.component";
 import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
 import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-grid.component";
@@ -30,31 +26,19 @@ import {ArchiveComponent} from "./archive-widget/archive-widget.component";
 import {AdvertisementPageComponent} from "./advertisement-page/advertisement-page.component";
 import {LoaderComponent} from "./loader/loader.component";
 import {BylineComponent} from "./byline/byline.component";
-import {ArticleImageComponent} from "./article-image/article-image.component";
 import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
 import {ComingSoonComponent} from "./coming-soon/coming-soon.component";
-import {ArticleImageThumbnailComponent} from "./article-image-thumbnail/article-image-thumbnail.component";
 import {ErrorComponent} from './error/error.component';
-import {PlayGridComponent} from './play-grid/play-grid.component';
-import {PlayComponent} from './play/play.component';
-import {EpisodeGridItemComponent} from './episode-grid-item/episode-grid-item.component';
-import {MediaPlayerComponent} from './media-player/media-player.component';
-import {MediaQueueSidebarComponent} from './media-queue-sidebar/media-queue-sidebar.component';
-import {MediaQueueWidgetComponent} from "./media-queue-widget/media-queue-widget.component";
 // Services
-import {WordpressService} from "./wordpress.service";
-import {NewsArticleService} from "./news-article.service";
 import {LoaderService} from "./loader.service";
 import {ArchiveService} from "./archive.service";
 import {CookieService} from 'angular2-cookie/services/cookies.service';
-import {PlayService} from "./play.service";
-import {MediaPlayerService} from "./media-player.service";
-import {MediaQueueService} from "./media-queue.service";
 // Pipes
 import {PadNumberPipe} from "./pad-number.pipe";
 import {SplitPipe} from "./split.pipe";
 // Guards
 import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard";
+import {BroadcastModule} from "./broadcast/broadcast.module";
 
 
 @NgModule({
@@ -63,11 +47,7 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         HeaderComponent,
         FooterComponent,
         SearchComponent,
-        ArticleComponent,
-        NewsArchiveComponent,
         PageNotFoundComponent,
-        ArticleGridComponent,
-        ArticleGridItemComponent,
         AboutComponent,
         PrintedIssuesComponent,
         PrintedIssuesGridComponent,
@@ -77,22 +57,15 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         SplitPipe,
         LoaderComponent,
         BylineComponent,
-        PlayGridComponent,
         ComingSoonComponent,
-        ArticleImageComponent,
         AdvertisementTopBannerComponent,
-        ArticleImageThumbnailComponent,
-        ErrorComponent,
-        PlayComponent,
-        EpisodeGridItemComponent,
-        MediaPlayerComponent,
-        MediaQueueWidgetComponent,
-        MediaQueueSidebarComponent
+        ErrorComponent
     ],
     imports: [
         CollapseModule.forRoot(),
         DisqusModule,
         MasonryModule,
+        BroadcastModule,
         BrowserModule,
         FormsModule,
         HttpModule,
@@ -102,41 +75,10 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         VgOverlayPlayModule,
         VgBufferingModule,
         RouterModule.forRoot([
-
-            {
-                path: 'artikel/:slug',
-                component: ArticleComponent,
-                data: {name: 'article'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
             {
                 path: 'error',
                 component: ErrorComponent,
                 data: {name: 'error'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter',
-                component: NewsArchiveComponent,
-                data: {name: 'articles'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter/sok/:searchTerm',
-                component: NewsArchiveComponent,
-                data: {name: 'search'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter/arkiv/:date/:searchTerm',
-                component: NewsArchiveComponent,
-                data: {name: 'archive'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter/arkiv/:date',
-                component: NewsArchiveComponent,
-                data: {name: 'archive'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -164,21 +106,9 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
-                path: 'play',
-                component: PlayComponent,
-                data: {name: 'play'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
                 path: 'pods',
                 component: ComingSoonComponent,
                 data: {name: 'coming-soon'},
-                canDeactivate: [LoadableDeactivateGuard]
-            },
-            {
-                path: '',
-                component: NewsArchiveComponent,
-                data: {name: 'home'},
                 canDeactivate: [LoadableDeactivateGuard]
             },
             {
@@ -193,12 +123,7 @@ import {LoadableDeactivateGuard} from "./shared/guard/loadable-deactivate.guard"
         CookieService,
         ArchiveService,
         LoaderService,
-        NewsArticleService,
-        WordpressService,
         LoadableDeactivateGuard,
-        PlayService,
-        MediaPlayerService,
-        MediaQueueService,
         {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
     ],
     bootstrap: [AppComponent]

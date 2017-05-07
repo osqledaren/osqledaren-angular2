@@ -3,8 +3,3 @@ export enum ArchiveEnum {
     pod,
     play,
 }
-
-export enum PodcastEnum {
-    audio,
-    video,
-}

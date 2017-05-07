@@ -1,15 +1,15 @@
 import {Injectable, Inject} from "@angular/core";
 import {Response, Http, RequestMethod, Request, Headers} from "@angular/http";
-import {Article} from "./shared/interface/article.interface";
+import {Article} from "../shared/interface/article.interface";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
-import {ContentService} from "./shared/abstract/abstract.content.service";
-import {ArticleQueryParams} from "./shared/interface/query-params.interface";
-import {APP_CONFIG} from "./app.config";
+import {ContentService} from "../shared/abstract/abstract.content.service";
+import {ArticleQueryParams} from "../shared/interface/query-params.interface";
+import {APP_CONFIG} from "../app.config";
 import {isNullOrUndefined, isUndefined} from "util";
-import {PadNumberPipe} from "./pad-number.pipe";
+import {PadNumberPipe} from "../pad-number.pipe";
 import {CookieService} from 'angular2-cookie/services/cookies.service';
 
 @Injectable()

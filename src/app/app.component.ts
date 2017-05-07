@@ -9,7 +9,7 @@ import {
     NavigationCancel,
     NavigationError
 } from "@angular/router";
-import {MediaQueueService} from "./media-queue.service";
+import {MediaQueueService} from "./broadcast/media-queue.service";
 
 @Component({
     selector: 'body',

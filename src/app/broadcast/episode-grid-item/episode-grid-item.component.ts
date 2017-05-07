@@ -1,5 +1,5 @@
 import {ElementRef, Component, Input, AfterViewInit, OnInit} from "@angular/core";
-import {Episode} from "../shared/interface/episode.interface";
+import {Episode} from "../episode.interface";
 import {MediaQueueService} from "../media-queue.service";
 import {MediaPlayerService} from "../media-player.service";
 import LinkedList from "typescript-collections/dist/lib/LinkedList";

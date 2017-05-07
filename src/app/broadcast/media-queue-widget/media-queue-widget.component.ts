@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {MediaQueueService} from "../media-queue.service";
 import {isNullOrUndefined} from "util";
-import {MediaQueueSidebarComponent} from "../media-queue-sidebar/media-queue-sidebar.component";
 
 @Component({
     selector: 'app-media-queue-widget',

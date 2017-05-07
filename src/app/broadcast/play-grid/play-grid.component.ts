@@ -1,16 +1,16 @@
 import {Component, ViewChildren, QueryList, ViewEncapsulation} from "@angular/core";
-import {LoaderService} from "../loader.service";
+import {LoaderService} from "../../loader.service";
 import {PlayService} from "../play.service";
-import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
+import {LoadableComponent} from "../../shared/abstract/abstract.loadable.component";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
-import {ArchiveEnum} from "../shared/enums";
-import {ArchiveService} from "../archive.service";
+import {ArchiveEnum} from "../../shared/enums";
+import {ArchiveService} from "../../archive.service";
 import {EpisodeGridItemComponent} from "../episode-grid-item/episode-grid-item.component";
 
 @Component({
     selector: 'app-play-grid',
     templateUrl: 'play-grid.component.html',
-    styleUrls: ['./play-grid.component.scss', '../episode-grid-item/episode-grid-item.component.scss'],
+    styleUrls: ['play-grid.component.scss', '../episode-grid-item/episode-grid-item.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 export class PlayGridComponent extends LoadableComponent{

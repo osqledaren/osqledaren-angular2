@@ -1,16 +1,16 @@
-import {ContentService} from "./abstract.content.service";
+import {ContentService} from "../shared/abstract/abstract.content.service";
 import {Injectable} from "@angular/core";
-import {PodcastEnum} from "../enums";
+import {Broadcast} from "./broadcast.enum";
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {PodcastQueryParams} from "../interface/query-params.interface";
+import {PodcastQueryParams} from "../shared/interface/query-params.interface";
 import {isNullOrUndefined} from "util";
-import {Episode} from "../interface/episode.interface";
-import {Series} from "../interface/series.interface";
-import {EpisodeRendition} from "../interface/media-rendition.interface";
+import {Episode} from "./episode.interface";
+import {Series} from "./series.interface";
+import {EpisodeRendition} from "./media-rendition.interface";
 @Injectable()
 export abstract class MediaContentService extends ContentService {
-    protected type: PodcastEnum;
+    protected type: Broadcast;
     protected episodeEndpoint: string;
     protected seriesEndpoint: string;
     protected episodebatchCount: number = 12;
@@ -18,9 +18,9 @@ export abstract class MediaContentService extends ContentService {
     protected seriesbatchCount: number = 12;
     protected seriesOffset: number = 0;
 
-    constructor(type: PodcastEnum, http: Http, endpoint: string){
+    constructor(type: Broadcast, http: Http, endpoint: string){
         super(http, endpoint);
-        let filter = '?filter[meta_query][0][key]=episode_type&filter[meta_query][0][value]=' + PodcastEnum[type];
+        let filter = '?filter[meta_query][0][key]=episode_type&filter[meta_query][0][value]=' + Broadcast[type];
         this.episodeEndpoint = this.endpoint + '/podcast' + filter;
         this.seriesEndpoint = this.endpoint + '/series' + filter;
     }

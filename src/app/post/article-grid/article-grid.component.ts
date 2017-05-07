@@ -14,8 +14,8 @@ import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-article-grid',
-    templateUrl: './article-grid.component.html',
-    styleUrls: ['./article-grid.component.scss'],
+    templateUrl: 'article-grid.component.html',
+    styleUrls: ['article-grid.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ArticleGridComponent extends LoadableComponent {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
-import {LoaderService} from "../loader.service";
+import {LoadableComponent} from "../../shared/abstract/abstract.loadable.component";
+import {LoaderService} from "../../loader.service";
 
 @Component({
   selector: 'app-play',
