@@ -1,9 +1,9 @@
 import {Component} from "@angular/core";
-import {ArchiveService} from "../archive.service";
-import {ArchiveEnum} from "../shared/enums";
-import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
-import {LoaderService} from "../loader.service";
+import {ArchiveService} from "../archive/archive.service";
+import {LoadableComponent} from "../loader/abstract.loadable.component";
+import {LoaderService} from "../loader/loader.service";
 import {Observable} from "rxjs";
+import {Archive} from "../archive/archive.enum";
 
 @Component({
     selector: 'app-page-not-found',
@@ -17,7 +17,7 @@ export class PageNotFoundComponent extends LoadableComponent {
     }
 
     init() {
-        this.archiveService.activate(ArchiveEnum.article);
+        this.archiveService.activate(Archive.article);
         this.loaded();
 
         this.archiveService.activated.subscribe(

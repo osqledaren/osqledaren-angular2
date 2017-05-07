@@ -1,13 +1,13 @@
-import {ContentService} from "../shared/abstract/abstract.content.service";
+import {ContentService} from "../content/abstract.content.service";
 import {Injectable} from "@angular/core";
 import {Broadcast} from "./broadcast.enum";
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {PodcastQueryParams} from "../shared/interface/query-params.interface";
 import {isNullOrUndefined} from "util";
 import {Episode} from "./episode.interface";
 import {Series} from "./series.interface";
 import {EpisodeRendition} from "./media-rendition.interface";
+import {BroadcastQueryParams} from "./broadcast-query-params.interface";
 @Injectable()
 export abstract class MediaContentService extends ContentService {
     protected type: Broadcast;
@@ -33,12 +33,12 @@ export abstract class MediaContentService extends ContentService {
         return this.seriesbatchCount;
     }
 
-    public getEpisodes(filters?: PodcastQueryParams): Observable<Episode[]> {
+    public getEpisodes(filters?: BroadcastQueryParams): Observable<Episode[]> {
         this.episodeOffset = 0;
         return this.getNextBatchOfEpisodes(filters);
     }
 
-    public getNextBatchOfEpisodes(filters?: PodcastQueryParams) {
+    public getNextBatchOfEpisodes(filters?: BroadcastQueryParams) {
         //let timeQuery = !isNullOrUndefined(lastPostDate) ? '&before=' + lastPostDate : '';
         let query: string;
 
@@ -59,7 +59,7 @@ export abstract class MediaContentService extends ContentService {
 
     public getEpisodesOfSeries(series: string): Observable<Episode[]> {
 
-        let filters: PodcastQueryParams = <PodcastQueryParams>{
+        let filters: BroadcastQueryParams = <BroadcastQueryParams>{
             series: series
         };
 
@@ -130,7 +130,7 @@ export abstract class MediaContentService extends ContentService {
 
     public search(searchTerm: string) {
 
-        let filters: PodcastQueryParams = <PodcastQueryParams>{
+        let filters: BroadcastQueryParams = <BroadcastQueryParams>{
             search: searchTerm
         };
 

@@ -1,17 +1,16 @@
 import {Component, OnInit, HostListener, ElementRef, OnDestroy} from "@angular/core";
-import {MenuList} from "../shared/interface/menu.interface";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import {Observable, Subscription} from "rxjs";
-import {ArchiveService} from "../archive.service";
-import {ArchiveEnum} from "../shared/enums";
 import {Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
+import {ArchiveService} from "../archive/archive.service";
+import {Archive} from "../archive/archive.enum";
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    templateUrl: 'header.component.html',
+    styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -87,11 +86,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 let type: string;
 
                 switch (activeArchive) {
-                    case ArchiveEnum.article:
+                    case Archive.article:
                         type = 'Webbarkiv';
                         break;
                     default:
-                        type = ArchiveEnum[activeArchive].toLocaleUpperCase() + 'arkiv';
+                        type = Archive[activeArchive].toLocaleUpperCase() + 'arkiv';
                         break;
                 }
 

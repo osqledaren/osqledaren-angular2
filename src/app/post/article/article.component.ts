@@ -1,14 +1,14 @@
 import {Component, Inject} from "@angular/core";
 import {NewsArticleService} from "../news-article.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Article} from "../shared/interface/article.interface";
-import {ArchiveService} from "../archive.service";
-import {ArchiveEnum} from "../shared/enums";
-import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
-import {LoaderService} from "../loader.service";
 import {isNullOrUndefined} from "util";
-import {ArticleQueryParams} from "../shared/interface/query-params.interface";
 import {DOCUMENT} from "@angular/platform-browser";
+import {Article} from "../article.interface";
+import {ArticleQueryParams} from "../article-query-params.interface";
+import {ArchiveService} from "../../archive/archive.service";
+import {LoaderService} from "../../loader/loader.service";
+import {Archive} from "../../archive/archive.enum";
+import {LoadableComponent} from "../../loader/abstract.loadable.component";
 
 @Component({
     selector: 'app-article',
@@ -144,7 +144,7 @@ export class ArticleComponent extends LoadableComponent {
     }
 
     init() {
-        this.archiveService.activate(ArchiveEnum.article);
+        this.archiveService.activate(Archive.article);
         this.initializeData();
     }
 }

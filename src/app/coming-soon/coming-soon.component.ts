@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
-import {LoaderService} from "../loader.service";
-import {ArchiveEnum} from "../shared/enums";
-import {ArchiveService} from "../archive.service";
+import {LoadableComponent} from "../loader/abstract.loadable.component";
+import {LoaderService} from "../loader/loader.service";
+import {ArchiveService} from "../archive/archive.service";
+import {Archive} from "../archive/archive.enum";
 
 @Component({
   selector: 'app-coming-soon',
@@ -16,7 +16,7 @@ export class ComingSoonComponent extends LoadableComponent {
   }
 
   init(){
-    this.archiveService.activate(ArchiveEnum.article);
+    this.archiveService.activate(Archive.article);
     this.loaded();
   }
 

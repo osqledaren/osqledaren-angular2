@@ -1,7 +1,7 @@
 <article [id]="article?.headline">
     <div class="container" id="single-article">
         <div class="article-image">
-            <app-article-image [renditions]="article?.renditions"></app-article-image>
+            <app-image [renditions]="article?.renditions"></app-image>
         </div>
 
         <!-- Article heading box -->
@@ -42,7 +42,7 @@
             <h2 class="h3">Läs även</h2>
             <a *ngFor="let rel_post of relatedArticles" [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}">
                 <div class="related-post">
-                    <app-article-image-thumbnail [renditions]="rel_post.renditions"></app-article-image-thumbnail>
+                    <app-image-thumbnail [renditions]="rel_post.renditions"></app-image-thumbnail>
                     <div class="related-post-title">
                         <div>
                             <h3 [innerHTML]="rel_post?.headline"></h3>

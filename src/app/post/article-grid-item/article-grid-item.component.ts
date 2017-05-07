@@ -1,5 +1,5 @@
 import {ElementRef, Component, Input, AfterViewInit} from '@angular/core';
-import {Article} from "../shared/interface/article.interface";
+import {Article} from "../article.interface";
 
 declare let $clamp: any;
 

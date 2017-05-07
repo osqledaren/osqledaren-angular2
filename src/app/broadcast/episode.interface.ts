@@ -1,7 +1,7 @@
 import {Series} from "./series.interface";
 import {EpisodeRendition} from "./media-rendition.interface";
-import {Rendition} from "../shared/interface/rendition.interface";
-import {Byline} from "../shared/interface/byline.interface";
+import {Rendition} from "../content/rendition.interface";
+import {Byline} from "../content/byline.interface";
 
 export interface Episode {
     id: number,

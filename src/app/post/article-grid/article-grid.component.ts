@@ -1,16 +1,16 @@
 import {Component, ViewEncapsulation, ViewChildren, QueryList} from "@angular/core";
-import {Article} from "../shared/interface/article.interface";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
 import {NewsArticleService} from "../news-article.service";
 import {ArticleGridItemComponent} from "../article-grid-item/article-grid-item.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ArticleQueryParams} from "../shared/interface/query-params.interface";
 import {isNullOrUndefined} from "util";
-import {PadNumberPipe} from "../pad-number.pipe";
-import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
-import {LoaderService} from "../loader.service";
-import {ArchiveService} from "../archive.service";
 import {Observable} from "rxjs";
+import {LoadableComponent} from "../../loader/abstract.loadable.component";
+import {ArticleQueryParams} from "../article-query-params.interface";
+import {Article} from "../article.interface";
+import {ArchiveService} from "../../archive/archive.service";
+import {LoaderService} from "../../loader/loader.service";
+import {PadNumberPipe} from "../../shared/pad-number.pipe";
 
 @Component({
     selector: 'app-article-grid',

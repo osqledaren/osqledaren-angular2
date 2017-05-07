@@ -1,11 +1,11 @@
 import {Component, ViewChildren, QueryList, ViewEncapsulation} from "@angular/core";
-import {LoaderService} from "../../loader.service";
+import {LoaderService} from "../../loader/loader.service";
 import {PlayService} from "../play.service";
-import {LoadableComponent} from "../../shared/abstract/abstract.loadable.component";
+import {LoadableComponent} from "../../loader/abstract.loadable.component";
 import {MasonryOptions} from "angular2-masonry/src/masonry-options";
-import {ArchiveEnum} from "../../shared/enums";
-import {ArchiveService} from "../../archive.service";
+import {ArchiveService} from "../../archive/archive.service";
 import {EpisodeGridItemComponent} from "../episode-grid-item/episode-grid-item.component";
+import {Archive} from "../../archive/archive.enum";
 
 @Component({
     selector: 'app-play-grid',
@@ -58,7 +58,7 @@ export class PlayGridComponent extends LoadableComponent{
     }
 
     init() {
-        this.archiveService.activate(ArchiveEnum.article);
+        this.archiveService.activate(Archive.article);
         this.sub = this.playService.getEpisodes().subscribe(
             (episodes) => {
                 this.episodes = episodes;
