@@ -49,13 +49,13 @@ a {
 .episode-container {
   position: relative;
   overflow: hidden;
-  margin: 0 (-$grid-gutter-width-base/6);
+  margin: 0 (-$grid-gutter-width-base/4);
 }
 
 .episode-grid-item, .episode-grid-sizer {
   width: 16.6667%;
   position: relative;
-  padding: 0 $grid-gutter-width-base/6;
+  padding: 0 $grid-gutter-width-base/4;
 
   &:hover {
     img {
@@ -142,7 +142,7 @@ h3.episode-title {
   padding: $grid-gutter-width-base/4;
   z-index: 1;
   overflow: hidden;
-  background: $gray-dark;
+  background: rgba($gray-dark, 0.5);
   opacity: 0;
   text-align: center;
   color:white;
@@ -160,7 +160,7 @@ h3.episode-title {
 
   &.in-queue{
 
-    opacity: 0.5;
+    opacity: 1;
 
     i {
       top:50%

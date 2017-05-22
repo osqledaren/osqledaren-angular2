@@ -4,11 +4,13 @@ import {ImageThumbnailComponent} from "./image-thumbnail/image-thumbnail.compone
 import {WordpressService} from "./wordpress.service";
 import {BylineComponent} from "./byline/byline.component";
 import {LoaderModule} from "../loader/loader.module";
+import {HttpModule} from "@angular/http";
 import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     imports: [
         LoaderModule,
+        HttpModule,
         SharedModule,
     ],
     declarations: [

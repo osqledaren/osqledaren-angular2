@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoadableComponent} from "../loader/abstract.loadable.component";
-import {LoaderService} from "../loader/loader.service";
+import {AppLoaderService} from "../loader/app-loader.service";
 import {isNullOrUndefined} from "util";
 import {ArchiveService} from "../archive/archive.service";
 import {Archive} from "../archive/archive.enum";
@@ -18,7 +18,7 @@ export class ErrorComponent extends LoadableComponent {
 
   constructor(private route: ActivatedRoute,
               private archiveService: ArchiveService,
-              private router: Router, loaderService: LoaderService) {
+              private router: Router, loaderService: AppLoaderService) {
     super(loaderService);
   }
 

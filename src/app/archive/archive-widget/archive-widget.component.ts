@@ -4,7 +4,7 @@ import {isNullOrUndefined} from "util";
 import {ActivatedRoute, Router} from "@angular/router";
 import Dictionary from "typescript-collections/dist/lib/Dictionary";
 import {LoadableComponent} from "../../loader/abstract.loadable.component";
-import {LoaderService} from "../../loader/loader.service";
+import {AppLoaderService} from "../../loader/app-loader.service";
 import {PadNumberPipe} from "../../shared/pad-number.pipe";
 
 @Component({
@@ -22,7 +22,7 @@ export class ArchiveWidgetComponent extends LoadableComponent {
     public months: number[];
 
     constructor(private archiveService: ArchiveService,
-                loaderService: LoaderService,
+                loaderService: AppLoaderService,
                 private router: Router,
                 private activatedRoute: ActivatedRoute) {
         super(loaderService);

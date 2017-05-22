@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoadableComponent} from "../../loader/abstract.loadable.component";
 import {ArchiveService} from "../../archive/archive.service";
-import {LoaderService} from "../../loader/loader.service";
+import {AppLoaderService} from "../../loader/app-loader.service";
 import {Archive} from "../../archive/archive.enum";
 
 @Component({
@@ -17,7 +17,7 @@ export class AdvertisementPageComponent extends LoadableComponent {
   erik_tingstrom_email: string;
   erik_tingstrom_mobile: string;
 
-  constructor(private archiveService: ArchiveService, loaderService: LoaderService) {
+  constructor(private archiveService: ArchiveService, loaderService: AppLoaderService) {
 
   	super(loaderService);
 

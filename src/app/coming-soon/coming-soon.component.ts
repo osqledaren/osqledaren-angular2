@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoadableComponent} from "../loader/abstract.loadable.component";
-import {LoaderService} from "../loader/loader.service";
+import {AppLoaderService} from "../loader/app-loader.service";
 import {ArchiveService} from "../archive/archive.service";
 import {Archive} from "../archive/archive.enum";
 
@@ -11,7 +11,7 @@ import {Archive} from "../archive/archive.enum";
 })
 export class ComingSoonComponent extends LoadableComponent {
 
-  constructor(loaderService: LoaderService, private archiveService: ArchiveService) {
+  constructor(loaderService: AppLoaderService, private archiveService: ArchiveService) {
     super(loaderService);
   }
 

@@ -1,7 +1,7 @@
 <header id="site-header" [ngClass]="{'visible': visible}">
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" routerLink="/">
                     <img src="/assets/img/temp_logo.png">
                 </a>
@@ -22,7 +22,7 @@
                 <div class="button-container">
                     <ul>
                         <li>
-                            <app-media-queue-widget></app-media-queue-widget>
+                            <app-media-playlist-widget></app-media-playlist-widget>
                         </li>
                         <li>
                             <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
@@ -40,7 +40,7 @@
         </div>
         <div id="main-nav-collapsible" [ngClass]="{'submenu-open': !isCollapsed}">
             <div class="bg-inverse nav-subcontainer p-a-1">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
                             <ul class="nav navbar hidden-md-up">

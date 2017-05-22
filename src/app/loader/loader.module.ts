@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
-import {LoaderComponent} from "./loader/loader.component";
-import {LoaderService} from "./loader.service";
+import {AppLoaderComponent} from "./app-loader/app-loader.component";
+import {AppLoaderService} from "./app-loader.service";
 import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
@@ -8,13 +8,13 @@ import {SharedModule} from "../shared/shared.module";
         SharedModule,
     ],
     declarations: [
-        LoaderComponent,
+        AppLoaderComponent,
     ],
     providers: [
-        LoaderService
+        AppLoaderService
     ],
     exports: [
-        LoaderComponent
+        AppLoaderComponent
     ]
 })
 export class LoaderModule {

@@ -1,29 +1,57 @@
-<vg-player (onPlayerReady)="onPlayerReady($event)">
-    <vg-overlay-play></vg-overlay-play>
-    <vg-buffering></vg-buffering>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="player-container">
+                <vg-player (onPlayerReady)="onPlayerReady($event)">
+                    <vg-overlay-play></vg-overlay-play>
+                    <vg-buffering></vg-buffering>
 
-    <vg-controls>
-        <vg-play-pause></vg-play-pause>
-        <vg-playback-button></vg-playback-button>
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <vg-playback-button></vg-playback-button>
 
-        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
 
-        <vg-scrub-bar>
-            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-        </vg-scrub-bar>
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                        </vg-scrub-bar>
 
-        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
 
-        <vg-track-selector></vg-track-selector>
-        <vg-mute></vg-mute>
-        <vg-volume></vg-volume>
+                        <vg-track-selector></vg-track-selector>
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
 
-        <vg-fullscreen></vg-fullscreen>
-    </vg-controls>
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
 
-    <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
-        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
-    </video>
-</vg-player>
+                    <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
+                        <source *ngFor="let mediaElement of mediaElements" [src]="mediaElement.source"
+                                [type]="mediaElement.type">
+                    </video>
+                </vg-player>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="media-meta">
+                <article *ngIf="!current">
+                    <h1>Avsnitt</h1>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aspernatur blanditiis consectetur doloremque error iste omnis perferendis recusandae totam voluptas?
+                        </p>
+                    </div>
+                </article>
+                <article *ngIf="current">
+                    <h1 [innerHTML]="current.headline"></h1>
+                    <div [innerHTML]="current.excerpt">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aspernatur blanditiis
+                            consectetur doloremque error iste omnis perferendis recusandae totam voluptas?
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

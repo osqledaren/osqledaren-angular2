@@ -201,7 +201,7 @@ export class VideoPlayerComponent implements OnInit {
   switchViewMode(){
     if(this.viewMode === "Default view"){
       this.viewMode = "Theater mode";
-      if(this.context == "play"){
+      if(this.context == "load"){
         this.description.nativeElement.style.margin = "0 -36% 0 0";
         this.fullPlayerElement.nativeElement.style.width = "100%";
       }else if(this.context == "program"){
@@ -211,7 +211,7 @@ export class VideoPlayerComponent implements OnInit {
     }else{
       this.viewMode = "Default view";
       this.description.nativeElement.style.margin = "0 0 0 0";
-      if(this.context == "play"){
+      if(this.context == "load"){
         this.fullPlayerElement.nativeElement.style.width = "62%";
       }else if(this.context == "program"){
         this.fullPlayerElement.nativeElement.style.width = "50%";
@@ -229,7 +229,7 @@ export class VideoPlayerComponent implements OnInit {
   //Display info
   toggleInfo(event){
     event.preventDefault();
-    if(this.context == "play"){
+    if(this.context == "load"){
       if(this.description.nativeElement.style.margin == "5% 10%"){
         this.description.nativeElement.style.margin = "0 -90% 0 0";
         event.target.style.color = "#acbeca";
@@ -368,7 +368,7 @@ export class VideoPlayerComponent implements OnInit {
     }
   }
 
-  //Pause/play-grid-old the video
+  //Pause/episode-grid-old the video
   togglePlay() {
     let el;
     if(this.circleController){
@@ -394,7 +394,7 @@ export class VideoPlayerComponent implements OnInit {
       clearInterval(this.hideControllerTimer);
       this.showControls();
       this.videoPlaying = false;
-      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-play-grid-old-circle");
+      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-episode-grid-old-circle");
       clearInterval(this.progressBarTimer);
     }
     if(this.showSettingPanel){
@@ -452,7 +452,7 @@ export class VideoPlayerComponent implements OnInit {
     this.video.pause();
     clearInterval(this.progressBarTimer);
     this.videoPlaying = false;
-    playButton.className = playButton.className.replace(/\bfa-pause-circle\b/g, "fa-play-grid-old-circle");
+    playButton.className = playButton.className.replace(/\bfa-pause-circle\b/g, "fa-episode-grid-old-circle");
     this.showControls();
     if(this.showSettingPanel){
       this.toggleSettingPanel();
@@ -1105,7 +1105,7 @@ export class VideoPlayerComponent implements OnInit {
 
   //Go to the single series page
   goToProgram(program){
-    this.router.navigate(["play-grid-old/series/"+program]);
+    this.router.navigate(["episode-grid-old/series/"+program]);
   }
 
   //Load/change episode in the player
@@ -1170,7 +1170,7 @@ export class VideoPlayerComponent implements OnInit {
       }else{
         el = this.playButton.nativeElement;
       }
-      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-play-grid-old-circle");
+      el.className = el.className.replace(/\bfa-pause-circle\b/g, "fa-episode-grid-old-circle");
     });
     this.renderer.listen(self.video, "loadedmetadata", (event) => {
       self.totalTime = event.target.duration;
@@ -1204,7 +1204,7 @@ export class VideoPlayerComponent implements OnInit {
     this.renderer.setElementAttribute(this.videoElement.nativeElement, 'src', this.videoMetaData.video.url);
 
     //Display either of the description boxes beside the player
-    if(this.context == "play"){
+    if(this.context == "load"){
       this.description_excerpt = true;
     }else if(this.context == "program" || this.context == "queue"){
       this.description_full = true;

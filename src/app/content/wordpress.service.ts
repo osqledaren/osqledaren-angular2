@@ -6,11 +6,11 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 import {ContentService} from "./abstract.content.service";
-import {APP_CONFIG} from "../app.config";
 import {isNullOrUndefined, isUndefined} from "util";
 import {PadNumberPipe} from "../shared/pad-number.pipe";
 import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {ArticleQueryParams} from "../post/article-query-params.interface";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class WordpressService extends ContentService {
@@ -20,10 +20,9 @@ export class WordpressService extends ContentService {
     private clientName;
 
     constructor(protected http: Http,
-                protected cookieService: CookieService,
-                @Inject(APP_CONFIG) config) {
-        super(http, config.wordpressEndpoint + '/wp-json/wp/v2');
-        this.clientName = config.wordpressOAuth2ClientName;
+                protected cookieService: CookieService) {
+        super(http, environment.wordpress.endpoint + '/wp-json/wp/v2');
+        this.clientName = environment.wordpress.OAuth2ClientName;
     }
 
     /**

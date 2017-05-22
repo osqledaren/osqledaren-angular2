@@ -6,7 +6,7 @@ import {SharedModule} from "../shared/shared.module";
 import {PrintedIssuesComponent} from "./printed-issues/printed-issues.component";
 import {PrintedIssuesGridComponent} from "./printed-issues-grid/printed-issues-grid.component";
 import {RouterModule} from "@angular/router";
-import {LoadableDeactivateGuard} from "../loader/loadable-deactivate.guard";
+import {AppLoadableDeactivateGuard} from "../loader/app-loadable-deactivate.guard";
 
 @NgModule({
     imports: [
@@ -19,7 +19,7 @@ import {LoadableDeactivateGuard} from "../loader/loadable-deactivate.guard";
                 path: 'tidningen',
                 component: PrintedIssuesComponent,
                 data: {name: 'printed-issues'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
         ])
     ],

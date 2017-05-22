@@ -9,7 +9,7 @@ import {LoadableComponent} from "../../loader/abstract.loadable.component";
 import {ArticleQueryParams} from "../article-query-params.interface";
 import {Article} from "../article.interface";
 import {ArchiveService} from "../../archive/archive.service";
-import {LoaderService} from "../../loader/loader.service";
+import {AppLoaderService} from "../../loader/app-loader.service";
 import {PadNumberPipe} from "../../shared/pad-number.pipe";
 
 @Component({
@@ -34,7 +34,7 @@ export class ArticleGridComponent extends LoadableComponent {
                 private route: ActivatedRoute,
                 private router: Router,
                 private archiveService: ArchiveService,
-                loaderService: LoaderService) {
+                loaderService: AppLoaderService) {
         super(loaderService);
         this.articles = [];
     }

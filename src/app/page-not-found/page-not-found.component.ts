@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {ArchiveService} from "../archive/archive.service";
 import {LoadableComponent} from "../loader/abstract.loadable.component";
-import {LoaderService} from "../loader/loader.service";
+import {AppLoaderService} from "../loader/app-loader.service";
 import {Observable} from "rxjs";
 import {Archive} from "../archive/archive.enum";
 
@@ -12,7 +12,7 @@ import {Archive} from "../archive/archive.enum";
 })
 export class PageNotFoundComponent extends LoadableComponent {
 
-    constructor(private archiveService: ArchiveService, loaderService: LoaderService) {
+    constructor(private archiveService: ArchiveService, loaderService: AppLoaderService) {
         super(loaderService);
     }
 

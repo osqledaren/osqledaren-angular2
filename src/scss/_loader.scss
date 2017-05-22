@@ -1,26 +1,14 @@
-.loader-overlay {
-
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  text-align: center;
-  background: $brand-primary;
-  overflow: hidden;
-
-  .loader {
-    position: relative;
-    top: 50%;
-    margin-top: -15px;
-  }
+.loader-overlay .loader {
+  position: relative;
+  top: 50%;
+  margin-top: -15px;
 
   .bounce {
     position: relative;
     margin: 0 5px;
     width: 35px;
     height: 35px;
-    background-color: #fff;
+    background-color: white;
 
     border-radius: 100%;
     display: inline-block;
@@ -38,6 +26,40 @@
     animation-delay: -0.16s;
   }
 
+}
+
+.loader-overlay {
+  transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  background: $brand-primary;
+  overflow: hidden;
+  z-index: 998;
+
+  &.loaded {
+    opacity: 0;
+  }
+
+  &.hidden {
+    z-index: -1!important;
+  }
+}
+
+.loader-overlay.app-loader {
+  position: fixed;
+  z-index: 1001;
+
+  &.initialized {
+    z-index: 999;
+    background: $body-bg;
+
+    .bounce {
+      background: black;
+    }
+  }
 }
 
 @-webkit-keyframes sk-bouncedelay {

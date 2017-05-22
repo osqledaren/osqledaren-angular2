@@ -57,7 +57,7 @@ export class PlaySingleProgramComponent implements OnInit {
         return index==0? 'title selected': 'title';
     }
 
-    //Add an episode to the queue
+    //Add an episode to the playlist
     addToQueue(index, event){
         let queue = this.playService.getEpisodesInQueue();
         let isExistInQueue: boolean = false;

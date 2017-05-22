@@ -9,7 +9,7 @@ import {
     NavigationCancel,
     NavigationError
 } from "@angular/router";
-import {MediaQueueService} from "./broadcast/media-queue.service";
+import {MediaPlaylistService} from "./broadcast/media-playlist.service";
 
 @Component({
     selector: 'body',
@@ -23,14 +23,14 @@ export class AppComponent implements OnInit {
 
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
-                private queueService: MediaQueueService,
+                private queueService: MediaPlaylistService,
                 angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
 
         this.router.events.subscribe((event: Event) => {
             this.navigationInterceptor(event);
 
             this.queueService.subjects.sidebarVisible.subscribe((visible) =>{
-                this.bodyClasses['mediaQueue'] = visible ? 'media-queue-sidebar-visible' : '';
+                this.bodyClasses['mediaQueue'] = visible ? 'media-playlist-sidebar-visible' : '';
 
                 this.bodyRouterClass = '';
 

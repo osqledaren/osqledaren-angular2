@@ -1,0 +1,21 @@
+@import 'utility';
+
+.container-fluid {
+  background: white;
+}
+
+.broadcast-menu-container {
+  padding: $grid-gutter-width-base/2 0;
+}
+
+#broadcast-menu {
+  @include media-breakpoint-down(sm){
+    margin-top: $grid-gutter-width-base/4;
+  }
+}
+
+ul {
+  font-size: $font-size-lg;
+  line-height: 50px;
+  margin:0;
+}

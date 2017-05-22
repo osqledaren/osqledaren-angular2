@@ -6,7 +6,7 @@ import {DOCUMENT} from "@angular/platform-browser";
 import {Article} from "../article.interface";
 import {ArticleQueryParams} from "../article-query-params.interface";
 import {ArchiveService} from "../../archive/archive.service";
-import {LoaderService} from "../../loader/loader.service";
+import {AppLoaderService} from "../../loader/app-loader.service";
 import {Archive} from "../../archive/archive.enum";
 import {LoadableComponent} from "../../loader/abstract.loadable.component";
 
@@ -27,7 +27,7 @@ export class ArticleComponent extends LoadableComponent {
                 protected router: Router,
                 protected archiveService: ArchiveService,
                 @Inject(DOCUMENT) protected document: Document,
-                loaderService: LoaderService) {
+                loaderService: AppLoaderService) {
         super(loaderService);
     }
 
@@ -45,7 +45,7 @@ export class ArticleComponent extends LoadableComponent {
                     this.loaded();
                     this.loadRelatedPosts(posts[0]); // <-- Needs to be chained
 
-                    // TODO: Make a chain of observables and trigger this.loaded() once chain has finished loading.
+                    // TODO: Make a chain of observables and trigger this.loadComplete() once chain has finished loading.
 
                 },
                 error => {

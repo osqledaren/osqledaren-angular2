@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <ul class="list-unstyled">
+        <li *ngFor="let singleSeries of series"
+            class="single-series">
+            <h2 [innerHTML]="singleSeries.name"></h2>
+            <div [innerHTML]="singleSeries.description"></div>
+        </li>
+    </ul>
+</div>

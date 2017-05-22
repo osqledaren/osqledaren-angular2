@@ -1,3 +1,10 @@
+@import 'utility';
+
 :host {
   width: 100%;
+  overflow: hidden;
+}
+
+.container-fluid {
+  margin: -$grid-gutter-width-base/8;
 }

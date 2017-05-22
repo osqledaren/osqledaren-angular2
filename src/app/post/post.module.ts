@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {LoadableDeactivateGuard} from "../loader/loadable-deactivate.guard";
+import {AppLoadableDeactivateGuard} from "../loader/app-loadable-deactivate.guard";
 import {ArticleComponent} from "./article/article.component";
 import {ArticleGridComponent} from "./article-grid/article-grid.component";
 import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
@@ -25,37 +25,37 @@ import {SharedModule} from "../shared/shared.module";
                 path: 'artikel/:slug',
                 component: ArticleComponent,
                 data: {name: 'article'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
             {
                 path: 'nyheter',
                 component: NewsArchiveComponent,
                 data: {name: 'articles'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
             {
                 path: 'nyheter/sok/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'search'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
             {
                 path: 'nyheter/arkiv/:date/:searchTerm',
                 component: NewsArchiveComponent,
                 data: {name: 'archive'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
             {
                 path: 'nyheter/arkiv/:date',
                 component: NewsArchiveComponent,
                 data: {name: 'archive'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
             {
                 path: '',
                 component: NewsArchiveComponent,
                 data: {name: 'home'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
         ])
     ],

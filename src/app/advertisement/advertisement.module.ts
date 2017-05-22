@@ -3,7 +3,7 @@ import {AdvertisementPageComponent} from "./advertisement-page/advertisement-pag
 import {AdvertisementTopBannerComponent} from "./advertisement-top-banner/advertisement-top-banner.component";
 import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
-import {LoadableDeactivateGuard} from "../loader/loadable-deactivate.guard";
+import {AppLoadableDeactivateGuard} from "../loader/app-loadable-deactivate.guard";
 
 @NgModule({
     imports: [
@@ -13,7 +13,7 @@ import {LoadableDeactivateGuard} from "../loader/loadable-deactivate.guard";
                 path: 'annonsera',
                 component: AdvertisementPageComponent,
                 data: {name: 'advertise'},
-                canDeactivate: [LoadableDeactivateGuard]
+                canDeactivate: [AppLoadableDeactivateGuard]
             },
         ])
     ],

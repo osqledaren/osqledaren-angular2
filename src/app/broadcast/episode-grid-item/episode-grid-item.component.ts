@@ -1,6 +1,6 @@
 import {ElementRef, Component, Input, AfterViewInit, OnInit} from "@angular/core";
 import {Episode} from "../episode.interface";
-import {MediaQueueService} from "../media-queue.service";
+import {MediaPlaylistService} from "../media-playlist.service";
 import {MediaPlayerService} from "../media-player.service";
 import LinkedList from "typescript-collections/dist/lib/LinkedList";
 
@@ -18,37 +18,37 @@ export class EpisodeGridItemComponent implements AfterViewInit, OnInit {
     private inQueue: boolean = false;
 
     constructor(private elementView: ElementRef,
-                private mediaQueueService: MediaQueueService,
+                private mediaPlaylistService: MediaPlaylistService,
                 private mediaPlayerService: MediaPlayerService) {}
 
     public play(){
-
+        this.mediaPlayerService.load(this.episode);
     }
 
     public toggleQueue(){
         if(!this.inQueue) {
-            this.mediaQueueService.enqueue(this.episode);
+            this.mediaPlaylistService.enqueue(this.episode);
         } else {
-            this.mediaQueueService.dequeue(this.episode);
+            this.mediaPlaylistService.dequeue(this.episode);
         }
     }
 
 
     public truncate() {
 
-        let container = this.elementView.nativeElement.firstElementChild.firstElementChild;
-        let episodeText = this.elementView.nativeElement.firstElementChild.firstElementChild.lastElementChild.lastElementChild.firstElementChild;
-        let overlayPadding = parseInt(window.getComputedStyle(episodeText.parentElement).padding);
-        let excerptMargin = parseInt(window.getComputedStyle(episodeText).marginBottom);
+        let container: HTMLElement = this.elementView.nativeElement.firstElementChild.firstElementChild;
+        let episodeText: any = this.elementView.nativeElement.firstElementChild.firstElementChild.lastElementChild.lastElementChild.firstElementChild;
+        let overlayPadding: number = parseInt(window.getComputedStyle(episodeText.parentElement).padding);
+        let excerptMargin: number = parseInt(window.getComputedStyle(episodeText).marginBottom);
 
-        let clampHeight = container.offsetHeight - overlayPadding * 2 - excerptMargin;
+        let clampHeight: number = container.offsetHeight - overlayPadding * 2 - excerptMargin;
         $clamp(episodeText, {clamp: clampHeight + 'px'});
     }
 
     ngOnInit() {
-        this.mediaQueueService.subjects.queue.subscribe((queue) => {
+        this.mediaPlaylistService.subjects.playlist.subscribe((queue) => {
             let q: LinkedList<Episode> = queue;
-            this.inQueue = q.contains(this.episode, MediaQueueService.compare);
+            this.inQueue = q.contains(this.episode, MediaPlaylistService.compare);
         });
     }
 

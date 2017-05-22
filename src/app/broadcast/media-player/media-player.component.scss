@@ -1,0 +1,32 @@
+@import 'utility';
+
+:host {
+  @include clearfix;
+  color: $gray-light;
+  background: $gray-dark;
+  display: block;
+}
+
+h1 {
+  color:white;
+}
+
+.container-fluid {
+  padding:0;
+}
+
+.col-lg-4 {
+  @include media-breakpoint-up(lg){
+    padding-left: 0;
+    padding-right: $grid-gutter-width-base;
+    padding-top: $grid-gutter-width-base/2;
+    padding-bottom: $grid-gutter-width-base/2;
+  }
+
+  @include media-breakpoint-down(md){
+    padding:$grid-gutter-width-base/2 $grid-gutter-width-base;
+  }
+}
+
+.media-meta {
+}

@@ -1,4 +1,7 @@
 export const environment = {
-	local: true,
-	production: false
+	production: false,
+	wordpress: {
+		OAuth2ClientName: 'osqledaren-angular2-dev',
+		endpoint: 'http://osqledaren.dev'
+	}
 };

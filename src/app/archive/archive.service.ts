@@ -6,10 +6,10 @@ import "rxjs/add/operator/map";
 import {isNullOrUndefined} from "util";
 import {Response, Http} from "@angular/http";
 import {ContentService} from "../content/abstract.content.service";
-import {APP_CONFIG} from "../app.config";
 import {PadNumberPipe} from "../shared/pad-number.pipe";
 import Dictionary from "typescript-collections/dist/lib/Dictionary";
 import {Archive} from "./archive.enum";
+import {environment} from "../../environments/environment";
 
 interface ArchiveFilter {
     year: number,
@@ -33,9 +33,8 @@ export class ArchiveService extends ContentService{
 
 
     constructor(private router: Router,
-                protected http: Http,
-                @Inject(APP_CONFIG) config) {
-        super(http, config.wordpressEndpoint + '/wp-json/wp/v2');
+                protected http: Http) {
+        super(http, environment.wordpress.endpoint + '/wp-json/wp/v2');
 
     }
 

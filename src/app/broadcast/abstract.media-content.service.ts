@@ -2,7 +2,7 @@ import {ContentService} from "../content/abstract.content.service";
 import {Injectable} from "@angular/core";
 import {Broadcast} from "./broadcast.enum";
 import {Http, Response} from "@angular/http";
-import {Observable} from "rxjs";
+import {Observable, BehaviorSubject} from "rxjs";
 import {isNullOrUndefined} from "util";
 import {Episode} from "./episode.interface";
 import {Series} from "./series.interface";
@@ -13,10 +13,11 @@ export abstract class MediaContentService extends ContentService {
     protected type: Broadcast;
     protected episodeEndpoint: string;
     protected seriesEndpoint: string;
-    protected episodebatchCount: number = 12;
+    protected episodeBatchCount: number = 12;
     protected episodeOffset: number = 0;
-    protected seriesbatchCount: number = 12;
+    protected seriesBatchCount: number = 12;
     protected seriesOffset: number = 0;
+    public initialized: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(type: Broadcast, http: Http, endpoint: string){
         super(http, endpoint);
@@ -26,11 +27,11 @@ export abstract class MediaContentService extends ContentService {
     }
 
     public getEpisodeBatchCount(){
-        return this.episodebatchCount;
+        return this.episodeBatchCount;
     }
 
     public getSeriesBatchCount(){
-        return this.seriesbatchCount;
+        return this.seriesBatchCount;
     }
 
     public getEpisodes(filters?: BroadcastQueryParams): Observable<Episode[]> {
@@ -43,7 +44,7 @@ export abstract class MediaContentService extends ContentService {
         let query: string;
 
         query = this.episodeEndpoint + '&_embed&order=desc';
-        query += '&per_page=' + this.episodebatchCount + '&offset=' + this.episodeOffset * this.episodebatchCount;
+        query += '&per_page=' + this.episodeBatchCount + '&offset=' + this.episodeOffset * this.episodeBatchCount;
 
         try {
             if (!isNullOrUndefined(filters.series)) query += '&filter[series]=' + filters.series;
@@ -139,13 +140,13 @@ export abstract class MediaContentService extends ContentService {
 
     public getSeries() {
         this.seriesOffset = 0;
-        return this.getNextBatchOfEpisodes();
+        return this.getNextBatchOfSeries();
     }
 
     public getNextBatchOfSeries() {
 
         let query = this.seriesEndpoint + '&_embed&order=desc';
-        query += '&per_page=' + this.seriesbatchCount + '&offset=' + this.seriesOffset * this.seriesbatchCount;
+        query += '&per_page=' + this.seriesBatchCount + '&offset=' + this.seriesOffset * this.seriesBatchCount;
 
         this.seriesOffset++;
 
