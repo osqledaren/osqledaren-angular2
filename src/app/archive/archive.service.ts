@@ -25,6 +25,8 @@ export class ArchiveService extends ContentService{
     private _distributions: Dictionary<number, number[]> = new Dictionary<number, number[]>();
     private _filter: ArchiveFilter = <ArchiveFilter>{};
 
+
+    // TODO: group subjects into single object
     public archive: Subject<Archive> = new Subject<Archive>();
     public activated: Subject<boolean> = new Subject<boolean>();
     public distributions: Subject<Dictionary<number, number[]>> = new Subject<Dictionary<number,number[]>>();

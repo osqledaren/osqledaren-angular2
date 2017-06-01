@@ -23,6 +23,7 @@ import {BroadcastMenuComponent} from "./broadcast-menu/broadcast-menu.component"
 import {BroadcastLoaderComponent} from "./broadcast-loader/broadcast-loader.component";
 import {BroadcastLoaderService} from "./broadcast-loader.service";
 import { SeriesComponent } from './series/series.component';
+import { SingleSeriesComponent } from './single-series/single-series.component';
 
 @NgModule({
     imports: [
@@ -47,6 +48,13 @@ import { SeriesComponent } from './series/series.component';
                         path: 'serier',
                         component: SeriesComponent,
                         data: {name: 'Serier'},
+                        children: [
+                            {
+                                path: ':series',
+                                component: SingleSeriesComponent,
+                                data: {name: 'Serie'},
+                            }
+                        ]
                     },
                     {
                         path: '',
@@ -70,7 +78,8 @@ import { SeriesComponent } from './series/series.component';
         MediaPlaylistWidgetComponent,
         MediaPlaylistSidebarComponent,
         PlayComponent,
-        SeriesComponent
+        SeriesComponent,
+        SingleSeriesComponent,
     ],
     providers: [
         BroadcastLoaderService,

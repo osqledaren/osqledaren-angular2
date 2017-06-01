@@ -1,9 +1,24 @@
-<div class="container-fluid">
-    <ul class="list-unstyled">
-        <li *ngFor="let singleSeries of series"
-            class="single-series">
-            <h2 [innerHTML]="singleSeries.name"></h2>
-            <div [innerHTML]="singleSeries.description"></div>
-        </li>
-    </ul>
+<div class="series-container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 series-list">
+                <div class="inner">
+                    <nav role="navigation">
+                        <ul class="list-unstyled">
+                            <li *ngFor="let singleSeries of series"
+                                class="single-series">
+                                <a [routerLink]="singleSeries.slug"><span [innerHTML]="singleSeries.name"></span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-8 series-info">
+                <div class="inner">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
