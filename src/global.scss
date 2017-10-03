@@ -1,14 +1,10 @@
 /* Global stylesheet */
 
-@import "./src/fonts";
-@import "./src/variables";
-@import "./node_modules/bootstrap/scss/bootstrap-grid";
-@import "./node_modules/bootstrap/scss/bootstrap";
-@import "./src/loader";
+@import "fonts";
+@import "utility";
+@import "loader";
 
 body {
-
-	padding-top: $header-height; // Give some padding for fixed header.
 
 	&.article, &.article-preview {
 		background: white;

@@ -1,4 +1,4 @@
-@import "./src/utility";
+@import 'utility';
 
 footer#site-footer {
 
@@ -51,9 +51,6 @@ footer#site-footer {
 	}
 
 	.social-media {
-		p {
-			font-size: bold;
-		}
 		float:left;
 
 		.channel {

@@ -1,0 +1,67 @@
+<article [id]="article?.headline">
+    <div class="container" id="single-article">
+        <div class="article-image">
+            <app-image [renditions]="article?.renditions"></app-image>
+        </div>
+
+        <!-- Article heading box -->
+        <div class="article-heading-box">
+            <h1 [innerHTML]="article?.headline"></h1>
+            <ul class="social-medias" *ngIf="false">
+                <li>
+                    <a href="#" data-name="Tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <a href="#" data-name="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <a href="#" data-name="Twitter2"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <a href="#" data-name="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+            <span class="date">
+                    <time pubtime
+                          [attr.datetime]="(article?.versioncreated)"
+                          [title]="(article?.versioncreated | date: 'MMM dd y')"
+                          [innerText]="'Publicerad: ' + (article?.versioncreated | date: 'y-MM-dd')"></time>
+                </span>
+        </div>
+
+        <div class="article-gricle?.bylixt" [innerHTML]="article?.body_html"></div>
+
+        <!-- Byline below-->
+        <app-byline *ngIf="article?.byline" [byline]="article?.byline"></app-byline>
+    </div>
+</article>
+
+<aside id="related-posts">
+    <div class="related-posts-wrapper container-fluid">
+        <div class="related-posts container" *ngIf="showRelated">
+            <h2 class="h3">Läs även</h2>
+            <a *ngFor="let rel_post of relatedArticles" [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}">
+                <div class="related-post">
+                    <app-image-thumbnail [renditions]="rel_post.renditions"></app-image-thumbnail>
+                    <div class="related-post-title">
+                        <div>
+                            <h3 [innerHTML]="rel_post?.headline"></h3>
+                            <span class="date">
+                                <time pubtime
+                                      [attr.datetime]="(rel_post?.versioncreated)"
+                                      [title]="(rel_post?.versioncreated | date: 'MMM dd y')"
+                                      [innerText]="(rel_post?.versioncreated | date: 'y-MM-dd')"></time>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</aside>
+
+<aside id="comments">
+    <div class="container" id="disqus">
+        <disqus [identifier]="article?.id"></disqus>
+    </div>
+</aside>

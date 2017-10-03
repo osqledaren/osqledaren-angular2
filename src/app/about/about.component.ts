@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
-import {ArchiveService} from "../archive.service";
-import {Archive} from "../shared/enums";
-import {LoadableComponent} from "../shared/abstract/abstract.loadable.component";
-import {LoaderService} from "../loader.service";
+import {ArchiveService} from "../archive/archive.service";
+import {Archive} from "../archive/archive.enum";
+import {LoadableComponent} from "../loader/abstract.loadable.component";
+import {AppLoaderService} from "../loader/app-loader.service";
 
 @Component({
     selector: 'app-about',
@@ -12,7 +12,7 @@ import {LoaderService} from "../loader.service";
 export class AboutComponent extends LoadableComponent {
 
     constructor(private searchService: ArchiveService,
-                loaderService: LoaderService) {
+                loaderService: AppLoaderService) {
         super(loaderService);
     }
 

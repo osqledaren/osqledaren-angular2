@@ -1,0 +1,15 @@
+@import 'utility';
+
+.broadcast-loader {
+  position: absolute;
+  z-index: 1001;
+
+  &.initialized {
+    z-index: 999;
+    background: $body-bg;
+
+    .bounce {
+      background: black;
+    }
+  }
+}

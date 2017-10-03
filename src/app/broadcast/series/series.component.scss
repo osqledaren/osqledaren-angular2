@@ -1,0 +1,24 @@
+@import "utility";
+
+li {
+  text-align: right;
+}
+
+.inner {
+  margin: $grid-gutter-width-base/2 auto;
+}
+
+.series-list {
+
+  a {
+    cursor: pointer;
+  }
+
+  background: $gray-300;
+  font-weight: bold;
+
+  .inner {
+    margin-top: calc(#{$grid-gutter-width-base/2} + #{$font-size-h1*$line-height-lg});
+  }
+}
+

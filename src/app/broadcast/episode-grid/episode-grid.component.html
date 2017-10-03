@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <div class="container-fluid">
+        <masonry [options]="masonryOptions" (layoutComplete)="layoutComplete($event)"
+                 class="episode-container">
+            <div class="episode-grid-sizer"></div>
+            <masonry-brick *ngFor="let episode of episodes" [episode]="episode"
+                           class="episode-grid-item"></masonry-brick>
+        </masonry>
+        <div class="has-more-posts" [class.all-loaded]="!hasMorePosts" [class.hidden]="!isInitialized">
+            <div class="btn btn-primary" (click)="appendData()">Hämta fler avsnitt</div>
+            <p>Alla avsnitt har hämtats. Enjoy!</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<h2>Din kö</h2>
+<ul class="list-unstyled" *ngIf="isVisible">
+  <li *ngFor="let episode of queue;" class="episode-playlist-item item">
+    <span [innerHTML]="episode.headline" class="episode-playlist-item-title title"></span>
+    <a (click)="remove(episode)" class="episode-playlist-item-remove remove">
+      <i class="fa fa-remove"></i>
+    </a>
+    <a (click)="play(episode)" class="episode-playlist-item-play play">
+      <i class="fa fa-play"></i>
+    </a>
+  </li>
+</ul>

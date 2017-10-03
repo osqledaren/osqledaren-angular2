@@ -1,23 +1,19 @@
 import {Component, OnInit, HostListener, ElementRef, OnDestroy} from "@angular/core";
-import {IMenuList} from "../shared/interface/menu.interface";
-import {NavigationService} from "../navigation.service";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import {Observable, Subscription} from "rxjs";
-import {ArchiveService} from "../archive.service";
-import {Archive} from "../shared/enums";
 import {Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
+import {ArchiveService} from "../archive/archive.service";
+import {Archive} from "../archive/archive.enum";
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    templateUrl: 'header.component.html',
+    styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-    public mainMenu: IMenuList;
-    public secondaryMenu: IMenuList;
     public isCollapsed: boolean = true;
     public archive: string;
     private filterActive;
@@ -28,11 +24,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private sub: Subscription;
 
     constructor(private router: Router,
-                private navigation: NavigationService,
                 private archiveService: ArchiveService,
                 private elementRef: ElementRef) {
-        this.mainMenu = navigation.getNav('main-nav');
-        this.secondaryMenu = navigation.getNav('secondary-nav');
     }
 
     @HostListener('document:click', ['$event.target'])
@@ -105,12 +98,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.sub = this.archiveService.filterActive.subscribe(
             (active) => this.filterActive = active
         );
+
         // throttle scroll event
         Observable.fromEvent(window, 'scroll')
             .throttleTime(100)
             .subscribe(() => {
                 let scrollTop = document.body.scrollTop;
-
                 if (scrollTop < 100 || (scrollTop < this.lastScrollPos && scrollTop <= document.body.offsetHeight - window.outerHeight - 50)) {
                     this.showMenu();
                 } else {

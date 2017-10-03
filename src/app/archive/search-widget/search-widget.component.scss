@@ -1,0 +1,49 @@
+@import 'utility';
+
+.search-widget {
+
+
+  .search-form{
+
+    form {
+      display: flex;
+    }
+
+    input[type="text"], .btn {
+      padding: 5px $grid-gutter-width-base/4;
+      line-height: 20px;
+      margin: 5px 0;
+      height: 30px;
+      border-radius: 0;
+      border: 0;
+      color: $link-color;
+      font-weight: bold;
+      display: flex;
+      flex: 1;
+    }
+
+    .btn {
+      flex: 0;
+      flex-basis: 50px;
+      padding:0;
+      cursor: pointer;
+
+      &:focus {
+        outline: none !important;
+        background-color: $brand-primary !important;
+      }
+
+      i {
+        margin:auto;
+      }
+
+    }
+  }
+
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+}

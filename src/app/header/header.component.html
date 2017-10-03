@@ -1,9 +1,9 @@
 <header id="site-header" [ngClass]="{'visible': visible}">
-    <nav class="navbar">
+    <nav class="navbar" role="navigation">
         <div class="navbar-container">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" routerLink="/">
-                    <img src="assets/img/temp_logo.png">
+                    <img src="/assets/img/temp_logo.png">
                 </a>
                 <ul class="nav navbar-nav hidden-sm-down">
                     <li class="nav-item">
@@ -20,19 +20,27 @@
                     </li>
                 </ul>
                 <div class="button-container">
-                    <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
-                         [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div id="nav-filter-indicator" class="filter-indicator" [ngClass]="{'active': (isCollapsed && filterActive)}"></div>
+                    <ul>
+                        <li>
+                            <app-media-playlist-widget></app-media-playlist-widget>
+                        </li>
+                        <li>
+                            <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
+                                 [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div id="nav-filter-indicator" class="filter-indicator"
+                                 [ngClass]="{'active': (isCollapsed && filterActive)}"></div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div id="main-nav-collapsible" [ngClass]="{'submenu-open': !isCollapsed}">
             <div class="bg-inverse nav-subcontainer p-a-1">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
                             <ul class="nav navbar hidden-md-up">
@@ -68,14 +76,13 @@
                                      [ngClass]="{'active': filterActive}"></div>
                                 <h3 [innerText]="archive"></h3>
                                 <a class="reset" [ngClass]="{'active': filterActive}" (click)="reset()">Återställ</a>
-                                <app-archive></app-archive>
-                                <app-search></app-search>
+                                <app-archive-widget></app-archive-widget>
+                                <app-search-widget></app-search-widget>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </nav>
 </header>
