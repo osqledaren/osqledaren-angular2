@@ -93,7 +93,6 @@
   blockquote {
     position: relative;
     padding: $grid-gutter-width-base;
-    font-family: $font-family-serif;
     font-style: italic;
 
     i {
@@ -114,7 +113,7 @@
   padding-top: $grid-gutter-width-base;
   padding-bottom: $grid-gutter-width-base;
   margin-bottom: $grid-gutter-width-base/2;
-  background: $gray-lightest;
+  background: $gray-100;
   width: 100%;
 
   @include media-breakpoint-down(md) {

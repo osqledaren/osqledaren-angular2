@@ -1,9 +1,7 @@
 /* Global stylesheet */
 
 @import "fonts";
-@import "variables";
-@import "./node_modules/bootstrap/scss/bootstrap-grid";
-@import "./node_modules/bootstrap/scss/bootstrap";
+@import "utility";
 @import "loader";
 
 body {

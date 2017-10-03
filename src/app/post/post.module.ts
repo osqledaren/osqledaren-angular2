@@ -1,17 +1,17 @@
-import {NgModule} from "@angular/core";
-import {AppLoadableDeactivateGuard} from "../loader/app-loadable-deactivate.guard";
-import {ArticleComponent} from "./article/article.component";
-import {ArticleGridComponent} from "./article-grid/article-grid.component";
-import {ArticleGridItemComponent} from "./article-grid-item/article-grid-item.component";
-import {NewsArchiveComponent} from "./news-archive/news-archive.component";
-import {RouterModule} from "@angular/router";
-import {WordpressService} from "../content/wordpress.service";
-import {MasonryModule} from "angular2-masonry/src/module";
-import {NewsArticleService} from "./news-article.service";
-import {DisqusModule} from "ng2-awesome-disqus";
-import {ContentModule} from "../content/content.module";
-import {LoaderModule} from "../loader/loader.module";
-import {SharedModule} from "../shared/shared.module";
+import {NgModule} from '@angular/core';
+import {AppLoadableDeactivateGuard} from '../loader/app-loadable-deactivate.guard';
+import {ArticleComponent} from './article/article.component';
+import {ArticleGridComponent} from './article-grid/article-grid.component';
+import {ArticleGridItemComponent} from './article-grid-item/article-grid-item.component';
+import {NewsArchiveComponent} from './news-archive/news-archive.component';
+import {RouterModule} from '@angular/router';
+import {WordpressService} from '../content/wordpress.service';
+import {MasonryModule} from 'angular2-masonry/src/module';
+import {NewsArticleService} from './news-article.service';
+import {DisqusModule} from 'ngx-disqus';
+import {ContentModule} from '../content/content.module';
+import {LoaderModule} from '../loader/loader.module';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
     imports: [

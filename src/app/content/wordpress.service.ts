@@ -1,22 +1,22 @@
-import {Injectable, Inject} from "@angular/core";
-import {Response, Http, RequestMethod, Request, Headers} from "@angular/http";
-import {Article} from "../post/article.interface";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/mergeMap";
-import {ContentService} from "./abstract.content.service";
-import {isNullOrUndefined, isUndefined} from "util";
-import {PadNumberPipe} from "../shared/pad-number.pipe";
-import {CookieService} from 'angular2-cookie/services/cookies.service';
-import {ArticleQueryParams} from "../post/article-query-params.interface";
-import {environment} from "../../environments/environment";
+import {Injectable} from '@angular/core';
+import {Response, Http, Headers} from '@angular/http';
+import {Article} from '../post/article.interface';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import {ContentService} from './abstract.content.service';
+import {isNullOrUndefined, isUndefined} from 'util';
+import {PadNumberPipe} from '../shared/pad-number.pipe';
+import {CookieService} from 'ngx-cookie';
+import {ArticleQueryParams} from '../post/article-query-params.interface';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class WordpressService extends ContentService {
 
-    private batchCount: number = 12;
-    private offset: number = 0;
+    private batchCount = 12;
+    private offset = 0;
     private clientName;
 
     constructor(protected http: Http,
@@ -34,7 +34,7 @@ export class WordpressService extends ContentService {
 
         let query: Observable<Article[]>;
         let url: string;
-        let headers: Headers = new Headers();
+        const headers: Headers = new Headers();
 
         switch (isNaN(slug)) {
             case true:
@@ -44,11 +44,12 @@ export class WordpressService extends ContentService {
                 url = this.endpoint + '/posts/' + slug + '?_embed';
                 break;
         }
-
-        try{
-            let token = this.cookieService.get(this.clientName + '-access-token');
+        try {
+            const token = this.cookieService.get(this.clientName + '-access-token');
             headers.append('Authorization', 'BEARER ' + token);
-        } catch(Exception){}
+        } catch (Exception) {
+            return;
+        }
 
         query = this.http.get(url, {headers: headers}).map((res) => this.map(res)).catch(this.handleError);
 
@@ -73,7 +74,7 @@ export class WordpressService extends ContentService {
     public getNextBatchOfArticles(args?: ArticleQueryParams): Observable<Article[]> {
         let request: Observable<Response>;
         let query: string;
-        let queryParams: string = '';
+        let queryParams = '';
 
         // Add query parameters
         if (!isNullOrUndefined(args)) {
@@ -83,21 +84,21 @@ export class WordpressService extends ContentService {
             }
             if (!isNullOrUndefined(args.date)) {
 
-                let date: Array<string> = args.date.split('-');
-                let yearToday: number = new Date().getFullYear();
+                const date: Array<string> = args.date.split('-');
+                const yearToday: number = new Date().getFullYear();
                 let year: string;
                 let month: any = -1;
-                let nextMonth: string = '12';
+                let nextMonth = '12';
                 let nextYear: string;
 
                 // Do some validation
 
-                if (date[0].length == 4 && Number(date[0]) <= yearToday && Number(date[0]) >= 2000) {
+                if (date[0].length === 4 && Number(date[0]) <= yearToday && Number(date[0]) >= 2000) {
                     year = date[0];
                 }
 
                 if (!isUndefined(date[1])) {
-                    if (date[1].length == 2 && Number(date[1]) > 0 && Number(date[1]) <= 12) {
+                    if (date[1].length === 2 && Number(date[1]) > 0 && Number(date[1]) <= 12) {
                         month = date[1];
                     }
                 }
@@ -131,8 +132,8 @@ export class WordpressService extends ContentService {
 
     private parse(body) {
 
-        let categoriesById: Array<any> = [];
-        let media: any, sizes: any, categories: any;
+        const categoriesById: Array<any> = [];
+        let categories: any;
         let cred: any, relatedPosts: any;
         let renditions = this.parseRenditions(body);
         let byline = this.parseByline(body);

@@ -1,7 +1,4 @@
-/* Utility styles imported in every component */
-
-
+/* SCSS to be utilized in components when needed */
 @import "variables";
-@import "./node_modules/bootstrap/scss/variables";
-@import "./node_modules/bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap-reboot";
 @import "mixins";
