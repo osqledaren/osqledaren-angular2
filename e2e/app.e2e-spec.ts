@@ -1,14 +1,14 @@
-import {OsqledarenSitePage} from './app.po';
+import { AppPage } from './app.po';
 
-describe('osqledaren-site App', function () {
-	let page: OsqledarenSitePage;
+describe('donor App', () => {
+  let page: AppPage;
 
-	beforeEach(() => {
-		page = new OsqledarenSitePage();
-	});
+  beforeEach(() => {
+    page = new AppPage();
+  });
 
-	it('should display message saying app works', () => {
-		page.navigateTo();
-		expect(page.getParagraphText()).toEqual('app works!');
-	});
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
+  });
 });
