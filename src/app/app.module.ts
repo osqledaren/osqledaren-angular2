@@ -28,6 +28,7 @@ import {ArchiveService} from './archive/archive.service';
 import {CookieModule} from 'ngx-cookie';
 import {AppLoaderService} from './loader/app-loader.service';
 import {NewsArticleService} from './post/news-article.service';
+import {FooterService} from './footer/footer.service';
 import {WordpressService} from './content/wordpress.service';
 
 // Guards
@@ -95,6 +96,7 @@ import {AppLoadableDeactivateGuard} from './loader/app-loadable-deactivate.guard
     WordpressService,
     AppLoaderService,
     AppLoadableDeactivateGuard,
+    FooterService,
   ],
   bootstrap: [AppComponent]
 })

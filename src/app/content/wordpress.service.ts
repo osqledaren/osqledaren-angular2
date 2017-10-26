@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Response, Http, Headers} from '@angular/http';
 import {Article} from '../post/article.interface';
+import {Footer} from '../footer/footer.interface';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -51,7 +52,7 @@ export class WordpressService extends ContentService {
             return;
         }
 
-        query = this.http.get(url, {headers: headers}).map((res) => this.map(res)).catch(this.handleError);
+        query = this.http.get(url, {headers: headers}).map((res) => this.mapArticle(res)).catch(this.handleError);
 
         return query;
     }
@@ -126,12 +127,11 @@ export class WordpressService extends ContentService {
 
         // Increment offset number
         this.offset++;
-        return request.map((res) => this.map(res)).catch(this.handleError);
+        return request.map((res) => this.mapArticle(res)).catch(this.handleError);
 
     }
 
-    private parse(body) {
-
+    private parseArticle(body) {
         const categoriesById: Array<any> = [];
         let categories: any;
         let cred: any, relatedPosts: any;
@@ -176,21 +176,80 @@ export class WordpressService extends ContentService {
      * @param res:Response
      * @returns {Article[]|{}}
      */
-    protected map(res: Response) {
+    protected mapArticle(res: Response) {
         let body: any = res.json();
         let posts: Article[] = <Article[]>[];
 
         try {
             if (body.constructor === Array) {
                 for (let i in body) {
-                    posts.push(this.parse(body[i]));
+                    posts.push(this.parseArticle(body[i]));
                 }
             } else {
-                posts.push(this.parse(body));
+                posts.push(this.parseArticle(body));
             }
         } catch (Exception) {
         }
 
         return posts;
+    }
+
+    /**
+     * Fetches a page from wordpress by id
+     * @param id: any
+     * @returns {Observable<Footer[]>}
+     */
+    public getPage(id: any) {
+
+        let query: Observable<Footer[]>;
+        let url: string;
+        const headers: Headers = new Headers();
+
+        url = this.endpoint + '/pages/' + id;
+        console.log(url);
+
+        try {
+            const token = this.cookieService.get(this.clientName + '-access-token');
+            headers.append('Authorization', 'BEARER ' + token);
+        } catch (Exception) {
+            return;
+        }
+
+        query = this.http.get(url, {headers: headers}).map((res) => this.mapPage(res)).catch(this.handleError);
+
+        return query;
+    }
+
+    private parsePage(body) {
+        return <Footer>{
+            body_html: body.content.rendered,
+            description_text: ContentService.htmlToPlainText(body.excerpt.rendered),
+            headline: body.title.rendered,
+            id: body.id,
+            uri: body.link
+        };
+    }
+
+    /**
+     * Maps a response object to an page array
+     * @param res:Response
+     * @returns {Footer[]|{}}
+     */
+    protected mapPage(res: Response) {
+        let body: any = res.json();
+        let pages: Footer[] = <Footer[]>[];
+
+        try {
+            if (body.constructor === Array) {
+                for (let i in body) {
+                    pages.push(this.parsePage(body[i]));
+                }
+            } else {
+                pages.push(this.parsePage(body));
+            }
+        } catch (Exception) {
+        }
+
+        return pages;
     }
 }
