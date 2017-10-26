@@ -222,11 +222,7 @@ export class WordpressService extends ContentService {
 
     private parsePage(body) {
         return <Footer>{
-            body_html: body.content.rendered,
-            description_text: ContentService.htmlToPlainText(body.excerpt.rendered),
-            headline: body.title.rendered,
-            id: body.id,
-            uri: body.link
+            body_html: body.content.rendered
         };
     }
 
