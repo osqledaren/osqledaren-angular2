@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {CanDeactivate} from '@angular/router';
+import {UILoadableComponent} from './abstract.ui-loadable.component';
 import {Observable} from 'rxjs/Observable';
-import {BroadcastLoaderService} from './broadcast-loader.service';
-import {UILoadableComponent} from '../ui/abstract.ui-loadable.component';
+import {UIViewLoaderService} from './ui-view-loader.service';
 
 @Injectable()
 export class AppLoadableDeactivateGuard implements CanDeactivate<UILoadableComponent> {
 
-  constructor(private loaderService: BroadcastLoaderService) {
+  constructor(private loaderService: UIViewLoaderService) {
   }
 
   canDeactivate(component: UILoadableComponent) {

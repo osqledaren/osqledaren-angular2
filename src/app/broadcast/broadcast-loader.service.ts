@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {LoaderService} from '../loader/abstract.loader.service';
+import {UILoaderService} from '../ui/abstract.ui-loader.service';
 
 @Injectable()
-export class BroadcastLoaderService extends LoaderService {
+export class BroadcastLoaderService extends UILoaderService {
 }

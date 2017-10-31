@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoaderComponent} from '../../loader/abstract.loader.component';
+import {UILoaderComponent} from '../../ui/abstract.ui-loader.component';
 import {BroadcastLoaderService} from '../broadcast-loader.service';
 
 @Component({
@@ -7,7 +7,7 @@ import {BroadcastLoaderService} from '../broadcast-loader.service';
   templateUrl: 'broadcast-loader.component.html',
   styleUrls: ['broadcast-loader.component.scss']
 })
-export class BroadcastLoaderComponent extends LoaderComponent {
+export class BroadcastLoaderComponent extends UILoaderComponent {
 
   constructor(loaderService: BroadcastLoaderService) {
     super(loaderService);

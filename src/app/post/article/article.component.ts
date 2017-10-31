@@ -6,16 +6,16 @@ import {DOCUMENT} from '@angular/platform-browser';
 import {Article} from '../article.interface';
 import {ArticleQueryParams} from '../article-query-params.interface';
 import {ArchiveService} from '../../archive/archive.service';
-import {AppLoaderService} from '../../loader/app-loader.service';
+import {UIViewLoaderService} from '../../ui/ui-view-loader.service';
 import {Archive} from '../../archive/archive.enum';
-import {LoadableComponent} from '../../loader/abstract.loadable.component';
+import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
 
 @Component({
   selector: 'app-article',
   templateUrl: 'article.component.html',
   styleUrls: ['article.component.scss']
 })
-export class ArticleComponent extends LoadableComponent {
+export class ArticleComponent extends UILoadableComponent {
 
   public article: Article;
   public relatedArticles: Object[] = [];
@@ -27,7 +27,7 @@ export class ArticleComponent extends LoadableComponent {
               protected router: Router,
               protected archiveService: ArchiveService,
               @Inject(DOCUMENT) protected document: Document,
-              loaderService: AppLoaderService) {
+              loaderService: UIViewLoaderService) {
     super(loaderService);
   }
 

@@ -4,16 +4,18 @@ import {ArchiveService} from './archive.service';
 import {ArchiveWidgetComponent} from './archive-widget/archive-widget.component';
 import {SearchWidgetComponent} from './search-widget/search-widget.component';
 import {ContentModule} from '../content/content.module';
-import {LoaderModule} from '../loader/loader.module';
+import {UIModule} from '../ui/ui.module';
 import {HttpModule} from '@angular/http';
 import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     ContentModule,
     FormsModule,
     HttpModule,
-    LoaderModule,
+    UIModule,
+    RouterModule,
     SharedModule,
   ],
   declarations: [

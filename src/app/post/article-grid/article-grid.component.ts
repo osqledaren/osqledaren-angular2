@@ -5,11 +5,11 @@ import {ArticleGridItemComponent} from '../article-grid-item/article-grid-item.c
 import {ActivatedRoute, Router} from '@angular/router';
 import {isNullOrUndefined} from 'util';
 import {Observable} from 'rxjs/Observable';
-import {LoadableComponent} from '../../loader/abstract.loadable.component';
+import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
 import {ArticleQueryParams} from '../article-query-params.interface';
 import {Article} from '../article.interface';
 import {ArchiveService} from '../../archive/archive.service';
-import {AppLoaderService} from '../../loader/app-loader.service';
+import {UIViewLoaderService} from '../../ui/ui-view-loader.service';
 import {PadNumberPipe} from '../../shared/pad-number.pipe';
 
 @Component({
@@ -18,7 +18,7 @@ import {PadNumberPipe} from '../../shared/pad-number.pipe';
   styleUrls: ['article-grid.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ArticleGridComponent extends LoadableComponent {
+export class ArticleGridComponent extends UILoadableComponent {
 
   @ViewChildren(ArticleGridItemComponent) articleGridItems: QueryList<ArticleGridItemComponent>;
 
@@ -34,7 +34,7 @@ export class ArticleGridComponent extends LoadableComponent {
               private route: ActivatedRoute,
               private router: Router,
               private archiveService: ArchiveService,
-              loaderService: AppLoaderService) {
+              loaderService: UIViewLoaderService) {
     super(loaderService);
     this.articles = [];
   }

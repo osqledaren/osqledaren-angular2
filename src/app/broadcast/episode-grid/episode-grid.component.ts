@@ -2,7 +2,7 @@ import {Component, Host, QueryList, ViewChildren, ViewEncapsulation} from '@angu
 import {MasonryOptions} from 'angular2-masonry/src/masonry-options';
 import {EpisodeGridItemComponent} from '../episode-grid-item/episode-grid-item.component';
 import {MediaContentService} from '../abstract.media-content.service';
-import {LoadableComponent} from '../../loader/abstract.loadable.component';
+import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
 import {BroadcastLoaderService} from '../broadcast-loader.service';
 
 @Component({
@@ -11,7 +11,7 @@ import {BroadcastLoaderService} from '../broadcast-loader.service';
   styleUrls: ['episode-grid.component.scss', '../episode-grid-item/episode-grid-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class EpisodeGridComponent extends LoadableComponent {
+export class EpisodeGridComponent extends UILoadableComponent {
 
   @ViewChildren(EpisodeGridItemComponent) episodeGridItems: QueryList<EpisodeGridItemComponent>;
 

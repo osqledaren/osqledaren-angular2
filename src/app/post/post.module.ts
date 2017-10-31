@@ -1,63 +1,25 @@
 import {NgModule} from '@angular/core';
-import {AppLoadableDeactivateGuard} from '../loader/app-loadable-deactivate.guard';
 import {ArticleComponent} from './article/article.component';
 import {ArticleGridComponent} from './article-grid/article-grid.component';
 import {ArticleGridItemComponent} from './article-grid-item/article-grid-item.component';
 import {NewsArchiveComponent} from './news-archive/news-archive.component';
-import {RouterModule} from '@angular/router';
 import {WordpressService} from '../content/wordpress.service';
 import {MasonryModule} from 'angular2-masonry/src/module';
 import {NewsArticleService} from './news-article.service';
 import {DisqusModule} from 'ngx-disqus';
 import {ContentModule} from '../content/content.module';
-import {LoaderModule} from '../loader/loader.module';
+import {UIModule} from '../ui/ui.module';
 import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     ContentModule,
     DisqusModule,
-    LoaderModule,
+    UIModule,
+    RouterModule,
     MasonryModule,
-    SharedModule,
-    RouterModule.forRoot([
-      {
-        path: 'artikel/:slug',
-        component: ArticleComponent,
-        data: {name: 'article'},
-        canDeactivate: [AppLoadableDeactivateGuard]
-      },
-      {
-        path: 'nyheter',
-        component: NewsArchiveComponent,
-        data: {name: 'articles'},
-        canDeactivate: [AppLoadableDeactivateGuard]
-      },
-      {
-        path: 'nyheter/sok/:searchTerm',
-        component: NewsArchiveComponent,
-        data: {name: 'search'},
-        canDeactivate: [AppLoadableDeactivateGuard]
-      },
-      {
-        path: 'nyheter/arkiv/:date/:searchTerm',
-        component: NewsArchiveComponent,
-        data: {name: 'archive'},
-        canDeactivate: [AppLoadableDeactivateGuard]
-      },
-      {
-        path: 'nyheter/arkiv/:date',
-        component: NewsArchiveComponent,
-        data: {name: 'archive'},
-        canDeactivate: [AppLoadableDeactivateGuard]
-      },
-      {
-        path: '',
-        component: NewsArchiveComponent,
-        data: {name: 'home'},
-        canDeactivate: [AppLoadableDeactivateGuard]
-      },
-    ])
+    SharedModule
   ],
   declarations: [
     ArticleComponent,

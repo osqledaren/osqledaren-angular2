@@ -1,5 +1,5 @@
 import {Component, Host} from '@angular/core';
-import {LoadableComponent} from '../../loader/abstract.loadable.component';
+import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
 import {BroadcastLoaderService} from '../broadcast-loader.service';
 import {MediaContentService} from '../abstract.media-content.service';
 import {Series} from '../series.interface';
@@ -9,7 +9,7 @@ import {Series} from '../series.interface';
   templateUrl: './series.component.html',
   styleUrls: ['./series.component.scss']
 })
-export class SeriesComponent extends LoadableComponent {
+export class SeriesComponent extends UILoadableComponent {
 
   public series: Array<Series>;
   private hasMorePosts: boolean;

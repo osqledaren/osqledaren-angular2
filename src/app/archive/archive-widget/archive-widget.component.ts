@@ -3,8 +3,8 @@ import {ArchiveService} from '../archive.service';
 import {isNullOrUndefined} from 'util';
 import {ActivatedRoute, Router} from '@angular/router';
 import Dictionary from 'typescript-collections/dist/lib/Dictionary';
-import {LoadableComponent} from '../../loader/abstract.loadable.component';
-import {AppLoaderService} from '../../loader/app-loader.service';
+import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
+import {UIViewLoaderService} from '../../ui/ui-view-loader.service';
 import {PadNumberPipe} from '../../shared/pad-number.pipe';
 
 @Component({
@@ -12,7 +12,7 @@ import {PadNumberPipe} from '../../shared/pad-number.pipe';
   templateUrl: 'archive-widget.component.html',
   styleUrls: ['archive-widget.component.scss']
 })
-export class ArchiveWidgetComponent extends LoadableComponent {
+export class ArchiveWidgetComponent extends UILoadableComponent {
 
   public years: number[];
   public yearInput: string;
@@ -22,7 +22,7 @@ export class ArchiveWidgetComponent extends LoadableComponent {
   public months: number[];
 
   constructor(private archiveService: ArchiveService,
-              loaderService: AppLoaderService,
+              loaderService: UIViewLoaderService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
     super(loaderService);

@@ -1,13 +1,13 @@
-import {LoadableComponent} from '../loader/abstract.loadable.component';
-import {AppLoaderService} from '../loader/app-loader.service';
+import {UILoadableComponent} from '../ui/abstract.ui-loadable.component';
+import {UIViewLoaderService} from '../ui/ui-view-loader.service';
 import {ArchiveService} from '../archive/archive.service';
 import {PlayService} from './play.service';
 import {Archive} from '../archive/archive.enum';
 
 
-export abstract class BroadcastViewComponent extends LoadableComponent {
+export abstract class BroadcastViewComponent extends UILoadableComponent {
 
-  constructor(loaderService: AppLoaderService,
+  constructor(loaderService: UIViewLoaderService,
               private archiveService: ArchiveService,
               public mediaService: PlayService) {
     super(loaderService);
