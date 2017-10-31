@@ -1,4 +1,4 @@
 export interface Byline {
-    author: string;
-    role: string;
+  author: string;
+  role: string;
 }

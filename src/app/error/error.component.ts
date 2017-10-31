@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {LoadableComponent} from "../loader/abstract.loadable.component";
-import {AppLoaderService} from "../loader/app-loader.service";
-import {isNullOrUndefined} from "util";
-import {ArchiveService} from "../archive/archive.service";
-import {Archive} from "../archive/archive.enum";
+import {Component} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LoadableComponent} from '../loader/abstract.loadable.component';
+import {AppLoaderService} from '../loader/app-loader.service';
+import {isNullOrUndefined} from 'util';
+import {ArchiveService} from '../archive/archive.service';
+import {Archive} from '../archive/archive.enum';
 
 @Component({
   selector: 'app-error',
@@ -22,13 +22,13 @@ export class ErrorComponent extends LoadableComponent {
     super(loaderService);
   }
 
-  init(){
+  init() {
     this.archiveService.activate(Archive.article);
-    this.sub = this.route.queryParams.subscribe((qp)=>{
+    this.sub = this.route.queryParams.subscribe((qp) => {
 
       if (isNullOrUndefined(qp['status'])) {
         this.loaded();
-        this.router.navigate(['/']);
+        return this.router.navigate(['/']);
       } else {
 
         this.loaded();

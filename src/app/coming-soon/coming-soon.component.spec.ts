@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ComingSoonComponent } from './coming-soon.component';
+import {ComingSoonComponent} from './coming-soon.component';
 
 describe('ComingSoonComponent', () => {
   let component: ComingSoonComponent;
@@ -11,9 +9,9 @@ describe('ComingSoonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComingSoonComponent ]
+      declarations: [ComingSoonComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

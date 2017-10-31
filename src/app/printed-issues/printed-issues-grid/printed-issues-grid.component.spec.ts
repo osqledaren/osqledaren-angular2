@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PrintedIssuesGridComponent } from './printed-issues-grid.component';
+import {PrintedIssuesGridComponent} from './printed-issues-grid.component';
 
 describe('PrintedIssuesGridComponent', () => {
   let component: PrintedIssuesGridComponent;
@@ -11,9 +9,9 @@ describe('PrintedIssuesGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrintedIssuesGridComponent ]
+      declarations: [PrintedIssuesGridComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

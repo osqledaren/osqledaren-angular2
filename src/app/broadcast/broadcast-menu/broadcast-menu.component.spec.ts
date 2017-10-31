@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BroadcastMenuComponent } from './broadcast-menu.component';
+import {BroadcastMenuComponent} from './broadcast-menu.component';
 
 describe('BroadcastMenuComponent', () => {
   let component: BroadcastMenuComponent;
@@ -8,9 +8,9 @@ describe('BroadcastMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BroadcastMenuComponent ]
+      declarations: [BroadcastMenuComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

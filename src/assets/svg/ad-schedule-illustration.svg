@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style='background-color: #F0F0F0;' width="100%" height="100%" viewBox="0 0 390 535" xml:space="preserve">
-	<defs>                  
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" style='background-color: #F0F0F0;' width="100%" height="100%" viewBox="0 0 390 535" xml:space="preserve">
+	<defs>
         <pattern id="calendar-pattern" width="135" height="128"
             patternUnits="userSpaceOnUse" >
             <rect x="0" y="30" width="85" height="128" fill="#c1c1c1"/>
@@ -92,7 +92,7 @@
 	<rect x="268" y="284" width="89" height="17" fill="#F0F0F0" />
 	<rect x="265" y="369" width="125" height="17" fill="#F0F0F0" />
 
-		
+
 
 	<rect x="0" y="390" width="390" height="128" fill="url(#calendar-pattern)" />
 	<text x="45" y="402" style="fill:#000000;font-weight:bold;font-size:14px;font-family: 'Proxima Nova';">MAJ</text>

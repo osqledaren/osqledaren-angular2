@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {PlayComponent} from "./episode-grid.component";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {PlayComponent} from './episode-grid.component';
 
 describe('PlayComponent', () => {
   let component: PlayComponent;
@@ -8,9 +8,9 @@ describe('PlayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayComponent ]
+      declarations: [PlayComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

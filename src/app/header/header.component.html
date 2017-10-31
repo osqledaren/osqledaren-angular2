@@ -1,88 +1,88 @@
 <header id="site-header" [ngClass]="{'visible': visible}">
-    <nav class="navbar" role="navigation">
-        <div class="navbar-container">
-            <div class="container-fluid">
-                <a class="navbar-brand" routerLink="/">
-                    <img src="/assets/img/temp_logo.png">
-                </a>
-                <ul class="nav navbar-nav hidden-sm-down">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/nyheter">Nyheter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/pods">Podcast</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/play">Play</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/annonsera">Annonsera</a>
-                    </li>
-                </ul>
-                <div class="button-container">
-                    <ul>
-                        <li>
-                            <app-media-playlist-widget></app-media-playlist-widget>
-                        </li>
-                        <li>
-                            <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
-                                 [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div id="nav-filter-indicator" class="filter-indicator"
-                                 [ngClass]="{'active': (isCollapsed && filterActive)}"></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <nav class="navbar" role="navigation">
+    <div class="navbar-container">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+          <img src="/assets/img/temp_logo.png">
+        </a>
+        <ul class="nav navbar-nav hidden-sm-down">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/nyheter">Nyheter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/pods">Podcast</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/play">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/annonsera">Annonsera</a>
+          </li>
+        </ul>
+        <div class="button-container">
+          <ul>
+            <li>
+              <app-media-playlist-widget></app-media-playlist-widget>
+            </li>
+            <li>
+              <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
+                   [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div id="nav-filter-indicator" class="filter-indicator"
+                   [ngClass]="{'active': (isCollapsed && filterActive)}"></div>
+            </li>
+          </ul>
         </div>
-        <div id="main-nav-collapsible" [ngClass]="{'submenu-open': !isCollapsed}">
-            <div class="bg-inverse nav-subcontainer p-a-1">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
-                            <ul class="nav navbar hidden-md-up">
-                                <li class="nav-item">
-                                    <a class="nav-link" routerLink="/nyheter">Nyheter</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" routerLink="/pods">Podcast</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" routerLink="/play">Play</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" routerLink="/annonsera">Annonsera</a>
-                                </li>
-                            </ul>
-                            <ul class="nav navbar">
-                                <li class="nav-item active">
-                                    <a class="nav-link" routerLink="/tidningen">Tidningen<span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" routerLink="/om-oss">Om oss</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" routerLink="/sok-redaktionen">Sök redaktionen</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
-                            <div class="filter-widget" [ngClass]="{'visible': visible}">
-                                <div class="filter-indicator"
-                                     [ngClass]="{'active': filterActive}"></div>
-                                <h3 [innerText]="archive"></h3>
-                                <a class="reset" [ngClass]="{'active': filterActive}" (click)="reset()">Återställ</a>
-                                <app-archive-widget></app-archive-widget>
-                                <app-search-widget></app-search-widget>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      </div>
+    </div>
+    <div id="main-nav-collapsible" [ngClass]="{'submenu-open': !isCollapsed}">
+      <div class="bg-inverse nav-subcontainer p-a-1">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
+              <ul class="nav navbar hidden-md-up">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/nyheter">Nyheter</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/pods">Podcast</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/play">Play</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/annonsera">Annonsera</a>
+                </li>
+              </ul>
+              <ul class="nav navbar">
+                <li class="nav-item active">
+                  <a class="nav-link" routerLink="/tidningen">Tidningen<span
+                    class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/om-oss">Om oss</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/sok-redaktionen">Sök redaktionen</a>
+                </li>
+              </ul>
             </div>
+            <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
+              <div class="filter-widget" [ngClass]="{'visible': visible}">
+                <div class="filter-indicator"
+                     [ngClass]="{'active': filterActive}"></div>
+                <h3 [innerText]="archive"></h3>
+                <a class="reset" [ngClass]="{'active': filterActive}" (click)="reset()">Återställ</a>
+                <app-archive-widget></app-archive-widget>
+                <app-search-widget></app-search-widget>
+              </div>
+            </div>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 </header>

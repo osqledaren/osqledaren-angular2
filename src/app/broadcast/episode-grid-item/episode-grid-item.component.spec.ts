@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {EpisodeGridItemComponent} from "./episode-grid-item.component";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {EpisodeGridItemComponent} from './episode-grid-item.component';
 
 describe('EpisodeGridItemComponent', () => {
   let component: EpisodeGridItemComponent;
@@ -8,9 +8,9 @@ describe('EpisodeGridItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EpisodeGridItemComponent ]
+      declarations: [EpisodeGridItemComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,90 +1,92 @@
-import {Component, OnInit} from "@angular/core";
-import {VgAPI} from "videogular2/core";
-import {MediaPlaylistService} from "../media-playlist.service";
-import {MediaPlayerService} from "../media-player.service";
-import {Episode} from "../episode.interface";
+import {Component, OnInit} from '@angular/core';
+import {VgAPI} from 'videogular2/core';
+import {MediaPlaylistService} from '../media-playlist.service';
+import {MediaPlayerService} from '../media-player.service';
+import {Episode} from '../episode.interface';
 
 interface MediaPlayableElement {
-    source: string;
-    type: string;
+  source: string;
+  type: string;
 }
 
 @Component({
-    selector: 'app-media-player',
-    templateUrl: 'media-player.component.html',
-    styleUrls: ['media-player.component.scss']
+  selector: 'app-media-player',
+  templateUrl: 'media-player.component.html',
+  styleUrls: ['media-player.component.scss']
 })
 export class MediaPlayerComponent implements OnInit {
 
-    private mediaElements: MediaPlayableElement[];
-    private current: Episode;
-    private buffer;
+  private mediaElements: MediaPlayableElement[];
+  private current: Episode;
+  private buffer;
 
-    constructor(private playlistService: MediaPlaylistService, private playerService: MediaPlayerService) {
-    }
+  constructor(private playlistService: MediaPlaylistService, private playerService: MediaPlayerService) {
+  }
 
-    onPlayerReady(api: VgAPI) {
-        this.playerService.api = api;
-    }
+  onPlayerReady(api: VgAPI) {
+    this.playerService.api = api;
+  }
 
-    private listen(){
-        this.playerService.current.subscribe(
-            (episode: Episode) => {
+  ngOnInit() {
 
-                this.current = episode;
+    // Load default broadcast mediaService
+    this.mediaElements = new Array<MediaPlayableElement>({
+      source: null,
+      type: null
+    });
 
-                // Pause player
-                this.playerService.api.pause();
+    // Listen for broadcast mediaService load event
+    this.listen();
 
-                // Load broadcast mediaService
-                this.mediaElements = new Array<MediaPlayableElement>({
-                    source: episode.media.url,
-                    type: 'video/mp4'
-                });
+    // Listen for player end event
+    // this.listenEnd();
+  }
 
-                // Rewind to start
-                this.playerService.api.getDefaultMedia().currentTime = 0;
+  private listen() {
+    this.playerService.current.subscribe(
+      (episode: Episode) => {
 
-                // Play broadcast mediaService once loaded
-                this.playOnceLoaded();
-            }
-        );
-    }
+        this.current = episode;
 
-    /**
-     * Loads next item in playlist if current mediaService has been fully played.
-     * Triggers final event if playlist is empty.
-     */
-    private listenEnd(){
-        this.playerService.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
-            if(this.playlistService.isEmpty()) return;
-            this.playerService.load(this.playlistService.pop());
-        });
-    }
+        // Pause player
+        this.playerService.api.pause();
 
-    /**
-     * Plays mediaService once loaded
-     */
-    private playOnceLoaded(){
-        this.buffer = this.playerService.api.getDefaultMedia().subscriptions.canPlay.subscribe(() => {
-            this.playerService.api.play();
-            this.buffer.unsubscribe();
-        });
-    }
-
-    ngOnInit() {
-
-        // Load default broadcast mediaService
+        // Load broadcast mediaService
         this.mediaElements = new Array<MediaPlayableElement>({
-            source: null,
-            type: null
+          source: episode.media.url,
+          type: 'video/mp4'
         });
 
-        // Listen for broadcast mediaService load event
-        this.listen();
+        // Rewind to start
+        this.playerService.api.getDefaultMedia().currentTime = 0;
 
-        // Listen for player end event
-        //this.listenEnd();
-    }
+        // Play broadcast mediaService once loaded
+        this.playOnceLoaded();
+      }
+    );
+  }
+
+  /**
+   * Loads next item in playlist if current mediaService has been fully played.
+   * Triggers final event if playlist is empty.
+   */
+  private listenEnd() {
+    this.playerService.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
+      if (this.playlistService.isEmpty()) {
+        return;
+      }
+      this.playerService.load(this.playlistService.pop());
+    });
+  }
+
+  /**
+   * Plays mediaService once loaded
+   */
+  private playOnceLoaded() {
+    this.buffer = this.playerService.api.getDefaultMedia().subscriptions.canPlay.subscribe(() => {
+      this.playerService.api.play();
+      this.buffer.unsubscribe();
+    });
+  }
 
 }

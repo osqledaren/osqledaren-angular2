@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArchiveWidgetComponent } from './archive-widget.component';
+import {ArchiveWidgetComponent} from './archive-widget.component';
 
 describe('ArchiveWidgetComponent', () => {
   let component: ArchiveWidgetComponent;
@@ -11,9 +9,9 @@ describe('ArchiveWidgetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArchiveWidgetComponent ]
+      declarations: [ArchiveWidgetComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

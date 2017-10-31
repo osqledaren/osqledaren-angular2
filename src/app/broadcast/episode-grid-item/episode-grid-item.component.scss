@@ -80,11 +80,11 @@ a {
   @include media-breakpoint-down(sm) {
     width: 50%;
     .episode-grid-overlay {
-      background:transparent!important;
+      background: transparent !important;
       .episode-excerpt {
-        display: none!important;
+        display: none !important;
       }
-      opacity: 1!important;
+      opacity: 1 !important;
     }
   }
 }
@@ -130,7 +130,7 @@ h3.episode-title {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin:0;
+  margin: 0;
 }
 
 .episode-in-queue-splash {
@@ -145,7 +145,7 @@ h3.episode-title {
   background: rgba($gray-700, 0.5);
   opacity: 0;
   text-align: center;
-  color:white;
+  color: white;
   transition: all 0.3s ease-in-out;
 
   i {
@@ -158,13 +158,14 @@ h3.episode-title {
     line-height: 1;
   }
 
-  &.in-queue{
+  &.in-queue {
 
     opacity: 1;
 
     i {
-      top:50%
-    };
+      top: 50%
+    }
+  ;
   }
 
 }
@@ -184,8 +185,8 @@ h3.episode-title {
 
   .episode-controls {
     position: absolute;
-    left:0;
-    bottom:0;
+    left: 0;
+    bottom: 0;
     width: 100%;
     padding: 0 $grid-gutter-width-base/4 $grid-gutter-width-base/4;
     max-height: $grid-gutter-width-base/2 + $grid-gutter-width-base/4;
@@ -205,7 +206,7 @@ h3.episode-title {
   }
 
   .episode-excerpt {
-    color:white;
+    color: white;
     margin-bottom: $grid-gutter-width-base/2;
     overflow: hidden;
     position: relative;
@@ -213,17 +214,17 @@ h3.episode-title {
 }
 
 ul.episode-meta {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   font-size: $font-size-small;
-  color:$gray-400;
+  color: $gray-400;
 
   li {
     display: inline;
   }
 
   li.episode-play-count:before {
-    content:' | ';
+    content: ' | ';
     display: inline;
   }
 

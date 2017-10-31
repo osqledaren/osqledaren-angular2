@@ -1,40 +1,40 @@
-import {Injectable, OnDestroy, OnInit} from "@angular/core";
-import {GUID} from "../shared/guid.class";
-import {Subscription} from "rxjs";
-import {LoaderService} from "./abstract.loader.service";
+import {Injectable, OnDestroy, OnInit} from '@angular/core';
+import {GUID} from '../shared/guid.class';
+import {Subscription} from 'rxjs/Subscription';
+import {LoaderService} from './abstract.loader.service';
 
 @Injectable()
 export abstract class LoadableComponent implements OnInit, OnDestroy {
 
-    private loaderHandle: GUID = new GUID();
-    protected sub: Subscription = new Subscription;
+  protected sub: Subscription = new Subscription;
+  private loaderHandle: GUID = new GUID();
 
-    constructor(protected loaderService: LoaderService) {
-        this.loaderService.add(this.loaderHandle);
-    }
+  constructor(protected loaderService: LoaderService) {
+    this.loaderService.add(this.loaderHandle);
+  }
 
-    protected init(): void {
-    };
+  ngOnInit() {
+    this.init();
+  }
 
-    protected destroy(): void {
-    };
+  ngOnDestroy() {
+    this.destroy();
+    this.loaderService.remove(this.loaderHandle);
+    this.sub.unsubscribe();
+  }
 
-    /**
-     * Removes component from load queue. Loading has been resolved in component.
-     */
-    protected loaded() {
-        this.loaderService.loadComplete();
-        this.loaderService.remove(this.loaderHandle);
-    }
+  protected init(): void {
+  };
 
-    ngOnInit() {
-        this.init();
-    }
+  protected destroy(): void {
+  };
 
-    ngOnDestroy() {
-        this.destroy();
-        this.loaderService.remove(this.loaderHandle);
-        this.sub.unsubscribe();
-    }
+  /**
+   * Removes component from load queue. Loading has been resolved in component.
+   */
+  protected loaded() {
+    this.loaderService.loadComplete();
+    this.loaderService.remove(this.loaderHandle);
+  }
 
 }

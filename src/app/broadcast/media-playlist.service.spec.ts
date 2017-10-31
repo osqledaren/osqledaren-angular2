@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import {TestBed, inject} from "@angular/core/testing";
-import {MediaPlaylistService} from "./media-playlist.service";
+import {inject, TestBed} from '@angular/core/testing';
+import {MediaPlaylistService} from './media-playlist.service';
 
 describe('Service: MediaPlaylist', () => {
   beforeEach(() => {

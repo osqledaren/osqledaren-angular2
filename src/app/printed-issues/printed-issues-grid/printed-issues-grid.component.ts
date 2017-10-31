@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-printed-issues-grid',
@@ -6,9 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['printed-issues-grid.component.scss']
 })
 export class PrintedIssuesGridComponent implements OnInit {
-	@Input() stack;
+  @Input() stack;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

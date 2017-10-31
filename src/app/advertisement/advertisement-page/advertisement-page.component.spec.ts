@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdvertisementPageComponent } from './advertisement-page.component';
+import {AdvertisementPageComponent} from './advertisement-page.component';
 
 describe('AdvertisementPageComponent', () => {
   let component: AdvertisementPageComponent;
@@ -11,9 +9,9 @@ describe('AdvertisementPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdvertisementPageComponent ]
+      declarations: [AdvertisementPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

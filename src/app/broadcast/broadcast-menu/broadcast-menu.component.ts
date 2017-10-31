@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, Host} from '@angular/core';
-import {MediaContentService} from "../abstract.media-content.service";
+import {Component, Host, OnInit} from '@angular/core';
+import {MediaContentService} from '../abstract.media-content.service';
 
 @Component({
   selector: 'app-broadcast-menu',
@@ -10,7 +10,8 @@ export class BroadcastMenuComponent implements OnInit {
 
   private searchInput: string;
 
-  constructor(@Host() private mediaService: MediaContentService) { }
+  constructor(@Host() private mediaService: MediaContentService) {
+  }
 
   ngOnInit() {
   }

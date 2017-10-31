@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {MediaPlaylistWidgetComponent} from "./media-playlist-widget.component";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {MediaPlaylistWidgetComponent} from './media-playlist-widget.component';
 
 describe('MediaQueueComponent', () => {
   let component: MediaPlaylistWidgetComponent;
@@ -8,9 +8,9 @@ describe('MediaQueueComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediaPlaylistWidgetComponent ]
+      declarations: [MediaPlaylistWidgetComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

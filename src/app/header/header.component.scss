@@ -9,7 +9,7 @@
   transform: translate(0, -100%);
 
   &.visible {
-    transform: translate(0,0);
+    transform: translate(0, 0);
   }
 }
 
@@ -30,13 +30,13 @@
 
   ul {
     list-style-type: none;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 
     li {
       float: left;
-      padding:0;
-      margin:0;
+      padding: 0;
+      margin: 0;
     }
   }
 
@@ -50,7 +50,7 @@
   width: $grid-gutter-width-base/8;
   margin-left: -10px;
   transition: all 0.3s ease-in-out;
-  transform: scale(0,0);
+  transform: scale(0, 0);
 
   &.active {
     transform: scale(1, 1);
@@ -190,13 +190,15 @@
   position: relative;
   margin: 0 $grid-gutter-width-base/8;
 }
+
 .nav-item a {
   position: relative;
   display: inline-block;
 }
+
 .nav-item a:after {
   content: '';
-  width: 0%;
+  width: 0;
   height: 2px;
   background: white;
   position: absolute;
@@ -204,7 +206,10 @@
   left: 0;
   transition: transform 0.2s ease-in-out;
 }
-.nav-subcontainer .nav-item a:after { bottom: 5px; }
+
+.nav-subcontainer .nav-item a:after {
+  bottom: 5px;
+}
 
 .nav-item a:hover:after {
   width: 100%;
@@ -232,7 +237,7 @@
   }
 
   a.reset {
-    color: $ol-orange!important;
+    color: $ol-orange !important;
     transition: opacity 0.1s ease-in-out;
     opacity: 0;
     cursor: default;

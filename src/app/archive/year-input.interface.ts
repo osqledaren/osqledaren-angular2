@@ -1,4 +1,4 @@
 export interface YearInput {
-    index: number;
-    year: string
+  index: number;
+  year: string
 }

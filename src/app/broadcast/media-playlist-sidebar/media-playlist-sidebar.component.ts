@@ -1,7 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {MediaPlaylistService} from "../media-playlist.service";
-import {Episode} from "../episode.interface";
-import {isNullOrUndefined} from "util";
+import {Component, OnInit} from '@angular/core';
+import {MediaPlaylistService} from '../media-playlist.service';
+import {Episode} from '../episode.interface';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-media-playlist-sidebar',
@@ -10,23 +10,24 @@ import {isNullOrUndefined} from "util";
 })
 export class MediaPlaylistSidebarComponent implements OnInit {
 
-  private isVisible: boolean = false;
   public queue: Episode[];
+  private isVisible = false;
 
-  constructor(private playlistService: MediaPlaylistService) { }
+  constructor(private playlistService: MediaPlaylistService) {
+  }
 
-  public remove(item: Episode){
+  public remove(item: Episode) {
     this.playlistService.dequeue(item);
   }
 
   ngOnInit() {
-    this.playlistService.subjects.sidebarVisible.subscribe((visible)=>{
+    this.playlistService.subjects.sidebarVisible.subscribe((visible) => {
       this.isVisible = visible;
     });
 
 
-    this.playlistService.subjects.playlist.subscribe((playlist)=>{
-        this.queue = !isNullOrUndefined(playlist) ? playlist.toArray() : [];
+    this.playlistService.subjects.playlist.subscribe((playlist) => {
+      this.queue = !isNullOrUndefined(playlist) ? playlist.toArray() : [];
     });
   }
 

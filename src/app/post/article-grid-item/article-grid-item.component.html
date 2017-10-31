@@ -1,20 +1,20 @@
 <article [id]="'article-'+article.slug">
-    <div class="article-grid-item-content top">
-        <a [title]="article.headline" routerLink="/artikel/{{article.slug}}">
-            <div class="article-grid-item-header">
-                <app-image [renditions]="article.renditions"></app-image>
-            </div>
-        </a>
+  <div class="article-grid-item-content top">
+    <a [title]="article.headline" routerLink="/artikel/{{article.slug}}">
+      <div class="article-grid-item-header">
+        <app-image [renditions]="article.renditions"></app-image>
+      </div>
+    </a>
+  </div>
+  <div class="article-grid-item-content bottom">
+    <div class="article-grid-item-content-inner">
+      <article>
+        <h3 class="article-title"><a [title]="article.headline" routerLink="/artikel/{{article.slug}}"
+                                     [innerHTML]="article.headline"></a></h3>
+        <time class="article-date"
+              [innerText]="'Publicerad: ' +(article.versioncreated | date: 'y-MM-dd')"></time>
+        <div class="article-grid-item-text" [innerHTML]="article.description_text"></div>
+      </article>
     </div>
-    <div class="article-grid-item-content bottom">
-        <div class="article-grid-item-content-inner">
-            <article>
-                <h3 class="article-title"><a [title]="article.headline" routerLink="/artikel/{{article.slug}}"
-                                             [innerHTML]="article.headline"></a></h3>
-                <time class="article-date"
-                      [innerText]="'Publicerad: ' +(article.versioncreated | date: 'y-MM-dd')"></time>
-                <div class="article-grid-item-text" [innerHTML]="article.description_text"></div>
-            </article>
-        </div>
-    </div>
+  </div>
 </article>

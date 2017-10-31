@@ -3,8 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {DisqusModule} from 'ngx-disqus';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {Angulartics2Module, Angulartics2GoogleAnalytics} from 'angulartics2';
-
+import {Angulartics2GoogleAnalytics, Angulartics2Module} from 'angulartics2';
 // Modules
 import {AdvertisementModule} from './advertisement/advertisement.module';
 import {ArchiveModule} from './archive/archive.module';
@@ -13,7 +12,6 @@ import {ContentModule} from './content/content.module';
 import {LoaderModule} from './loader/loader.module';
 import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
 import {PostModule} from './post/post.module';
-
 // Components
 import {AboutComponent} from './about/about.component';
 import {AppComponent} from './app.component';
@@ -22,14 +20,12 @@ import {ErrorComponent} from './error/error.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-
 // Services
 import {ArchiveService} from './archive/archive.service';
 import {CookieModule} from 'ngx-cookie';
 import {AppLoaderService} from './loader/app-loader.service';
 import {NewsArticleService} from './post/news-article.service';
 import {WordpressService} from './content/wordpress.service';
-
 // Guards
 import {AppLoadableDeactivateGuard} from './loader/app-loadable-deactivate.guard';
 

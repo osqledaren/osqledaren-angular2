@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Rendition} from "../rendition.interface";
+import {Component, Input} from '@angular/core';
+import {Rendition} from '../rendition.interface';
 
 @Component({
   selector: 'app-image',
@@ -8,14 +8,15 @@ import {Rendition} from "../rendition.interface";
 })
 export class ImageComponent {
 
-  @Input() renditions: { [id:string] : Rendition};
+  @Input() renditions: { [id: string]: Rendition };
 
-  constructor() { }
+  constructor() {
+  }
 
-  private href(): string{
+  private href(): string {
     try {
       return this.renditions['large'].href;
-    } catch (Exception){
+    } catch (Exception) {
       return undefined;
     }
   }
@@ -23,7 +24,7 @@ export class ImageComponent {
   private title(): string {
     try {
       return this.renditions['large'].title;
-    } catch (Exception){
+    } catch (Exception) {
       return '';
     }
   }

@@ -14,66 +14,67 @@ import {LoaderModule} from '../loader/loader.module';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
-    imports: [
-        ContentModule,
-        DisqusModule,
-        LoaderModule,
-        MasonryModule,
-        SharedModule,
-        RouterModule.forRoot([
-            {
-                path: 'artikel/:slug',
-                component: ArticleComponent,
-                data: {name: 'article'},
-                canDeactivate: [AppLoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter',
-                component: NewsArchiveComponent,
-                data: {name: 'articles'},
-                canDeactivate: [AppLoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter/sok/:searchTerm',
-                component: NewsArchiveComponent,
-                data: {name: 'search'},
-                canDeactivate: [AppLoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter/arkiv/:date/:searchTerm',
-                component: NewsArchiveComponent,
-                data: {name: 'archive'},
-                canDeactivate: [AppLoadableDeactivateGuard]
-            },
-            {
-                path: 'nyheter/arkiv/:date',
-                component: NewsArchiveComponent,
-                data: {name: 'archive'},
-                canDeactivate: [AppLoadableDeactivateGuard]
-            },
-            {
-                path: '',
-                component: NewsArchiveComponent,
-                data: {name: 'home'},
-                canDeactivate: [AppLoadableDeactivateGuard]
-            },
-        ])
-    ],
-    declarations: [
-        ArticleComponent,
-        ArticleGridComponent,
-        ArticleGridItemComponent,
-        NewsArchiveComponent,
-    ],
-    providers: [
-        NewsArticleService,
-        WordpressService,
-    ],
-    exports: [
-        ArticleComponent,
-        ArticleGridComponent,
-        ArticleGridItemComponent,
-        NewsArchiveComponent
-    ]
+  imports: [
+    ContentModule,
+    DisqusModule,
+    LoaderModule,
+    MasonryModule,
+    SharedModule,
+    RouterModule.forRoot([
+      {
+        path: 'artikel/:slug',
+        component: ArticleComponent,
+        data: {name: 'article'},
+        canDeactivate: [AppLoadableDeactivateGuard]
+      },
+      {
+        path: 'nyheter',
+        component: NewsArchiveComponent,
+        data: {name: 'articles'},
+        canDeactivate: [AppLoadableDeactivateGuard]
+      },
+      {
+        path: 'nyheter/sok/:searchTerm',
+        component: NewsArchiveComponent,
+        data: {name: 'search'},
+        canDeactivate: [AppLoadableDeactivateGuard]
+      },
+      {
+        path: 'nyheter/arkiv/:date/:searchTerm',
+        component: NewsArchiveComponent,
+        data: {name: 'archive'},
+        canDeactivate: [AppLoadableDeactivateGuard]
+      },
+      {
+        path: 'nyheter/arkiv/:date',
+        component: NewsArchiveComponent,
+        data: {name: 'archive'},
+        canDeactivate: [AppLoadableDeactivateGuard]
+      },
+      {
+        path: '',
+        component: NewsArchiveComponent,
+        data: {name: 'home'},
+        canDeactivate: [AppLoadableDeactivateGuard]
+      },
+    ])
+  ],
+  declarations: [
+    ArticleComponent,
+    ArticleGridComponent,
+    ArticleGridItemComponent,
+    NewsArchiveComponent,
+  ],
+  providers: [
+    NewsArticleService,
+    WordpressService,
+  ],
+  exports: [
+    ArticleComponent,
+    ArticleGridComponent,
+    ArticleGridItemComponent,
+    NewsArchiveComponent
+  ]
 })
-export class PostModule {}
+export class PostModule {
+}

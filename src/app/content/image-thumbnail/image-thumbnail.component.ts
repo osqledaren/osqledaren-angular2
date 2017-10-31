@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Rendition} from "../rendition.interface";
+import {Component, Input} from '@angular/core';
+import {Rendition} from '../rendition.interface';
 
 @Component({
   selector: 'app-image-thumbnail',
@@ -8,14 +8,15 @@ import {Rendition} from "../rendition.interface";
 })
 export class ImageThumbnailComponent {
 
-  @Input() renditions: { [id:string] : Rendition};
+  @Input() renditions: { [id: string]: Rendition };
 
-  constructor() { }
+  constructor() {
+  }
 
-  private href(): string{
+  private href(): string {
     try {
       return this.renditions['thumbnail'].href;
-    } catch (Exception){
+    } catch (Exception) {
       return undefined;
     }
   }
@@ -23,7 +24,7 @@ export class ImageThumbnailComponent {
   private title(): string {
     try {
       return this.renditions['thumbnail'].title;
-    } catch (Exception){
+    } catch (Exception) {
       return '';
     }
   }
