@@ -15,10 +15,10 @@ export class EpisodeGridComponent extends UILoadableComponent {
 
   @ViewChildren(EpisodeGridItemComponent) episodeGridItems: QueryList<EpisodeGridItemComponent>;
 
-  private episodes;
-  private hasMorePosts = true;
-  private isInitialized = false;
-  private masonryOptions: MasonryOptions;
+  public episodes;
+  public hasMorePosts = true;
+  public isInitialized = false;
+  public masonryOptions: MasonryOptions;
   private args;
 
   // Accepts implemented abstract service
@@ -49,7 +49,7 @@ export class EpisodeGridComponent extends UILoadableComponent {
     };
   }
 
-  private layoutComplete(event) {
+  public layoutComplete(event) {
     if (!this.episodeGridItems.dirty) {
       this.episodeGridItems.forEach(function (item) {
         item.truncate();
@@ -57,13 +57,13 @@ export class EpisodeGridComponent extends UILoadableComponent {
     }
   }
 
-  private hasMore(posts) {
+  public hasMore(posts) {
     if (posts.length < this.mediaService.getEpisodeBatchCount()) {
       this.hasMorePosts = false;
     }
   }
 
-  private appendData() {
+  public appendData() {
     if (!this.isInitialized) {
       return;
     }

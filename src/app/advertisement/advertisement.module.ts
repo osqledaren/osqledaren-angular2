@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {AdvertisementTopBannerComponent} from './advertisement-top-banner/advertisement-top-banner.component';
-import {SharedModule} from '../shared/shared.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports: [
-    SharedModule,
+    CommonModule,
   ],
   declarations: [
     AdvertisementTopBannerComponent
   ],
   providers: [],
   exports: [
-    AdvertisementTopBannerComponent,
+    AdvertisementTopBannerComponent
   ]
 })
 export class AdvertisementModule {

@@ -66,7 +66,7 @@ export class ArticleGridComponent extends UILoadableComponent {
     this.initializeData();
   }
 
-  private layoutComplete(event) {
+  public layoutComplete(event) {
     if (!this.articleGridItems.dirty) {
       this.articleGridItems.forEach(function (item) {
         item.truncate();
@@ -227,7 +227,7 @@ export class ArticleGridComponent extends UILoadableComponent {
     });
   }
 
-  private appendData() {
+  public appendData() {
     let errorMessage;
 
     if (!this.isInitialized) {

@@ -13,8 +13,8 @@ import {Archive} from '../../archive/archive.enum';
 })
 export class ErrorComponent extends UILoadableComponent {
 
-  private errorStatus;
-  private errorOrigin;
+  public errorStatus;
+  public errorOrigin;
 
   constructor(private route: ActivatedRoute,
               private archiveService: ArchiveService,

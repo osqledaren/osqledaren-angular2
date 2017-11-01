@@ -23,6 +23,7 @@ import {WordpressService} from './content/wordpress.service';
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {ROUTES} from './app.routes';
 import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
+import {CommonModule} from '@angular/common';
 
 const FINAL_ROUTES: Routes = [
   {
@@ -42,6 +43,7 @@ const FINAL_ROUTES: Routes = [
     BroadcastModule,
     BrowserModule,
     CookieModule.forRoot(),
+    CommonModule,
     DisqusModule.forRoot('osqledaren'),
     ContentModule,
     PostModule,

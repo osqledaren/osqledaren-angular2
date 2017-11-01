@@ -14,7 +14,7 @@ declare let $clamp: any;
 export class EpisodeGridItemComponent implements AfterViewInit, OnInit {
   @Input() episode: Episode;
 
-  private inQueue = false;
+  public inQueue = false;
 
   constructor(private elementView: ElementRef,
               private mediaPlaylistService: MediaPlaylistService,

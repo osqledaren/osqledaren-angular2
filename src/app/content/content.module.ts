@@ -5,13 +5,13 @@ import {WordpressService} from './wordpress.service';
 import {BylineComponent} from './byline/byline.component';
 import {UIModule} from '../ui/ui.module';
 import {HttpModule} from '@angular/http';
-import {SharedModule} from '../shared/shared.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports: [
     UIModule,
     HttpModule,
-    SharedModule,
+    CommonModule,
   ],
   declarations: [
     BylineComponent,

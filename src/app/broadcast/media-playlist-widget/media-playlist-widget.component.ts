@@ -20,7 +20,7 @@ export class MediaPlaylistWidgetComponent implements OnInit {
     });
   }
 
-  private toggleSideBar() {
+  public toggleSideBar() {
     this.sidebarVisible = this.playlistService.toggleSidebar();
   }
 

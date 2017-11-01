@@ -11,7 +11,7 @@ import {isNullOrUndefined} from 'util';
 export class MediaPlaylistSidebarComponent implements OnInit {
 
   public queue: Episode[];
-  private isVisible = false;
+  public isVisible = false;
 
   constructor(private playlistService: MediaPlaylistService) {
   }

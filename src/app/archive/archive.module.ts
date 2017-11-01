@@ -6,17 +6,17 @@ import {SearchWidgetComponent} from './search-widget/search-widget.component';
 import {ContentModule} from '../content/content.module';
 import {UIModule} from '../ui/ui.module';
 import {HttpModule} from '@angular/http';
-import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports: [
+    CommonModule,
     ContentModule,
     FormsModule,
     HttpModule,
     UIModule,
-    RouterModule,
-    SharedModule,
+    RouterModule
   ],
   declarations: [
     ArchiveWidgetComponent,

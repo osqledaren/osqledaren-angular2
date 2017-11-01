@@ -16,9 +16,9 @@ interface MediaPlayableElement {
 })
 export class MediaPlayerComponent implements OnInit {
 
-  private mediaElements: MediaPlayableElement[];
-  private current: Episode;
-  private buffer;
+  public mediaElements: MediaPlayableElement[];
+  public current: Episode;
+  public buffer;
 
   constructor(private playlistService: MediaPlaylistService, private playerService: MediaPlayerService) {
   }

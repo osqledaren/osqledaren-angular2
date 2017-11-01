@@ -19,7 +19,7 @@ export class ArticleComponent extends UILoadableComponent {
 
   public article: Article;
   public relatedArticles: Object[] = [];
-  private showRelated = false;
+  public showRelated = false;
   private args: ArticleQueryParams;
 
   constructor(protected NS: NewsArticleService,

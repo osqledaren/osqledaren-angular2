@@ -13,7 +13,7 @@ export class ImageComponent {
   constructor() {
   }
 
-  private href(): string {
+  public href(): string {
     try {
       return this.renditions['large'].href;
     } catch (Exception) {
@@ -21,7 +21,7 @@ export class ImageComponent {
     }
   }
 
-  private title(): string {
+  public title(): string {
     try {
       return this.renditions['large'].title;
     } catch (Exception) {

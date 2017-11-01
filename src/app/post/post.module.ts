@@ -9,8 +9,8 @@ import {NewsArticleService} from './news-article.service';
 import {DisqusModule} from 'ngx-disqus';
 import {ContentModule} from '../content/content.module';
 import {UIModule} from '../ui/ui.module';
-import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports: [
@@ -19,17 +19,17 @@ import {RouterModule} from '@angular/router';
     UIModule,
     RouterModule,
     MasonryModule,
-    SharedModule
+    CommonModule
   ],
   declarations: [
     ArticleComponent,
     ArticleGridComponent,
     ArticleGridItemComponent,
-    NewsArchiveComponent,
+    NewsArchiveComponent
   ],
   providers: [
     NewsArticleService,
-    WordpressService,
+    WordpressService
   ],
   exports: [
     ArticleComponent,

@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {ArchiveService} from '../archive.service';
 import {isNullOrUndefined} from 'util';
-import {ActivatedRoute, Router} from '@angular/router';
 import Dictionary from 'typescript-collections/dist/lib/Dictionary';
 import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
 import {UIViewLoaderService} from '../../ui/ui-view-loader.service';
@@ -22,9 +21,7 @@ export class ArchiveWidgetComponent extends UILoadableComponent {
   public months: number[];
 
   constructor(private archiveService: ArchiveService,
-              loaderService: UIViewLoaderService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              loaderService: UIViewLoaderService) {
     super(loaderService);
   }
 

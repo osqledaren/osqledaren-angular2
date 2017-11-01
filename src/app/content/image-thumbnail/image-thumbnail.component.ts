@@ -13,7 +13,7 @@ export class ImageThumbnailComponent {
   constructor() {
   }
 
-  private href(): string {
+  public href(): string {
     try {
       return this.renditions['thumbnail'].href;
     } catch (Exception) {
@@ -21,7 +21,7 @@ export class ImageThumbnailComponent {
     }
   }
 
-  private title(): string {
+  public title(): string {
     try {
       return this.renditions['thumbnail'].title;
     } catch (Exception) {

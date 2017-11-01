@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public isCollapsed = true;
   public archive: string;
-  private filterActive;
-  private visible = true;
+  public filterActive;
+  public visible = true;
   private lastScrollPos = 0;
   private autoCloseTimer: Subscription;
   private sub: Subscription;
@@ -118,7 +118,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isCollapsed = !(this.visible && !this.isCollapsed);
   }
 
-  private ToggleSubMenu() {
+  public ToggleSubMenu() {
     this.isCollapsed = !this.isCollapsed;
   }
 

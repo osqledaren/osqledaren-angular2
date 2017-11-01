@@ -10,7 +10,6 @@ import {PlayService} from './play.service';
 import {MediaPlayerService} from './media-player.service';
 import {MediaPlaylistService} from './media-playlist.service';
 import {ContentModule} from '../content/content.module';
-import {SharedModule} from '../shared/shared.module';
 import {HttpModule} from '@angular/http';
 import {UIModule} from '../ui/ui.module';
 import {VgCoreModule} from 'videogular2/src/core/core';
@@ -23,19 +22,20 @@ import {BroadcastLoaderService} from './broadcast-loader.service';
 import {SeriesComponent} from './series/series.component';
 import {SingleSeriesComponent} from './single-series/single-series.component';
 import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports: [
+    CommonModule,
     ContentModule,
     HttpModule,
     UIModule,
     MasonryModule,
     RouterModule,
-    SharedModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule,
+    VgBufferingModule
   ],
   declarations: [
     BroadcastLoaderComponent,
@@ -47,7 +47,7 @@ import {RouterModule} from '@angular/router';
     MediaPlaylistSidebarComponent,
     PlayComponent,
     SeriesComponent,
-    SingleSeriesComponent,
+    SingleSeriesComponent
   ],
   providers: [
     BroadcastLoaderService,

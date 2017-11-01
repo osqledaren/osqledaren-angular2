@@ -70,7 +70,7 @@ export class PrintedIssuesComponent extends UILoadableComponent {
     super(loaderService);
   }
 
-  OnInit() {
+  init() {
     this.archiveService.activate(Archive.article);
     this.loaded();
   }

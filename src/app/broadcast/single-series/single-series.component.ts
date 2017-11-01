@@ -9,7 +9,7 @@ import {SeriesComponent} from '../series/series.component';
 })
 export class SingleSeriesComponent implements OnInit {
 
-  private series: Array<Series>;
+  public series: Array<Series>;
 
   constructor(@Host() private seriesParent: SeriesComponent) {
   }

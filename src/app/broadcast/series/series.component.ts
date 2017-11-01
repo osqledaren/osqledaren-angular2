@@ -12,8 +12,8 @@ import {Series} from '../series.interface';
 export class SeriesComponent extends UILoadableComponent {
 
   public series: Array<Series>;
-  private hasMorePosts: boolean;
-  private isInitialized: boolean;
+  public hasMorePosts: boolean;
+  public isInitialized: boolean;
 
   constructor(@Host() private mediaService: MediaContentService,
               loaderService: BroadcastLoaderService) {
@@ -35,13 +35,13 @@ export class SeriesComponent extends UILoadableComponent {
     );
   }
 
-  private hasMore(posts) {
+  public hasMore(posts) {
     if (posts.length < this.mediaService.getSeriesBatchCount()) {
       this.hasMorePosts = false;
     }
   }
 
-  private appendData() {
+  public appendData() {
     if (!this.isInitialized) {
       return;
     }
