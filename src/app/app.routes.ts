@@ -9,7 +9,9 @@ import {PlayComponent} from './broadcast/play/play.component';
 import {EpisodeGridComponent} from './broadcast/episode-grid/episode-grid.component';
 import {SeriesComponent} from './broadcast/series/series.component';
 import {SingleSeriesComponent} from './broadcast/single-series/single-series.component';
-import {PrintedIssuesComponent} from './site/printed-issues/printed-issues/printed-issues.component';
+import {PrintedIssuesComponent} from './printed-issues/printed-issues/printed-issues.component';
+import {AdvertiseComponent} from './site/advertise/advertise.component';
+import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 
 /**
  * Definition of broadcast routes
@@ -19,6 +21,7 @@ const BROADCAST: Routes = [
   {
     path: 'play',
     component: PlayComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'play'},
     children: [
       {
@@ -55,31 +58,37 @@ const POST: Routes = [
   {
     path: 'artikel/:slug',
     component: ArticleComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'article'}
   },
   {
     path: 'nyheter',
     component: NewsArchiveComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'articles'}
   },
   {
     path: 'nyheter/sok/:searchTerm',
     component: NewsArchiveComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'search'}
   },
   {
     path: 'nyheter/arkiv/:date/:searchTerm',
     component: NewsArchiveComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'archive'}
   },
   {
     path: 'nyheter/arkiv/:date',
     component: NewsArchiveComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'archive'}
   },
   {
     path: '',
     component: NewsArchiveComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'home'}
   }
 ];
@@ -91,37 +100,45 @@ const POST: Routes = [
 const SITE: Routes = [
   {
     path: 'annonsera',
+    component: AdvertiseComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'advertise'}
   },
   {
     path: 'error',
     component: ErrorComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'error'}
   },
   {
     path: 'om-oss',
     component: AboutComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'about'}
   },
   {
     path: 'sok-redaktionen',
     component: ComingSoonComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
+    data: {name: 'coming-soon'}
+  },
+  {
+    path: 'play',
+    component: ComingSoonComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'coming-soon'}
   },
   {
     path: 'pods',
     component: ComingSoonComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'coming-soon'}
   },
   {
     path: 'tidningen',
     component: PrintedIssuesComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
     data: {name: 'printed-issues'}
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent,
-    data: {name: '404'}
   }
 ];
 
@@ -130,7 +147,13 @@ const SITE: Routes = [
  * @type Routes
  */
 export const ROUTES: Routes = [
-  ...BROADCAST,
+  // ...BROADCAST,
   ...SITE,
-  ...POST
+  ...POST,
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
+    data: {name: '404'}
+  }
 ];

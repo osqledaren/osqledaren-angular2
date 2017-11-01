@@ -22,9 +22,6 @@
         <div class="button-container">
           <ul>
             <li>
-              <app-media-playlist-widget></app-media-playlist-widget>
-            </li>
-            <li>
               <div id="nav-icon" class="btn-link btn menu-toggle nav-link"
                    [ngClass]="{'open': !isCollapsed}" (click)="ToggleSubMenu()">
                 <span></span>
@@ -42,8 +39,8 @@
       <div class="bg-inverse nav-subcontainer p-a-1">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
-              <ul class="nav navbar hidden-md-up">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+              <ul class="hidden-md-up nav flex-column">
                 <li class="nav-item">
                   <a class="nav-link" routerLink="/nyheter">Nyheter</a>
                 </li>
@@ -57,7 +54,9 @@
                   <a class="nav-link" routerLink="/annonsera">Annonsera</a>
                 </li>
               </ul>
-              <ul class="nav navbar">
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <ul class="nav flex-column">
                 <li class="nav-item active">
                   <a class="nav-link" routerLink="/tidningen">Tidningen<span
                     class="sr-only">(current)</span></a>
@@ -70,7 +69,7 @@
                 </li>
               </ul>
             </div>
-            <div class="col-md-6 col-lg-4 col-xl-3 push-lg-4 push-xl-6">
+            <div class="col-md-6 col-xl-3">
               <div class="filter-widget" [ngClass]="{'visible': visible}">
                 <div class="filter-indicator"
                      [ngClass]="{'active': filterActive}"></div>

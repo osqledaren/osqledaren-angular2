@@ -1,5 +1,8 @@
 /* SCSS Variables */
 
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 /* # Bootstrap 4 configuration overrides */
 $enable-rounded: false;
 $enable-shadows: false;
@@ -18,8 +21,12 @@ $gray-light: #aaa;
 $ol-orange: #f05022 !default;
 $ol-teal: #37bfbf !default;
 
+
+$theme-colors: map_merge($theme-colors, ("primary": #f05022));
+
 // Bootstrap color overrides
 $brand-primary: $ol-orange;
+
 
 // Link Color
 $link-color: #ebb07b;
@@ -52,3 +59,4 @@ $header-height: 62px;
 $logo-max-width: 40px;
 $grid-gutter-width-base: 60px;
 $container-narrow: 720px;
+

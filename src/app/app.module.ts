@@ -10,6 +10,8 @@ import {ArchiveModule} from './archive/archive.module';
 import {BroadcastModule} from './broadcast/broadcast.module';
 import {ContentModule} from './content/content.module';
 import {PostModule} from './post/post.module';
+import {SiteModule} from './site/site.module';
+import {UIModule} from './ui/ui.module';
 // Components
 import {AppComponent} from './app.component';
 // Services
@@ -20,8 +22,7 @@ import {WordpressService} from './content/wordpress.service';
 // Guards
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {ROUTES} from './app.routes';
-import {SiteModule} from './site/site.module';
-import {UIModule} from './ui/ui.module';
+import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
 
 const FINAL_ROUTES: Routes = [
   {
@@ -33,7 +34,7 @@ const FINAL_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [AppComponent],
   imports: [
     AdvertisementModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
@@ -44,9 +45,10 @@ const FINAL_ROUTES: Routes = [
     DisqusModule.forRoot('osqledaren'),
     ContentModule,
     PostModule,
+    PrintedIssuesModule,
     RouterModule.forRoot(FINAL_ROUTES),
+    UIModule,
     SiteModule,
-    UIModule
   ],
   providers: [
     AppLoadableDeactivateGuard,

@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {ArchiveService} from '../../../archive/archive.service';
-import {UILoadableComponent} from '../../../ui/abstract.ui-loadable.component';
-import {UIViewLoaderService} from '../../../ui/ui-view-loader.service';
-import {Archive} from '../../../archive/archive.enum';
+import {ArchiveService} from '../../archive/archive.service';
+import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
+import {UIViewLoaderService} from '../../ui/ui-view-loader.service';
+import {Archive} from '../../archive/archive.enum';
 
 @Component({
   selector: 'app-printed-issues',
