@@ -14,6 +14,7 @@ export class ImageThumbnailComponent {
   }
 
   public href(): string {
+
     try {
       return this.renditions['thumbnail'].href;
     } catch (Exception) {

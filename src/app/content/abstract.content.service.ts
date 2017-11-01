@@ -33,17 +33,19 @@ export abstract class ContentService {
       let author: Array<string>;
       const bylineAuthors = post.acf.cred.match(/[^\r\n]+/g);
 
-      for (const j of bylineAuthors) {
-        author = bylineAuthors[j].split('='); // Split name and role at separator, in this case the '=' character.
+      for (const j in bylineAuthors) {
+        if (bylineAuthors.hasOwnProperty(j)) {
+          author = bylineAuthors[j].split('='); // Split name and role at separator, in this case the '=' character.
 
-        author[0] = author[0].trim(); // Remove leading and trailing whitespaces.
-        author[1] = author[1].trim(); // Remove leading and trailing whitespaces.
+          author[0] = author[0].trim(); // Remove leading and trailing whitespaces.
+          author[1] = author[1].trim(); // Remove leading and trailing whitespaces.
 
-        // If successful convert raw strings into byline element.
-        if (author[0] !== '' && author[1] !== '') {
-          byline.push(<Byline>{
-            role: author[0], author: author[1]
-          });
+          // If successful convert raw strings into byline element.
+          if (author[0] !== '' && author[1] !== '') {
+            byline.push(<Byline>{
+              role: author[0], author: author[1]
+            });
+          }
         }
       }
 
@@ -61,14 +63,16 @@ export abstract class ContentService {
       media = post._embedded['wp:featuredmedia'];
       sizes = media[0].media_details.sizes;
 
-      for (const j of sizes) {
-        renditions[j] = <Rendition>{
-          title: media[0].title.rendered,
-          href: sizes[j].source_url,
-          mime_type: sizes[j].mime_type,
-          height: sizes[j].height,
-          width: sizes[j].width
-        };
+      for (const j in sizes) {
+        if (sizes.hasOwnProperty(j)) {
+          renditions[j] = <Rendition>{
+            title: media[0].title.rendered,
+            href: sizes[j].source_url,
+            mime_type: sizes[j].mime_type,
+            height: sizes[j].height,
+            width: sizes[j].width
+          };
+        }
       }
     } catch (Exception) {
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core';
 import {Article} from '../article.interface';
 
 declare let $clamp: any;

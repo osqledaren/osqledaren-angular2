@@ -14,6 +14,7 @@ export class ImageComponent {
   }
 
   public href(): string {
+
     try {
       return this.renditions['large'].href;
     } catch (Exception) {

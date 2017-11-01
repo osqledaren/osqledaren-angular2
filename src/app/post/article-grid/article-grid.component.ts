@@ -39,7 +39,6 @@ export class ArticleGridComponent extends UILoadableComponent {
     this.articles = [];
   }
 
-
   elementSize(urgency: number): string {
 
     let size: string;
