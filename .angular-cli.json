@@ -1,8 +1,8 @@
 {
 	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
 	"project": {
-		"version": "2.0",
-		"name": "osqledaren-angular2"
+		"version": "2.0.0",
+		"name": "osqledaren-ng2"
 	},
 	"apps": [
 		{

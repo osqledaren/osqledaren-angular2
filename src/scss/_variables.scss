@@ -29,7 +29,8 @@ $brand-primary: $ol-orange;
 
 
 // Link Color
-$link-color: #ebb07b;
+$link-color: $ol-orange;
+$link-hover-color: darken($ol-orange, 5%);
 
 /* Typography */
 
