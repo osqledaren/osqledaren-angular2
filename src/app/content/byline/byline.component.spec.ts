@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BylineComponent } from './byline.component';
+import {BylineComponent} from './byline.component';
 
 describe('BylineComponent', () => {
   let component: BylineComponent;
@@ -11,9 +9,9 @@ describe('BylineComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BylineComponent ]
+      declarations: [BylineComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

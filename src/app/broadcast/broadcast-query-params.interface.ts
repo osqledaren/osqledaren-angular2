@@ -1,4 +1,4 @@
 export interface BroadcastQueryParams {
-    series?: string,
-    search?: string
+  series?: string,
+  search?: string
 }

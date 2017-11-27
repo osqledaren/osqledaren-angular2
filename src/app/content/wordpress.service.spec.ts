@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { WordpressService } from './wordpress.service';
+import {inject, TestBed} from '@angular/core/testing';
+import {WordpressService} from './wordpress.service';
 
 describe('Service: WordpressService', () => {
   beforeEach(() => {

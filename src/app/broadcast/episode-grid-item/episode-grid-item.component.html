@@ -1,28 +1,28 @@
 <article [id]="'episode-'+episode.slug">
-    <div class="episode-grid-item-content top">
-        <div class="episode-grid-item-header">
-            <app-image [renditions]="episode.renditions"></app-image>
-            <div class="episode-in-queue-splash" [class.in-queue]="inQueue">
-                <i class="fa fa-4x fa-check-circle" aria-hidden="true"></i>
-            </div>
-            <div class="episode-grid-overlay">
-                <div class="episode-excerpt" [innerHTML]="episode.excerpt"></div>
-                <div class="episode-controls">
-                    <a (click)="play()"><i class="fa fa-2x fa-play-circle" aria-hidden="true"></i></a>
-                    <a (click)="toggleQueue()"><i class="fa fa-2x"
-                                              [class.fa-plus-circle]="!inQueue"
-                                              [class.fa-check-circle]="inQueue" aria-hidden="true"></i></a>
-                </div>
-            </div>
+  <div class="episode-grid-item-content top">
+    <div class="episode-grid-item-header">
+      <app-image [renditions]="episode.renditions"></app-image>
+      <div class="episode-in-queue-splash" [class.in-queue]="inQueue">
+        <i class="fa fa-4x fa-check-circle" aria-hidden="true"></i>
+      </div>
+      <div class="episode-grid-overlay">
+        <div class="episode-excerpt" [innerHTML]="episode.excerpt"></div>
+        <div class="episode-controls">
+          <a (click)="play()"><i class="fa fa-2x fa-play-circle" aria-hidden="true"></i></a>
+          <a (click)="toggleQueue()"><i class="fa fa-2x"
+                                        [class.fa-plus-circle]="!inQueue"
+                                        [class.fa-check-circle]="inQueue" aria-hidden="true"></i></a>
         </div>
+      </div>
     </div>
-    <div class="episode-grid-item-content bottom">
-        <div class="episode-grid-item-content-inner">
-            <h3 class="episode-title" [innerHTML]="episode.headline"></h3>
-            <ul class="episode-meta">
-                <li class="episode-series">Analog film</li>
-                <li class="episode-play-count">14k visningar</li>
-            </ul>
-        </div>
+  </div>
+  <div class="episode-grid-item-content bottom">
+    <div class="episode-grid-item-content-inner">
+      <h3 class="episode-title" [innerHTML]="episode.headline"></h3>
+      <ul class="episode-meta">
+        <li class="episode-series">Analog film</li>
+        <li class="episode-play-count">14k visningar</li>
+      </ul>
     </div>
+  </div>
 </article>

@@ -1,19 +1,19 @@
 /* Global stylesheet */
-
 @import "fonts";
 @import "utility";
 @import "loader";
 
 body {
 
-	&.article, &.article-preview {
-		background: white;
-	}
+  background: white;
+
+  &.article, &.article-preview {
+    background: white;
+  }
 
 }
 
 hr {
-	margin: $grid-gutter-width-base/4 auto $grid-gutter-width-base/2;
-	border-color: $body-color;
-	border-width: 3px;
+  margin: $grid-gutter-width-base/4 auto $grid-gutter-width-base/2;
+  border: 3px $body-color;
 }

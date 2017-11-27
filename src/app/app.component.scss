@@ -17,7 +17,7 @@ app-footer {
   transform: translate3d(0, 0, 0);
 
   > .container-fluid {
-    padding:0;
+    padding: 0;
     overflow-x: hidden;
   }
 
@@ -42,7 +42,7 @@ app-footer {
 :host {
   flex-direction: column;
   min-height: 100vh;
-  width:100%;
+  width: 100%;
   display: flex;
 
   &.media-playlist-sidebar-visible {

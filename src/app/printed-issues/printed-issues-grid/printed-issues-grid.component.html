@@ -1,6 +1,6 @@
 <h2 class="text-center h3" [innerText]="'Läsåret '+stack.year"></h2>
 <masonry [useImagesLoaded]="true" class="print-grid-container">
-    <div masonry-brick class="print-grid-item" *ngFor="let url of stack.issues">
-    	<div class="print-grid-item-img" [ngStyle]="{'background-image': 'url(' + url + ')'}"></div>
-    </div>
+  <div masonry-brick class="print-grid-item" *ngFor="let url of stack.issues">
+    <div class="print-grid-item-img" [ngStyle]="{'background-image': 'url(' + url + ')'}"></div>
+  </div>
 </masonry>

@@ -1,8 +1,8 @@
 {
 	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
 	"project": {
-		"version": "2.0",
-		"name": "osqledaren-angular2"
+		"version": "2.0.0",
+		"name": "osqledaren-ng2"
 	},
 	"apps": [
 		{
@@ -35,7 +35,7 @@
 			],
 			"environmentSource": "environments/environment.ts",
 			"environments": {
-				"dev": "environments/environment.dev.ts",
+				"dev": "environments/environment.ts",
 				"staging": "environments/environment.staging.ts",
 				"prod": "environments/environment.prod.ts"
 			}

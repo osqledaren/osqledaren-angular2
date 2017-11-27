@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import {TestBed, inject} from "@angular/core/testing";
-import {PlayService} from "./play.service";
+import {inject, TestBed} from '@angular/core/testing';
+import {PlayService} from './play.service';
 
 describe('Service: Play', () => {
   beforeEach(() => {

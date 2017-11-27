@@ -1,0 +1,105 @@
+.newspaper-ad {
+
+  .description {
+    float: left;
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: $grid-gutter-width-base/2;
+
+    @include media-breakpoint-down(lg) {
+      padding-left: $grid-gutter-width-base/2;
+      width: 60%;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 70%;
+    }
+
+  }
+
+  .figure {
+    float: left;
+
+    width: 100%;
+    padding-top: 112.5%;
+
+    margin-bottom: $grid-gutter-width-base/2;
+    background-color: #ebbbad;
+    position: relative;
+
+    @include media-breakpoint-down(lg) {
+      padding-top: 45%;
+      width: 40%;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-top: 33.75%;
+      width: 30%;
+    }
+
+  }
+
+  .figure {
+    .box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 50%;
+      width: 50%;
+      background-color: #eb9b82;
+    }
+
+    .box2 {
+      left: auto;
+      top: auto;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  .figure1 .box {
+    height: 10%;
+    width: 100%;
+    background-color: #d6d6d6;
+  }
+
+  .figure2 .box2 {
+    background: #d6d6d6;
+  }
+
+  .general {
+
+    background: white;
+    width: 100%;
+
+    object {
+      height: $font-size-h1;
+      float: left;
+      text-align: right;
+    }
+
+    position: relative;
+
+    .inner {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .description {
+      padding: 0;
+      margin: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 0;
+
+      .inner {
+        position: static;
+      }
+    }
+
+  }
+
+}

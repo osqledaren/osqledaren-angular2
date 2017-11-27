@@ -1,0 +1,15 @@
+.ad-schedule {
+
+  .info {
+    text-align: left;
+  }
+
+  .calendar {
+    display: inline-block;
+  }
+
+  svg text {
+    font-family: $font-family-sans-serif !important;
+    text-transform: capitalize !important;
+  }
+}

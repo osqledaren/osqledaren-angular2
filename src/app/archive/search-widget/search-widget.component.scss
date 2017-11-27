@@ -2,8 +2,7 @@
 
 .search-widget {
 
-
-  .search-form{
+  .search-form {
 
     form {
       display: flex;
@@ -25,8 +24,9 @@
     .btn {
       flex: 0;
       flex-basis: 50px;
-      padding:0;
+      padding: 0;
       cursor: pointer;
+      color: white!important;
 
       &:focus {
         outline: none !important;
@@ -34,7 +34,7 @@
       }
 
       i {
-        margin:auto;
+        margin: auto;
       }
 
     }

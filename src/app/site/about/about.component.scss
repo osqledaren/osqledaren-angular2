@@ -1,0 +1,27 @@
+@import 'utility';
+
+.no-pad {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+h1, h3 {
+  margin-bottom: 20px;
+}
+
+.container {
+  padding: $grid-gutter-width-base/2;
+}
+
+img {
+  margin-bottom: $grid-gutter-width-base/2;
+  width: 100%;
+  height: auto;
+}
+
+p {
+}
+
+button {
+  cursor: pointer;
+}

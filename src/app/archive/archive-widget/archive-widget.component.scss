@@ -25,7 +25,7 @@ div {
     color: $link-color;
     font-weight: bold;
     display: flex;
-    flex:1;
+    flex: 1;
   }
 
   label, span {
@@ -33,7 +33,7 @@ div {
     color: white;
     margin: 0;
     display: flex;
-    flex:1;
+    flex: 1;
     text-align: right;
   }
 
@@ -42,14 +42,15 @@ div {
     flex-basis: 50px;
     padding: 0;
     cursor: pointer;
+    color: white;
 
     i {
       margin: auto;
     }
 
     &:focus {
-      outline: none!important;
-      background-color: $brand-primary!important;
+      outline: none !important;
+      background-color: $brand-primary !important;
     }
 
   }

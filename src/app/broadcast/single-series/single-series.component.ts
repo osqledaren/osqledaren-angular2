@@ -1,6 +1,6 @@
-import {Component, OnInit, Host} from '@angular/core';
-import {Series} from "../series.interface";
-import {SeriesComponent} from "../series/series.component";
+import {Component, Host, OnInit} from '@angular/core';
+import {Series} from '../series.interface';
+import {SeriesComponent} from '../series/series.component';
 
 @Component({
   selector: 'app-single-series',
@@ -9,9 +9,10 @@ import {SeriesComponent} from "../series/series.component";
 })
 export class SingleSeriesComponent implements OnInit {
 
-  private series: Array<Series>;
+  public series: Array<Series>;
 
-  constructor(@Host() private seriesParent: SeriesComponent) { }
+  constructor(@Host() private seriesParent: SeriesComponent) {
+  }
 
   ngOnInit() {
     this.series = this.seriesParent.series;

@@ -1,5 +1,5 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {MediaPlaylistSidebarComponent} from "./media-playlist-sidebar.component";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {MediaPlaylistSidebarComponent} from './media-playlist-sidebar.component';
 
 describe('MediaPlaylistSidebarComponent', () => {
   let component: MediaPlaylistSidebarComponent;
@@ -7,9 +7,9 @@ describe('MediaPlaylistSidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediaPlaylistSidebarComponent ]
+      declarations: [MediaPlaylistSidebarComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

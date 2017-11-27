@@ -1,15 +1,13 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {PadNumberPipe} from './pad-number.pipe';
 
 @NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [
-    ],
-    exports: [
-        CommonModule,
-    ]
+  imports: [],
+  declarations: [
+    PadNumberPipe
+  ],
+  exports: [
+  ]
 })
 export class SharedModule {
 

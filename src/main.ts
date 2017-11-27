@@ -6,7 +6,8 @@ import {environment} from './environments/environment';
 import {AppModule} from './app/';
 
 if (environment.production) {
-	enableProdMode();
+  enableProdMode();
 }
 
+// noinspection JSIgnoredPromiseFromCall
 platformBrowserDynamic().bootstrapModule(AppModule);

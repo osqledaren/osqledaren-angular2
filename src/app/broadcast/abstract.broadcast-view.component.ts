@@ -1,28 +1,30 @@
-import {Component, OnInit} from "@angular/core";
-import {LoadableComponent} from "../loader/abstract.loadable.component";
-import {AppLoaderService} from "../loader/app-loader.service";
-import {ArchiveService} from "../archive/archive.service";
-import {PlayService} from "./play.service";
-import {Archive} from "../archive/archive.enum";
+import {UILoadableComponent} from '../ui/abstract.ui-loadable.component';
+import {UIViewLoaderService} from '../ui/ui-view-loader.service';
+import {ArchiveService} from '../archive/archive.service';
+import {PlayService} from './play.service';
+import {Archive} from '../archive/archive.enum';
 
 
-export abstract class BroadcastViewComponent extends LoadableComponent{
+export abstract class BroadcastViewComponent extends UILoadableComponent {
 
-    constructor(loaderService: AppLoaderService,
-                private archiveService: ArchiveService,
-                public mediaService: PlayService) {
-        super(loaderService);
-    }
+  constructor(loaderService: UIViewLoaderService,
+              private archiveService: ArchiveService,
+              public mediaService: PlayService) {
+    super(loaderService);
+  }
 
-    init() {
-        this.archiveService.activate(Archive.article);
-        this.mediaService.initialized.subscribe((loaded) => {
-            if (loaded) this.loaded();
-        });
-    }
+  init() {
+    this.archiveService.activate(Archive.article);
+    this.mediaService.initialized.subscribe((loaded) => {
+      if (loaded) {
+        this.loaded()
+      }
+      ;
+    });
+  }
 
-    destroy(){
-        this.mediaService.initialized.next(false);
-    }
+  destroy() {
+    this.mediaService.initialized.next(false);
+  }
 
 }

@@ -1,0 +1,28 @@
+:host /deep/ {
+
+  .okra-startup {
+    > p {
+      margin:0;
+    }
+
+    margin-bottom: $grid-gutter-width-base;
+  }
+
+  .okra-startup-img {
+    width: 100%;
+    margin: 0;
+  }
+
+  .okra-startup-content {
+    background-image: url('http://wp.osqledaren.se/wp-content/uploads/2017/11/okralivia_inkeri-dimle_startups_faktaruta_02.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    margin: 0 !important;
+    padding: 2em 10%;
+    box-sizing: border-box;
+  }
+
+}

@@ -1,6 +1,6 @@
 {
-  "name": "osqledaren-web1617",
-  "version": "0.0.0",
+  "name": "osqledaren-ng2",
+  "version": "2.0.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --env=prod --aot --build-optimizer && cd ./dist && cp index.html 200.html && surge --domain osqledaren.se"
   },
   "private": true,
   "dependencies": {

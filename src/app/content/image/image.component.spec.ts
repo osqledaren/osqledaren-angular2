@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArticleImageComponent } from './image.component';
+import {ArticleImageComponent} from './image.component';
 
 describe('ArticleImageComponent', () => {
   let component: ArticleImageComponent;
@@ -11,9 +9,9 @@ describe('ArticleImageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticleImageComponent ]
+      declarations: [ArticleImageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

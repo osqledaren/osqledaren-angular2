@@ -1,7 +1,7 @@
 export interface Series {
-    id: number;
-    name: string;
-    slug: string;
-    description: string;
-    episodes_count: number;
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  episodes_count: number;
 }
