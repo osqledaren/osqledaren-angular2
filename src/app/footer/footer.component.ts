@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FooterService} from "./footer.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Footer} from "./footer.interface";
+import {Page} from "../content/page.interface";
 import {isNullOrUndefined} from "util";
 
 @Component({
@@ -9,8 +9,11 @@ import {isNullOrUndefined} from "util";
 			templateUrl: 'footer.component.html',
 			styleUrls: ['footer.component.scss']
 		})
-	export class FooterComponent {
-	    public footer: Footer;
+
+	export class FooterComponent implements OnInit {
+	    public footer: Page;
+	    public editorName;
+	    public emailAddress;
 			private year;
 
 	    constructor(protected FS: FooterService) {}
@@ -19,16 +22,25 @@ import {isNullOrUndefined} from "util";
 	      this.FS.getFooterPage().subscribe(
 	        pages => {
 	        	this.footer = pages[0];
-	       	},
-	       	error => {
-	        	// TODO: What if loading the footer fails?
-	    		});
+	        	this.setCustomFields(this.footer['custom_fields']);
+	       	});
 	    }
 
-		init() {
+		ngOnInit() {
 			var today = new Date();
 			this.year = today.getFullYear();
 
 			this.initializeData();
+		}
+
+    /**
+      Reads the custom fields of the footer page and modifies the values for display.
+      @param {object} customFields The footers custom fields
+    **/
+		setCustomFields(customFields) {
+		  this.editorName = customFields['editor-name'];
+
+		  // replace '@' sign in the email address
+		  this.emailAddress = customFields['email-address'].replace('@', ' at ');
 		}
 }

@@ -1,5 +1,5 @@
 import {Injectable, Inject} from '@angular/core';
-import {Footer} from "./footer.interface";
+import {Page} from "../content/page.interface";
 import {WordpressService} from "../content/wordpress.service";
 import {Observable} from "rxjs/Observable";
 
@@ -9,7 +9,7 @@ export class FooterService {
 
   constructor(private WP: WordpressService) {}
 
-	public getFooterPage(): Observable<Footer[]> {
+	public getFooterPage(): Observable<Page[]> {
         let WPObservable = this.WP.getPage(this.FOOTER_ID);
         return WPObservable;
     }

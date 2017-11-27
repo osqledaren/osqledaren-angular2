@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Response, Http, Headers} from '@angular/http';
 import {Article} from '../post/article.interface';
-import {Footer} from '../footer/footer.interface';
+import {Page} from './page.interface';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -15,10 +15,11 @@ import {environment} from '../../environments/environment';
 
 @Injectable()
 export class WordpressService extends ContentService {
-
     private batchCount = 12;
     private offset = 0;
     private clientName;
+    private WP_STAGING_URI = 'http://wp-staging.osqledaren.se/wp-json/wp/v2';
+    private WP_STAGING_AUTH = 'osqledaren-angular2-staging';
 
     constructor(protected http: Http,
                 protected cookieService: CookieService) {
@@ -197,19 +198,18 @@ export class WordpressService extends ContentService {
     /**
      * Fetches a page from wordpress by id
      * @param id: any
-     * @returns {Observable<Footer[]>}
+     * @returns {Observable<Page[]>}
      */
     public getPage(id: any) {
 
-        let query: Observable<Footer[]>;
+        let query: Observable<Page[]>;
         let url: string;
         const headers: Headers = new Headers();
 
-        url = this.endpoint + '/pages/' + id;
-        console.log(url);
+        url = this.WP_STAGING_URI + '/pages/' + id;
 
         try {
-            const token = this.cookieService.get(this.clientName + '-access-token');
+            const token = this.cookieService.get(this.WP_STAGING_AUTH + '-access-token');
             headers.append('Authorization', 'BEARER ' + token);
         } catch (Exception) {
             return;
@@ -220,20 +220,22 @@ export class WordpressService extends ContentService {
         return query;
     }
 
+
     private parsePage(body) {
-        return <Footer>{
-            body_html: body.content.rendered
+        return <Page>{
+            body_html: body.content.rendered,
+            custom_fields: body.acf
         };
     }
 
     /**
      * Maps a response object to an page array
      * @param res:Response
-     * @returns {Footer[]|{}}
+     * @returns {Page[]|{}}
      */
     protected mapPage(res: Response) {
         let body: any = res.json();
-        let pages: Footer[] = <Footer[]>[];
+        let pages: Page[] = <Page[]>[];
 
         try {
             if (body.constructor === Array) {
