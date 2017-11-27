@@ -10,12 +10,13 @@ import {HeaderComponent} from './header/header.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ArchiveModule} from '../archive/archive.module';
 import {CommonModule} from '@angular/common';
+import {FooterService} from './footer.service';
 
 @NgModule({
-  imports: [
+  imports     : [
     ArchiveModule,
     CommonModule,
-    RouterModule,
+    RouterModule
   ],
   declarations: [
     AboutComponent,
@@ -28,7 +29,7 @@ import {CommonModule} from '@angular/common';
     PageNotFoundComponent,
     StartComponent
   ],
-  exports: [
+  exports     : [
     AboutComponent,
     AdvertiseComponent,
     AboutComponent,
@@ -38,6 +39,9 @@ import {CommonModule} from '@angular/common';
     HeaderComponent,
     PageNotFoundComponent,
     StartComponent
+  ],
+  providers   : [
+    FooterService
   ]
 })
 export class SiteModule {}

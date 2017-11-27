@@ -18,6 +18,7 @@ import {AppComponent} from './app.component';
 import {ArchiveService} from './archive/archive.service';
 import {CookieModule} from 'ngx-cookie';
 import {NewsArticleService} from './post/news-article.service';
+import {FooterService} from './site/footer.service';
 import {WordpressService} from './content/wordpress.service';
 // Guards
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
@@ -57,6 +58,8 @@ const FINAL_ROUTES: Routes = [
     ArchiveService,
     NewsArticleService,
     WordpressService,
+    AppLoadableDeactivateGuard,
+    FooterService
   ],
   bootstrap: [AppComponent]
 })

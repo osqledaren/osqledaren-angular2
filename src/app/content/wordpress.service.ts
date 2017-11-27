@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, Response} from '@angular/http';
 import {Article} from '../post/article.interface';
+import {Page} from './page.interface';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -51,7 +52,7 @@ export class WordpressService extends ContentService {
       return;
     }
 
-    query = this.http.get(url, {headers: headers}).map((res) => this.map(res)).catch(this.handleError);
+    query = this.http.get(url, {headers: headers}).map((res) => this.mapArticle(res)).catch(this.handleError);
 
     return query;
   }
@@ -126,36 +127,11 @@ export class WordpressService extends ContentService {
 
     // Increment offset number
     this.offset++;
-    return request.map((res) => this.map(res)).catch(this.handleError);
+    return request.map((res) => this.mapArticle(res)).catch(this.handleError);
 
   }
 
-  /**
-   * Maps a response object to an article array
-   * @param res:Response
-   * @returns {Article[]|{}}
-   */
-  protected map(res: Response) {
-    const body: any = res.json();
-    const posts: Article[] = <Article[]>[];
-
-    try {
-      if (body.constructor === Array) {
-        for (let i in body) {
-          if (body[i]) {
-            posts.push(this.parse(body[i]));
-          }
-        }
-      } else {
-        posts.push(this.parse(body));
-      }
-    } catch (Exception) {
-    }
-
-    return posts;
-  }
-
-  private parse(body) {
+  private parseArticle(body) {
 
     const categoriesById: Array<any> = [];
     let categories: any;
@@ -175,7 +151,7 @@ export class WordpressService extends ContentService {
     } catch (Exception) {
       relatedPosts = null;
     }
-    
+
     return <Article>{
       body_html         : body.content.rendered,
       byline            : byline,
@@ -195,5 +171,86 @@ export class WordpressService extends ContentService {
       urgency           : 1,
       versioncreated    : body.date
     };
+  }
+
+  /**
+   * Maps a response object to an article array
+   * @param res:Response
+   * @returns {Article[]|{}}
+   */
+  protected mapArticle(res: Response) {
+    const body: any = res.json();
+    const posts: Article[] = <Article[]>[];
+
+    try {
+      if (body.constructor === Array) {
+        for (let i in body) {
+          if (body[i]) {
+            posts.push(this.parseArticle(body[i]));
+          }
+        }
+
+      } else {
+        posts.push(this.parseArticle(body));
+      }
+    } catch (Exception) {
+    }
+
+    return posts;
+  }
+
+  /**
+   * Fetches a page from wordpress by id
+   * @param slug: any
+   * @returns {Observable<Page[]>}
+   */
+  public getPage(slug: any) {
+
+    let query: Observable<Page[]>;
+    let url: string;
+    const headers: Headers = new Headers();
+
+    url = this.endpoint + '/pages/?slug=' + slug;
+
+    try {
+      const token = this.cookieService.get(this.endpoint + '-access-token');
+      headers.append('Authorization', 'BEARER ' + token);
+    } catch (Exception) {
+      return;
+    }
+
+    query = this.http.get(url, {headers: headers}).map((res) => this.mapPage(res)).catch(this.handleError);
+
+    return query;
+  }
+
+  private parsePage(body) {
+    return <Page>{
+      body_html    : body.content.rendered,
+      custom_fields: body.acf
+    };
+  }
+
+  /**
+   * Maps a response object to an page array
+   * @param res:Response
+   * @returns {Page[]|{}}
+   */
+  protected mapPage(res: Response) {
+    const body: any = res.json();
+    const pages: Page[] = <Page[]>[];
+
+    try {
+      if (body.constructor === Array) {
+        for (let i in body) {
+          pages.push(this.parsePage(body[i]));
+        }
+      } else {
+        pages.push(this.parsePage(body));
+      }
+    } catch (Exception) {
+    }
+
+    return pages;
   }
 }
