@@ -62,6 +62,12 @@ const POST: Routes = [
     data: {name: 'article'}
   },
   {
+    path: 'nyheter/:slug',
+    component: ArticleComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
+    data: {name: 'article'}
+  },
+  {
     path: 'nyheter',
     component: NewsArchiveComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
@@ -147,7 +153,7 @@ const SITE: Routes = [
  * @type Routes
  */
 export const ROUTES: Routes = [
-  // ...BROADCAST,
+  ...BROADCAST,
   ...SITE,
   ...POST,
   {
