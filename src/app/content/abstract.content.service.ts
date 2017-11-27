@@ -27,14 +27,14 @@ export abstract class ContentService {
 
   protected parseByline(post) {
 
-    const byline = null;
+    const byline = [];
 
     try {
       let author: Array<string>;
       const bylineAuthors = post.acf.cred.match(/[^\r\n]+/g);
 
       for (const j in bylineAuthors) {
-        if (bylineAuthors.hasOwnProperty(j)) {
+        if (bylineAuthors[j]) {
           author = bylineAuthors[j].split('='); // Split name and role at separator, in this case the '=' character.
 
           author[0] = author[0].trim(); // Remove leading and trailing whitespaces.
@@ -56,7 +56,7 @@ export abstract class ContentService {
 
   protected parseRenditions(post) {
 
-    let renditions = null, media, sizes;
+    let renditions = {}, media, sizes;
 
     try {
       renditions = <Rendition>{};
@@ -64,7 +64,7 @@ export abstract class ContentService {
       sizes = media[0].media_details.sizes;
 
       for (const j in sizes) {
-        if (sizes.hasOwnProperty(j)) {
+        if (sizes[j]) {
           renditions[j] = <Rendition>{
             title: media[0].title.rendered,
             href: sizes[j].source_url,

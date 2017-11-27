@@ -80,7 +80,7 @@ export class WordpressService extends ContentService {
     if (!isNullOrUndefined(args)) {
 
       if (!isNullOrUndefined(args.searchTerm)) {
-        queryParams += 'search=' + args.searchTerm + '&'
+        queryParams += 'search=' + args.searchTerm + '&';
       }
       if (!isNullOrUndefined(args.date)) {
 
@@ -108,7 +108,7 @@ export class WordpressService extends ContentService {
         month = month === -1 ? '01' : month;
 
         queryParams += 'after=' + year + '-' + month + '-01T00:00:00&';
-        queryParams += 'before=' + nextYear + '-' + new PadNumberPipe().transform(nextMonth, 2) + '-01T00:00:00&'
+        queryParams += 'before=' + nextYear + '-' + new PadNumberPipe().transform(nextMonth, 2) + '-01T00:00:00&';
       }
       if (!isNullOrUndefined(args.category)) {
         queryParams += 'categories=' + args.category + '&';
@@ -142,7 +142,9 @@ export class WordpressService extends ContentService {
     try {
       if (body.constructor === Array) {
         for (let i in body) {
-          posts.push(this.parse(body[i]));
+          if (body[i]) {
+            posts.push(this.parse(body[i]));
+          }
         }
       } else {
         posts.push(this.parse(body));
@@ -163,33 +165,35 @@ export class WordpressService extends ContentService {
 
     categories = body.categories;
     for (let k in categories) {
-      categoriesById[k] = categories[k];
+      if (categories[k]) {
+        categoriesById[k] = categories[k];
+      }
     }
 
     try {
-      relatedPosts = body.acf.related_posts
+      relatedPosts = body.acf.related_posts;
     } catch (Exception) {
-      relatedPosts = null
+      relatedPosts = null;
     }
-
+    
     return <Article>{
-      body_html: body.content.rendered,
-      byline: byline,
-      categoriesById: categoriesById,
-      copyrightholder: 'Osqledaren',
-      copyrightnotice: 'Copyright Osqledaren',
-      description_text: ContentService.htmlToPlainText(body.excerpt.rendered),
-      headline: body.title.rendered,
-      id: body.id,
-      mimetype: 'text/html',
-      related_posts: relatedPosts,
-      renditions: renditions,
+      body_html         : body.content.rendered,
+      byline            : byline,
+      categoriesById    : categoriesById,
+      copyrightholder   : 'Osqledaren',
+      copyrightnotice   : 'Copyright Osqledaren',
+      description_text  : ContentService.htmlToPlainText(body.excerpt.rendered),
+      headline          : body.title.rendered,
+      id                : body.id,
+      mimetype          : 'text/html',
+      related_posts     : relatedPosts,
+      renditions        : renditions,
       representationtype: 'complete',
-      slug: body.slug,
-      type: 'text',
-      uri: body.link,
-      urgency: 1,
-      versioncreated: body.date
+      slug              : body.slug,
+      type              : 'text',
+      uri               : body.link,
+      urgency           : 1,
+      versioncreated    : body.date
     };
   }
 }

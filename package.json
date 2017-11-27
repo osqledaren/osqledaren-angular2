@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --env=prod --aot --build-optimizer --output-hashing none && cd ./dist && cp index.html 200.html && surge --domain osqledaren.se"
+    "deploy": "ng build --prod --env=prod --aot --build-optimizer && cd ./dist && cp index.html 200.html && surge --domain osqledaren.se"
   },
   "private": true,
   "dependencies": {
