@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {FooterService} from "./footer.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Page} from "../content/page.interface";
-import {isNullOrUndefined} from "util";
 
 @Component({
 			selector: 'app-footer',

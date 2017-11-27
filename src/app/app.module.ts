@@ -25,6 +25,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 // Services
 import {ArchiveService} from './archive/archive.service';
+import {AboutService} from './about/about.service';
 import {CookieModule} from 'ngx-cookie';
 import {AppLoaderService} from './loader/app-loader.service';
 import {NewsArticleService} from './post/news-article.service';
@@ -92,6 +93,7 @@ import {AppLoadableDeactivateGuard} from './loader/app-loadable-deactivate.guard
   ],
   providers: [
     ArchiveService,
+    AboutService,
     NewsArticleService,
     WordpressService,
     AppLoaderService,
