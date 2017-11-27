@@ -11,7 +11,7 @@ import {Page} from '../../content/page.interface';
 export class FooterComponent implements OnInit {
   public footer: Page;
   public editorName;
-  public emailAddress;
+  public editorEmail;
   private year;
 
   constructor(protected FS: FooterService) {}
@@ -39,6 +39,6 @@ export class FooterComponent implements OnInit {
     this.editorName = customFields['editor-name'];
 
     // replace '@' sign in the email address
-    this.emailAddress = customFields['email-address'].replace('@', ' at ');
+    this.editorEmail = customFields['editor-email'].replace('@', ' at ');
   }
 }
