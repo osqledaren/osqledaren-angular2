@@ -1,10 +1,10 @@
 <h1 class="archive-heading" [innerHTML]="heading"></h1>
-<masonry [options]="masonryOptions" (layoutComplete)="layoutComplete($event)" class="article-container">
+<ng-masonry-grid [masonryOptions]="masonryOptions" (layoutComplete)="layoutComplete($event)" class="article-container">
   <div class="article-grid-sizer"></div>
-  <masonry-brick *ngFor="let article of articles"
+  <ng-masonry-grid-item *ngFor="let article of articles"
                  [article]="article"
-                 class="article-grid-item brick {{elementSize(article.urgency)}}"></masonry-brick>
-</masonry>
+                 class="article-grid-item brick {{elementSize(article.urgency)}}"></ng-masonry-grid-item>
+</ng-masonry-grid>
 <div class="has-more-posts" [class.all-loaded]="!hasMorePosts" [class.hidden]="!isInitialized">
   <div class="btn btn-primary" (click)="appendData()">Hämta fler nyheter</div>
   <p>Alla nyheter har hämtats. Enjoy!</p>

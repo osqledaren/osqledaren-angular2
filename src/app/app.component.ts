@@ -1,5 +1,5 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {Angulartics2GoogleAnalytics} from 'angulartics2';
+import {Angulartics2GoogleAnalytics} from 'angulartics2/ga';
 import {
   ActivatedRoute,
   Event,

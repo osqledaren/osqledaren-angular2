@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {EpisodeGridItemComponent} from './episode-grid-item/episode-grid-item.component';
-import {MasonryModule} from 'angular2-masonry/src/module';
 import {MediaPlayerComponent} from './media-player/media-player.component';
 import {MediaPlaylistSidebarComponent} from './media-playlist-sidebar/media-playlist-sidebar.component';
 import {MediaPlaylistWidgetComponent} from './media-playlist-widget/media-playlist-widget.component';
@@ -23,6 +22,7 @@ import {SeriesComponent} from './series/series.component';
 import {SingleSeriesComponent} from './single-series/single-series.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {NgMasonryGridModule} from 'ng-masonry-grid';
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ import {CommonModule} from '@angular/common';
     ContentModule,
     HttpModule,
     UIModule,
-    MasonryModule,
+    NgMasonryGridModule,
     RouterModule,
     VgCoreModule,
     VgControlsModule,

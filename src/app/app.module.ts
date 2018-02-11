@@ -3,7 +3,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {DisqusModule} from 'ngx-disqus';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {Angulartics2GoogleAnalytics, Angulartics2Module} from 'angulartics2';
+import {Angulartics2Module} from 'angulartics2';
+import {Angulartics2GoogleAnalytics} from 'angulartics2/ga';
 // Modules
 import {AdvertisementModule} from './advertisement/advertisement.module';
 import {ArchiveModule} from './archive/archive.module';
@@ -28,16 +29,16 @@ import {CommonModule} from '@angular/common';
 
 const FINAL_ROUTES: Routes = [
   {
-    path: '',
+    path         : '',
     canDeactivate: [AppLoadableDeactivateGuard],
-    data: {title: 'Loadable routes'},
-    children: ROUTES
+    data         : {title: 'Loadable routes'},
+    children     : ROUTES
   }
 ];
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
+  imports     : [
     AdvertisementModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
     ArchiveModule,
@@ -49,11 +50,12 @@ const FINAL_ROUTES: Routes = [
     ContentModule,
     PostModule,
     PrintedIssuesModule,
+
     RouterModule.forRoot(FINAL_ROUTES),
     UIModule,
-    SiteModule,
+    SiteModule
   ],
-  providers: [
+  providers   : [
     AppLoadableDeactivateGuard,
     ArchiveService,
     NewsArticleService,
@@ -61,7 +63,7 @@ const FINAL_ROUTES: Routes = [
     AppLoadableDeactivateGuard,
     FooterService
   ],
-  bootstrap: [AppComponent]
+  bootstrap   : [AppComponent]
 })
 export class AppModule {
 }

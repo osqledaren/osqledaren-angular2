@@ -4,13 +4,13 @@ import {ArticleGridComponent} from './article-grid/article-grid.component';
 import {ArticleGridItemComponent} from './article-grid-item/article-grid-item.component';
 import {NewsArchiveComponent} from './news-archive/news-archive.component';
 import {WordpressService} from '../content/wordpress.service';
-import {MasonryModule} from 'angular2-masonry/src/module';
 import {NewsArticleService} from './news-article.service';
 import {DisqusModule} from 'ngx-disqus';
 import {ContentModule} from '../content/content.module';
 import {UIModule} from '../ui/ui.module';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {NgMasonryGridModule} from 'ng-masonry-grid';
 
 @NgModule({
   imports: [
@@ -18,8 +18,8 @@ import {CommonModule} from '@angular/common';
     DisqusModule,
     UIModule,
     RouterModule,
-    MasonryModule,
-    CommonModule
+    CommonModule,
+    NgMasonryGridModule
   ],
   declarations: [
     ArticleComponent,
