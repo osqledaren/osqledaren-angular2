@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   public footer: Page;
   public editorName;
   public editorEmail;
-  private year;
+  public year;
 
   constructor(protected FS: FooterService) {}
 

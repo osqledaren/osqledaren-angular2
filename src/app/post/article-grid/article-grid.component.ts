@@ -1,5 +1,5 @@
 import {Component, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core';
-import {NgxMasonryOptions as MasonryOptions} from 'ngx-masonry';
+import {MasonryOptions} from 'ng-masonry-grid';
 import {NewsArticleService} from '../news-article.service';
 import {ArticleGridItemComponent} from '../article-grid-item/article-grid-item.component';
 import {ActivatedRoute, Router} from '@angular/router';

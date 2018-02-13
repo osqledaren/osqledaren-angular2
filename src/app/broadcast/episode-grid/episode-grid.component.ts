@@ -1,5 +1,5 @@
 import {Component, Host, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core';
-import {NgxMasonryOptions as MasonryOptions} from 'ngx-masonry';
+import {MasonryOptions} from 'ng-masonry-grid';
 import {EpisodeGridItemComponent} from '../episode-grid-item/episode-grid-item.component';
 import {MediaContentService} from '../abstract.media-content.service';
 import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
