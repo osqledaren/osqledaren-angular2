@@ -36,9 +36,9 @@
   </div>
 </article>
 
-<aside id="related-posts">
+<aside id="related-posts" *ngIf="showRelated">
   <div class="related-posts-wrapper container-fluid">
-    <div class="related-posts container" *ngIf="showRelated">
+    <div class="related-posts container">
       <h2 class="h3">Läs även</h2>
       <a *ngFor="let rel_post of relatedArticles" [title]="rel_post?.headline" routerLink="/artikel/{{rel_post?.slug}}">
         <div class="related-post">

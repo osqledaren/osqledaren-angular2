@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {NewsArticleService} from '../news-article.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isNullOrUndefined} from 'util';
-import {DOCUMENT} from '@angular/platform-browser';
+import {DOCUMENT, DomSanitizer} from '@angular/platform-browser';
 import {Article} from '../article.interface';
 import {ArticleQueryParams} from '../article-query-params.interface';
 import {ArchiveService} from '../../archive/archive.service';
@@ -11,14 +11,14 @@ import {Archive} from '../../archive/archive.enum';
 import {UILoadableComponent} from '../../ui/abstract.ui-loadable.component';
 
 @Component({
-  selector: 'app-article',
+  selector   : 'app-article',
   templateUrl: 'article.component.html',
-  styleUrls: ['article.component.scss']
+  styleUrls  : ['article.component.scss']
 })
 export class ArticleComponent extends UILoadableComponent {
 
   public article: Article;
-  public relatedArticles: Object[] = [];
+  public relatedArticles: Object[] = undefined;
   public showRelated = false;
   private args: ArticleQueryParams;
 
@@ -26,6 +26,7 @@ export class ArticleComponent extends UILoadableComponent {
               protected route: ActivatedRoute,
               protected router: Router,
               protected archiveService: ArchiveService,
+              protected domSanitizer: DomSanitizer,
               @Inject(DOCUMENT) protected document: Document,
               loaderService: UIViewLoaderService) {
     super(loaderService);
@@ -38,16 +39,19 @@ export class ArticleComponent extends UILoadableComponent {
 
   protected initializeData() {
     this.route.params
-      .map(params => params['slug']).subscribe((slug) => {
+        .map(params => params['slug']).subscribe((slug) => {
 
       this.sub = this.NS.getArticle(slug).subscribe(
         posts => {
-          this.article = posts[0];
+
+          const body = this.domSanitizer.bypassSecurityTrustHtml(posts[0].body_html);
+          this.article = {...posts[0], body_html: body};
           if (isNullOrUndefined(posts[0])) {
             this.router.navigate(['404']);
           }
 
           this.loaded();
+
           this.loadRelatedPosts(posts[0]); // <-- Needs to be chained
 
           // TODO: Make a chain of observables and trigger this.loadComplete() once chain has finished loading.
@@ -108,6 +112,7 @@ export class ArticleComponent extends UILoadableComponent {
 
       this.NS.getArticles(this.args).subscribe(
         relatedPosts => {
+
           const usedNumbers = [];
           let randomNum;
           // Grabs three random related articles from the same category as the original post

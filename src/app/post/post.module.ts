@@ -13,13 +13,13 @@ import {CommonModule} from '@angular/common';
 import {NgMasonryGridModule} from 'ng-masonry-grid';
 
 @NgModule({
-  imports: [
+  imports     : [
     ContentModule,
     DisqusModule,
     UIModule,
     RouterModule,
     CommonModule,
-    NgMasonryGridModule
+    NgMasonryGridModule,
   ],
   declarations: [
     ArticleComponent,
@@ -27,11 +27,11 @@ import {NgMasonryGridModule} from 'ng-masonry-grid';
     ArticleGridItemComponent,
     NewsArchiveComponent
   ],
-  providers: [
+  providers   : [
     NewsArticleService,
     WordpressService
   ],
-  exports: [
+  exports     : [
     ArticleComponent,
     ArticleGridComponent,
     ArticleGridItemComponent,

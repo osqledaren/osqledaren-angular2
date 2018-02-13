@@ -2,7 +2,7 @@ import {Rendition} from '../content/rendition.interface';
 import {Byline} from '../content/byline.interface';
 
 export interface Article {
-  body_html: string,
+  body_html: any,
   byline: Array<Byline>,
   categoriesById: Array<any>,
   copyrightholder: string,
