@@ -5,9 +5,9 @@ import {UIViewLoaderService} from '../../ui/ui-view-loader.service';
 import {Archive} from '../../archive/archive.enum';
 
 @Component({
-  selector: 'app-printed-issues',
+  selector   : 'app-printed-issues',
   templateUrl: 'printed-issues.component.html',
-  styleUrls: ['printed-issues.component.scss']
+  styleUrls  : ['printed-issues.component.scss']
 })
 export class PrintedIssuesComponent extends UILoadableComponent {
   itemImages1617: Array<string>;
@@ -15,7 +15,7 @@ export class PrintedIssuesComponent extends UILoadableComponent {
 
   public printedIssues = [
     {
-      'year': '16/17',
+      'year'  : '16/17',
       'issues': [
         '/assets/img/printed-issues/161700.png',
         '/assets/img/printed-issues/161701.png',
@@ -25,7 +25,7 @@ export class PrintedIssuesComponent extends UILoadableComponent {
       ]
     },
     {
-      'year': '15/16',
+      'year'  : '15/16',
       'issues': [
         '/assets/img/printed-issues/151600.png',
         '/assets/img/printed-issues/151601.png',
@@ -35,7 +35,7 @@ export class PrintedIssuesComponent extends UILoadableComponent {
       ]
     },
     {
-      'year': '14/15',
+      'year'  : '14/15',
       'issues': [
         'https://image.isu.pub/140903103228-38010298161cece30f4ab2f5c4bbdaa1/jpg/page_1_thumb_large.jpg',
         'https://image.isu.pub/141128232153-067219625361f694a356d3f961e7d8c8/jpg/page_1_thumb_large.jpg',
@@ -45,7 +45,7 @@ export class PrintedIssuesComponent extends UILoadableComponent {
       ]
     },
     {
-      'year': '13/14',
+      'year'  : '13/14',
       'issues': [
         'https://image.isu.pub/140122163457-556385cdc996f73b1a36ed5faf2ebadd/jpg/page_1_thumb_large.jpg',
         'https://image.isu.pub/140122163515-8495d56c96fb73faf037fa08c679e45b/jpg/page_1_thumb_large.jpg',
@@ -55,7 +55,7 @@ export class PrintedIssuesComponent extends UILoadableComponent {
       ]
     },
     {
-      'year': '12/13',
+      'year'  : '12/13',
       'issues': [
         'https://image.isu.pub/140124165714-0fb436a78c28284d9e0cf3bf5cd9e853/jpg/page_1_thumb_large.jpg',
         'https://image.isu.pub/140124161412-aa46c553762388772f71f171f21b1c96/jpg/page_1_thumb_large.jpg',

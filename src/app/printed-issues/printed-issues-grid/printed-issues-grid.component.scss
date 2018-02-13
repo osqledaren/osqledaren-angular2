@@ -7,14 +7,21 @@ h2 {
 
 .print-grid-container {
 
-  .print-grid-item {
+  .print-grid-item, .print-grid-sizer {
     width: 20%;
     position: relative;
+    float: left;
   }
 
   .print-grid-item-img {
     width: 100%;
     padding-top: 125%;
     background-size: cover;
+  }
+
+  &:before, &:after {
+    display: table;
+    clear: both;
+    content: '';
   }
 }
