@@ -11,9 +11,11 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ArchiveModule} from '../archive/archive.module';
 import {CommonModule} from '@angular/common';
 import {FooterService} from './footer.service';
+import {AdvertisementModule} from '../advertisement/advertisement.module';
 
 @NgModule({
   imports     : [
+    AdvertisementModule,
     ArchiveModule,
     CommonModule,
     RouterModule

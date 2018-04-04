@@ -1,7 +1,6 @@
 @import 'utility';
 
 #ad-top-banner-container {
-  margin-top: $grid-gutter-width-base/2;
   width: 100%;
   height: auto;
   margin-left: auto;
@@ -9,7 +8,10 @@
 
   img {
     width: 100%;
+    max-width: 800px;
+    margin: $grid-gutter-width-base/2 auto 0;
     height: auto;
+    display: block;
   }
 }
 
