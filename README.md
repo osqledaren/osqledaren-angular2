@@ -19,7 +19,10 @@ Contributors: [Ramón Burri](https://github.com/eLburro)
 ## Installing and Running
 
 1. Clone and run `npm install.`
-2. Run the app locally with `npm run start`. See more in the Angular CLI section for running in different environments.
+2. Run the app locally with `npm run start`.
+3. Deploy the app with `npm run deploy`. Read the deployment section for more information.
+
+**If you have followed all the steps you can enjoy an easy and password-less deployment with the flick of a command every time you choose to update the application.**
 
 ### Development server
 Run `npm run start` to start a server listening to production backend. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -30,8 +33,18 @@ The pre-configured command `npm run start-dev` is available if you prefer to use
 
 ## Deployment
 
+You are required to have been authorized to access to the team domain with your surge.sh account. Don't forget to login via the CLI if you haven't done it yet. The official surge.sh account for osqledaren.se is osqledaren@ths.kth.se.
+
 Run `npm run deploy` to deploy the app to production. 
-You are required to have been authorized to access to the team domain with your surge.sh account. Don't forget to login via the CLI.
+
+Note: Due to an unresolved issue (perhaps DNS issues) at campus with the app not being updated after deployment, a temporary fix that uploads the built project to the old server at Webfaction is included as a script (that runs on deployment).
+You might have to enter the password to Osqledarens account at Webfaction whenever you deploy the app. In order to avoid entering the password every time you can do the classic ssh-copy-id trick, like so:
+
+`ssh-copy-id osqledaren@web580.webfaction.com`
+
+If you haven't generated a ssh-key pair previously you can do it with `ssh-keygen`. 
+Using ssh keys is the recommended way, as it provides much higher security and you are relieved of having to enter passwords that can be stolen in various ways.
+
 
 ## Angular CLI
 

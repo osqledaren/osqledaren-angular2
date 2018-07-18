@@ -7,11 +7,13 @@
     "ng": "ng",
     "start": "ng serve --env=prod",
     "start-dev": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --env=prod --aot --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --env=prod --aot --build-optimizer && cd ./dist && cp index.html 200.html && surge . --domain osqledaren.se"
+    "deploy": "npm run build && npm run surge && npm run rsync-webfaction",
+    "surge": "cp ./dist/index.html ./dist/200.html && surge ./dist --domain osqledaren.se",
+    "rsync-webfaction": "rsync -azrP --delete ./dist osqledaren@web580.webfaction.com:/home/osqledaren/webapps/ng2site"
   },
   "private": true,
   "dependencies": {
