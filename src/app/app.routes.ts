@@ -16,6 +16,7 @@ import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard
 /**
  * Definition of broadcast routes
  * @type Routes
+ * kommentar
  */
 const BROADCAST: Routes = [
   {
