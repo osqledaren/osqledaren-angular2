@@ -129,12 +129,12 @@ const SITE: Routes = [
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'coming-soon'}
   },
-  {
-    path         : 'play',
-    component    : ComingSoonComponent,
-    canDeactivate: [AppLoadableDeactivateGuard],
-    data         : {name: 'coming-soon'}
-  },
+  // {
+  //   path         : 'play',
+  //   component    : ComingSoonComponent,
+  //   canDeactivate: [AppLoadableDeactivateGuard],
+  //   data         : {name: 'coming-soon'}
+  // },
   {
     path         : 'pods',
     component    : ComingSoonComponent,
@@ -154,7 +154,7 @@ const SITE: Routes = [
  * @type Routes
  */
 export const ROUTES: Routes = [
-  // ...BROADCAST,
+  ...BROADCAST,
   ...SITE,
   ...POST,
   {
