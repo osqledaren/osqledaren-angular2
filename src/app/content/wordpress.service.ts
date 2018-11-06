@@ -366,7 +366,7 @@ export class WordpressService extends ContentService {
 
     const categoriesById: Array<any> = [];
     let categories: any;
-    let relatedPosts: any;
+    let relatedPodcasts: any;
     const renditions = this.parseRenditions(body);
     const byline = this.parseByline(body);
 
@@ -378,9 +378,9 @@ export class WordpressService extends ContentService {
     }
 
     try {
-      relatedPosts = body.acf.related_podcasts;
+      relatedPodcasts = body.acf.related_podcasts;
     } catch (Exception) {
-      relatedPosts = null;
+      relatedPodcasts = null;
     }
 
     return <Podcast>{
@@ -393,7 +393,7 @@ export class WordpressService extends ContentService {
       headline          : body.title.rendered,
       id                : body.id,
       mimetype          : 'text/html',
-      related_podcasts  : relatedPosts,
+      related_podcasts  : relatedPodcasts,
       renditions        : renditions,
       representationtype: 'complete',
       slug              : body.slug,

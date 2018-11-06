@@ -10,7 +10,7 @@ export interface Podcast {
   description_text: string,
   headline: string,
   id: number,
-  related_posts: Array<any>,
+  related_podcasts: Array<any>,
   renditions?: { [id: string]: Rendition },
   representationtype: string,
   slug: string,
