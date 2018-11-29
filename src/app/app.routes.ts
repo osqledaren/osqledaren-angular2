@@ -12,7 +12,6 @@ import {SingleSeriesComponent} from './broadcast/single-series/single-series.com
 import {PrintedIssuesComponent} from './printed-issues/printed-issues/printed-issues.component';
 import {AdvertiseComponent} from './site/advertise/advertise.component';
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
-import {PodcastComponent} from './broadcast/podcast/podcast.component';
 
 /**
  * Definition of broadcast routes
@@ -52,7 +51,7 @@ const BROADCAST: Routes = [
   },
   {
     path         : 'pods',
-    component    : PodcastComponent,
+    component    : ComingSoonComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'pods'},
   }

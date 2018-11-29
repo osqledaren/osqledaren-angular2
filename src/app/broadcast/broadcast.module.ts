@@ -23,7 +23,6 @@ import {SingleSeriesComponent} from './single-series/single-series.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {NgMasonryGridModule} from 'ng-masonry-grid';
-import {PodcastComponent} from './podcast/podcast.component';
 
 @NgModule({
   imports: [
@@ -49,7 +48,6 @@ import {PodcastComponent} from './podcast/podcast.component';
     PlayComponent,
     SeriesComponent,
     SingleSeriesComponent,
-    PodcastComponent
   ],
   providers: [
     BroadcastLoaderService,
@@ -66,7 +64,6 @@ import {PodcastComponent} from './podcast/podcast.component';
     MediaPlaylistWidgetComponent,
     MediaPlaylistSidebarComponent,
     PlayComponent,
-    PodcastComponent
   ]
 })
 
