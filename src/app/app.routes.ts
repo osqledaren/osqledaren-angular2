@@ -48,6 +48,12 @@ const BROADCAST: Routes = [
         data     : {name: 'Senaste Nytt'}
       }
     ]
+  },
+  {
+    path         : 'pods',
+    component    : ComingSoonComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
+    data         : {name: 'pods'},
   }
 ];
 

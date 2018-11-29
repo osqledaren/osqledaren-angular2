@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {ArticleComponent} from './article/article.component';
 import {ArticleGridComponent} from './article-grid/article-grid.component';
 import {ArticleGridItemComponent} from './article-grid-item/article-grid-item.component';
+import {AdvertisementModule} from '../advertisement/advertisement.module';
 import {NewsArchiveComponent} from './news-archive/news-archive.component';
 import {WordpressService} from '../content/wordpress.service';
 import {NewsArticleService} from './news-article.service';
@@ -20,6 +21,7 @@ import {NgMasonryGridModule} from 'ng-masonry-grid';
     RouterModule,
     CommonModule,
     NgMasonryGridModule,
+    AdvertisementModule,
   ],
   declarations: [
     ArticleComponent,

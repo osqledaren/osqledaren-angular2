@@ -47,7 +47,7 @@ import {NgMasonryGridModule} from 'ng-masonry-grid';
     MediaPlaylistSidebarComponent,
     PlayComponent,
     SeriesComponent,
-    SingleSeriesComponent
+    SingleSeriesComponent,
   ],
   providers: [
     BroadcastLoaderService,
@@ -63,7 +63,7 @@ import {NgMasonryGridModule} from 'ng-masonry-grid';
     MediaPlayerComponent,
     MediaPlaylistWidgetComponent,
     MediaPlaylistSidebarComponent,
-    PlayComponent
+    PlayComponent,
   ]
 })
 
