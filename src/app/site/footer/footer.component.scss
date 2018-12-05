@@ -26,7 +26,11 @@ footer#site-footer {
     .footer-logo {
       height: 180px;
       width: auto;
-      margin: 0 $grid-gutter-width-base $grid-gutter-width-base/4 0;
+      margin: 10px $grid-gutter-width-base $grid-gutter-width-base/4 0;
+
+      .img{
+        margin-left: 10px;
+      }
     }
   }
 
@@ -52,6 +56,8 @@ footer#site-footer {
 
   .social-media {
     float: left;
+    margin-top: 45px;
+    margin-left: 20px;
 
     .channel {
       margin-right: $grid-gutter-width-base/4;
