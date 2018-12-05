@@ -21,7 +21,7 @@ import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard
 const BROADCAST: Routes = [
   {
     path         : 'play',
-    component    : PlayComponent,
+    component    : ComingSoonComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'play'},
     children     : [

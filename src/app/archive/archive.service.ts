@@ -61,7 +61,6 @@ export class ArchiveService extends ContentService {
       default:
         postType = Archive[archive];
     }
-
     this.http.get(this.endpoint + '/archives/' + postType)
       .map(this.map)
       .catch(this.handleError).subscribe(
