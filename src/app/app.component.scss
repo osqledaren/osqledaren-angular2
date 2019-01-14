@@ -17,11 +17,11 @@ app-footer {
   $break-large: 1200px;
 
   @media screen and (max-width: $break-small) {
-    padding-top: 0;
+    padding-top: $header-height;
   }
 
   @media screen and (min-width: $break-large) {
-    padding-top: 0;
+    padding-top: $header-height;
   }
   //padding-top: $header-height; // Give some padding for fixed header.
   transform: translate3d(0, 0, 0);
