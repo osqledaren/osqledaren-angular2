@@ -349,7 +349,7 @@ export class WordpressService extends ContentService {
       // Do some validation.
     }
 
-    query = this.endpoint + '/podcasts?_embed&';
+    query = this.endpoint + '/podcast?_embed&';
     query += queryParams;
     query += 'per_page=' + this.batchCount + '&offset=' + this.offset * this.batchCount;
 

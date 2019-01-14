@@ -13,6 +13,8 @@ import {PrintedIssuesComponent} from './printed-issues/printed-issues/printed-is
 import {AdvertiseComponent} from './site/advertise/advertise.component';
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 
+import {PodcastArchiveComponent} from './podcast/podcast-archive/podcast-archive.component';
+
 /**
  * Definition of broadcast routes
  * @type Routes
@@ -51,7 +53,7 @@ const BROADCAST: Routes = [
   },
   {
     path         : 'pods',
-    component    : ComingSoonComponent,
+    component    : PodcastArchiveComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'pods'},
   }
@@ -143,7 +145,7 @@ const SITE: Routes = [
   // },
   {
     path         : 'pods',
-    component    : ComingSoonComponent,
+    component    : PodcastArchiveComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'coming-soon'}
   },

@@ -24,6 +24,10 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {NgMasonryGridModule} from 'ng-masonry-grid';
 
+import {PodcastGridComponent} from '../podcast/podcast-grid/podcast-grid.component';
+import {PodcastArchiveComponent} from '../podcast/podcast-archive/podcast-archive.component';
+import {PodcastGridItemComponent} from '../podcast/podcast-grid-item/podcast-grid-item.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -48,6 +52,9 @@ import {NgMasonryGridModule} from 'ng-masonry-grid';
     PlayComponent,
     SeriesComponent,
     SingleSeriesComponent,
+    PodcastArchiveComponent,
+    PodcastGridComponent,
+    PodcastGridItemComponent,
   ],
   providers: [
     BroadcastLoaderService,

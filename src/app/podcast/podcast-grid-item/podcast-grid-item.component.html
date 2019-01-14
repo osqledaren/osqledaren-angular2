@@ -1,0 +1,20 @@
+<article [id]="'article-'+podcast.slug">
+  <div class="article-grid-item-content top">
+    <a [title]="podcast.headline" routerLink="/artikel/{{podcast.slug}}">
+      <div class="article-grid-item-header">
+        <app-image [renditions]="podcast.renditions"></app-image>
+      </div>
+    </a>
+  </div>
+  <div class="article-grid-item-content bottom">
+    <div class="article-grid-item-content-inner">
+      <article>
+        <h3 class="article-title"><a [title]="podcast.headline" routerLink="/artikel/{{podcast.slug}}"
+                                     [innerHTML]="podcast.headline"></a></h3>
+        <time class="article-date"
+              [innerText]="'Publicerad: ' +(podcast.versioncreated | date: 'y-MM-dd')"></time>
+        <div class="article-grid-item-text" [innerHTML]="podcast.description_text"></div>
+      </article>
+    </div>
+  </div>
+</article>

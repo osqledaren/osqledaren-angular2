@@ -26,6 +26,8 @@ import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard
 import {ROUTES} from './app.routes';
 import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
 import {CommonModule} from '@angular/common';
+import {PodcastService} from './podcast/podcast.service';
+import { PodcastGridItemComponent } from './podcast/podcast-grid-item/podcast-grid-item.component';
 
 const FINAL_ROUTES: Routes = [
   {
@@ -61,7 +63,8 @@ const FINAL_ROUTES: Routes = [
     NewsArticleService,
     WordpressService,
     AppLoadableDeactivateGuard,
-    FooterService
+    FooterService,
+    PodcastService,
   ],
   bootstrap   : [AppComponent]
 })
