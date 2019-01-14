@@ -21,7 +21,7 @@ import {NgMasonryGridModule} from 'ng-masonry-grid';
     RouterModule,
     CommonModule,
     NgMasonryGridModule,
-    // AdvertisementModule,
+    AdvertisementModule,
   ],
   declarations: [
     ArticleComponent,
