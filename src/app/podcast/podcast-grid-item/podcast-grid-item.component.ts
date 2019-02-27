@@ -9,7 +9,7 @@ declare let $clamp: any;
 })
 
 export class PodcastGridItemComponent implements AfterViewInit {
-  @Input() podcast: Podcast;
+  @Input() article: Podcast;
 
   constructor(private elementView: ElementRef) {
   }
