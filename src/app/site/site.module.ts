@@ -12,6 +12,7 @@ import {ArchiveModule} from '../archive/archive.module';
 import {CommonModule} from '@angular/common';
 import {FooterService} from './footer.service';
 import {AdvertisementModule} from '../advertisement/advertisement.module';
+import {ApplyComponent} from './apply/apply.component';
 
 @NgModule({
   imports     : [
@@ -29,7 +30,8 @@ import {AdvertisementModule} from '../advertisement/advertisement.module';
     FooterComponent,
     HeaderComponent,
     PageNotFoundComponent,
-    StartComponent
+    StartComponent,
+    ApplyComponent
   ],
   exports     : [
     AboutComponent,
