@@ -1,23 +1,17 @@
-<div class="form-container">
+<div>
   <div class="apply-header">
     <h1>
       Apply to OL!
     </h1>
   </div>
-  <div>
-    <form action="apply-form" method="post">
+    <form (submit)="onSubmit($event)">
       <div>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name">
+        <input type="text" id="name" name="user_name" [(ngModel)]="model.name">
       </div>
       <div>
         <label for="mail">E-mail:</label>
         <input type="email" id="mail" name="user_mail">
-      </div>
-      <div>
-        <p>
-          I'm interested in:
-        </p>
       </div>
       <div class="checkBoxes">
         <input type="checkbox" name="occupation" value="dev"> website <br>
@@ -31,12 +25,8 @@
         <input type="text" id="about" name="about">
         <br>
       </div>
-
-    </form>
-    <div class="button">
       <button type="submit">Submit</button>
-    </div>
-  </div>
+    </form>
 </div>
 
 

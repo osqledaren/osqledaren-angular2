@@ -13,6 +13,7 @@ import {ContentModule} from './content/content.module';
 import {PostModule} from './post/post.module';
 import {SiteModule} from './site/site.module';
 import {UIModule} from './ui/ui.module';
+import {FormsModule} from '@angular/forms';
 // Components
 import {AppComponent} from './app.component';
 // Services
@@ -50,6 +51,7 @@ const FINAL_ROUTES: Routes = [
     ContentModule,
     PostModule,
     PrintedIssuesModule,
+    FormsModule,
 
     RouterModule.forRoot(FINAL_ROUTES),
     UIModule,
