@@ -26,6 +26,7 @@ import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard
 import {ROUTES} from './app.routes';
 import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
 import {CommonModule} from '@angular/common';
+import { TipComponent } from './site/tip/tip.component';
 
 const FINAL_ROUTES: Routes = [
   {
@@ -37,7 +38,7 @@ const FINAL_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TipComponent],
   imports     : [
     AdvertisementModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),

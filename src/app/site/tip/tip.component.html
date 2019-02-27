@@ -1,0 +1,27 @@
+<div class="container" id="container-tip">
+  <h1>Tipsa redaktionen!</h1>
+  <p>
+    Vi på OL vill gärna ha tips från dig!<br>
+  </p>
+  <p>
+    Har du tips på något vi borde skriva om?
+    Något du vill föra in i Osqledarens kalender?
+    Eller vill du bara berätta för oss hur bra vi är?
+    <br>
+    Kontakta oss här:
+  </p>
+
+  <textarea rows="8" cols="80" #message class="message"
+  (keyup)="messageChanged(message.value)" type="text" value=""
+  placeholder="Jag skulle vilja tipsa om..."></textarea>
+
+  <br><br>
+
+  <p>Lämna gärna din mail ifall vi har frågor:</p>
+  <input type="mail" #mail (keyup)="mailChanged(mail.value)" 
+  value="" placeholder="mail@mail.com">
+
+  <br><br>
+  <button (click)="onClickMe()">Skicka</button>
+  <br><br>
+</div>

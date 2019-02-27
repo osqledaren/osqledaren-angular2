@@ -1,0 +1,16 @@
+@import 'utility';
+
+#container-tip {
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
+  margin-top: $grid-gutter-width-base;
+}
+
+.preamble {
+
+  margin-bottom: $grid-gutter-width-base;
+}
+
+.message {
+  width: 100%;
+}
