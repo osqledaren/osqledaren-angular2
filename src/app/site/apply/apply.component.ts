@@ -12,7 +12,7 @@ import {FormsModule} from '@angular/forms';
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent extends UILoadableComponent {
-  model = new Applicant('your name', null, null, null);
+  model = new Applicant('your name', 'your email', null, null);
   submitted = false;
   constructor(loaderService: UIViewLoaderService, private archiveService: ArchiveService) {
     super(loaderService);
