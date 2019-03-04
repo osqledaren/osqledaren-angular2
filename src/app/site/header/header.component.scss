@@ -65,7 +65,7 @@
   position: absolute;
   height: $grid-gutter-width-base/4;
   width: $grid-gutter-width-base/4;
-  border: $ol-orange $grid-gutter-width-base/16 solid;
+  border: $ol-theme $grid-gutter-width-base/16 solid;
 }
 
 .menu-toggle {
@@ -147,7 +147,7 @@
   }
 
   .navbar-container {
-    background-color: $ol-orange;
+    background-color: $ol-theme;
     padding: $grid-gutter-width-base/4 0;
     border-radius: 0 !important;
     font-family: "Avenir Black", "Proxima Nova Semibold", sans-serif;
@@ -243,7 +243,7 @@
   }
 
   a.reset {
-    color: $ol-orange !important;
+    color: $ol-theme !important;
     transition: opacity 0.1s ease-in-out;
     opacity: 0;
     cursor: default;

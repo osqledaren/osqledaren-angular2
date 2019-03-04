@@ -18,19 +18,24 @@ $body-bg: #f0f0f0;
 $gray-light: #aaa;
 
 // Brand colors
-$ol-orange: #000000 !default;
-$ol-teal: #37bfbf !default;
+$ol-theme: #000000;
+$ol-teal: #37bfbf;
+$ol-orange: #dc702b;
+$ol-blue: #347e9b;
+$ol-green: #008247;
+$ol-yellow: #f5c832;
+$ol-blue: #d51217;
 
 
 $theme-colors: map_merge($theme-colors, ("primary": #f05022));
 
 // Bootstrap color overrides
-$brand-primary: $ol-orange;
+$brand-primary: $ol-theme;
 
 
 // Link Color
-$link-color: $ol-orange;
-$link-hover-color: darken($ol-orange, 5%);
+$link-color: $ol-theme;
+$link-hover-color: darken($ol-theme, 5%);
 
 /* Typography */
 
