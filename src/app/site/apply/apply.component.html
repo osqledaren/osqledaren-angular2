@@ -4,26 +4,37 @@
       Apply to OL!
     </h1>
   </div>
-    <form (submit)="onSubmit($event)">
+    <form [formGroup]="applyForm" (submit)="onSubmit($event)">
       <div>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name" placeholder="{{model.name}}">
+        <input type="text" id="name" name="user_name"
+               placeholder='your name' formControlName="name">
+        <span *ngIf="(name.dirty || name.touched) && name.invalid" class="invalidIn">
+          name required
+        </span>
       </div>
       <div>
         <label for="mail">E-mail:</label>
-        <input type="email" id="mail" name="user_mail" placeholder="{{model.eMail}}">
+        <input type="email" id="mail" name="user_mail"
+               placeholder="your email" formControlName="email">
+        <span *ngIf="(email.dirty || email.touched) && email.invalid" class="invalidIn">
+          valid email required
+        </span>
       </div>
-      <div class="checkBoxes">
-        <input type="checkbox" name="occupation" value="dev"> website <br>
-        <input type="checkbox" name="occupation" value="writer"> writing articles <br>
-        <input type="checkbox" name="occupation" value="photo"> taking photos <br>
-        <input type="checkbox" name="occupation" value="illustrator"> drawing illustrations <br>
-        <input type="checkbox" name="occupation" value="media"> producing media content <br>
+      <div class="checkBoxes" formArrayName="occupation" *ngFor="let jobName of applyForm.controls.occupation.controls; let i = index">
+        <label>
+          <input type="checkbox" [formControlName]="i" value="{{occupationPref[i].occ}}">
+          {{occupationPref[i].occ}}
+          <br>
+        </label>
       </div>
       <div>
         <label for="name">About you:</label> <br>
-        <input type="text" id="about" name="about">
-        <br>
+        <input type="text" id="about" name="about"
+               formControlName="about">
+        <span *ngIf="(about.dirty || about.touched) && about.invalid" class="invalidIn">
+          please writing something about yourself
+        </span>
       </div>
       <button type="submit">Submit</button>
     </form>

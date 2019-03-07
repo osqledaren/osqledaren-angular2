@@ -13,7 +13,7 @@ import {CommonModule} from '@angular/common';
 import {FooterService} from './footer.service';
 import {AdvertisementModule} from '../advertisement/advertisement.module';
 import {ApplyComponent} from './apply/apply.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports     : [
@@ -21,7 +21,8 @@ import {FormsModule} from '@angular/forms';
     ArchiveModule,
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AboutComponent,
