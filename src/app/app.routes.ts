@@ -132,7 +132,7 @@ const SITE: Routes = [
   },
   {
     path         : 'sok-redaktionen',
-    component    : ApplyComponent,
+    component    : ComingSoonComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'coming-soon'}
   },
