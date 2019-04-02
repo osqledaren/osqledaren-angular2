@@ -16,22 +16,22 @@ export class ApplyComponent extends UILoadableComponent {
 
   // list of occupations for for creating checkboxes ini form
   occupationPref = [
-    {id: 1, occ: 'web'},
-    {id: 2, occ: 'writer'},
-    {id: 3, occ: 'photo'},
-    {id: 4, occ: 'illustrator'},
-    {id: 5, occ: 'media'}
+    {occ: 'web'},
+    {occ: 'writer'},
+    {occ: 'photo'},
+    {occ: 'illustrator'},
+    {occ: 'media'}
   ];
 
   // create formControlls for the occupation checkboxes
-  checkboxes = this.occupationPref.map(control =>
+  checkboxes = this.occupationPref.map(occupation =>
     new FormControl(null));
 
   // Data to be validated and sent to sheet
   applyForm = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
     email: new FormControl(null, [Validators.email, Validators.required]),
-    occupation: new FormArray(this.checkboxes),
+    occupation: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
     about: new FormControl(null, [Validators.required, Validators.maxLength(100)])
   }, {updateOn: 'blur'});
 

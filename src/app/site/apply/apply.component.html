@@ -21,12 +21,13 @@
           valid email required
         </span>
       </div>
-      <div class="checkBoxes" formArrayName="occupation" *ngFor="let jobName of applyForm.controls.occupation.controls; let i = index">
-        <label>
-          <input type="checkbox" [formControlName]="i" value="{{occupationPref[i].occ}}">
-          {{occupationPref[i].occ}}
-          <br>
-        </label>
+      <div>
+        <label for="occupation">Pref?:</label>
+        <input type="text" id="occupation" name="user_pref"
+               placeholder="occupation" formControlName="occupation">
+        <span *ngIf="(occupation.dirty || occupation.touched) && occupation.invalid" class="invalidIn">
+          valid email required
+        </span>
       </div>
       <div>
         <label for="name">About you:</label> <br>
