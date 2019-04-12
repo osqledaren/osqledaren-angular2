@@ -23,17 +23,20 @@ export class TipComponent extends UILoadableComponent {
     this.loaded();
   }
 
+  //Sets the message from the user
   messageChanged(value: string) {
     this.message = value;
   }
 
+  //Sets the mail from the user
   mailChanged(value: string) {
     this.mail = value;
   }
 
+  //Sends the message to slack and shows the thank you page
   onClickMe() {
     this.tip = this.message + '\n\nMail: ' + this.mail
-    this.sendToSlack();
+    this.tipSubmit.submitToSlack(this.tip);
 
     let form = document.getElementById('tipForm');
     form.style.display = 'none';
@@ -44,11 +47,6 @@ export class TipComponent extends UILoadableComponent {
     this.mail = '';
     this.tip = '';
   }
-
-  sendToSlack(){
-    this.tipSubmit.submitToSlack(this.tip);
-
-    }
 
 
 }

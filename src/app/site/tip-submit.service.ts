@@ -14,8 +14,8 @@ export class TipSubmitService {
   constructor(private http: HttpClient) {
   }
 
-  submitToSlack(mess) {
-    let data = {"text": mess}
+  submitToSlack(message) {
+    let data = {"text": message}
     this.http.post(
       this.url,
       data,
