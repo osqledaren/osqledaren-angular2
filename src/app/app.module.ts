@@ -13,6 +13,7 @@ import {ContentModule} from './content/content.module';
 import {PostModule} from './post/post.module';
 import {SiteModule} from './site/site.module';
 import {UIModule} from './ui/ui.module';
+import {HttpClientModule} from '@angular/common/http';
 // Components
 import {AppComponent} from './app.component';
 // Services
@@ -21,6 +22,7 @@ import {CookieModule} from 'ngx-cookie';
 import {NewsArticleService} from './post/news-article.service';
 import {FooterService} from './site/footer.service';
 import {WordpressService} from './content/wordpress.service';
+import {TipSubmitService} from './site/tip-submit.service'
 // Guards
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {ROUTES} from './app.routes';
@@ -51,6 +53,7 @@ const FINAL_ROUTES: Routes = [
     ContentModule,
     PostModule,
     PrintedIssuesModule,
+    HttpClientModule,
 
     RouterModule.forRoot(FINAL_ROUTES),
     UIModule,
@@ -62,7 +65,8 @@ const FINAL_ROUTES: Routes = [
     NewsArticleService,
     WordpressService,
     AppLoadableDeactivateGuard,
-    FooterService
+    FooterService,
+    TipSubmitService
   ],
   bootstrap   : [AppComponent]
 })

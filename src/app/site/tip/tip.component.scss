@@ -6,6 +6,12 @@
   margin-top: $grid-gutter-width-base;
 }
 
+#tipSent {
+  display: none;
+  margin-top: 30%;
+  margin-bottom: 80%;
+}
+
 .preamble {
 
   margin-bottom: $grid-gutter-width-base;
@@ -13,4 +19,10 @@
 
 .message {
   width: 100%;
+}
+
+.sendBtn {
+  margin: auto;
+  display: block;
+  width: 40%;
 }
