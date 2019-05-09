@@ -1,8 +1,8 @@
 <h1 class="archive-heading" [innerHTML]="heading"></h1>
 <ng-masonry-grid [masonryOptions]="masonryOptions" (layoutComplete)="layoutComplete($event)" class="article-container">
   <div class="article-grid-sizer"></div>
-  <ng-masonry-grid-item *ngFor="let podcast of articles"
-                  [podcast]="podcast"
+  <ng-masonry-grid-item *ngFor="let podcast of podcasts"
+                  [article]="podcast"
                   class="article-grid-item brick {{elementSize(article.urgency)}}"></ng-masonry-grid-item>
 </ng-masonry-grid>
 <div class="has-more-posts" [class.all-loaded]="!hasMorePosts" [class.hidden]="!isInitialized">

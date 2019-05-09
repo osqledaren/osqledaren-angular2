@@ -5,7 +5,6 @@ import {ComingSoonComponent} from './site/coming-soon/coming-soon.component';
 import {PageNotFoundComponent} from './site/page-not-found/page-not-found.component';
 import {ArticleComponent} from './post/article/article.component';
 import {NewsArchiveComponent} from './post/news-archive/news-archive.component';
-import {PlayComponent} from './broadcast/play/play.component';
 import {EpisodeGridComponent} from './broadcast/episode-grid/episode-grid.component';
 import {SeriesComponent} from './broadcast/series/series.component';
 import {SingleSeriesComponent} from './broadcast/single-series/single-series.component';

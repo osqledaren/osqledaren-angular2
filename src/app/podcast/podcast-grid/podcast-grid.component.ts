@@ -1,7 +1,7 @@
 import {Component, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core';
 import {MasonryOptions} from 'ng-masonry-grid';
 
-import {ArticleGridItemComponent} from '../../post/article-grid-item/article-grid-item.component';
+import {PodcastGridItemComponent} from '../podcast-grid-item/podcast-grid-item.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isNullOrUndefined} from 'util';
 import {Observable} from 'rxjs/Observable';
@@ -13,7 +13,6 @@ import {UIViewLoaderService} from '../../ui/ui-view-loader.service';
 import {PadNumberPipe} from '../../shared/pad-number.pipe';
 
 import {PodcastService} from '../podcast.service';
-import {PodcastGridItemComponent} from '../podcast-grid-item/podcast-grid-item.component';
 
 @Component({
   selector: 'app-podcast-grid',
@@ -23,9 +22,9 @@ import {PodcastGridItemComponent} from '../podcast-grid-item/podcast-grid-item.c
 })
 export class PodcastGridComponent extends UILoadableComponent {
 
-  @ViewChildren(ArticleGridItemComponent) articleGridItems: QueryList<ArticleGridItemComponent>;
+  @ViewChildren(PodcastGridItemComponent) articleGridItems: QueryList<PodcastGridItemComponent>;
 
-  public articles: Podcast[];
+  public podcasts: Podcast[];
   public masonryOptions: MasonryOptions;
   public hasMorePosts = true;
   public isInitialized = false;
@@ -39,7 +38,7 @@ export class PodcastGridComponent extends UILoadableComponent {
               private archiveService: ArchiveService,
               loaderService: UIViewLoaderService) {
     super(loaderService);
-    this.articles = [];
+    this.podcasts = [];
   }
 
   elementSize(urgency: number): string {
@@ -169,7 +168,7 @@ export class PodcastGridComponent extends UILoadableComponent {
       this.sub = this.NS.getArticles(this.args).subscribe(
         posts => {
 
-          this.articles = posts;
+          this.podcasts = posts;
           this.isInitialized = true;
           this.hasMorePosts = true;
           this.loaded();
@@ -239,7 +238,7 @@ export class PodcastGridComponent extends UILoadableComponent {
     this.sub = this.NS.getNextBatchOfArticles(this.args).subscribe(
       posts => {
         if (posts.length > 0) {
-          this.articles = this.articles.concat(posts);
+          this.podcasts = this.podcasts.concat(posts);
 
           if (posts.length < this.initialBatchSize) {
             this.hasMorePosts = false;

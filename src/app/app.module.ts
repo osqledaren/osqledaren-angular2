@@ -11,6 +11,7 @@ import {ArchiveModule} from './archive/archive.module';
 import {BroadcastModule} from './broadcast/broadcast.module';
 import {ContentModule} from './content/content.module';
 import {PostModule} from './post/post.module';
+import {PodcastModule} from './podcast/podcast.module';
 import {SiteModule} from './site/site.module';
 import {UIModule} from './ui/ui.module';
 // Components
@@ -21,13 +22,14 @@ import {CookieModule} from 'ngx-cookie';
 import {NewsArticleService} from './post/news-article.service';
 import {FooterService} from './site/footer.service';
 import {WordpressService} from './content/wordpress.service';
+import {PodcastService} from './podcast/podcast.service';
+
 // Guards
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {ROUTES} from './app.routes';
 import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
 import {CommonModule} from '@angular/common';
-import {PodcastService} from './podcast/podcast.service';
-import { PodcastGridItemComponent } from './podcast/podcast-grid-item/podcast-grid-item.component';
+
 
 const FINAL_ROUTES: Routes = [
   {
@@ -51,6 +53,7 @@ const FINAL_ROUTES: Routes = [
     DisqusModule.forRoot('osqledaren'),
     ContentModule,
     PostModule,
+    PodcastModule,
     PrintedIssuesModule,
 
     RouterModule.forRoot(FINAL_ROUTES),
@@ -61,6 +64,7 @@ const FINAL_ROUTES: Routes = [
     AppLoadableDeactivateGuard,
     ArchiveService,
     NewsArticleService,
+    PodcastService,
     WordpressService,
     AppLoadableDeactivateGuard,
     FooterService,
