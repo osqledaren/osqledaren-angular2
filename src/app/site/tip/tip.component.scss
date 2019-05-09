@@ -1,0 +1,27 @@
+@import 'utility';
+
+#container-tip {
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
+  margin-top: $grid-gutter-width-base;
+}
+
+#tipSent {
+  display: none;
+  margin-top: 60%;
+  margin-bottom: 95%;
+}
+
+.preamble {
+  margin-bottom: $grid-gutter-width-base;
+}
+
+.message {
+  width: 100%;
+}
+
+.sendBtn {
+  margin: auto;
+  display: block;
+  width: 40%;
+}
