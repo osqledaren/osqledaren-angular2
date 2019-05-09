@@ -44,6 +44,7 @@ export class ApplyComponent extends UILoadableComponent {
   // if form is valid send data to sheet
   onSubmit(event: Event) {
     event.preventDefault();
+    console.log(this.applyForm.value)
     if(this.applyForm.valid){
       this.submit.submitToSheet(this.applyForm.value);
       this.applyForm.reset();
@@ -53,7 +54,7 @@ export class ApplyComponent extends UILoadableComponent {
     }
   }
 
-  // methods for accesing cotrolls in html component
+  // methods for accesing controlls in html component
   get name(){
     return this.applyForm.get('name')
   }

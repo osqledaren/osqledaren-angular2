@@ -5,6 +5,11 @@
   line-height: $line-height-lg;
   margin-top: $grid-gutter-width-base;
 }
+
+#about{
+  display: block;
+}
+
 .preamble {
   margin-bottom: $grid-gutter-width-base;
 }
@@ -19,8 +24,12 @@
   align-items: center;
 }
 
-
-
 .invalidIn{
   color: red;
+}
+
+.sendBtn {
+  margin: auto;
+  display: block;
+  width: 40%;
 }
