@@ -69,7 +69,7 @@ const FINAL_ROUTES: Routes = [
     WordpressService,
     AppLoadableDeactivateGuard,
     FooterService,
-    TipSubmitService
+    TipSubmitService,
     FormSubmitService
   ],
   bootstrap   : [AppComponent]
