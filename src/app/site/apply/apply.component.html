@@ -1,9 +1,12 @@
-<div>
+<div class="container" id="container-apply">
   <div class="apply-header">
     <h1>
       Apply to OL!
     </h1>
   </div>
+  <div class="apply-content">
+
+
     <form [formGroup]="applyForm" (submit)="onSubmit($event)">
       <div>
         <label for="name">Name:</label>
@@ -39,6 +42,5 @@
       </div>
       <button type="submit">Submit</button>
     </form>
+  </div>
 </div>
-
-
