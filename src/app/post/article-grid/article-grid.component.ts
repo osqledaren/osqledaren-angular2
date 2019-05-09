@@ -220,7 +220,8 @@ export class ArticleGridComponent extends UILoadableComponent {
         transitionDuration: '0.3s',
         itemSelector: '.article-grid-item',
         columnWidth: '.article-grid-sizer',
-        percentPosition: true
+        percentPosition: true,
+        gutter: 40
       };
 
     });
