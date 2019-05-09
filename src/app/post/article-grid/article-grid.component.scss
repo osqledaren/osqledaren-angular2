@@ -2,8 +2,8 @@
 
 .archive-heading {
   text-align: center;
-  margin: $grid-gutter-width-base/2 0;
-
+  font-family: "Avenir Heavy", "Proxima Nova Semibold", sans-serif;;
+  margin: 50px 0 60px 0;
   span {
     color: $link-color;
   }
@@ -43,9 +43,10 @@
 }
 
 .article-container {
-  width: 100%;
+  width: 90%;
   position: relative;
   overflow-x: hidden;
+  margin: 0 auto;
 }
 
 .article-grid-item-content {
@@ -93,7 +94,7 @@
   }
 
   .article-grid-item-content-inner {
-    padding: $grid-gutter-width-base/2;
+    padding: $grid-gutter-width-base/3;
   }
 
   h3.article-title {
@@ -109,12 +110,16 @@
     font-size: $font-size-small;
   }
 }
+.article-grid-item{
+  border: 5px solid $ol-green;
+}
 
 .article-grid-item, .article-grid-sizer {
   //background: #fff;
-  width: 25%;
+  width: 30%;
   position: relative;
-  padding: $grid-gutter-width-base/8;
+  background-color: white;
+  padding: none;
 
   .bottom, .top {
     background: white;
@@ -129,11 +134,11 @@
   @include clearfix;
 
   @include media-breakpoint-down(lg) {
-    width: 33.33%;
+    width: 30%;
   }
 
   @include media-breakpoint-down(md) {
-    width: 50%;
+    width: 45%;
   }
 
   @include media-breakpoint-down(sm) {
