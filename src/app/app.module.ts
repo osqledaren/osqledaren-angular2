@@ -23,6 +23,7 @@ import {NewsArticleService} from './post/news-article.service';
 import {FooterService} from './site/footer.service';
 import {WordpressService} from './content/wordpress.service';
 import {TipSubmitService} from './site/tip-submit.service'
+import {FormSubmitService} from './site/form-submit.service';
 // Guards
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {ROUTES} from './app.routes';
@@ -53,11 +54,13 @@ const FINAL_ROUTES: Routes = [
     ContentModule,
     PostModule,
     PrintedIssuesModule,
+
     HttpClientModule,
 
     RouterModule.forRoot(FINAL_ROUTES),
     UIModule,
-    SiteModule
+    SiteModule,
+    HttpClientModule
   ],
   providers   : [
     AppLoadableDeactivateGuard,
@@ -67,6 +70,7 @@ const FINAL_ROUTES: Routes = [
     AppLoadableDeactivateGuard,
     FooterService,
     TipSubmitService
+    FormSubmitService
   ],
   bootstrap   : [AppComponent]
 })

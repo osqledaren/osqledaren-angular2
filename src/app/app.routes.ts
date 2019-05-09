@@ -13,6 +13,7 @@ import {PrintedIssuesComponent} from './printed-issues/printed-issues/printed-is
 import {AdvertiseComponent} from './site/advertise/advertise.component';
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {TipComponent} from './site/tip/tip.component';
+import {ApplyComponent} from './site/apply/apply.component';
 
 /**
  * Definition of broadcast routes

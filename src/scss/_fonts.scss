@@ -1,4 +1,25 @@
 @font-face {
+  font-family: 'Avenir Black';
+  src: url('assets/fonts/Avenir-Black.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Book';
+  src: url('assets/fonts/Avenir-Book.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Heavy';
+  src: url('assets/fonts/Avenir-Heavy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Proxima Nova Condensed';
   src: url('assets/fonts/ProximaNovaCond-SemiboldIt.eot');
   src: url('assets/fonts/ProximaNovaCond-SemiboldIt.eot?#iefix') format('embedded-opentype'),

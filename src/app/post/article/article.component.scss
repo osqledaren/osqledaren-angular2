@@ -55,7 +55,7 @@
 
   .article-rm-button {
     text-align: center;
-    background-color: $ol-orange;
+    background-color: $ol-theme;
     color: white;
     font-style: italic;
     padding: 20px 0;
@@ -100,7 +100,7 @@
       display: block;
       font-size: $font-size-h1;
       line-height: ($font-size-lg*2 * $line-height-lg);
-      color: $ol-orange;
+      color: $ol-theme;
     }
 
     @include media-breakpoint-down(sm) {

@@ -65,7 +65,7 @@
   position: absolute;
   height: $grid-gutter-width-base/4;
   width: $grid-gutter-width-base/4;
-  border: $ol-orange $grid-gutter-width-base/16 solid;
+  border: $ol-theme $grid-gutter-width-base/16 solid;
 }
 
 .menu-toggle {
@@ -147,10 +147,11 @@
   }
 
   .navbar-container {
-    background-color: $ol-orange;
+    background-color: $ol-theme;
     padding: $grid-gutter-width-base/4 0;
     border-radius: 0 !important;
-    font-family: "Proxima Nova Semibold", sans-serif;
+    font-family: "Avenir Black", "Proxima Nova Semibold", sans-serif;
+    letter-spacing: 1px;
     width: 100%;
     position: relative;
 
@@ -193,6 +194,7 @@
 .nav-item {
   position: relative;
   margin: 0 $grid-gutter-width-base/8;
+  font-family: "Avenir Book", "Proxima Nova Semibold", sans-serif ;
 }
 
 .nav-item a {
@@ -203,7 +205,7 @@
 .nav-item a:after {
   content: '';
   width: 0;
-  height: 2px;
+  height: 1px;
   background: white;
   position: absolute;
   bottom: -1px;
@@ -241,7 +243,7 @@
   }
 
   a.reset {
-    color: $ol-orange !important;
+    color: $ol-theme !important;
     transition: opacity 0.1s ease-in-out;
     opacity: 0;
     cursor: default;
