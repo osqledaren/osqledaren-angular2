@@ -1,3 +1,4 @@
+<div class="frame">
 <h1 class="archive-heading" [innerHTML]="heading"></h1>
 <ng-masonry-grid [masonryOptions]="masonryOptions" (layoutComplete)="layoutComplete($event)" class="article-container">
   <div class="article-grid-sizer"></div>
@@ -8,4 +9,5 @@
 <div class="has-more-posts" [class.all-loaded]="!hasMorePosts" [class.hidden]="!isInitialized">
   <div class="btn btn-primary" (click)="appendData()">Hämta fler nyheter</div>
   <p>Alla nyheter har hämtats. Enjoy!</p>
+</div>
 </div>
