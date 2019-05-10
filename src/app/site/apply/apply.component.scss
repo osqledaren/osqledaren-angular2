@@ -1,0 +1,20 @@
+@import "utility";
+
+.form-container {
+  border: solid;
+  border-radius: 5px;
+  height: 600px;
+  width: 400px;
+
+  top: $header-height;
+  justify-content: center;
+  align-items: center;
+}
+
+.apply-header{
+  top: $header-height;
+}
+
+.invalidIn{
+  color: red;
+}

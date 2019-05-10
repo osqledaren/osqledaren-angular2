@@ -13,6 +13,7 @@ import {ContentModule} from './content/content.module';
 import {PostModule} from './post/post.module';
 import {SiteModule} from './site/site.module';
 import {UIModule} from './ui/ui.module';
+import {HttpClientModule} from '@angular/common/http';
 // Components
 import {AppComponent} from './app.component';
 // Services
@@ -21,11 +22,14 @@ import {CookieModule} from 'ngx-cookie';
 import {NewsArticleService} from './post/news-article.service';
 import {FooterService} from './site/footer.service';
 import {WordpressService} from './content/wordpress.service';
+import {TipSubmitService} from './site/tip-submit.service'
+import {FormSubmitService} from './site/form-submit.service';
 // Guards
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {ROUTES} from './app.routes';
 import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
 import {CommonModule} from '@angular/common';
+import { TipComponent } from './site/tip/tip.component';
 
 const FINAL_ROUTES: Routes = [
   {
@@ -37,7 +41,7 @@ const FINAL_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TipComponent],
   imports     : [
     AdvertisementModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
@@ -51,9 +55,12 @@ const FINAL_ROUTES: Routes = [
     PostModule,
     PrintedIssuesModule,
 
+    HttpClientModule,
+
     RouterModule.forRoot(FINAL_ROUTES),
     UIModule,
-    SiteModule
+    SiteModule,
+    HttpClientModule
   ],
   providers   : [
     AppLoadableDeactivateGuard,
@@ -61,7 +68,9 @@ const FINAL_ROUTES: Routes = [
     NewsArticleService,
     WordpressService,
     AppLoadableDeactivateGuard,
-    FooterService
+    FooterService,
+    TipSubmitService,
+    FormSubmitService
   ],
   bootstrap   : [AppComponent]
 })

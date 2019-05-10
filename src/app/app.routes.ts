@@ -12,6 +12,8 @@ import {SingleSeriesComponent} from './broadcast/single-series/single-series.com
 import {PrintedIssuesComponent} from './printed-issues/printed-issues/printed-issues.component';
 import {AdvertiseComponent} from './site/advertise/advertise.component';
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
+import {TipComponent} from './site/tip/tip.component';
+import {ApplyComponent} from './site/apply/apply.component';
 
 /**
  * Definition of broadcast routes
@@ -134,6 +136,12 @@ const SITE: Routes = [
     component    : ComingSoonComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'coming-soon'}
+  },
+  {
+    path         : 'tipsa-redaktionen',
+    component    : TipComponent,
+    canDeactivate: [AppLoadableDeactivateGuard],
+    data         : {name: 'tipsa-redaktionen'}
   },
   // {
   //   path         : 'play',

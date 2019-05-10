@@ -1,0 +1,44 @@
+<div>
+  <div class="apply-header">
+    <h1>
+      Apply to OL!
+    </h1>
+  </div>
+    <form [formGroup]="applyForm" (submit)="onSubmit($event)">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name"
+               placeholder='your name' formControlName="name">
+        <span *ngIf="(name.dirty || name.touched) && name.invalid" class="invalidIn">
+          name required
+        </span>
+      </div>
+      <div>
+        <label for="mail">E-mail:</label>
+        <input type="email" id="mail" name="user_mail"
+               placeholder="your email" formControlName="email">
+        <span *ngIf="(email.dirty || email.touched) && email.invalid" class="invalidIn">
+          valid email required
+        </span>
+      </div>
+      <div>
+        <label for="occupation">Pref?:</label>
+        <input type="text" id="occupation" name="user_pref"
+               placeholder="occupation" formControlName="occupation">
+        <span *ngIf="(occupation.dirty || occupation.touched) && occupation.invalid" class="invalidIn">
+          valid email required
+        </span>
+      </div>
+      <div>
+        <label for="name">About you:</label> <br>
+        <input type="text" id="about" name="about"
+               formControlName="about">
+        <span *ngIf="(about.dirty || about.touched) && about.invalid" class="invalidIn">
+          please writing something about yourself
+        </span>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+</div>
+
+
