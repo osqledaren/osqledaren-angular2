@@ -5,16 +5,15 @@
     </h1>
   </div>
   <div class="apply-content">
-
-
+    
     <form [formGroup]="applyForm" (submit)="onSubmit($event)">
       <div>
         <label for="name">Name:</label>
         <br>
         <input type="text" id="name" name="user_name"
-               placeholder='your name' formControlName="name">
+               placeholder='Osq Ledaren' formControlName="name">
         <span *ngIf="(name.dirty || name.touched) && name.invalid" class="invalidIn">
-          name required
+          Name required
         </span>
       </div>
       <br>
@@ -22,12 +21,13 @@
         <label for="mail">E-mail:</label>
         <br>
         <input type="email" id="mail" name="user_mail"
-               placeholder="your email" formControlName="email">
+               placeholder="osq@ledaren.com" formControlName="email">
         <span *ngIf="(email.dirty || email.touched) && email.invalid" class="invalidIn">
           Valid email required
         </span>
       </div>
       <br>
+      <!--
       <div>
         <label for="occupation">Position:</label>
         <br>
@@ -35,8 +35,11 @@
                placeholder="occupation" formControlName="occupation"> Developer
       </div>
       <br>
+      -->
       <div>
-        <label for="name">About you:</label> <br>
+        <label for="name">Write a few words about yourself and what position at OL you're interested in.
+          <br> We are looking for developers, podcasters, writers, illustrators, photographers, content creators <br> 
+          and people with great ideas! (You can apply in either English or Swedish) </label> <br>
         <span *ngIf="(about.dirty || about.touched) && about.invalid" class="invalidIn">
           Please write something about yourself
         </span>

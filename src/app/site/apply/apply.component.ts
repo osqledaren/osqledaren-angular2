@@ -31,7 +31,7 @@ export class ApplyComponent extends UILoadableComponent {
   applyForm = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
     email: new FormControl(null, [Validators.email, Validators.required]),
-    occupation: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
+    //occupation: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
     about: new FormControl(null, [Validators.required, Validators.maxLength(100)])
   }, {updateOn: 'blur'});
 
@@ -43,6 +43,7 @@ export class ApplyComponent extends UILoadableComponent {
 
   // if form is valid send data to sheet
   onSubmit(event: Event) {
+    console.log(this.applyForm)
     event.preventDefault();
     console.log(this.applyForm.value)
     if(this.applyForm.valid){
