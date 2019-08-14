@@ -51,11 +51,12 @@ export class ApplyComponent extends UILoadableComponent {
       form.style.display = 'none';
       let sentMessage = document.getElementById('applicationSent');
       sentMessage.style.display = 'block';
-      
+
       this.applyForm.reset();
     }
     else{
       console.log('form invalid')
+      alert('Please fill out all fields correctly before submitting.')
     }
   }
 
