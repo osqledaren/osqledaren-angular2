@@ -135,11 +135,11 @@ const SITE: Routes = [
     path         : 'sok-redaktionen',
     component    : ApplyComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
-    data         : {name: 'coming-soon'}
+    data         : {name: 'sok-redaktionen'}
   },
   {
     path         : 'tipsa-redaktionen',
-    component    : TipComponent,
+    component    : ComingSoonComponent, //TipComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'tipsa-redaktionen'}
   },
