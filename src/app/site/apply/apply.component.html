@@ -1,11 +1,9 @@
 <div class="container" id="container-apply">
-  <div class="apply-header">
+
+  <div id="apply-form">
     <h1>
       Apply to OL!
     </h1>
-  </div>
-  <div class="apply-content">
-    
     <form [formGroup]="applyForm" (submit)="onSubmit($event)">
       <div>
         <label for="name">Name:</label>
@@ -49,8 +47,12 @@
 
       </div>
       <br><br>
-      <button class="btn btn-primary sendBtn" id="sendBtn" type="submit">Submit</button>
+        <button class="btn btn-primary sendBtn" id="sendBtn" type="submit">Submit</button>      
       <br><br>
     </form>
+  </div>
+
+  <div id="applicationSent">
+    <h1>Thank you for applying, <br>you will hear from us shortly!<i class="fa fa-heart-o" aria-hidden="true"></i></h1>
   </div>
 </div>

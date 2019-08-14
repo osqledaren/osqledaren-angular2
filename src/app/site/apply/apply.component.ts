@@ -40,14 +40,18 @@ export class ApplyComponent extends UILoadableComponent {
     super(loaderService);
     this.submit = submit;
   }
-
+  
   // if form is valid send data to sheet
   onSubmit(event: Event) {
-    console.log(this.applyForm)
     event.preventDefault();
-    console.log(this.applyForm.value)
     if(this.applyForm.valid){
       this.submit.submitToSheet(this.applyForm.value);
+
+      let form = document.getElementById('apply-form');
+      form.style.display = 'none';
+      let sentMessage = document.getElementById('applicationSent');
+      sentMessage.style.display = 'block';
+      
       this.applyForm.reset();
     }
     else{

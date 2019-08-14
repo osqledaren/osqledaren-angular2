@@ -10,6 +10,12 @@
   display: block;
 }
 
+#applicationSent {
+  display: none;
+  margin-top: 20%;
+  margin-bottom: 35%;
+}
+
 .preamble {
   margin-bottom: $grid-gutter-width-base;
 }
