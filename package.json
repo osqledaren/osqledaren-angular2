@@ -13,7 +13,7 @@
     "e2e": "ng e2e",
     "deploy": "npm run build && npm run surge && npm run rsync-webfaction",
     "surge": "cp ./dist/index.html ./dist/200.html && surge ./dist --domain osqledaren.se",
-    "rsync-webfaction": "rsync -azrP --delete ./dist osqledaren@web580.webfaction.com:/home/osqledaren/webapps/ng2site"
+    "rsync-webfaction": "rsync -azrP --delete ./dist/* osqledaren@web580.webfaction.com:/home/osqledaren/webapps/ng2site"
   },
   "private": true,
   "dependencies": {
