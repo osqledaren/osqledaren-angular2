@@ -106,7 +106,7 @@ export class ArticleGridComponent extends UILoadableComponent {
 
     this.sub = this.route.params.subscribe(params => {
 
-      this.heading = 'Nyheter';
+      //this.heading = 'Nyheter';
 
       if (params && Object.keys(params).length !== 0) {
 

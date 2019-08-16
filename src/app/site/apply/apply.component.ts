@@ -31,7 +31,7 @@ export class ApplyComponent extends UILoadableComponent {
   applyForm = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
     email: new FormControl(null, [Validators.email, Validators.required]),
-    occupation: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
+    //occupation: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
     about: new FormControl(null, [Validators.required, Validators.maxLength(100)])
   }, {updateOn: 'blur'});
 
@@ -40,20 +40,27 @@ export class ApplyComponent extends UILoadableComponent {
     super(loaderService);
     this.submit = submit;
   }
-
+  
   // if form is valid send data to sheet
   onSubmit(event: Event) {
     event.preventDefault();
     if(this.applyForm.valid){
       this.submit.submitToSheet(this.applyForm.value);
+
+      let form = document.getElementById('apply-form');
+      form.style.display = 'none';
+      let sentMessage = document.getElementById('applicationSent');
+      sentMessage.style.display = 'block';
+
       this.applyForm.reset();
     }
     else{
       console.log('form invalid')
+      alert('Please fill out all fields correctly before submitting.')
     }
   }
 
-  // methods for accesing cotrolls in html component
+  // methods for accesing controlls in html component
   get name(){
     return this.applyForm.get('name')
   }

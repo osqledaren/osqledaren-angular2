@@ -1,44 +1,58 @@
-<div>
-  <div class="apply-header">
+<div class="container" id="container-apply">
+
+  <div id="apply-form">
     <h1>
       Apply to OL!
     </h1>
-  </div>
     <form [formGroup]="applyForm" (submit)="onSubmit($event)">
       <div>
         <label for="name">Name:</label>
+        <br>
         <input type="text" id="name" name="user_name"
-               placeholder='your name' formControlName="name">
+               placeholder='Osq Ledaren' formControlName="name">
         <span *ngIf="(name.dirty || name.touched) && name.invalid" class="invalidIn">
-          name required
+          Name required
         </span>
       </div>
+      <br>
       <div>
         <label for="mail">E-mail:</label>
+        <br>
         <input type="email" id="mail" name="user_mail"
-               placeholder="your email" formControlName="email">
+               placeholder="osq@ledaren.com" formControlName="email">
         <span *ngIf="(email.dirty || email.touched) && email.invalid" class="invalidIn">
-          valid email required
+          Valid e-mail required
         </span>
       </div>
+      <br>
+      <!--
       <div>
-        <label for="occupation">Pref?:</label>
-        <input type="text" id="occupation" name="user_pref"
-               placeholder="occupation" formControlName="occupation">
-        <span *ngIf="(occupation.dirty || occupation.touched) && occupation.invalid" class="invalidIn">
-          valid email required
-        </span>
+        <label for="occupation">Position:</label>
+        <br>
+        <input type="checkbox" id="occupation" name="user_pref" value="Developer"
+               placeholder="occupation" formControlName="occupation"> Developer
       </div>
+      <br>
+      -->
       <div>
-        <label for="name">About you:</label> <br>
-        <input type="text" id="about" name="about"
-               formControlName="about">
+        <label for="name">Write a few words about yourself and what position at OL you're interested in.
+          <br> We are looking for developers, podcasters, writers, illustrators, photographers, content creators <br> 
+          and people with great ideas! (You can write in either English or Swedish) </label> <br>
         <span *ngIf="(about.dirty || about.touched) && about.invalid" class="invalidIn">
-          please writing something about yourself
+          Please write something about yourself
         </span>
+       <textarea rows="8" cols="80" type="text" id="about" name="about"
+              formControlName="about" value=""
+              placeholder="Hi! I'm a student at Kth and ..."></textarea>
+
       </div>
-      <button type="submit">Submit</button>
+      <br><br>
+        <button class="btn btn-primary sendBtn" id="sendBtn" type="submit">Submit</button>      
+      <br><br>
     </form>
+  </div>
+
+  <div id="applicationSent">
+    <h1>Thank you for applying, <br>you will hear from us shortly!<i class="fa fa-heart-o" aria-hidden="true"></i></h1>
+  </div>
 </div>
-
-

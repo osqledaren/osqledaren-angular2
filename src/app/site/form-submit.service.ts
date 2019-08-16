@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class FormSubmitService {
   // update url if google webApp is updated
-  private url = 'https://script.google.com/macros/s/AKfycbyR1l6gyvPERwCX93koExow9T2hDq5Eb59jhdlW2ndx-Ny1yXdH/exec';
+  private url = 'https://script.google.com/macros/s/AKfycbx1OecIcVeGQn0GrYzeyaFP14LDGMWcfmufonqiVAwE5VmSZNk/exec';
 
   constructor(private http: HttpClient) {
   }

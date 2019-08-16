@@ -1,5 +1,24 @@
-@import "utility";
+@import 'utility';
 
+#container-apply {
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
+  margin-top: $grid-gutter-width-base;
+}
+
+#about{
+  display: block;
+}
+
+#applicationSent {
+  display: none;
+  margin-top: 20%;
+  margin-bottom: 35%;
+}
+
+.preamble {
+  margin-bottom: $grid-gutter-width-base;
+}
 .form-container {
   border: solid;
   border-radius: 5px;
@@ -11,10 +30,12 @@
   align-items: center;
 }
 
-.apply-header{
-  top: $header-height;
-}
-
 .invalidIn{
   color: red;
+}
+
+.sendBtn {
+  margin: auto;
+  display: block;
+  width: 40%;
 }
