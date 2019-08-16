@@ -8,6 +8,10 @@
     color: $link-color;
   }
 }
+.frame{
+  margin: 30px;
+  border: 20px solid #374e96;
+}
 
 .has-more-posts {
 
@@ -104,14 +108,11 @@
 
   time.article-date {
     position: absolute;
-    bottom: $grid-gutter-width-base/2;
-    left: $grid-gutter-width-base/2;
+    bottom: $grid-gutter-width-base/3;
+    //left: $grid-gutter-width-base/2;
     color: $gray-light;
     font-size: $font-size-small;
   }
-}
-.article-grid-item{
-  border: 5px solid $ol-green;
 }
 
 .article-grid-item, .article-grid-sizer {
