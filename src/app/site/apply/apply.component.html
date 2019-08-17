@@ -1,5 +1,7 @@
 <div class="container" id="container-apply">
-
+  <div id="applicationSent">
+    <h1>Thank you for applying, <br>you will hear from us shortly!<i class="fa fa-heart-o" aria-hidden="true"></i></h1>
+  </div>
   <div id="apply-form">
     <h1>
       Apply to OL!
@@ -7,22 +9,24 @@
     <form [formGroup]="applyForm" (submit)="onSubmit($event)">
       <div>
         <label for="name">Name:</label>
-        <br>
-        <input type="text" id="name" name="user_name"
-               placeholder='Osq Ledaren' formControlName="name">
         <span *ngIf="(name.dirty || name.touched) && name.invalid" class="invalidIn">
           Name required
         </span>
+        <br>
+        <input class="col-12 col-lg-6 col-xl-4" type="text" id="name" name="user_name"
+               placeholder='Osq Ledaren' formControlName="name">
+        
       </div>
       <br>
       <div>
         <label for="mail">E-mail:</label>
-        <br>
-        <input type="email" id="mail" name="user_mail"
-               placeholder="osq@ledaren.com" formControlName="email">
         <span *ngIf="(email.dirty || email.touched) && email.invalid" class="invalidIn">
           Valid e-mail required
         </span>
+        <br>
+        <input class="col-12 col-lg-6 col-xl-4" type="email" id="mail" name="user_mail"
+               placeholder="osq@ledaren.com" formControlName="email">
+        
       </div>
       <br>
       <!--
@@ -41,18 +45,15 @@
         <span *ngIf="(about.dirty || about.touched) && about.invalid" class="invalidIn">
           Please write something about yourself
         </span>
-       <textarea rows="8" cols="80" type="text" id="about" name="about"
+       <textarea class="col-12" rows="8" type="text" id="about" name="about"
               formControlName="about" value=""
               placeholder="Hi! I'm a student at Kth and ..."></textarea>
 
       </div>
       <br><br>
-        <button class="btn btn-primary sendBtn" id="sendBtn" type="submit">Submit</button>      
+        <button class="col-10 col-lg-6 col-xl-4 btn btn-primary sendBtn" id="sendBtn" type="submit">Submit</button>      
       <br><br>
     </form>
   </div>
 
-  <div id="applicationSent">
-    <h1>Thank you for applying, <br>you will hear from us shortly!<i class="fa fa-heart-o" aria-hidden="true"></i></h1>
-  </div>
 </div>

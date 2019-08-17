@@ -44,6 +44,7 @@ export class ApplyComponent extends UILoadableComponent {
   // if form is valid send data to sheet
   onSubmit(event: Event) {
     event.preventDefault();
+    document.getElementById("main").scrollIntoView({behavior:"smooth"})
     if(this.applyForm.valid){
       this.submit.submitToSheet(this.applyForm.value);
 
