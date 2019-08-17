@@ -6,6 +6,7 @@ import {PageNotFoundComponent} from './site/page-not-found/page-not-found.compon
 import {ArticleComponent} from './post/article/article.component';
 import {NewsArchiveComponent} from './post/news-archive/news-archive.component';
 import {PlayComponent} from './broadcast/play/play.component';
+import {MediaPlayerComponent} from './broadcast/media-player//media-player.component';
 import {EpisodeGridComponent} from './broadcast/episode-grid/episode-grid.component';
 import {SeriesComponent} from './broadcast/series/series.component';
 import {SingleSeriesComponent} from './broadcast/single-series/single-series.component';
@@ -14,6 +15,8 @@ import {AdvertiseComponent} from './site/advertise/advertise.component';
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {TipComponent} from './site/tip/tip.component';
 import {ApplyComponent} from './site/apply/apply.component';
+
+import {PodcastComponent} from './podcast/podcast.component';
 
 /**
  * Definition of broadcast routes
@@ -53,7 +56,7 @@ const BROADCAST: Routes = [
   },
   {
     path         : 'pods',
-    component    : ComingSoonComponent,
+    component    : PodcastComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'pods'},
   }
