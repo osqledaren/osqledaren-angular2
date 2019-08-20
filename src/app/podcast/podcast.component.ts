@@ -21,26 +21,24 @@ export class PodcastComponent extends UILoadableComponent {
   }
 
   fetchPodcasts(){
-    this.wpPodcasts.getArticles().subscribe(
-      (pod) => {for(let p in pod){
-        this.podcasts.push(pod[p])}
+    this.wpPodcasts.getArticles({}).subscribe(
+      (pod) => {        
+        for(let p in pod){
+          this.podcasts.push(pod[p])}
         },
       (err) => console.log(err))
-
+      
   }
 
-  get podcast(){      
+  get podcast(){     
       return this.podcasts
-    
   }
-
+  
 
   ngOnInit() {
     this.archiveService.activate(Archive.article);
     this.fetchPodcasts()
-    console.log(this.podcasts)
-    this.loaded();
-    
+    this.loaded()
   }
-
+  
 }
