@@ -24,12 +24,14 @@ import {FooterService} from './site/footer.service';
 import {WordpressService} from './content/wordpress.service';
 import {TipSubmitService} from './site/tip-submit.service'
 import {FormSubmitService} from './site/form-submit.service';
+import {PodcastService} from './podcast/podcast.service';
 // Guards
 import {AppLoadableDeactivateGuard} from './ui/ui-view-loadable-deactivate.guard';
 import {ROUTES} from './app.routes';
 import {PrintedIssuesModule} from './printed-issues/printed-issues.module';
 import {CommonModule} from '@angular/common';
 import { TipComponent } from './site/tip/tip.component';
+import { PodcastComponent } from './podcast/podcast.component';
 
 const FINAL_ROUTES: Routes = [
   {
@@ -41,7 +43,7 @@ const FINAL_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, TipComponent],
+  declarations: [AppComponent, TipComponent, PodcastComponent],
   imports     : [
     AdvertisementModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
@@ -70,7 +72,8 @@ const FINAL_ROUTES: Routes = [
     AppLoadableDeactivateGuard,
     FooterService,
     TipSubmitService,
-    FormSubmitService
+    FormSubmitService,
+    PodcastService
   ],
   bootstrap   : [AppComponent]
 })

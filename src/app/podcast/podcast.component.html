@@ -1,0 +1,21 @@
+<div class="container" id="container-podcast">
+  <div *ngFor="let pod of podcast" id="podcast" >
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <h2 [innerHTML]="pod.headline"></h2>
+        <div [innerHTML]="pod.body_html" ></div>
+      </div>
+      
+    <div class="col-12 col-lg-6" *ngIf="pod.renditions.full">
+      <img id="cover" class="col-11" src="{{pod.renditions.full.href}}" alt="">
+    </div>
+  </div>
+  
+    <audio class="wp-audio-shortcode" id="audio-18583-1" preload="none" 
+          style="width: 100%;" controls>
+        <source type="audio/wav" src="{{pod.audio_file}}">
+        Your browser does not support the audio element.
+    </audio>
+  </div>
+</div>
+
