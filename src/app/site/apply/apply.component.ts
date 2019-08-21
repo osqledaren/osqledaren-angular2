@@ -32,7 +32,7 @@ export class ApplyComponent extends UILoadableComponent {
     name: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
     email: new FormControl(null, [Validators.email, Validators.required]),
     //occupation: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
-    about: new FormControl(null, [Validators.required, Validators.maxLength(100)])
+    about: new FormControl(null, [Validators.required, Validators.maxLength(10000)])
   }, {updateOn: 'blur'});
 
   submit: FormSubmitService;
