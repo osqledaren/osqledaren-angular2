@@ -1,13 +1,21 @@
+
 <div class="container" id="container-podcast">
-  <div *ngFor="let pod of podcast" id="podcast" >
+  <div id="header" >
+    <h1>Campus-podden</h1>
+    Här kan du lyssna på Campus-podden som produceras av Osqledaren. 
+    Podden tar upp lite olika saker om olika ting på KTH. 
+    Lyssna här eller sök på Campus-podden i din podcastspelare!
+
+  </div>
+  <div *ngFor="let pod of podcast" id="podcast">
     <div class="row">
-      <div class="col-12 col-lg-6">
-        <h2 [innerHTML]="pod.headline"></h2>
+      <div class="col-12 col-md-7">
+        <h3 [innerHTML]="pod.headline"></h3>
         <div [innerHTML]="pod.body_html" ></div>
       </div>
       
-    <div class="col-12 col-lg-6" *ngIf="pod.renditions.full">
-      <img id="cover" class="col-11" src="{{pod.renditions.full.href}}" alt="">
+    <div class="col-12 col-md-5" *ngIf="pod.renditions.full">
+      <img id="cover" class="col-12" src="{{pod.renditions.full.href}}" alt="">
     </div>
   </div>
   
