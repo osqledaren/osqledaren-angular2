@@ -32,6 +32,27 @@
     
   }
 
+  .buttons{
+    margin-block-end: 10px;
+    margin-left: auto;
+    display: block;
+    font-size: $font-size-base;
+  }
+
+  .active{
+    background: $ol-blue;
+    color: white;
+    pointer-events: none;
+  }
+
+  button{
+    background: transparent;
+    border: 1px solid black;
+    margin-left: 0px;
+    margin-right: 0%;
+    border-radius: 4px;
+  }
+
   @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }

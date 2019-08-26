@@ -13,7 +13,9 @@ import {PodcastQueryParams} from './podcast-query-params.interface'
 })
 export class PodcastComponent extends UILoadableComponent {
   private wpPodcasts = null;
-  private podcasts = [];
+  private campusPod = [];
+  private oldPod = [];
+  private activeBtn = 'campusBtn';
 
   constructor(loaderService: UIViewLoaderService, private archiveService: ArchiveService, wpPodcasts: PodcastService) {
     super(loaderService);
@@ -24,16 +26,34 @@ export class PodcastComponent extends UILoadableComponent {
     this.wpPodcasts.getArticles({}).subscribe(
       (pod) => {        
         for(let p in pod){
-          this.podcasts.push(pod[p])}
-        },
+          if(pod[p].versioncreated < '2019-04-18'){
+            this.oldPod.push(pod[p])
+          }else{
+            this.campusPod.push(pod[p])
+          }
+        }
+      },
       (err) => console.log(err))
       
   }
 
-  get podcast(){     
-      return this.podcasts
+  get podcast(){
+    if(this.activeBtn == 'oldBtn'){
+      return this.oldPod
+    }else{
+      return this.campusPod
+    }     
   }
-  
+
+  switchBtn(btnClicked, btnToDeactivate){
+    let deactivate = document.getElementById(btnToDeactivate)
+    deactivate.classList.remove('active')
+    
+    let clicked = document.getElementById(btnClicked)
+    clicked.classList.add('active')
+
+    this.activeBtn = btnClicked
+  }
 
   ngOnInit() {
     this.archiveService.activate(Archive.article);
