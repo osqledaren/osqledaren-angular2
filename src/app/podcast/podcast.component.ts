@@ -15,7 +15,7 @@ export class PodcastComponent extends UILoadableComponent {
   private wpPodcasts = null;
   private campusPod = [];
   private oldPod = [];
-  private activeBtn = 'campusBtn';
+  private activeBtn = 'scampusBtn';
 
   constructor(loaderService: UIViewLoaderService, private archiveService: ArchiveService, wpPodcasts: PodcastService) {
     super(loaderService);
@@ -43,6 +43,20 @@ export class PodcastComponent extends UILoadableComponent {
     }else{
       return this.campusPod
     }     
+  }
+
+  get info(){
+    if(this.activeBtn == 'oldBtn'){
+      return {title: 'Tidigare poddar från OL', 
+      description: `Här kan du lyssna på poddar som har producerats av OL tidigare år.
+      Lyssna här eller sök på Campus-podden i din podcastspelare!`}
+    }else{
+      return {title: 'Campus-podden', 
+      description: `Här kan du lyssna på Campus-podden som produceras av Osqledaren. 
+      Podden tar upp lite olika saker om olika ting på KTH. 
+      Lyssna här eller sök på Campus-podden i din podcastspelare!`}
+    }   
+    
   }
 
   switchBtn(btnClicked, btnToDeactivate){

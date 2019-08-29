@@ -1,27 +1,25 @@
 
 <div class="container" id="container-podcast">
   <div id="header">
-    <h1>Campus-podden</h1>
-    Här kan du lyssna på Campus-podden som produceras av Osqledaren. 
-    Podden tar upp lite olika saker om olika ting på KTH. 
-    Lyssna här eller sök på Campus-podden i din podcastspelare!
-
+    <h1>{{info.title}}</h1>
+    {{info.description}}
   </div>
   <div class="row buttons">
-      <button class="col-4 col-md-3 col-lg-2 active" id="campusBtn" (click)="switchBtn('campusBtn', 'oldBtn')">Campus-podden</button>
-      <button class="col-4 col-md-3 col-lg-2" id="oldBtn" (click)="switchBtn('oldBtn', 'campusBtn')">Gamla poddar</button>
+      <button class="col-5 col-md-3 col-lg-2 active" id="campusBtn" (click)="switchBtn('campusBtn', 'oldBtn')">Campus-podden</button>
+      <button class="col-5 col-md-3 col-lg-2" id="oldBtn" (click)="switchBtn('oldBtn', 'campusBtn')">Gamla poddar</button>
   </div>
   
   <div *ngFor="let pod of podcast" id="podcast">
     <div class="row">
-      <div class="col-12 col-md-7">
+        <div class="col-12 col-md-3 text-center" *ngIf="pod.renditions.full">
+            <img id="cover" class="col-12" src="{{pod.renditions.full.href}}" alt="">
+        </div>
+      <div class="col-12 col-md-7 info">
         <h3 [innerHTML]="pod.headline"></h3>
         <div [innerHTML]="pod.body_html" ></div>
       </div>
       
-    <div class="col-12 col-md-5" *ngIf="pod.renditions.full">
-      <img id="cover" class="col-12" src="{{pod.renditions.full.href}}" alt="">
-    </div>
+    
   </div>
   
     <audio class="wp-audio-shortcode" id="audio-18583-1" preload="none" 
