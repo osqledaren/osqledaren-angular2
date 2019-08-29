@@ -26,7 +26,7 @@ export class PodcastComponent extends UILoadableComponent {
     this.wpPodcasts.getArticles({}).subscribe(
       (pod) => {        
         for(let p in pod){
-          if(pod[p].versioncreated < '2019-04-18'){
+          if(pod[p].versioncreated < '2019-08-01'){
             this.oldPod.push(pod[p])
           }else{
             this.campusPod.push(pod[p])
@@ -49,12 +49,12 @@ export class PodcastComponent extends UILoadableComponent {
     if(this.activeBtn == 'oldBtn'){
       return {title: 'Tidigare poddar från OL', 
       description: `Här kan du lyssna på poddar som har producerats av OL tidigare år.
-      Lyssna här eller sök på Campus-podden i din podcastspelare!`}
+      Lyssna här eller sök på Osqledaren i din podcastspelare!`}
     }else{
-      return {title: 'Campus-podden', 
-      description: `Här kan du lyssna på Campus-podden som produceras av Osqledaren. 
+      return {title: 'Campuspodden', 
+      description: `Här kan du lyssna på Campuspodden som produceras av Osqledaren. 
       Podden tar upp lite olika saker om olika ting på KTH. 
-      Lyssna här eller sök på Campus-podden i din podcastspelare!`}
+      Lyssna här eller sök på Campuspodden i din podcastspelare!`}
     }   
     
   }
