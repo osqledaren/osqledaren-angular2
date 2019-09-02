@@ -47,14 +47,14 @@ export class PodcastComponent extends UILoadableComponent {
 
   get info(){
     if(this.activeBtn == 'oldBtn'){
-      return {title: 'Tidigare poddar från OL', 
+      return {title: 'Äldre poddar', 
       description: `Här kan du lyssna på poddar som har producerats av OL tidigare år.
       Lyssna här eller sök på Osqledaren i din podcastspelare!`}
     }else{
-      return {title: 'Campuspodden', 
-      description: `Här kan du lyssna på Campuspodden som produceras av Osqledaren. 
+      return {title: 'Qampuspodden', 
+      description: `Här kan du lyssna på Qampuspodden som produceras av Osqledaren. 
       Podden tar upp lite olika saker om olika ting på KTH. 
-      Lyssna här eller sök på Campuspodden i din podcastspelare!`}
+      Lyssna här eller sök på Qampuspodden i din podcastspelare!`}
     }   
     
   }

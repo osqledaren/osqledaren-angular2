@@ -1,13 +1,18 @@
 
 <div class="container" id="container-podcast">
+  
   <div id="header">
-    <h1>{{info.title}}</h1>
-    {{info.description}}
+    <h1 class="">{{info.title}}</h1>
+    <div class="row buttons">
+      <button class="col-5 col-md-3 col-lg-2 active" id="campusBtn" (click)="switchBtn('campusBtn', 'oldBtn')">Qampuspodden</button>
+      <button class="col-5 col-md-3 col-lg-2" id="oldBtn" (click)="switchBtn('oldBtn', 'campusBtn')">Äldre poddar</button>
   </div>
-  <div class="row buttons">
-      <button class="col-5 col-md-3 col-lg-2 active" id="campusBtn" (click)="switchBtn('campusBtn', 'oldBtn')">Campuspodden</button>
-      <button class="col-5 col-md-3 col-lg-2" id="oldBtn" (click)="switchBtn('oldBtn', 'campusBtn')">Gamla poddar</button>
+    <div class="row description">
+      <div class="col-12 col-lg-10">{{info.description}}</div>
+    </div>
+    
   </div>
+  
   
   <div *ngFor="let pod of podcast" id="podcast">
     <div class="row">

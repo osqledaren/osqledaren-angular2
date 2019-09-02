@@ -3,12 +3,8 @@
     overflow: hidden;
   }
 
-  #header{
-    margin-block-end: 40px;
-    height: 100px;
-  }
   #container-podcast {
-    min-height: 1000px;
+    min-height: 550px;
     font-size: $font-size-lg;
     line-height: $line-height-lg;
     margin-top: $grid-gutter-width-base;
@@ -17,7 +13,7 @@
 
   #cover {
     margin: 14px;
-    max-width: 300px;
+    max-width: 250px;
   }
 
   #podcast {
@@ -36,10 +32,13 @@
   }
 
   .buttons{
-    margin-block-end: 10px;
+    //margin-block-end: 10px;
     margin-left: auto;
     display: block;
     font-size: $font-size-base;
+  }
+  .buttons button{
+    //margin-right: 3px;
   }
 
   .active{
@@ -47,6 +46,14 @@
     color: white;
     pointer-events: none;
     
+  }
+
+  .description{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .info h3{
+    margin-top: 9px;
   }
 
   button{
