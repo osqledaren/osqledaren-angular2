@@ -56,7 +56,7 @@ const BROADCAST: Routes = [
   },
   {
     path         : 'pods',
-    component    : ComingSoonComponent,//PodcastComponent,
+    component    :  PodcastComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'pods'},
   }
