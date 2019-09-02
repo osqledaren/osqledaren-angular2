@@ -53,8 +53,8 @@ export class PodcastComponent extends UILoadableComponent {
     }else{
       return {title: 'Qampuspodden', 
       description: `Här kan du lyssna på Qampuspodden som produceras av Osqledaren. 
-      Podden tar upp lite olika saker om olika ting på KTH. 
-      Lyssna här eller sök på Qampuspodden i din podcastspelare!`}
+      Podden tar upp lite olika saker om olika ting på KTH och är en podd för studenter, 
+      av studenter. Lyssna här eller sök på Qampuspodden i din podcastspelare!`}
     }   
     
   }

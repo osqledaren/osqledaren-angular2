@@ -21,6 +21,7 @@
         </div>
       <div class="col-12 col-md-7 info">
         <h3 [innerHTML]="pod.headline"></h3>
+        {{pod.versioncreated.substring(0, 10)}}
         <div [innerHTML]="pod.body_html" ></div>
       </div>
       
