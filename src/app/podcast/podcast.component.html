@@ -1,30 +1,25 @@
 
 <div class="container" id="container-podcast">
-  
-  <div id="header">
-    <h1 class="">{{info.title}}</h1>
-    <div class="row buttons">
-      <button class="col-5 col-md-3 col-lg-2 active" id="campusBtn" (click)="switchBtn('campusBtn', 'oldBtn')">Qampuspodden</button>
-      <button class="col-5 col-md-3 col-lg-2" id="oldBtn" (click)="switchBtn('oldBtn', 'campusBtn')">Äldre poddar</button>
+  <div class="buttons row">
+      <button class="col-6 col-md-3 col-lg-2 active btn" id="campusBtn" (click)="switchBtn('campusBtn', 'oldBtn')">Qampuspodden</button>
+      <button class="col-5 col-md-2 col-lg-2 btn" id="oldBtn" (click)="switchBtn('oldBtn', 'campusBtn')">Äldre poddar</button>
   </div>
-    <div class="row description">
-      <div class="col-12 col-lg-10">{{info.description}}</div>
-    </div>
-    
+  <div class="row" id="header">
+      <h1 class="col-12">{{info.title}}</h1>
+      <div class="col-12 col-lg-10 description">{{info.description}}</div>
   </div>
-  
+
   
   <div *ngFor="let pod of podcast" id="podcast">
     <div class="row">
-        <div class="col-12 col-md-3 text-center" *ngIf="pod.renditions.full">
+        <div class="col-12 col-sm-5 col-md-3 text-center" *ngIf="pod.renditions.full">
             <img id="cover" class="col-12" src="{{pod.renditions.full.href}}" alt="">
         </div>
-      <div class="col-12 col-md-7 info">
-        <h3 [innerHTML]="pod.headline"></h3>
-        {{pod.versioncreated.substring(0, 10)}}
-        <div [innerHTML]="pod.body_html" ></div>
-      </div>
-      
+        <div class="col-12 col-sm-7 col-md-8 info">
+          <h3 [innerHTML]="pod.headline"></h3>
+          {{pod.versioncreated.substring(0, 10)}}
+          <div [innerHTML]="pod.body_html"></div>
+        </div>
     
   </div>
   
