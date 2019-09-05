@@ -8,7 +8,6 @@
     font-size: $font-size-lg;
     line-height: $line-height-lg;
     margin-top: $grid-gutter-width-base;
-    padding-left: 0%;
   }
 
   #cover {
@@ -22,6 +21,7 @@
     padding: 4px;
     background: white;
     font-size: $font-size-base;
+    border-radius: 8px;
 
     -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 1s; /* Firefox < 16 */
@@ -32,15 +32,18 @@
   }
 
   .buttons{
-    //margin-block-end: 10px;
+    margin-block-end: 10px;
     margin-left: auto;
+    margin-right: auto;
     display: block;
     font-size: $font-size-base;
+    border-radius: 4px;
+    border: 2px solid $ol-blue;
+    
   }
 
   .active{
-    background: $ol-blue;
-    color: white;
+    color: black;
     pointer-events: none;
     
   }
@@ -49,21 +52,22 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
   .info h3{
     margin-top: 9px;
   }
 
   button{
+    color: grey;
     background: transparent;
-    border: 1px solid black;
-    margin-left: 0px;
-    margin-right: 0%;
-    border-radius: 4px;
   }
   
   button:focus {
     outline-color: transparent;
     outline-style: none;
+    box-shadow: none;
+    -webkit-box-shadow: none !important;
+    
   }
 
   @keyframes fadein {

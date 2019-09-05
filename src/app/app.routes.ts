@@ -55,10 +55,10 @@ const BROADCAST: Routes = [
     ]
   },
   {
-    path         : 'pods',
+    path         : 'podcast',
     component    :  PodcastComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
-    data         : {name: 'pods'},
+    data         : {name: 'podcast'},
   }
 ];
 
@@ -153,7 +153,7 @@ const SITE: Routes = [
   //   data         : {name: 'coming-soon'}
   // },
   {
-    path         : 'pods',
+    path         : 'podcast',
     component    : ComingSoonComponent,
     canDeactivate: [AppLoadableDeactivateGuard],
     data         : {name: 'coming-soon'}
