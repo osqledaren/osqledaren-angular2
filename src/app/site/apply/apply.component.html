@@ -42,7 +42,7 @@
         <label for="name">Write a few words about yourself and what position at OL you're interested in.
           <br> We are looking for developers, podcasters, writers, illustrators, photographers, content creators <br> 
           and people with great ideas! (You can write in either English or Swedish) </label> <br>
-        <span *ngIf="(about.dirty || about.touched) && about.invalid" class="invalidIn">
+        <span *ngIf="(about.dirty || about.touched)" class="invalidIn">  <!--&& about.invalid-->
           Please write something about yourself
         </span>
        <textarea class="col-12" rows="8" type="text" id="about" name="about"
@@ -51,7 +51,7 @@
 
       </div>
       <br><br>
-        <button class="col-10 col-lg-6 col-xl-4 btn btn-primary sendBtn" id="sendBtn" type="submit">Submit</button>      
+        <button class="col-10 col-lg-6 col-xl-4 btn btn-primary sendBtn" id="sendBtn" type="submit">Submit</button> 
       <br><br>
     </form>
   </div>
