@@ -49,12 +49,16 @@ export class PodcastComponent extends UILoadableComponent {
     if(this.activeBtn == 'oldBtn'){
       return {title: 'Äldre poddar', 
       description: `Här kan du lyssna på poddar som har producerats av OL tidigare år.
-      Lyssna här eller sök på Osqledaren i din podcastspelare!`}
+      Lyssna här eller sök på Osqledaren i din podcastspelare!`,
+    appleLink: 'https://podcasts.apple.com/se/podcast/osqledaren/id1347720126',
+    googleLink: 'https://podcasts.google.com/?feed=aHR0cDovL3dwLm9zcWxlZGFyZW4uc2UvZmVlZC9wb2RjYXN0L29zcWxlZGFyZW4%3D'}
     }else{
       return {title: 'Qampuspodden', 
       description: `Här kan du lyssna på Qampuspodden som produceras av Osqledaren. 
       Podden tar upp lite olika saker om olika ting på KTH och är en podd för studenter, 
-      av studenter. Lyssna här eller sök på Qampuspodden i din podcastspelare!`}
+      av studenter. Lyssna här eller sök på Qampuspodden i din podcastspelare!`,
+      appleLink: 'https://podcasts.apple.com/se/podcast/qampuspodden/id1478763742',
+      googleLink: 'https://podcasts.google.com/?feed=aHR0cDovL3dwLm9zcWxlZGFyZW4uc2UvZmVlZC9wb2RjYXN0L3FhbXB1c3BvZGRlbg%3D%3D'}
     }   
     
   }
