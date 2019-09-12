@@ -8,9 +8,15 @@
     </div>
   </div>
   <div class="row" id="header">
-      <h1 class="col-12">{{info.title}}</h1>
-      <div class="col-12 col-lg-10 description">{{info.description}}</div>
+    <h1 class="col-12">{{info.title}}</h1>
+    <div class="col-12 col-lg-10 description">{{info.description}}</div>
+    
   </div>
+    
+  <a  class="btn" href="{{info.appleLink}}">
+    <img class="link" src="../assets/svg/apple-podcast.svg" alt="Listen on Apple Podcast">
+  </a>
+  
 
   <div *ngFor="let pod of podcast" id="podcast">
     <div class="row">

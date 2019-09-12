@@ -36,7 +36,6 @@
     font-size: $font-size-base;
     border-radius: 4px;
     border: 2px solid $ol-blue;
-    
   }
 
   .active{
@@ -45,8 +44,12 @@
     
   }
 
+  .link{
+    margin-block-end: 5px;
+    height: 35px;
+  }
+
   .description{
-    margin-top: 20px;
     margin-bottom: 20px;
   }
 
