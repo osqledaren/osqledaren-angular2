@@ -23,10 +23,12 @@
       <div class="col-12 col-sm-5 col-md-3 text-center" *ngIf="pod.renditions.full">
           <img id="cover" class="col-12" src="{{pod.renditions.full.href}}" alt="">
       </div>
-      <div class="col-12 col-sm-7 col-md-8 info">
+      <div class="col-12 col-sm-7 col-md-8 episodeInfo">
         <h3 [innerHTML]="pod.headline"></h3>
-        {{pod.versioncreated.substring(0, 10)}}
-        <div [innerHTML]="pod.body_html"></div>
+        <div class="episodeDescription">
+          {{pod.versioncreated.substring(0, 10)}}
+          <div [innerHTML]="pod.body_html"></div>
+        </div>
       </div>
     </div>
   
