@@ -55,7 +55,8 @@
 
   .episodeDescription{
     max-height: 140px;
-    overflow: auto;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 
   }
   .episodeInfo h3{
