@@ -29,10 +29,7 @@ export class PodcastComponent extends UILoadableComponent {
           if(pod[p].versioncreated < '2019-08-01'){
             this.oldPod.push(pod[p])
           }else{
-            if(p != '0'){
-              this.campusPod.push(pod[p])
-            }
-            
+            this.campusPod.push(pod[p]) 
           }
         }
       },
