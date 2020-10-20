@@ -21,20 +21,20 @@ export class AdvertiseComponent extends UILoadableComponent {
 
     super(loaderService);
 
-    this.covers = ['http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141501.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141500.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131404.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131403.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131402.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131401.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131400.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121305.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121304.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121303.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121302.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121301.jpg',
-      'http://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg'];
+    this.covers = ['https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141501.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141500.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131404.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131403.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131402.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131401.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol131400.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121305.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121304.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121303.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121302.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol121301.jpg',
+      'https://wp.osqledaren.se/wp-content/themes/osqledaren/assets/img/covers/ol141502.jpg'];
 
     this.osqledaren_email = 'osqledaren@ths.kth.se';
     this.osqledaren_mobile = '08-790 98 70';
